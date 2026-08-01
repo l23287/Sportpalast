@@ -12,6 +12,7 @@ import { PlanDetail } from './pages/PlanDetail';
 import { Exercises } from './pages/Exercises';
 import { Settings } from './pages/Settings';
 import { Statistics } from './pages/Statistics';
+import { ServeTraining } from './pages/ServeTraining';
 
 export default function App() {
   return (
@@ -34,8 +35,9 @@ export default function App() {
                 <Route path="/plaene/:id" element={<PlanDetail />} />
                 <Route path="/plaene/:id/bearbeiten" element={<PlanForm />} />
                 <Route path="/uebungen" element={<Exercises />} />
-                <Route path="/einstellungen" element={<Settings />} />
                 <Route path="/statistiken" element={<Statistics />} />
+                <Route path="/aufschlagtraining" element={<ServeTraining />} />
+                <Route path="/einstellungen" element={<Settings />} />
               </Route>
             </Route>
 
