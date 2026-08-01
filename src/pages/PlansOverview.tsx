@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ClipboardList, Plus } from 'lucide-react';
 import { useAppData } from '../context/AppDataContext';
+import { useAuth } from '../context/AuthContext';
 import { PrimaryButton } from '../components/PrimaryButton';
 import { SearchInput } from '../components/SearchInput';
 import { PlanCard } from '../components/PlanCard';
@@ -11,6 +12,7 @@ import { getSportEmoji } from '../lib/sports';
 
 export function PlansOverview() {
   const { plans, exercises, deletePlan, settings } = useAppData();
+  const { account } = useAuth();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
@@ -27,7 +29,8 @@ export function PlansOverview() {
     <div className="flex flex-col gap-6">
       <header className="flex flex-col gap-2">
         <p className="text-sm text-muted-2">
-          {getSportEmoji(settings.sport)} Willkommen zurück, Trainer:in — aktuelle Sportart: {settings.sport}
+          {getSportEmoji(settings.sport)} Willkommen zurück, {account?.name ?? 'Trainer:in'} — aktuelle Sportart:{' '}
+          {settings.sport}
         </p>
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h1 className="font-display text-3xl font-extrabold text-ink">Trainingspläne</h1>

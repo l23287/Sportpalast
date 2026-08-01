@@ -30,3 +30,8 @@ export type PlanInput = Omit<TrainingPlan, 'id' | 'createdAt'>;
 export interface AppSettings {
   sport: string;
 }
+
+export interface Account {
+  name: string;
+  email: string;
+}

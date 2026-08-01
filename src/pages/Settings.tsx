@@ -1,11 +1,15 @@
 import { useMemo, useState } from 'react';
-import { Check } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Check, LogOut } from 'lucide-react';
 import { useAppData } from '../context/AppDataContext';
+import { useAuth } from '../context/AuthContext';
 import { SearchInput } from '../components/SearchInput';
 import { SPORTS } from '../lib/sports';
 
 export function Settings() {
   const { settings, setSport } = useAppData();
+  const { account, logout } = useAuth();
+  const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [justSaved, setJustSaved] = useState(false);
 
@@ -30,6 +34,32 @@ export function Settings() {
           zugeordnet.
         </p>
       </header>
+
+      {account && (
+        <div className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5">
+          <h2 className="font-display text-lg font-bold text-ink">Konto</h2>
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary-dark font-display font-bold text-white">
+              {account.name.charAt(0).toUpperCase()}
+            </div>
+            <div className="min-w-0">
+              <p className="truncate font-semibold text-ink">{account.name}</p>
+              <p className="truncate text-sm text-muted-2">{account.email}</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              logout();
+              navigate('/anmelden');
+            }}
+            className="flex h-12 items-center justify-center gap-2 rounded-2xl border border-border text-sm font-semibold text-danger transition hover:bg-danger/10"
+          >
+            <LogOut size={16} />
+            Abmelden
+          </button>
+        </div>
+      )}
 
       <div className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
