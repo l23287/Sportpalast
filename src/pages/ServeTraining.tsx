@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Crosshair, Flag, Play, Ruler, ThumbsDown, ThumbsUp, X } from 'lucide-react';
+import { Crosshair, Flag, Play, Ruler, Tag, ThumbsDown, ThumbsUp, X } from 'lucide-react';
 import { useAppData } from '../context/AppDataContext';
 import { EmptyState } from '../components/EmptyState';
 import { PrimaryButton } from '../components/PrimaryButton';
@@ -10,6 +10,7 @@ import { LineChart } from '../components/LineChart';
 import { ServeSessionCard } from '../components/ServeSessionCard';
 import { ConfirmDialog } from '../components/ConfirmDialog';
 import { computeServeProgress, computeServeSessionSummary } from '../lib/serveStats';
+import { inputClass, labelClass } from '../lib/formStyles';
 import { SERVE_LENGTHS, SERVE_PLACEMENTS, type ServeLength, type ServePlacement, type ServeSession } from '../types';
 
 type Phase = 'idle' | 'goal' | 'active' | 'results';
@@ -22,6 +23,7 @@ export function ServeTraining() {
   const [phase, setPhase] = useState<Phase>(activeSession ? 'active' : 'idle');
   const [length, setLength] = useState<ServeLength | null>(null);
   const [placement, setPlacement] = useState<ServePlacement | null>(null);
+  const [type, setType] = useState('');
   const [viewSessionId, setViewSessionId] = useState<string | null>(null);
   const [discardConfirmOpen, setDiscardConfirmOpen] = useState(false);
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
@@ -36,12 +38,13 @@ export function ServeTraining() {
   function openGoalPhase() {
     setLength(null);
     setPlacement(null);
+    setType('');
     setPhase('goal');
   }
 
   function handleStartSession() {
     if (!length || !placement) return;
-    startServeSession({ length, placement });
+    startServeSession({ length, placement, type: type.trim() });
     setPhase('active');
   }
 
@@ -84,8 +87,10 @@ export function ServeTraining() {
       <GoalPhase
         length={length}
         placement={placement}
+        type={type}
         onLengthChange={setLength}
         onPlacementChange={setPlacement}
+        onTypeChange={setType}
         onCancel={() => setPhase('idle')}
         onStart={handleStartSession}
       />
@@ -164,13 +169,24 @@ export function ServeTraining() {
 interface GoalPhaseProps {
   length: ServeLength | null;
   placement: ServePlacement | null;
+  type: string;
   onLengthChange: (value: ServeLength) => void;
   onPlacementChange: (value: ServePlacement) => void;
+  onTypeChange: (value: string) => void;
   onCancel: () => void;
   onStart: () => void;
 }
 
-function GoalPhase({ length, placement, onLengthChange, onPlacementChange, onCancel, onStart }: GoalPhaseProps) {
+function GoalPhase({
+  length,
+  placement,
+  type,
+  onLengthChange,
+  onPlacementChange,
+  onTypeChange,
+  onCancel,
+  onStart,
+}: GoalPhaseProps) {
   const canStart = Boolean(length && placement);
 
   return (
@@ -185,6 +201,18 @@ function GoalPhase({ length, placement, onLengthChange, onPlacementChange, onCan
       <div className="flex flex-col gap-6 rounded-3xl border border-border bg-surface p-5">
         <PillSelect label="Länge" options={SERVE_LENGTHS} value={length} onChange={onLengthChange} />
         <PillSelect label="Platzierung" options={SERVE_PLACEMENTS} value={placement} onChange={onPlacementChange} />
+        <div>
+          <label className={labelClass} htmlFor="serve-type">
+            Aufschlagart <span className="text-muted-2">(optional)</span>
+          </label>
+          <input
+            id="serve-type"
+            className={inputClass}
+            value={type}
+            onChange={(event) => onTypeChange(event.target.value)}
+            placeholder="z. B. Pendelaufschlag Unterschnitt"
+          />
+        </div>
       </div>
 
       <div className="flex gap-3">
@@ -240,6 +268,11 @@ function ActivePhase({
         <span className="inline-flex items-center gap-1.5 rounded-2xl bg-primary-soft px-3 py-1.5 text-sm font-semibold text-accent">
           <Crosshair size={14} /> {session.placement}
         </span>
+        {session.type && (
+          <span className="inline-flex items-center gap-1.5 rounded-2xl bg-primary-soft px-3 py-1.5 text-sm font-semibold text-accent">
+            <Tag size={14} /> {session.type}
+          </span>
+        )}
       </div>
 
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
@@ -323,6 +356,11 @@ function ResultsPhase({ session, onDone, onRestart }: ResultsPhaseProps) {
         <span className="inline-flex items-center gap-1.5 rounded-2xl bg-primary-soft px-3 py-1.5 text-sm font-semibold text-accent">
           <Crosshair size={14} /> {session.placement}
         </span>
+        {session.type && (
+          <span className="inline-flex items-center gap-1.5 rounded-2xl bg-primary-soft px-3 py-1.5 text-sm font-semibold text-accent">
+            <Tag size={14} /> {session.type}
+          </span>
+        )}
       </div>
 
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">

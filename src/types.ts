@@ -50,6 +50,7 @@ export interface ServeAttempt {
 export interface ServeSessionGoal {
   length: ServeLength;
   placement: ServePlacement;
+  type: string;
 }
 
 export interface ServeSession extends ServeSessionGoal {

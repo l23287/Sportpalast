@@ -1,4 +1,4 @@
-import { Crosshair, Ruler, Trash2 } from 'lucide-react';
+import { Crosshair, Ruler, Tag, Trash2 } from 'lucide-react';
 import type { ServeSession } from '../types';
 import { computeServeSessionSummary } from '../lib/serveStats';
 import { formatDateTime } from '../lib/time';
@@ -29,6 +29,11 @@ export function ServeSessionCard({ session, onView, onDelete }: ServeSessionCard
         <span className="inline-flex items-center gap-1">
           <Crosshair size={13} /> {session.placement}
         </span>
+        {session.type && (
+          <span className="inline-flex items-center gap-1">
+            <Tag size={13} /> {session.type}
+          </span>
+        )}
       </div>
 
       <div className="flex items-center justify-between">
