@@ -1,5 +1,13 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import type { Exercise, ExerciseInput, PlanInput, TrainingPlan } from '../types';
+import type {
+  Exercise,
+  ExerciseInput,
+  PlanInput,
+  ServeResult,
+  ServeSession,
+  ServeSessionGoal,
+  TrainingPlan,
+} from '../types';
 import { generateId } from '../lib/id';
 import { loadJSON, saveJSON } from '../lib/storage';
 import { SEED_EXERCISES, SEED_PLANS } from '../lib/seed';
@@ -15,6 +23,11 @@ interface AppDataContextValue {
   updateExercise: (id: string, input: ExerciseInput) => void;
   deleteExercise: (id: string) => void;
   getExercise: (id: string) => Exercise | undefined;
+  serveSessions: ServeSession[];
+  startServeSession: (goal: ServeSessionGoal) => ServeSession;
+  addServeAttempt: (sessionId: string, result: ServeResult) => void;
+  endServeSession: (sessionId: string) => void;
+  deleteServeSession: (id: string) => void;
 }
 
 const AppDataContext = createContext<AppDataContextValue | null>(null);
@@ -22,9 +35,11 @@ const AppDataContext = createContext<AppDataContextValue | null>(null);
 export function AppDataProvider({ children }: { children: ReactNode }) {
   const [plans, setPlans] = useState<TrainingPlan[]>(() => loadJSON('plans', SEED_PLANS));
   const [exercises, setExercises] = useState<Exercise[]>(() => loadJSON('exercises', SEED_EXERCISES));
+  const [serveSessions, setServeSessions] = useState<ServeSession[]>(() => loadJSON('serveSessions', []));
 
   useEffect(() => saveJSON('plans', plans), [plans]);
   useEffect(() => saveJSON('exercises', exercises), [exercises]);
+  useEffect(() => saveJSON('serveSessions', serveSessions), [serveSessions]);
 
   const value = useMemo<AppDataContextValue>(
     () => ({
@@ -61,8 +76,40 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         );
       },
       getExercise: (id) => exercises.find((e) => e.id === id),
+      serveSessions,
+      startServeSession: (goal) => {
+        const session: ServeSession = {
+          ...goal,
+          id: generateId(),
+          attempts: [],
+          startedAt: new Date().toISOString(),
+          endedAt: null,
+        };
+        setServeSessions((prev) => [session, ...prev]);
+        return session;
+      },
+      addServeAttempt: (sessionId, result) => {
+        setServeSessions((prev) =>
+          prev.map((session) =>
+            session.id === sessionId
+              ? {
+                  ...session,
+                  attempts: [...session.attempts, { id: generateId(), result, createdAt: new Date().toISOString() }],
+                }
+              : session,
+          ),
+        );
+      },
+      endServeSession: (sessionId) => {
+        setServeSessions((prev) =>
+          prev.map((session) => (session.id === sessionId ? { ...session, endedAt: new Date().toISOString() } : session)),
+        );
+      },
+      deleteServeSession: (id) => {
+        setServeSessions((prev) => prev.filter((session) => session.id !== id));
+      },
     }),
-    [plans, exercises],
+    [plans, exercises, serveSessions],
   );
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;

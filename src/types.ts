@@ -30,3 +30,31 @@ export interface Account {
   name: string;
   email: string;
 }
+
+export type ServeLength = 'Kurz' | 'Halblang' | 'Lang';
+
+export const SERVE_LENGTHS: ServeLength[] = ['Kurz', 'Halblang', 'Lang'];
+
+export type ServePlacement = 'Vorhand' | 'Mitte' | 'Rückhand';
+
+export const SERVE_PLACEMENTS: ServePlacement[] = ['Vorhand', 'Mitte', 'Rückhand'];
+
+export type ServeResult = 'gut' | 'schlecht';
+
+export interface ServeAttempt {
+  id: string;
+  result: ServeResult;
+  createdAt: string;
+}
+
+export interface ServeSessionGoal {
+  length: ServeLength;
+  placement: ServePlacement;
+}
+
+export interface ServeSession extends ServeSessionGoal {
+  id: string;
+  attempts: ServeAttempt[];
+  startedAt: string;
+  endedAt: string | null;
+}
