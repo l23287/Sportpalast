@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ClipboardList, Dumbbell, Play, Target } from 'lucide-react';
+import { ClipboardList, Play, Target } from 'lucide-react';
 import { PrimaryButton } from '../components/PrimaryButton';
 import { OnboardingBlob } from '../components/OnboardingBlob';
 import { BlobBackground } from '../components/BlobBackground';
@@ -16,24 +16,24 @@ interface Slide {
 
 const SLIDES: Slide[] = [
   {
-    eyebrow: 'Geführter Einstieg',
+    eyebrow: 'Für dein Tischtennis-Training',
     headlineWhite: 'Baue deine',
     headlineAccent: 'Übungsdatenbank.',
-    body: 'Lege Übungen mit Ziel, Dauer und Schwierigkeitsgrad an – dein persönlicher Pool für jede Trainingseinheit.',
-    icon: <Dumbbell size={28} />,
+    body: 'Lege Vorhand-, Rückhand- und Aufschlagübungen mit Ziel, Dauer und Schwierigkeitsgrad an – dein persönlicher Pool für jede Einheit am Tisch.',
+    icon: <span className="text-3xl">🏓</span>,
   },
   {
     eyebrow: 'Alles im Blick',
     headlineWhite: 'Deine Pläne,',
     headlineAccent: 'immer griffbereit.',
-    body: 'Stelle Trainingspläne aus deinem Übungspool zusammen und behalte Zielgruppe, Dauer und Termin auf einen Blick.',
+    body: 'Stelle Trainingspläne aus deinem Übungspool zusammen und behalte Zielgruppe, Dauer und Termin für jede Tischtennis-Einheit auf einen Blick.',
     icon: <ClipboardList size={28} />,
   },
   {
     eyebrow: 'Willkommen bei',
     headlineWhite: 'Dein Training,',
     headlineAccent: 'Schritt für Schritt.',
-    body: 'TrainerPro führt dich live durchs Training – mit Timer für jede Übung, genau nach Plan.',
+    body: 'TrainerPro führt dich live durchs Tischtennis-Training – mit Timer für jede Übung, genau nach Plan.',
     icon: <Play size={28} />,
   },
 ];

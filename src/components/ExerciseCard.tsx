@@ -3,7 +3,6 @@ import type { Exercise } from '../types';
 import { DifficultyBadge } from './DifficultyBadge';
 import { IconButton } from './IconButton';
 import { formatDuration } from '../lib/time';
-import { getSportEmoji } from '../lib/sports';
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -36,9 +35,6 @@ export function ExerciseCard({ exercise, onEdit, onDelete }: ExerciseCardProps) 
         )}
         <span className="inline-flex items-center gap-1">
           <Clock size={13} /> {formatDuration(exercise.durationMinutes)}
-        </span>
-        <span className="inline-flex items-center gap-1">
-          {getSportEmoji(exercise.sport)} {exercise.sport}
         </span>
       </div>
 

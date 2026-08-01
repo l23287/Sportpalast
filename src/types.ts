@@ -9,11 +9,10 @@ export interface Exercise {
   goal: string;
   durationMinutes: number;
   difficulty: Difficulty;
-  sport: string;
   createdAt: string;
 }
 
-export type ExerciseInput = Omit<Exercise, 'id' | 'createdAt' | 'sport'>;
+export type ExerciseInput = Omit<Exercise, 'id' | 'createdAt'>;
 
 export interface TrainingPlan {
   id: string;
@@ -26,10 +25,6 @@ export interface TrainingPlan {
 }
 
 export type PlanInput = Omit<TrainingPlan, 'id' | 'createdAt'>;
-
-export interface AppSettings {
-  sport: string;
-}
 
 export interface Account {
   name: string;

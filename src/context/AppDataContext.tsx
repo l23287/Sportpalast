@@ -1,13 +1,12 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import type { AppSettings, Exercise, ExerciseInput, PlanInput, TrainingPlan } from '../types';
+import type { Exercise, ExerciseInput, PlanInput, TrainingPlan } from '../types';
 import { generateId } from '../lib/id';
 import { loadJSON, saveJSON } from '../lib/storage';
-import { SEED_EXERCISES, SEED_PLANS, SEED_SPORT } from '../lib/seed';
+import { SEED_EXERCISES, SEED_PLANS } from '../lib/seed';
 
 interface AppDataContextValue {
   plans: TrainingPlan[];
   exercises: Exercise[];
-  settings: AppSettings;
   addPlan: (input: PlanInput) => TrainingPlan;
   updatePlan: (id: string, input: PlanInput) => void;
   deletePlan: (id: string) => void;
@@ -16,7 +15,6 @@ interface AppDataContextValue {
   updateExercise: (id: string, input: ExerciseInput) => void;
   deleteExercise: (id: string) => void;
   getExercise: (id: string) => Exercise | undefined;
-  setSport: (sport: string) => void;
 }
 
 const AppDataContext = createContext<AppDataContextValue | null>(null);
@@ -24,17 +22,14 @@ const AppDataContext = createContext<AppDataContextValue | null>(null);
 export function AppDataProvider({ children }: { children: ReactNode }) {
   const [plans, setPlans] = useState<TrainingPlan[]>(() => loadJSON('plans', SEED_PLANS));
   const [exercises, setExercises] = useState<Exercise[]>(() => loadJSON('exercises', SEED_EXERCISES));
-  const [settings, setSettings] = useState<AppSettings>(() => loadJSON('settings', { sport: SEED_SPORT }));
 
   useEffect(() => saveJSON('plans', plans), [plans]);
   useEffect(() => saveJSON('exercises', exercises), [exercises]);
-  useEffect(() => saveJSON('settings', settings), [settings]);
 
   const value = useMemo<AppDataContextValue>(
     () => ({
       plans,
       exercises,
-      settings,
       addPlan: (input) => {
         const plan: TrainingPlan = { ...input, id: generateId(), createdAt: new Date().toISOString() };
         setPlans((prev) => [plan, ...prev]);
@@ -51,7 +46,6 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         const exercise: Exercise = {
           ...input,
           id: generateId(),
-          sport: settings.sport,
           createdAt: new Date().toISOString(),
         };
         setExercises((prev) => [exercise, ...prev]);
@@ -67,9 +61,8 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         );
       },
       getExercise: (id) => exercises.find((e) => e.id === id),
-      setSport: (sport) => setSettings((prev) => ({ ...prev, sport })),
     }),
-    [plans, exercises, settings],
+    [plans, exercises],
   );
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;

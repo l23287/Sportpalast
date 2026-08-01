@@ -5,23 +5,15 @@ import { PrimaryButton } from './PrimaryButton';
 import { inputClass, labelClass, selectClass, textareaClass } from '../lib/formStyles';
 import { DIFFICULTIES } from '../types';
 import type { Difficulty, Exercise, ExerciseInput } from '../types';
-import { getSportEmoji } from '../lib/sports';
 
 interface ExerciseFormModalProps {
   open: boolean;
-  currentSport: string;
   exercise: Exercise | null;
   onClose: () => void;
   onSubmit: (input: ExerciseInput) => void;
 }
 
-export function ExerciseFormModal({
-  open,
-  currentSport,
-  exercise,
-  onClose,
-  onSubmit,
-}: ExerciseFormModalProps) {
+export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: ExerciseFormModalProps) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [goal, setGoal] = useState('');
@@ -58,8 +50,6 @@ export function ExerciseFormModal({
     });
   }
 
-  const sport = exercise?.sport ?? currentSport;
-
   return (
     <Modal open={open} title={exercise ? 'Übung bearbeiten' : 'Neue Übung'} onClose={onClose}>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -72,7 +62,7 @@ export function ExerciseFormModal({
             className={inputClass}
             value={name}
             onChange={(event) => setName(event.target.value)}
-            placeholder="z. B. Passübungen im Quadrat"
+            placeholder="z. B. Vorhand-Rückhand-Wechsel"
           />
         </div>
         <div>
@@ -97,7 +87,7 @@ export function ExerciseFormModal({
             className={inputClass}
             value={goal}
             onChange={(event) => setGoal(event.target.value)}
-            placeholder="z. B. Passgenauigkeit"
+            placeholder="z. B. Schlagpräzision"
           />
         </div>
         <div className="grid grid-cols-2 gap-4">
@@ -132,25 +122,6 @@ export function ExerciseFormModal({
             </select>
           </div>
         </div>
-
-        <p className="text-xs text-muted-2">
-          {exercise ? (
-            <>
-              Zugeordnete Sportart:{' '}
-              <strong className="font-semibold text-muted">
-                {getSportEmoji(sport)} {sport}
-              </strong>
-            </>
-          ) : (
-            <>
-              Wird automatisch der aktuellen Sportart{' '}
-              <strong className="font-semibold text-muted">
-                {getSportEmoji(sport)} {sport}
-              </strong>{' '}
-              zugeordnet.
-            </>
-          )}
-        </p>
 
         {error && <p className="text-sm font-medium text-danger">{error}</p>}
 

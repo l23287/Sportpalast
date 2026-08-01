@@ -1,16 +1,16 @@
 # TrainerPro
 
-TrainerPro ist eine Web-App für Trainer:innen im Vereins- und Freizeitsport, um Trainingspläne
-und Übungen zu verwalten – von der Übungsdatenbank über die Planzusammenstellung bis zur
-Trainingsdurchführung mit Timer.
+TrainerPro ist eine Web-App für Tischtennis-Trainer:innen im Vereins- und Freizeitsport, um
+Trainingspläne und Übungen zu verwalten – von der Übungsdatenbank über die Planzusammenstellung
+bis zur Trainingsdurchführung mit Timer.
 
 ## Bereiche
 
+- **Onboarding & Konto** – 3-teilige Einführung vor dem ersten Login, danach Registrierung/Anmeldung
+  (lokales Session-Gate ohne Backend) mit Konto-Verwaltung in den Einstellungen.
 - **Trainingspläne** – Pläne als Kacheln, Suche, überfällige Pläne werden rot markiert, Anlegen/Bearbeiten
   mit Übungsauswahl aus dem Pool inkl. Reihenfolge per ↑/↓, Detailansicht mit Start-Timer pro Übung.
-- **Übungen** – eigene Übungsdatenbank (Name, Beschreibung, Ziel, Dauer, Schwierigkeitsgrad),
-  automatisch mit der aktuellen Sportart verknüpft.
-- **Einstellungen** – Auswahl der Sportart aus 24 Optionen, wirkt sich app-weit aus.
+- **Übungen** – eigene Tischtennis-Übungsdatenbank (Name, Beschreibung, Ziel, Dauer, Schwierigkeitsgrad).
 - **Statistiken** – Kennzahlen, Schwierigkeitsgrad-Verteilung, Donut-Chart der meistgenutzten Übungen.
 
 Die Daten werden lokal im Browser (`localStorage`) gespeichert.

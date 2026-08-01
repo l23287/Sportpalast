@@ -10,7 +10,7 @@ import { ExerciseFormModal } from '../components/ExerciseFormModal';
 import type { Exercise, ExerciseInput } from '../types';
 
 export function Exercises() {
-  const { exercises, settings, addExercise, updateExercise, deleteExercise } = useAppData();
+  const { exercises, addExercise, updateExercise, deleteExercise } = useAppData();
   const [query, setQuery] = useState('');
   const [modalExercise, setModalExercise] = useState<Exercise | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -86,7 +86,6 @@ export function Exercises() {
 
       <ExerciseFormModal
         open={modalOpen}
-        currentSport={settings.sport}
         exercise={modalExercise}
         onClose={() => setModalOpen(false)}
         onSubmit={handleSubmit}

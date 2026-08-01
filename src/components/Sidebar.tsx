@@ -1,12 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { Target } from 'lucide-react';
 import { NAV_ITEMS } from '../lib/nav';
-import { useAppData } from '../context/AppDataContext';
-import { getSportEmoji } from '../lib/sports';
+import { SPORT_EMOJI, SPORT_NAME } from '../lib/sport';
 
 export function Sidebar() {
-  const { settings } = useAppData();
-
   return (
     <aside className="hidden shrink-0 py-6 pl-6 md:block md:w-64 lg:w-72">
       <div className="sticky top-6 flex h-[calc(100dvh-3rem)] flex-col gap-8 rounded-3xl border border-border bg-surface p-5">
@@ -17,7 +14,7 @@ export function Sidebar() {
           <div className="min-w-0">
             <p className="font-display text-lg font-extrabold leading-none text-ink">TrainerPro</p>
             <p className="mt-1.5 truncate text-xs text-muted-2">
-              {getSportEmoji(settings.sport)} {settings.sport}
+              {SPORT_EMOJI} {SPORT_NAME}
             </p>
           </div>
         </div>
