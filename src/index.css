@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Baloo 2", "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+
+  /* Basis: sehr dunkles, fast schwarzes Blau. Alle Flächen sind minimal
+     hellere Blautöne davon (kein reines Grau/Schwarz). */
+  --color-bg: #0a0f1c;
+  --color-bg-soft: #111a2c;
+  --color-surface: #16223c;
+  --color-surface-2: #223353;
+  --color-border: #2d4269;
+
+  /* Akzente ausschließlich in einer Dunkelblau-Skala. */
+  --color-primary: #3b82f6;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-soft: #172a4d;
+  --color-accent: #38bdf8;
+  --color-accent-dark: #0369a1;
+  --color-sun: #7dd3fc;
+  --color-danger: #f87171;
+
+  --color-ink: #eef2fb;
+  --color-muted: #a1b1d1;
+  --color-muted-2: #7887a8;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+  }
+}
+
+@keyframes blob-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(0, -18px) scale(1.06);
+  }
+}
+
+.animate-blob-float {
+  animation: blob-float 9s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-2);
+  border-radius: 999px;
+}
