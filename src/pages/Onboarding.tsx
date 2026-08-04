@@ -7,6 +7,7 @@ import {
   ChevronLeft,
   ClipboardList,
   Clock,
+  Dumbbell,
   ListChecks,
   Play,
   Target,
@@ -30,13 +31,13 @@ const SLIDES: Slide[] = [
   {
     title: 'Baue deine Übungsdatenbank',
     body: 'Lege Vorhand-, Rückhand- und Aufschlagübungen mit Ziel, Dauer und Schwierigkeitsgrad an – dein Pool für jede Einheit am Tisch.',
-    hero: <span className="text-5xl">🏓</span>,
+    hero: <Dumbbell size={32} />,
     accents: [<Target key="target" size={18} />, <Clock key="clock" size={18} />, <BarChart3 key="bar" size={18} />],
   },
   {
     title: 'Deine Pläne, immer griffbereit',
     body: 'Stelle Trainingspläne aus deinem Übungspool zusammen und behalte Zielgruppe, Dauer und Termin auf einen Blick.',
-    hero: <ClipboardList size={44} />,
+    hero: <ClipboardList size={32} />,
     accents: [
       <Calendar key="calendar" size={18} />,
       <Users key="users" size={18} />,
@@ -46,7 +47,7 @@ const SLIDES: Slide[] = [
   {
     title: 'Training, Schritt für Schritt',
     body: 'TrainerPro führt dich live durchs Training – mit Timer für jede Übung, genau nach Plan.',
-    hero: <Play size={44} />,
+    hero: <Play size={32} />,
     accents: [
       <Timer key="timer" size={18} />,
       <CheckCircle2 key="check" size={18} />,
