@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-type Variant = 'solid' | 'accent' | 'ghost' | 'danger' | 'light';
+type Variant = 'solid' | 'accent' | 'ghost' | 'danger';
 
 interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
@@ -16,7 +16,6 @@ const variantClasses: Record<Variant, string> = {
     'text-[#04263f] bg-gradient-to-br from-accent to-accent-dark shadow-[0_10px_25px_rgba(56,189,248,0.3)] hover:brightness-110 active:brightness-95',
   ghost: 'text-muted bg-transparent hover:bg-surface hover:text-ink',
   danger: 'text-danger bg-transparent hover:bg-danger/10',
-  light: 'text-primary-dark bg-white shadow-[0_10px_25px_rgba(8,15,45,0.25)] hover:brightness-95 active:brightness-90',
 };
 
 export function PrimaryButton({

@@ -15,7 +15,9 @@ import {
   Users,
 } from 'lucide-react';
 import { PrimaryButton } from '../components/PrimaryButton';
+import { IconButton } from '../components/IconButton';
 import { OnboardingIllustration } from '../components/OnboardingIllustration';
+import { BlobBackground } from '../components/BlobBackground';
 import { markOnboardingSeen } from '../lib/onboarding';
 
 interface Slide {
@@ -87,53 +89,33 @@ export function Onboarding() {
   }
 
   return (
-    <div
-      className="relative flex min-h-dvh flex-col overflow-hidden px-6 py-6"
-      style={{ background: 'linear-gradient(165deg, var(--color-primary) 0%, var(--color-primary-dark) 100%)' }}
-    >
-      <div
-        className="pointer-events-none absolute -top-20 -right-16 h-72 w-72 rounded-full bg-accent opacity-30 blur-[80px]"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute bottom-0 -left-20 h-72 w-72 rounded-full bg-sun opacity-20 blur-[80px]"
-        aria-hidden="true"
-      />
+    <div className="relative flex min-h-dvh flex-col px-6 py-6">
+      <BlobBackground />
 
-      <div className="relative flex items-center gap-2.5">
-        {step > 0 && (
-          <button
-            type="button"
-            aria-label="Zurück"
-            title="Zurück"
-            onClick={handleBack}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition hover:bg-white/20"
-          >
-            <ChevronLeft size={18} />
-          </button>
-        )}
-        <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/15 text-white backdrop-blur-sm">
+      <div className="flex items-center gap-2.5">
+        {step > 0 && <IconButton icon={<ChevronLeft size={18} />} label="Zurück" onClick={handleBack} />}
+        <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white">
           <Target size={18} />
         </div>
-        <span className="font-display text-lg font-extrabold text-white">TrainerPro</span>
+        <span className="font-display text-lg font-extrabold text-ink">TrainerPro</span>
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-sm flex-1 flex-col justify-center py-6">
-        <h1 className="font-display text-3xl font-extrabold leading-tight text-white">{slide.title}</h1>
-        <p className="mt-3 max-w-xs text-sm text-white/70">{slide.body}</p>
+      <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center py-6">
+        <h1 className="font-display text-3xl font-extrabold leading-tight text-ink">{slide.title}</h1>
+        <p className="mt-3 max-w-xs text-sm text-muted">{slide.body}</p>
 
         <div className="mt-10">
           <OnboardingIllustration hero={slide.hero} accents={slide.accents} />
         </div>
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-sm flex-col gap-6 pb-4">
+      <div className="mx-auto flex w-full max-w-sm flex-col gap-6 pb-4">
         <div className="flex items-center gap-2">
           {SLIDES.map((s, index) => (
             <span
               key={s.title}
               className={`h-2 rounded-full transition-all ${
-                index === step ? 'w-6 bg-white' : 'w-2 bg-white/30'
+                index === step ? 'w-6 bg-gradient-to-r from-primary to-primary-dark' : 'w-2 bg-surface-2'
               }`}
             />
           ))}
@@ -143,16 +125,11 @@ export function Onboarding() {
           <button
             type="button"
             onClick={isLast ? goLogin : handleSkip}
-            className="shrink-0 px-2 text-sm font-medium whitespace-nowrap text-white/70 transition hover:text-white"
+            className="shrink-0 px-2 text-sm font-medium whitespace-nowrap text-muted transition hover:text-ink"
           >
             {isLast ? 'Anmelden' : 'Überspringen'}
           </button>
-          <PrimaryButton
-            pill
-            variant="light"
-            className="shrink-0 whitespace-nowrap"
-            onClick={isLast ? goRegister : handleNext}
-          >
+          <PrimaryButton pill className="shrink-0 whitespace-nowrap" onClick={isLast ? goRegister : handleNext}>
             {isLast ? 'Registrieren' : 'Weiter'}
           </PrimaryButton>
         </div>
