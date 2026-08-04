@@ -15,9 +15,7 @@ import {
   Users,
 } from 'lucide-react';
 import { PrimaryButton } from '../components/PrimaryButton';
-import { IconButton } from '../components/IconButton';
-import { OnboardingBlob } from '../components/OnboardingBlob';
-import { BlobBackground } from '../components/BlobBackground';
+import { OnboardingIllustration } from '../components/OnboardingIllustration';
 import { markOnboardingSeen } from '../lib/onboarding';
 
 interface Slide {
@@ -31,27 +29,27 @@ const SLIDES: Slide[] = [
   {
     title: 'Baue deine Übungsdatenbank',
     body: 'Lege Vorhand-, Rückhand- und Aufschlagübungen mit Ziel, Dauer und Schwierigkeitsgrad an – dein Pool für jede Einheit am Tisch.',
-    hero: <Dumbbell size={32} />,
-    accents: [<Target key="target" size={18} />, <Clock key="clock" size={18} />, <BarChart3 key="bar" size={18} />],
+    hero: <Dumbbell size={30} />,
+    accents: [<Target key="target" size={17} />, <Clock key="clock" size={17} />, <BarChart3 key="bar" size={17} />],
   },
   {
     title: 'Deine Pläne, immer griffbereit',
     body: 'Stelle Trainingspläne aus deinem Übungspool zusammen und behalte Zielgruppe, Dauer und Termin auf einen Blick.',
-    hero: <ClipboardList size={32} />,
+    hero: <ClipboardList size={30} />,
     accents: [
-      <Calendar key="calendar" size={18} />,
-      <Users key="users" size={18} />,
-      <Clock key="clock" size={18} />,
+      <Calendar key="calendar" size={17} />,
+      <Users key="users" size={17} />,
+      <Clock key="clock" size={17} />,
     ],
   },
   {
     title: 'Training, Schritt für Schritt',
     body: 'TrainerPro führt dich live durchs Training – mit Timer für jede Übung, genau nach Plan.',
-    hero: <Play size={32} />,
+    hero: <Play size={30} />,
     accents: [
-      <Timer key="timer" size={18} />,
-      <CheckCircle2 key="check" size={18} />,
-      <ListChecks key="list" size={18} />,
+      <Timer key="timer" size={17} />,
+      <CheckCircle2 key="check" size={17} />,
+      <ListChecks key="list" size={17} />,
     ],
   },
 ];
@@ -89,31 +87,53 @@ export function Onboarding() {
   }
 
   return (
-    <div className="relative flex min-h-dvh flex-col px-6 py-6">
-      <BlobBackground />
+    <div
+      className="relative flex min-h-dvh flex-col overflow-hidden px-6 py-6"
+      style={{ background: 'linear-gradient(165deg, var(--color-primary) 0%, var(--color-primary-dark) 100%)' }}
+    >
+      <div
+        className="pointer-events-none absolute -top-20 -right-16 h-72 w-72 rounded-full bg-accent opacity-30 blur-[80px]"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 -left-20 h-72 w-72 rounded-full bg-sun opacity-20 blur-[80px]"
+        aria-hidden="true"
+      />
 
-      <div className="flex items-center gap-2.5">
-        {step > 0 && <IconButton icon={<ChevronLeft size={18} />} label="Zurück" onClick={handleBack} />}
-        <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white">
+      <div className="relative flex items-center gap-2.5">
+        {step > 0 && (
+          <button
+            type="button"
+            aria-label="Zurück"
+            title="Zurück"
+            onClick={handleBack}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition hover:bg-white/20"
+          >
+            <ChevronLeft size={18} />
+          </button>
+        )}
+        <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/15 text-white backdrop-blur-sm">
           <Target size={18} />
         </div>
-        <span className="font-display text-lg font-extrabold text-ink">TrainerPro</span>
+        <span className="font-display text-lg font-extrabold text-white">TrainerPro</span>
       </div>
 
-      <div className="mx-auto flex w-full max-w-sm flex-1 flex-col items-center justify-center py-8 text-center">
-        <OnboardingBlob hero={slide.hero} accents={slide.accents} />
+      <div className="relative mx-auto flex w-full max-w-sm flex-1 flex-col justify-center py-6">
+        <h1 className="font-display text-3xl font-extrabold leading-tight text-white">{slide.title}</h1>
+        <p className="mt-3 max-w-xs text-sm text-white/70">{slide.body}</p>
 
-        <h1 className="mt-10 font-display text-2xl font-extrabold leading-snug text-ink">{slide.title}</h1>
-        <p className="mt-3 max-w-xs text-sm text-muted">{slide.body}</p>
+        <div className="mt-10">
+          <OnboardingIllustration hero={slide.hero} accents={slide.accents} />
+        </div>
       </div>
 
-      <div className="mx-auto flex w-full max-w-sm flex-col gap-6 pb-4">
-        <div className="flex items-center justify-center gap-2">
+      <div className="relative mx-auto flex w-full max-w-sm flex-col gap-6 pb-4">
+        <div className="flex items-center gap-2">
           {SLIDES.map((s, index) => (
             <span
               key={s.title}
               className={`h-2 rounded-full transition-all ${
-                index === step ? 'w-6 bg-gradient-to-r from-primary to-primary-dark' : 'w-2 bg-surface-2'
+                index === step ? 'w-6 bg-white' : 'w-2 bg-white/30'
               }`}
             />
           ))}
@@ -123,11 +143,16 @@ export function Onboarding() {
           <button
             type="button"
             onClick={isLast ? goLogin : handleSkip}
-            className="shrink-0 px-2 text-sm font-medium whitespace-nowrap text-muted transition hover:text-ink"
+            className="shrink-0 px-2 text-sm font-medium whitespace-nowrap text-white/70 transition hover:text-white"
           >
             {isLast ? 'Anmelden' : 'Überspringen'}
           </button>
-          <PrimaryButton pill className="shrink-0 whitespace-nowrap" onClick={isLast ? goRegister : handleNext}>
+          <PrimaryButton
+            pill
+            variant="light"
+            className="shrink-0 whitespace-nowrap"
+            onClick={isLast ? goRegister : handleNext}
+          >
             {isLast ? 'Registrieren' : 'Weiter'}
           </PrimaryButton>
         </div>
