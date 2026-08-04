@@ -6,6 +6,7 @@ interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
   icon?: ReactNode;
   fullWidth?: boolean;
+  pill?: boolean;
 }
 
 const variantClasses: Record<Variant, string> = {
@@ -21,6 +22,7 @@ export function PrimaryButton({
   variant = 'solid',
   icon,
   fullWidth,
+  pill,
   className = '',
   children,
   ...rest
@@ -28,7 +30,7 @@ export function PrimaryButton({
   return (
     <button
       type="button"
-      className={`inline-flex items-center justify-center gap-2 h-14 rounded-2xl px-6 font-semibold transition disabled:opacity-50 disabled:pointer-events-none ${
+      className={`inline-flex items-center justify-center gap-2 h-14 ${pill ? 'rounded-full' : 'rounded-2xl'} px-6 font-semibold transition disabled:opacity-50 disabled:pointer-events-none ${
         fullWidth ? 'w-full' : ''
       } ${variantClasses[variant]} ${className}`}
       {...rest}

@@ -1,40 +1,55 @@
 import { useState, type ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ClipboardList, Play, Target } from 'lucide-react';
+import {
+  BarChart3,
+  Calendar,
+  CheckCircle2,
+  ClipboardList,
+  Clock,
+  ListChecks,
+  Play,
+  Target,
+  Timer,
+  Users,
+} from 'lucide-react';
 import { PrimaryButton } from '../components/PrimaryButton';
 import { OnboardingBlob } from '../components/OnboardingBlob';
 import { BlobBackground } from '../components/BlobBackground';
 import { markOnboardingSeen } from '../lib/onboarding';
 
 interface Slide {
-  eyebrow: string;
-  headlineWhite: string;
-  headlineAccent: string;
+  title: string;
   body: string;
-  icon: ReactNode;
+  hero: ReactNode;
+  accents: [ReactNode, ReactNode, ReactNode];
 }
 
 const SLIDES: Slide[] = [
   {
-    eyebrow: 'Für dein Tischtennis-Training',
-    headlineWhite: 'Baue deine',
-    headlineAccent: 'Übungsdatenbank.',
-    body: 'Lege Vorhand-, Rückhand- und Aufschlagübungen mit Ziel, Dauer und Schwierigkeitsgrad an – dein persönlicher Pool für jede Einheit am Tisch.',
-    icon: <span className="text-3xl">🏓</span>,
+    title: 'Baue deine Übungsdatenbank',
+    body: 'Lege Vorhand-, Rückhand- und Aufschlagübungen mit Ziel, Dauer und Schwierigkeitsgrad an – dein Pool für jede Einheit am Tisch.',
+    hero: <span className="text-5xl">🏓</span>,
+    accents: [<Target key="target" size={18} />, <Clock key="clock" size={18} />, <BarChart3 key="bar" size={18} />],
   },
   {
-    eyebrow: 'Alles im Blick',
-    headlineWhite: 'Deine Pläne,',
-    headlineAccent: 'immer griffbereit.',
-    body: 'Stelle Trainingspläne aus deinem Übungspool zusammen und behalte Zielgruppe, Dauer und Termin für jede Tischtennis-Einheit auf einen Blick.',
-    icon: <ClipboardList size={28} />,
+    title: 'Deine Pläne, immer griffbereit',
+    body: 'Stelle Trainingspläne aus deinem Übungspool zusammen und behalte Zielgruppe, Dauer und Termin auf einen Blick.',
+    hero: <ClipboardList size={44} />,
+    accents: [
+      <Calendar key="calendar" size={18} />,
+      <Users key="users" size={18} />,
+      <Clock key="clock" size={18} />,
+    ],
   },
   {
-    eyebrow: 'Willkommen bei',
-    headlineWhite: 'Dein Training,',
-    headlineAccent: 'Schritt für Schritt.',
-    body: 'TrainerPro führt dich live durchs Tischtennis-Training – mit Timer für jede Übung, genau nach Plan.',
-    icon: <Play size={28} />,
+    title: 'Training, Schritt für Schritt',
+    body: 'TrainerPro führt dich live durchs Training – mit Timer für jede Übung, genau nach Plan.',
+    hero: <Play size={44} />,
+    accents: [
+      <Timer key="timer" size={18} />,
+      <CheckCircle2 key="check" size={18} />,
+      <ListChecks key="list" size={18} />,
+    ],
   },
 ];
 
@@ -70,41 +85,25 @@ export function Onboarding() {
     <div className="relative flex min-h-dvh flex-col px-6 py-6">
       <BlobBackground />
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white">
-            <Target size={18} />
-          </div>
-          <span className="font-display text-lg font-extrabold text-ink">TrainerPro</span>
+      <div className="flex items-center gap-2.5">
+        <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white">
+          <Target size={18} />
         </div>
-        {!isLast && (
-          <button
-            type="button"
-            onClick={handleSkip}
-            className="text-sm font-medium text-muted transition hover:text-ink"
-          >
-            Überspringen
-          </button>
-        )}
+        <span className="font-display text-lg font-extrabold text-ink">TrainerPro</span>
       </div>
 
-      <div className="mx-auto flex w-full max-w-sm flex-1 flex-col items-center justify-center py-10 text-center">
-        <OnboardingBlob icon={slide.icon} />
+      <div className="mx-auto flex w-full max-w-sm flex-1 flex-col items-center justify-center py-8 text-center">
+        <OnboardingBlob hero={slide.hero} accents={slide.accents} />
 
-        <p className="mt-10 text-sm font-semibold text-accent">{slide.eyebrow}</p>
-        <h1 className="mt-2 font-display text-3xl font-extrabold leading-tight text-ink">
-          {slide.headlineWhite}
-          <br />
-          <span className="text-primary">{slide.headlineAccent}</span>
-        </h1>
-        <p className="mt-4 max-w-xs text-sm text-muted">{slide.body}</p>
+        <h1 className="mt-10 font-display text-2xl font-extrabold leading-snug text-ink">{slide.title}</h1>
+        <p className="mt-3 max-w-xs text-sm text-muted">{slide.body}</p>
       </div>
 
       <div className="mx-auto flex w-full max-w-sm flex-col gap-6 pb-4">
         <div className="flex items-center justify-center gap-2">
           {SLIDES.map((s, index) => (
             <span
-              key={s.headlineAccent}
+              key={s.title}
               className={`h-2 rounded-full transition-all ${
                 index === step ? 'w-6 bg-gradient-to-r from-primary to-primary-dark' : 'w-2 bg-surface-2'
               }`}
@@ -112,24 +111,18 @@ export function Onboarding() {
           ))}
         </div>
 
-        {isLast ? (
-          <div className="flex flex-col gap-3">
-            <PrimaryButton variant="accent" fullWidth onClick={goRegister}>
-              Account erstellen
-            </PrimaryButton>
-            <button
-              type="button"
-              onClick={goLogin}
-              className="text-center text-sm font-medium text-muted transition hover:text-ink"
-            >
-              Ich habe schon einen Account
-            </button>
-          </div>
-        ) : (
-          <PrimaryButton fullWidth onClick={handleNext}>
-            Weiter
+        <div className="flex items-center justify-between gap-4">
+          <button
+            type="button"
+            onClick={isLast ? goLogin : handleSkip}
+            className="shrink-0 px-2 text-sm font-medium whitespace-nowrap text-muted transition hover:text-ink"
+          >
+            {isLast ? 'Anmelden' : 'Überspringen'}
+          </button>
+          <PrimaryButton pill className="shrink-0 whitespace-nowrap" onClick={isLast ? goRegister : handleNext}>
+            {isLast ? 'Registrieren' : 'Weiter'}
           </PrimaryButton>
-        )}
+        </div>
       </div>
     </div>
   );
