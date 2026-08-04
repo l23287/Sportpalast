@@ -4,6 +4,7 @@ import {
   BarChart3,
   Calendar,
   CheckCircle2,
+  ChevronLeft,
   ClipboardList,
   Clock,
   ListChecks,
@@ -13,6 +14,7 @@ import {
   Users,
 } from 'lucide-react';
 import { PrimaryButton } from '../components/PrimaryButton';
+import { IconButton } from '../components/IconButton';
 import { OnboardingBlob } from '../components/OnboardingBlob';
 import { BlobBackground } from '../components/BlobBackground';
 import { markOnboardingSeen } from '../lib/onboarding';
@@ -71,6 +73,10 @@ export function Onboarding() {
     setStep((current) => Math.min(current + 1, SLIDES.length - 1));
   }
 
+  function handleBack() {
+    setStep((current) => Math.max(current - 1, 0));
+  }
+
   function goRegister() {
     markOnboardingSeen();
     navigate('/registrieren');
@@ -86,6 +92,7 @@ export function Onboarding() {
       <BlobBackground />
 
       <div className="flex items-center gap-2.5">
+        {step > 0 && <IconButton icon={<ChevronLeft size={18} />} label="Zurück" onClick={handleBack} />}
         <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white">
           <Target size={18} />
         </div>
