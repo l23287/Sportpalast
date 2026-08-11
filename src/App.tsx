@@ -3,6 +3,7 @@ import { AppDataProvider } from './context/AppDataContext';
 import { AuthProvider } from './context/AuthContext';
 import { SportProvider } from './context/SportContext';
 import { AppShell } from './components/AppShell';
+import { ScrollToTop } from './components/ScrollToTop';
 import { RedirectIfAuthenticated, RequireAuth, RootRedirect } from './components/RouteGuards';
 import { Onboarding } from './pages/Onboarding';
 import { Login } from './pages/Login';
@@ -21,6 +22,7 @@ export default function App() {
       <AuthProvider>
         <AppDataProvider>
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<RootRedirect />} />
 

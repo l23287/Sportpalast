@@ -202,7 +202,7 @@ export function PlanForm() {
                         disabled={index === 0}
                         onClick={() => moveExercise(index, -1)}
                         aria-label="Nach oben verschieben"
-                        className="flex h-8 w-8 items-center justify-center rounded-full text-muted transition hover:bg-surface-2 hover:text-ink disabled:pointer-events-none disabled:opacity-30"
+                        className="flex h-9 w-9 items-center justify-center rounded-full text-muted transition hover:bg-surface-2 hover:text-ink disabled:pointer-events-none disabled:opacity-30"
                       >
                         <ArrowUp size={16} />
                       </button>
@@ -211,7 +211,7 @@ export function PlanForm() {
                         disabled={index === selectedExercises.length - 1}
                         onClick={() => moveExercise(index, 1)}
                         aria-label="Nach unten verschieben"
-                        className="flex h-8 w-8 items-center justify-center rounded-full text-muted transition hover:bg-surface-2 hover:text-ink disabled:pointer-events-none disabled:opacity-30"
+                        className="flex h-9 w-9 items-center justify-center rounded-full text-muted transition hover:bg-surface-2 hover:text-ink disabled:pointer-events-none disabled:opacity-30"
                       >
                         <ArrowDown size={16} />
                       </button>
@@ -219,7 +219,7 @@ export function PlanForm() {
                         type="button"
                         onClick={() => removeExerciseFromPlan(exercise.id)}
                         aria-label="Entfernen"
-                        className="flex h-8 w-8 items-center justify-center rounded-full text-muted transition hover:bg-danger/10 hover:text-danger"
+                        className="flex h-9 w-9 items-center justify-center rounded-full text-muted transition hover:bg-danger/10 hover:text-danger"
                       >
                         <X size={16} />
                       </button>
@@ -233,14 +233,14 @@ export function PlanForm() {
 
         {error && <p className="text-sm font-medium text-danger">{error}</p>}
 
-        <div className="flex gap-3">
-          <PrimaryButton type="submit" icon={<Check size={18} />}>
+        <div className="flex flex-col gap-3 md:flex-row">
+          <PrimaryButton type="submit" icon={<Check size={18} />} className="w-full md:w-auto">
             {isEditing ? 'Änderungen speichern' : 'Plan erstellen'}
           </PrimaryButton>
           <PrimaryButton
             type="button"
             variant="ghost"
-            className="border border-border"
+            className="w-full border border-border md:w-auto"
             onClick={() => navigate(backTarget)}
           >
             Abbrechen
