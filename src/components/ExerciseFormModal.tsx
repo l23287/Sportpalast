@@ -125,11 +125,16 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
 
         {error && <p className="text-sm font-medium text-danger">{error}</p>}
 
-        <div className="mt-2 flex gap-3">
-          <PrimaryButton type="submit" icon={<Check size={18} />}>
+        <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+          <PrimaryButton type="submit" icon={<Check size={18} />} className="w-full sm:w-auto">
             {exercise ? 'Änderungen speichern' : 'Übung erstellen'}
           </PrimaryButton>
-          <PrimaryButton type="button" variant="ghost" className="border border-border" onClick={onClose}>
+          <PrimaryButton
+            type="button"
+            variant="ghost"
+            className="w-full border border-border sm:w-auto"
+            onClick={onClose}
+          >
             Abbrechen
           </PrimaryButton>
         </div>

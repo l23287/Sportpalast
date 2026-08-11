@@ -91,7 +91,7 @@ export function Onboarding() {
       <div className="flex items-center gap-2.5">
         {step > 0 && <IconButton icon={<ChevronLeft size={18} />} label="Zurück" onClick={handleBack} />}
         <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white">
-          <TrainerProMark className="h-4 w-auto" />
+          <TrainerProMark mono className="h-5 w-auto" />
         </div>
         <span className="font-display text-lg font-extrabold text-ink">TrainerPro</span>
       </div>

@@ -4,6 +4,7 @@ import { SportProvider } from './context/SportContext';
 import { AppShell } from './components/AppShell';
 import { Disclaimer } from './components/Disclaimer';
 import { SiteGate } from './components/SiteGate';
+import { ScrollToTop } from './components/ScrollToTop';
 import { RootRedirect } from './components/RouteGuards';
 import { Onboarding } from './pages/Onboarding';
 import { PlansOverview } from './pages/PlansOverview';
@@ -20,6 +21,7 @@ export default function App() {
       <SiteGate>
         <AppDataProvider>
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<RootRedirect />} />
               <Route path="/onboarding" element={<Onboarding />} />

@@ -215,11 +215,11 @@ function GoalPhase({
         </div>
       </div>
 
-      <div className="flex gap-3">
-        <PrimaryButton variant="ghost" className="flex-1 border border-border" onClick={onCancel}>
+      <div className="flex flex-col gap-3 md:flex-row">
+        <PrimaryButton variant="ghost" className="w-full border border-border md:flex-1" onClick={onCancel}>
           Abbrechen
         </PrimaryButton>
-        <PrimaryButton icon={<Play size={18} />} className="flex-1" disabled={!canStart} onClick={onStart}>
+        <PrimaryButton icon={<Play size={18} />} className="w-full md:flex-1" disabled={!canStart} onClick={onStart}>
           Session starten
         </PrimaryButton>
       </div>
@@ -375,11 +375,11 @@ function ResultsPhase({ session, onDone, onRestart }: ResultsPhaseProps) {
         <LineChart points={progress} />
       </div>
 
-      <div className="flex gap-3">
-        <PrimaryButton variant="ghost" className="flex-1 border border-border" onClick={onDone}>
+      <div className="flex flex-col gap-3 md:flex-row">
+        <PrimaryButton variant="ghost" className="w-full border border-border md:flex-1" onClick={onDone}>
           Fertig
         </PrimaryButton>
-        <PrimaryButton icon={<Play size={18} />} className="flex-1" onClick={onRestart}>
+        <PrimaryButton icon={<Play size={18} />} className="w-full md:flex-1" onClick={onRestart}>
           Neue Session
         </PrimaryButton>
       </div>
