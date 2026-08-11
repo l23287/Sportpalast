@@ -28,10 +28,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setIsAuthenticated(true);
       },
       login: (username) => {
-        setAccount((prev) => prev ?? { username });
+        setAccount({ username });
         setIsAuthenticated(true);
       },
-      logout: () => setIsAuthenticated(false),
+      logout: () => {
+        setIsAuthenticated(false);
+        setAccount(null);
+      },
     }),
     [account, isAuthenticated],
   );
