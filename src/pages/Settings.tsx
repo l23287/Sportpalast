@@ -1,9 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useSport } from '../context/SportContext';
+import { PillSelect } from '../components/PillSelect';
+import { SPORTS } from '../types';
 
 export function Settings() {
   const { account, logout } = useAuth();
+  const { sport, setSport } = useSport();
   const navigate = useNavigate();
 
   return (
@@ -12,6 +16,11 @@ export function Settings() {
         <h1 className="font-display text-3xl font-extrabold text-ink">Einstellungen</h1>
         <p className="text-sm text-muted">Verwalte dein Konto.</p>
       </header>
+
+      <div className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5">
+        <h2 className="font-display text-lg font-bold text-ink">Sportart</h2>
+        <PillSelect label="Aktuelle Sportart" options={SPORTS} value={sport} onChange={setSport} />
+      </div>
 
       {account && (
         <div className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5">

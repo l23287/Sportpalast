@@ -2,6 +2,10 @@ export type Difficulty = 'Anfänger' | 'Fortgeschritten';
 
 export const DIFFICULTIES: Difficulty[] = ['Anfänger', 'Fortgeschritten'];
 
+export type Sport = 'Tischtennis' | 'Beach Volleyball';
+
+export const SPORTS: Sport[] = ['Tischtennis', 'Beach Volleyball'];
+
 export interface Exercise {
   id: string;
   name: string;

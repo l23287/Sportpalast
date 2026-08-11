@@ -1,20 +1,23 @@
 import { NavLink } from 'react-router-dom';
 import { NAV_ITEMS } from '../lib/nav';
-import { SPORT_EMOJI, SPORT_NAME } from '../lib/sport';
+import { SPORT_EMOJI } from '../lib/sport';
+import { useSport } from '../context/SportContext';
 import { TrainerProMark } from './Logo';
 
 export function Sidebar() {
+  const { sport } = useSport();
+
   return (
     <aside className="hidden shrink-0 py-6 pl-6 md:block md:w-64 lg:w-72">
       <div className="sticky top-6 flex h-[calc(100dvh-3rem)] flex-col gap-8 rounded-3xl border border-border bg-surface p-5">
         <div className="flex items-center gap-3">
           <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white shadow-[0_8px_20px_rgba(37,99,235,0.35)]">
-            <TrainerProMark className="h-5 w-auto" />
+            <TrainerProMark mono className="h-6 w-auto" />
           </div>
           <div className="min-w-0">
             <p className="font-display text-lg font-extrabold leading-none text-ink">TrainerPro</p>
             <p className="mt-1.5 truncate text-xs text-muted-2">
-              {SPORT_EMOJI} {SPORT_NAME}
+              {SPORT_EMOJI[sport]} {sport}
             </p>
           </div>
         </div>

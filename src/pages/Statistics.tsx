@@ -7,12 +7,14 @@ import { EmptyState } from '../components/EmptyState';
 import { computeAverageDuration, computeExerciseUsage } from '../lib/stats';
 import { CATEGORICAL_PALETTE_DARK, CHART_OTHER_COLOR } from '../lib/chartPalette';
 import { formatDuration } from '../lib/time';
-import { SPORT_EMOJI, SPORT_NAME } from '../lib/sport';
+import { SPORT_EMOJI } from '../lib/sport';
+import { useSport } from '../context/SportContext';
 
 const MAX_NAMED_SLICES = 5;
 
 export function Statistics() {
   const { plans, exercises } = useAppData();
+  const { sport } = useSport();
 
   const beginnerCount = exercises.filter((exercise) => exercise.difficulty === 'Anfänger').length;
   const advancedCount = exercises.filter((exercise) => exercise.difficulty === 'Fortgeschritten').length;
@@ -50,9 +52,9 @@ export function Statistics() {
           value={plans.length === 0 ? '–' : formatDuration(averageDuration)}
         />
         <StatTile
-          icon={<span className="text-lg leading-none">{SPORT_EMOJI}</span>}
+          icon={<span className="text-lg leading-none">{SPORT_EMOJI[sport]}</span>}
           label="Sportart"
-          value={SPORT_NAME}
+          value={sport}
         />
       </div>
 

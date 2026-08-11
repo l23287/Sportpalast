@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AppDataProvider } from './context/AppDataContext';
 import { AuthProvider } from './context/AuthContext';
+import { SportProvider } from './context/SportContext';
 import { AppShell } from './components/AppShell';
 import { RedirectIfAuthenticated, RequireAuth, RootRedirect } from './components/RouteGuards';
 import { Onboarding } from './pages/Onboarding';
@@ -16,35 +17,37 @@ import { ServeTraining } from './pages/ServeTraining';
 
 export default function App() {
   return (
-    <AuthProvider>
-      <AppDataProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<RootRedirect />} />
+    <SportProvider>
+      <AuthProvider>
+        <AppDataProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<RootRedirect />} />
 
-            <Route element={<RedirectIfAuthenticated />}>
-              <Route path="/onboarding" element={<Onboarding />} />
-              <Route path="/anmelden" element={<Login />} />
-              <Route path="/registrieren" element={<Register />} />
-            </Route>
-
-            <Route element={<RequireAuth />}>
-              <Route element={<AppShell />}>
-                <Route path="/plaene" element={<PlansOverview />} />
-                <Route path="/plaene/neu" element={<PlanForm />} />
-                <Route path="/plaene/:id" element={<PlanDetail />} />
-                <Route path="/plaene/:id/bearbeiten" element={<PlanForm />} />
-                <Route path="/uebungen" element={<Exercises />} />
-                <Route path="/statistiken" element={<Statistics />} />
-                <Route path="/aufschlagtraining" element={<ServeTraining />} />
-                <Route path="/einstellungen" element={<Settings />} />
+              <Route element={<RedirectIfAuthenticated />}>
+                <Route path="/onboarding" element={<Onboarding />} />
+                <Route path="/anmelden" element={<Login />} />
+                <Route path="/registrieren" element={<Register />} />
               </Route>
-            </Route>
 
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </BrowserRouter>
-      </AppDataProvider>
-    </AuthProvider>
+              <Route element={<RequireAuth />}>
+                <Route element={<AppShell />}>
+                  <Route path="/plaene" element={<PlansOverview />} />
+                  <Route path="/plaene/neu" element={<PlanForm />} />
+                  <Route path="/plaene/:id" element={<PlanDetail />} />
+                  <Route path="/plaene/:id/bearbeiten" element={<PlanForm />} />
+                  <Route path="/uebungen" element={<Exercises />} />
+                  <Route path="/statistiken" element={<Statistics />} />
+                  <Route path="/aufschlagtraining" element={<ServeTraining />} />
+                  <Route path="/einstellungen" element={<Settings />} />
+                </Route>
+              </Route>
+
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </BrowserRouter>
+        </AppDataProvider>
+      </AuthProvider>
+    </SportProvider>
   );
 }

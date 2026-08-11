@@ -13,7 +13,7 @@ export function StatTile({ icon, label, value }: StatTileProps) {
         {icon}
       </div>
       <div>
-        <p className="font-display text-2xl font-extrabold text-ink truncate">{value}</p>
+        <p className="font-display text-2xl font-extrabold text-ink break-words">{value}</p>
         <p className="text-sm text-muted">{label}</p>
       </div>
     </div>
