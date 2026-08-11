@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 14 82 66" width="82" height="66" role="img" aria-label="TrainerPro">
+  <defs>
+    <linearGradient id="tpLight" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7dd3fc"></stop><stop offset="1" stop-color="#38bdf8"></stop></linearGradient>
+    <linearGradient id="tpDeep" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0" stop-color="#38bdf8"></stop><stop offset="1" stop-color="#1d4ed8"></stop></linearGradient>
+    <linearGradient id="tpBar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b82f6"></stop><stop offset="1" stop-color="#1d4ed8"></stop></linearGradient>
+  </defs>
+  <polygon points="34,18 62,18 57,34 26,44" fill="url(#tpLight)"></polygon>
+  <polygon points="26,44 57,34 44,78 16,78" fill="url(#tpDeep)"></polygon>
+  <polygon points="70,18 84,18 66,78 52,78" fill="url(#tpBar)"></polygon>
+  <circle cx="90" cy="26" r="6.5" fill="#7dd3fc"></circle>
+</svg>

@@ -18,6 +18,7 @@ import { PrimaryButton } from '../components/PrimaryButton';
 import { IconButton } from '../components/IconButton';
 import { OnboardingIllustration } from '../components/OnboardingIllustration';
 import { BlobBackground } from '../components/BlobBackground';
+import { TrainerProMark } from '../components/Logo';
 import { markOnboardingSeen } from '../lib/onboarding';
 
 interface Slide {
@@ -95,7 +96,7 @@ export function Onboarding() {
       <div className="flex items-center gap-2.5">
         {step > 0 && <IconButton icon={<ChevronLeft size={18} />} label="Zurück" onClick={handleBack} />}
         <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white">
-          <Target size={18} />
+          <TrainerProMark className="h-4 w-auto" />
         </div>
         <span className="font-display text-lg font-extrabold text-ink">TrainerPro</span>
       </div>

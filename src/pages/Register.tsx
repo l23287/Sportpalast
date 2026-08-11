@@ -1,10 +1,11 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Target } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { PrimaryButton } from '../components/PrimaryButton';
 import { IconButton } from '../components/IconButton';
 import { BlobBackground } from '../components/BlobBackground';
+import { TrainerProLockup } from '../components/Logo';
 import { inputClass, labelClass } from '../lib/formStyles';
 
 export function Register() {
@@ -36,8 +37,8 @@ export function Register() {
       />
 
       <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center py-10">
-        <div className="mb-8 flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white">
-          <Target size={20} />
+        <div className="mb-8">
+          <TrainerProLockup />
         </div>
         <h1 className="font-display text-3xl font-extrabold text-ink">Account erstellen</h1>
 

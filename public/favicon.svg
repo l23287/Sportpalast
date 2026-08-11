@@ -1,13 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="TrainerPro">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#3b82f6" />
-      <stop offset="100%" stop-color="#1d4ed8" />
-    </linearGradient>
+    <linearGradient id="tpBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d4ed8"></stop><stop offset="1" stop-color="#0a1a3d"></stop></linearGradient>
+    <linearGradient id="tpLight" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7dd3fc"></stop><stop offset="1" stop-color="#38bdf8"></stop></linearGradient>
+    <linearGradient id="tpDeep" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#2563eb"></stop></linearGradient>
   </defs>
-  <rect width="64" height="64" rx="18" fill="url(#g)" />
-  <path d="M20 30a12 12 0 1 1 12 12" stroke="#eef2fb" stroke-width="4" stroke-linecap="round" fill="none" />
-  <circle cx="20" cy="30" r="4.5" fill="#eef2fb" />
-  <path d="M32 42h9a5 5 0 0 0 5-5v-1" stroke="#eef2fb" stroke-width="4" stroke-linecap="round" fill="none" />
-  <circle cx="46" cy="30" r="4.5" fill="#eef2fb" />
+  <rect width="100" height="100" rx="22" fill="url(#tpBg)"></rect>
+  <g transform="translate(50 50) scale(0.66) translate(-52 -48)">
+  <polygon points="34,18 62,18 57,34 26,44" fill="url(#tpLight)"></polygon>
+  <polygon points="26,44 57,34 44,78 16,78" fill="url(#tpDeep)"></polygon>
+  <polygon points="70,18 84,18 66,78 52,78" fill="url(#tpDeep)"></polygon>
+  <circle cx="90" cy="26" r="6.5" fill="#ffffff"></circle>
+  </g>
 </svg>
