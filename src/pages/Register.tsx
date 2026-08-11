@@ -15,13 +15,13 @@ export function Register() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     if (!username.trim() || !password) {
       setError('Bitte alle Felder ausfüllen.');
       return;
     }
-    register(username.trim());
+    await register(username.trim(), password);
     navigate('/plaene');
   }
 

@@ -15,13 +15,17 @@ export function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     if (!username.trim() || !password) {
       setError('Bitte Benutzername und Passwort eingeben.');
       return;
     }
-    login(username.trim());
+    const success = await login(username.trim(), password);
+    if (!success) {
+      setError('Benutzername oder Passwort falsch.');
+      return;
+    }
     navigate('/plaene');
   }
 

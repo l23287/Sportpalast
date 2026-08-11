@@ -1,12 +1,13 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { Account } from '../types';
 import { loadJSON, saveJSON } from '../lib/storage';
+import { hashPassword } from '../lib/password';
 
 interface AuthContextValue {
   account: Account | null;
   isAuthenticated: boolean;
-  register: (username: string) => void;
-  login: (username: string) => void;
+  register: (username: string, password: string) => Promise<void>;
+  login: (username: string, password: string) => Promise<boolean>;
   logout: () => void;
 }
 
@@ -23,18 +24,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     () => ({
       account,
       isAuthenticated,
-      register: (username) => {
-        setAccount({ username });
+      register: async (username, password) => {
+        const passwordHash = await hashPassword(password);
+        setAccount({ username, passwordHash });
         setIsAuthenticated(true);
       },
-      login: (username) => {
-        setAccount({ username });
+      login: async (username, password) => {
+        const passwordHash = await hashPassword(password);
+        if (!account || account.username !== username || account.passwordHash !== passwordHash) {
+          return false;
+        }
         setIsAuthenticated(true);
+        return true;
       },
-      logout: () => {
-        setIsAuthenticated(false);
-        setAccount(null);
-      },
+      logout: () => setIsAuthenticated(false),
     }),
     [account, isAuthenticated],
   );
