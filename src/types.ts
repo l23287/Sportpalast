@@ -27,8 +27,7 @@ export interface TrainingPlan {
 export type PlanInput = Omit<TrainingPlan, 'id' | 'createdAt'>;
 
 export interface Account {
-  name: string;
-  email: string;
+  username: string;
 }
 
 export type ServeLength = 'Kurz' | 'Halblang' | 'Lang';

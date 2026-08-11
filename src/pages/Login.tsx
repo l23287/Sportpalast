@@ -11,17 +11,17 @@ import { inputClass, labelClass } from '../lib/formStyles';
 export function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    if (!email.trim() || !password) {
-      setError('Bitte E-Mail und Passwort eingeben.');
+    if (!username.trim() || !password) {
+      setError('Bitte Benutzername und Passwort eingeben.');
       return;
     }
-    login(email.trim());
+    login(username.trim());
     navigate('/plaene');
   }
 
@@ -43,17 +43,16 @@ export function Login() {
 
         <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
           <div>
-            <label className={labelClass} htmlFor="login-email">
-              E-Mail
+            <label className={labelClass} htmlFor="login-username">
+              Benutzername
             </label>
             <input
-              id="login-email"
-              type="email"
+              id="login-username"
               className={inputClass}
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="du@verein.de"
-              autoComplete="email"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+              placeholder="dein.benutzername"
+              autoComplete="username"
             />
           </div>
           <div>

@@ -10,7 +10,6 @@ import type {
 } from '../types';
 import { generateId } from '../lib/id';
 import { loadJSON, saveJSON } from '../lib/storage';
-import { SEED_EXERCISES, SEED_PLANS } from '../lib/seed';
 
 interface AppDataContextValue {
   plans: TrainingPlan[];
@@ -33,8 +32,8 @@ interface AppDataContextValue {
 const AppDataContext = createContext<AppDataContextValue | null>(null);
 
 export function AppDataProvider({ children }: { children: ReactNode }) {
-  const [plans, setPlans] = useState<TrainingPlan[]>(() => loadJSON('plans', SEED_PLANS));
-  const [exercises, setExercises] = useState<Exercise[]>(() => loadJSON('exercises', SEED_EXERCISES));
+  const [plans, setPlans] = useState<TrainingPlan[]>(() => loadJSON('plans', []));
+  const [exercises, setExercises] = useState<Exercise[]>(() => loadJSON('exercises', []));
   const [serveSessions, setServeSessions] = useState<ServeSession[]>(() => loadJSON('serveSessions', []));
 
   useEffect(() => saveJSON('plans', plans), [plans]);

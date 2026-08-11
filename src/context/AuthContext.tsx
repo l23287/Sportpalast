@@ -5,8 +5,8 @@ import { loadJSON, saveJSON } from '../lib/storage';
 interface AuthContextValue {
   account: Account | null;
   isAuthenticated: boolean;
-  register: (name: string, email: string) => void;
-  login: (email: string) => void;
+  register: (username: string) => void;
+  login: (username: string) => void;
   logout: () => void;
 }
 
@@ -23,12 +23,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     () => ({
       account,
       isAuthenticated,
-      register: (name, email) => {
-        setAccount({ name, email });
+      register: (username) => {
+        setAccount({ username });
         setIsAuthenticated(true);
       },
-      login: (email) => {
-        setAccount((prev) => prev ?? { name: email.split('@')[0], email });
+      login: (username) => {
+        setAccount((prev) => prev ?? { username });
         setIsAuthenticated(true);
       },
       logout: () => setIsAuthenticated(false),

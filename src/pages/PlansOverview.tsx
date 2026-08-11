@@ -29,7 +29,7 @@ export function PlansOverview() {
     <div className="flex flex-col gap-6">
       <header className="flex flex-col gap-2">
         <p className="text-sm text-muted-2">
-          {SPORT_EMOJI} Willkommen zurück, {account?.name ?? 'Trainer:in'}
+          {SPORT_EMOJI} Willkommen zurück, {account?.username ?? 'Trainer:in'}
         </p>
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h1 className="font-display text-3xl font-extrabold text-ink">Trainingspläne</h1>

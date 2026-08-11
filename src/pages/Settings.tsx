@@ -18,11 +18,10 @@ export function Settings() {
           <h2 className="font-display text-lg font-bold text-ink">Konto</h2>
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary-dark font-display font-bold text-white">
-              {account.name.charAt(0).toUpperCase()}
+              {account.username.charAt(0).toUpperCase()}
             </div>
             <div className="min-w-0">
-              <p className="truncate font-semibold text-ink">{account.name}</p>
-              <p className="truncate text-sm text-muted-2">{account.email}</p>
+              <p className="truncate font-semibold text-ink">{account.username}</p>
             </div>
           </div>
           <button

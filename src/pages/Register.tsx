@@ -11,18 +11,17 @@ import { inputClass, labelClass } from '../lib/formStyles';
 export function Register() {
   const navigate = useNavigate();
   const { register } = useAuth();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    if (!name.trim() || !email.trim() || !password) {
+    if (!username.trim() || !password) {
       setError('Bitte alle Felder ausfüllen.');
       return;
     }
-    register(name.trim(), email.trim());
+    register(username.trim());
     navigate('/plaene');
   }
 
@@ -44,30 +43,16 @@ export function Register() {
 
         <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
           <div>
-            <label className={labelClass} htmlFor="register-name">
-              Name
+            <label className={labelClass} htmlFor="register-username">
+              Benutzername
             </label>
             <input
-              id="register-name"
+              id="register-username"
               className={inputClass}
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              placeholder="Dein Name"
-              autoComplete="name"
-            />
-          </div>
-          <div>
-            <label className={labelClass} htmlFor="register-email">
-              E-Mail
-            </label>
-            <input
-              id="register-email"
-              type="email"
-              className={inputClass}
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="du@verein.de"
-              autoComplete="email"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+              placeholder="dein.benutzername"
+              autoComplete="username"
             />
           </div>
           <div>
