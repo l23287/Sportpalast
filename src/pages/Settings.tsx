@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { useSport } from '../context/SportContext';
 import { PillSelect } from '../components/PillSelect';
 import { ImpressumDialog } from '../components/ImpressumDialog';
+import { DatenschutzDialog } from '../components/DatenschutzDialog';
 import { SPORTS } from '../types';
 
 export function Settings() {
   const { sport, setSport } = useSport();
   const [impressumOpen, setImpressumOpen] = useState(false);
+  const [datenschutzOpen, setDatenschutzOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-6">
@@ -20,14 +22,25 @@ export function Settings() {
         <PillSelect label="Aktuelle Sportart" options={SPORTS} value={sport} onChange={setSport} />
       </div>
 
-      <button
-        type="button"
-        onClick={() => setImpressumOpen(true)}
-        className="self-start text-sm font-medium text-muted underline-offset-2 transition hover:text-ink hover:underline"
-      >
-        Impressum
-      </button>
+      <div className="flex items-center gap-3 text-sm font-medium text-muted">
+        <button
+          type="button"
+          onClick={() => setDatenschutzOpen(true)}
+          className="underline-offset-2 transition hover:text-ink hover:underline"
+        >
+          Datenschutz
+        </button>
+        <span aria-hidden="true">·</span>
+        <button
+          type="button"
+          onClick={() => setImpressumOpen(true)}
+          className="underline-offset-2 transition hover:text-ink hover:underline"
+        >
+          Impressum
+        </button>
+      </div>
 
+      <DatenschutzDialog open={datenschutzOpen} onClose={() => setDatenschutzOpen(false)} />
       <ImpressumDialog open={impressumOpen} onClose={() => setImpressumOpen(false)} />
     </div>
   );

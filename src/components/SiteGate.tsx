@@ -3,6 +3,8 @@ import { Lock } from 'lucide-react';
 import { PrimaryButton } from './PrimaryButton';
 import { BlobBackground } from './BlobBackground';
 import { TrainerProLockup } from './Logo';
+import { ImpressumDialog } from './ImpressumDialog';
+import { DatenschutzDialog } from './DatenschutzDialog';
 import { inputClass, labelClass } from '../lib/formStyles';
 import { hashPassword } from '../lib/password';
 import { SITE_PASSWORD_HASH } from '../lib/siteGate';
@@ -12,6 +14,8 @@ export function SiteGate({ children }: { children: ReactNode }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [checking, setChecking] = useState(false);
+  const [impressumOpen, setImpressumOpen] = useState(false);
+  const [datenschutzOpen, setDatenschutzOpen] = useState(false);
 
   if (unlocked) return <>{children}</>;
 
@@ -70,7 +74,20 @@ export function SiteGate({ children }: { children: ReactNode }) {
             {checking ? 'Prüfe…' : 'Weiter'}
           </PrimaryButton>
         </form>
+
+        <div className="mt-6 flex items-center justify-center gap-3 text-[11px] text-muted-2">
+          <button type="button" onClick={() => setDatenschutzOpen(true)} className="underline-offset-2 hover:underline">
+            Datenschutz
+          </button>
+          <span aria-hidden="true">·</span>
+          <button type="button" onClick={() => setImpressumOpen(true)} className="underline-offset-2 hover:underline">
+            Impressum
+          </button>
+        </div>
       </div>
+
+      <DatenschutzDialog open={datenschutzOpen} onClose={() => setDatenschutzOpen(false)} />
+      <ImpressumDialog open={impressumOpen} onClose={() => setImpressumOpen(false)} />
     </div>
   );
 }
