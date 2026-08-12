@@ -15,6 +15,8 @@ import { Exercises } from './pages/Exercises';
 import { Settings } from './pages/Settings';
 import { Statistics } from './pages/Statistics';
 import { ServeTraining } from './pages/ServeTraining';
+import { Impressum } from './pages/Impressum';
+import { Datenschutz } from './pages/Datenschutz';
 
 export default function App() {
   return (
@@ -25,6 +27,8 @@ export default function App() {
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<RootRedirect />} />
+              <Route path="/impressum" element={<Impressum />} />
+              <Route path="/datenschutz" element={<Datenschutz />} />
 
               <Route element={<RedirectIfAuthenticated />}>
                 <Route path="/onboarding" element={<Onboarding />} />

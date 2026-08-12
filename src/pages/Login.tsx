@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { PrimaryButton } from '../components/PrimaryButton';
@@ -88,6 +88,15 @@ export function Login() {
         >
           Noch keinen Account? <span className="text-accent">Jetzt registrieren</span>
         </button>
+
+        <div className="mt-4 flex justify-center gap-4 text-xs text-muted-2">
+          <Link to="/impressum" className="hover:text-muted">
+            Impressum
+          </Link>
+          <Link to="/datenschutz" className="hover:text-muted">
+            Datenschutz
+          </Link>
+        </div>
       </div>
     </div>
   );

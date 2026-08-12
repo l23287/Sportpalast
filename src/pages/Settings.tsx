@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-import { LogOut } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { LogOut, ScrollText } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useSport } from '../context/SportContext';
 import { PillSelect } from '../components/PillSelect';
@@ -46,6 +46,26 @@ export function Settings() {
           </button>
         </div>
       )}
+
+      <div className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5">
+        <h2 className="font-display text-lg font-bold text-ink">Rechtliches</h2>
+        <div className="flex flex-col gap-1">
+          <Link
+            to="/impressum"
+            className="flex h-12 items-center gap-3 rounded-2xl px-2 text-sm font-semibold text-muted transition hover:bg-surface-2 hover:text-ink"
+          >
+            <ScrollText size={16} />
+            Impressum
+          </Link>
+          <Link
+            to="/datenschutz"
+            className="flex h-12 items-center gap-3 rounded-2xl px-2 text-sm font-semibold text-muted transition hover:bg-surface-2 hover:text-ink"
+          >
+            <ScrollText size={16} />
+            Datenschutzerklärung
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
