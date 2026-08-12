@@ -30,11 +30,6 @@ export interface TrainingPlan {
 
 export type PlanInput = Omit<TrainingPlan, 'id' | 'createdAt'>;
 
-export interface Account {
-  username: string;
-  passwordHash: string;
-}
-
 export type ServeLength = 'Kurz' | 'Halblang' | 'Lang';
 
 export const SERVE_LENGTHS: ServeLength[] = ['Kurz', 'Halblang', 'Lang'];

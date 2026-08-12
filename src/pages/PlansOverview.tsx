@@ -2,7 +2,6 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ClipboardList, Plus } from 'lucide-react';
 import { useAppData } from '../context/AppDataContext';
-import { useAuth } from '../context/AuthContext';
 import { PrimaryButton } from '../components/PrimaryButton';
 import { SearchInput } from '../components/SearchInput';
 import { PlanCard } from '../components/PlanCard';
@@ -13,7 +12,6 @@ import { useSport } from '../context/SportContext';
 
 export function PlansOverview() {
   const { plans, exercises, deletePlan } = useAppData();
-  const { account } = useAuth();
   const { sport } = useSport();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
@@ -30,9 +28,7 @@ export function PlansOverview() {
   return (
     <div className="flex flex-col gap-6">
       <header className="flex flex-col gap-2">
-        <p className="text-sm text-muted-2">
-          {SPORT_EMOJI[sport]} Willkommen zurück, {account?.username ?? 'Trainer:in'}
-        </p>
+        <p className="text-sm text-muted-2">{SPORT_EMOJI[sport]} Willkommen zurück</p>
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h1 className="font-display text-3xl font-extrabold text-ink">Trainingspläne</h1>
           <PrimaryButton icon={<Plus size={18} />} onClick={() => navigate('/plaene/neu')}>

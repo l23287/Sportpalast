@@ -79,14 +79,9 @@ export function Onboarding() {
     setStep((current) => Math.max(current - 1, 0));
   }
 
-  function goRegister() {
+  function goToApp() {
     markOnboardingSeen();
-    navigate('/registrieren');
-  }
-
-  function goLogin() {
-    markOnboardingSeen();
-    navigate('/anmelden');
+    navigate('/plaene');
   }
 
   return (
@@ -123,15 +118,21 @@ export function Onboarding() {
         </div>
 
         <div className="flex items-center justify-between gap-4">
-          <button
-            type="button"
-            onClick={isLast ? goLogin : handleSkip}
-            className="shrink-0 px-2 text-sm font-medium whitespace-nowrap text-muted transition hover:text-ink"
+          {!isLast && (
+            <button
+              type="button"
+              onClick={handleSkip}
+              className="shrink-0 px-2 text-sm font-medium whitespace-nowrap text-muted transition hover:text-ink"
+            >
+              Überspringen
+            </button>
+          )}
+          <PrimaryButton
+            pill
+            className={`shrink-0 whitespace-nowrap ${isLast ? 'w-full' : ''}`}
+            onClick={isLast ? goToApp : handleNext}
           >
-            {isLast ? 'Anmelden' : 'Überspringen'}
-          </button>
-          <PrimaryButton pill className="shrink-0 whitespace-nowrap" onClick={isLast ? goRegister : handleNext}>
-            {isLast ? 'Registrieren' : 'Weiter'}
+            {isLast ? "Los geht's" : 'Weiter'}
           </PrimaryButton>
         </div>
       </div>
