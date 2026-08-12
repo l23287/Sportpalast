@@ -8,13 +8,13 @@ export function Datenschutz() {
           Verantwortlich für die Datenverarbeitung im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
         </p>
         <p className="mt-2">
-          [DEIN VOLLSTÄNDIGER NAME]
+          Lorelei Isabell Hermann
           <br />
-          [DEINE STRASSE UND HAUSNUMMER]
+          Rantzaustraße 52
           <br />
-          [DEINE POSTLEITZAHL UND DEIN ORT]
+          22926 Ahrensburg
           <br />
-          E-Mail: [DEINE E-MAIL-ADRESSE]
+          E-Mail: hermannlorelei@gmail.com
         </p>
       </LegalSection>
 

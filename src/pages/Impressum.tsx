@@ -5,24 +5,20 @@ export function Impressum() {
     <LegalLayout title="Impressum">
       <LegalSection title="Angaben gemäß § 5 DDG">
         <p>
-          [DEIN VOLLSTÄNDIGER NAME]
+          Lorelei Isabell Hermann
           <br />
-          [DEINE STRASSE UND HAUSNUMMER]
+          Rantzaustraße 52
           <br />
-          [DEINE POSTLEITZAHL UND DEIN ORT]
+          22926 Ahrensburg
         </p>
       </LegalSection>
 
       <LegalSection title="Kontakt">
-        <p>
-          E-Mail: [DEINE E-MAIL-ADRESSE]
-          <br />
-          Telefon: [DEINE TELEFONNUMMER] <span className="text-muted-2">(optional, aber empfohlen)</span>
-        </p>
+        <p>E-Mail: hermannlorelei@gmail.com</p>
       </LegalSection>
 
       <LegalSection title="Verantwortlich für den Inhalt">
-        <p>[DEIN VOLLSTÄNDIGER NAME], Anschrift wie oben.</p>
+        <p>Lorelei Isabell Hermann, Anschrift wie oben.</p>
       </LegalSection>
 
       <LegalSection title="EU-Streitschlichtung">
