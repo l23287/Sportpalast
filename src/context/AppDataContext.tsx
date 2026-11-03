@@ -10,8 +10,13 @@ import type {
 } from '../types';
 import { generateId } from '../lib/id';
 import { loadJSON, saveJSON } from '../lib/storage';
+// IFCM FS-001 / C01: aktuelle Sportart und Migration alter Daten
+import { useSport } from './SportContext';
+import { withSport } from '../lib/sport';
 
 interface AppDataContextValue {
+  // IFCM FS-001 / C01: `plans` und `exercises` enthalten nur noch die Einträge der aktuell gewählten Sportart.
+  // Alle Seiten (Pläne, Übungen, Statistiken, Plan-Formular) zeigen dadurch automatisch nur passende Inhalte.
   plans: TrainingPlan[];
   exercises: Exercise[];
   addPlan: (input: PlanInput) => TrainingPlan;
@@ -32,20 +37,30 @@ interface AppDataContextValue {
 const AppDataContext = createContext<AppDataContextValue | null>(null);
 
 export function AppDataProvider({ children }: { children: ReactNode }) {
-  const [plans, setPlans] = useState<TrainingPlan[]>(() => loadJSON('plans', []));
-  const [exercises, setExercises] = useState<Exercise[]>(() => loadJSON('exercises', []));
+  // IFCM FS-001 / C01: Der State hält weiterhin ALLE Pläne/Übungen aller Sportarten (es geht nichts verloren).
+  // Beim Laden werden alte Einträge ohne Sportart per `withSport` Tischtennis zugeordnet (Migration).
+  const [plans, setPlans] = useState<TrainingPlan[]>(() => withSport(loadJSON<TrainingPlan[]>('plans', [])));
+  const [exercises, setExercises] = useState<Exercise[]>(() =>
+    withSport(loadJSON<Exercise[]>('exercises', [])),
+  );
+  const { sport } = useSport();
   const [serveSessions, setServeSessions] = useState<ServeSession[]>(() => loadJSON('serveSessions', []));
 
   useEffect(() => saveJSON('plans', plans), [plans]);
   useEffect(() => saveJSON('exercises', exercises), [exercises]);
   useEffect(() => saveJSON('serveSessions', serveSessions), [serveSessions]);
 
+  // IFCM FS-001 / C01: Gefilterte Sicht auf die Daten der aktuell gewählten Sportart.
+  const sportPlans = useMemo(() => plans.filter((p) => p.sport === sport), [plans, sport]);
+  const sportExercises = useMemo(() => exercises.filter((e) => e.sport === sport), [exercises, sport]);
+
   const value = useMemo<AppDataContextValue>(
     () => ({
-      plans,
-      exercises,
+      plans: sportPlans, // IFCM FS-001 / C01: nur aktuelle Sportart
+      exercises: sportExercises, // IFCM FS-001 / C01: nur aktuelle Sportart
       addPlan: (input) => {
-        const plan: TrainingPlan = { ...input, id: generateId(), createdAt: new Date().toISOString() };
+        // IFCM FS-001 / C01: neuer Plan bekommt automatisch die aktuell gewählte Sportart
+        const plan: TrainingPlan = { ...input, sport, id: generateId(), createdAt: new Date().toISOString() };
         setPlans((prev) => [plan, ...prev]);
         return plan;
       },
@@ -55,10 +70,12 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
       deletePlan: (id) => {
         setPlans((prev) => prev.filter((p) => p.id !== id));
       },
-      getPlan: (id) => plans.find((p) => p.id === id),
+      // IFCM FS-001 / C01: Pläne anderer Sportarten werden nicht gefunden (Detailseite zeigt „nicht gefunden“)
+      getPlan: (id) => sportPlans.find((p) => p.id === id),
       addExercise: (input) => {
         const exercise: Exercise = {
           ...input,
+          sport, // IFCM FS-001 / C01: neue Übung bekommt automatisch die aktuell gewählte Sportart
           id: generateId(),
           createdAt: new Date().toISOString(),
         };
@@ -74,7 +91,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
           prev.map((p) => ({ ...p, exerciseIds: p.exerciseIds.filter((eid) => eid !== id) })),
         );
       },
-      getExercise: (id) => exercises.find((e) => e.id === id),
+      getExercise: (id) => sportExercises.find((e) => e.id === id), // IFCM FS-001 / C01: nur aktuelle Sportart
       serveSessions,
       startServeSession: (goal) => {
         const session: ServeSession = {
@@ -108,7 +125,8 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         setServeSessions((prev) => prev.filter((session) => session.id !== id));
       },
     }),
-    [plans, exercises, serveSessions],
+    // IFCM FS-001 / C01: `sport` und die gefilterten Listen als Abhängigkeiten ergänzt
+    [sport, sportPlans, sportExercises, serveSessions],
   );
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;

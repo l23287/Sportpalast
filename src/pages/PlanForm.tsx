@@ -1,11 +1,12 @@
 import { useMemo, useState, type FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowDown, ArrowUp, Check, ChevronLeft, Plus, X } from 'lucide-react';
+import { ArrowDown, ArrowUp, Check, ChevronLeft, Dumbbell, Plus, X } from 'lucide-react';
 import { useAppData } from '../context/AppDataContext';
 import { PrimaryButton } from '../components/PrimaryButton';
 import { IconButton } from '../components/IconButton';
 import { SearchInput } from '../components/SearchInput';
 import { DifficultyBadge } from '../components/DifficultyBadge';
+import { EmptyState } from '../components/EmptyState'; // IFCM FS-001 / C01
 import { inputClass, labelClass, textareaClass } from '../lib/formStyles';
 import { formatDuration } from '../lib/time';
 import type { Exercise, PlanInput } from '../types';
@@ -16,6 +17,9 @@ export function PlanForm() {
   const { exercises, plans, addPlan, updatePlan } = useAppData();
   const editingPlan = id ? plans.find((plan) => plan.id === id) : undefined;
   const isEditing = Boolean(editingPlan);
+  // IFCM FS-001 / C01: Bearbeiten-URL eines Plans, der nicht (mehr) zur aktuellen Sportart gehört.
+  // Ohne diese Prüfung würde stattdessen ein leeres „Neuer Plan“-Formular erscheinen.
+  const planMissing = Boolean(id) && !editingPlan;
   const backTarget = editingPlan ? `/plaene/${editingPlan.id}` : '/plaene';
 
   const [name, setName] = useState(editingPlan?.name ?? '');
@@ -79,6 +83,21 @@ export function PlanForm() {
       const plan = addPlan(input);
       navigate(`/plaene/${plan.id}`);
     }
+  }
+
+  // IFCM FS-001 / C01: Hinweis statt Formular, wenn der Plan zu einer anderen Sportart gehört
+  if (planMissing) {
+    return (
+      <div className="flex flex-col gap-6">
+        <IconButton icon={<ChevronLeft size={18} />} label="Zurück" onClick={() => navigate('/plaene')} />
+        <EmptyState
+          icon={<Dumbbell size={28} />}
+          title="Plan nicht gefunden"
+          description="Dieser Trainingsplan existiert nicht oder gehört zu einer anderen Sportart."
+          action={<PrimaryButton onClick={() => navigate('/plaene')}>Zurück zur Übersicht</PrimaryButton>}
+        />
+      </div>
+    );
   }
 
   return (
