@@ -9,8 +9,8 @@ Gepflegt vom Compass Navigator; Claude hält den Status aktuell. Immer nur **ein
 
 | ID | Titel | Inhalt (aus der Skizze) | Bezug | Priorität | Status | Flow States |
 |---|---|---|---|---|---|---|
-| C01 | Sportart-Trennung | Übungen und Pläne gehören zu einer Sportart; beim Wechsel der Sportart erscheinen nur deren Inhalte; bestehende Daten werden Tischtennis zugeordnet | A1, B5 | hoch (Fundament) | in Arbeit | [FS-001](flow-states/FS-001-C01-sportart-trennung.md) |
-| C02 | Mehr Sportarten & eigene Sportart | Liste weiterer Sportarten (z. B. Fußball, Gym/Fitness); eigene Sportart per Freitextfeld anlegen | A2, A6, A7 | hoch | offen | – |
+| C01 | Sportart-Trennung | Übungen und Pläne gehören zu einer Sportart; beim Wechsel der Sportart erscheinen nur deren Inhalte; bestehende Daten werden Tischtennis zugeordnet | A1, B5 | hoch (Fundament) | fertig (Merge offen) | [FS-001](flow-states/FS-001-C01-sportart-trennung.md) |
+| C02 | Mehr Sportarten & eigene Sportart | Liste weiterer Sportarten (z. B. Fußball, Gym/Fitness); eigene Sportart per Freitextfeld anlegen | A2, A6, A7 | hoch | in Arbeit | [FS-002](flow-states/FS-002-C02-mehr-sportarten.md) |
 | C03 | Farben & Symbole je Sportart | Symbole und Farbakzente passen sich der gewählten Sportart an | A1 | mittel | offen | – |
 | C04 | Aufschlagtraining nur bei Tischtennis | Aufschlagtraining verschwindet aus der Navigation und wird bei Tischtennis in den Übungsbereich integriert; Platz in der Navigation wird frei | B5 | hoch | offen | – |
 | C05 | Kalendertool | Kalender-Icon im frei gewordenen Navigationsplatz; Kalenderansicht mit den geplanten Trainings | A7 | hoch | offen | – |
