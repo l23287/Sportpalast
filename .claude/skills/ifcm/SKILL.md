@@ -36,7 +36,9 @@ So bleibt die Rollentrennung im Protokoll sichtbar, obwohl eine Person alles tr�
 
 ## 3. Die fünf Werte (Prüfsteine bei jedem Schritt)
 
-1. **Präzision** – Ziel ist bekannt; Prompts folgen den 6 Prompt Patterns → `references/prompt-patterns.md`.
+1. **Präzision** – Ziel ist bekannt; die 6 Prompt Patterns (`references/prompt-patterns.md`) sind eine
+   **Richtlinie**, keine Pflicht – es müssen nicht immer alle Elemente enthalten sein. Verbindlich ist
+   dagegen: **Bei jeder Unklarheit fragt Claude nach, bevor es handelt** (Grundregel, Abschnitt 4).
 2. **Verantwortung** – nur der Mensch trägt Verantwortung für Ergebnis und Sicherheit der Nutzer:innen.
    Claude merged/veröffentlicht nichts ohne deine Freigabe.
 3. **Reflexion** – nach jedem Flow State und am Projektende wird ehrlich reflektiert.
@@ -44,19 +46,43 @@ So bleibt die Rollentrennung im Protokoll sichtbar, obwohl eine Person alles tr�
    (ca. täglich, mindestens zu jeder Sitzung) auf Vollständigkeit geprüft.
 5. **Synergie** – Mensch: Ideen, Urteil, Nutzerkenntnis, Tests. KI: Umsetzung, Recherche, Struktur.
 
-## 4. Ablauf beim Aufruf
+## 4. Führung durch die Phasen – du behältst die Verantwortung
 
-Bei jedem Aufruf (oder sobald an der App gearbeitet wird):
+Claude **leitet** durch das Modell: Es sagt, wo wir stehen, was als Nächstes kommt, und erledigt den
+aktuellen Schritt. **Weiter geht es aber nur auf dein Wort.**
 
-1. `docs/ifcm/README.md` lesen → Abschnitt **„Aktueller Stand“** zeigt Phase, Sub-Phase und aktiven Chunk.
-2. Dir in 2–3 Sätzen sagen: *Wo stehen wir? Was ist der nächste Schritt? Was brauche ich von dir?*
-3. Den Schritt der aktuellen Sub-Phase durchführen (Abschnitt 5).
-4. **Protokollieren** (Abschnitt 7), committen, pushen.
-5. Erst weitergehen, wenn die **Ausgangskriterien** der Sub-Phase erfüllt sind und du zugestimmt hast.
-   Phasenwechsel trifft immer du.
+### Steuerwörter
 
-Argumente (optional): `status` · `weiter` · `chunk <Name>` · `test` · `reflexion` · `beta` · `rollout`
-· `abschluss` · `prompt` (Prompt gegen die Patterns prüfen). Ohne Argument: Status + nächster Schritt.
+| Du sagst | Bedeutung | Was Claude tut |
+|---|---|---|
+| **„weiter“** | nächster Schritt **innerhalb** der aktuellen Sub-Phase (z. B. im Flow State vom Prompt zum Ergebnis, vom Ergebnis zum Alpha-Test) | führt genau den nächsten Schritt aus, protokolliert ihn und hält dann wieder an |
+| **„nächste Phase“** | Wechsel in die nächste Sub-Phase bzw. Phase (z. B. Brainstorm → Planning, Initiation → Flow States, Alpha-Reflexion → nächster Flow State, letzter Flow State → Go-Live) | prüft zuerst die Ausgangskriterien (Abschnitt 5), nennt offene Punkte, protokolliert den Wechsel als **deine Entscheidung** und beginnt die neue Phase mit ihrem ersten Schritt |
+
+Regeln:
+1. **Kein Schritt und kein Phasenwechsel ohne Steuerwort.** Claude beendet jeden Schritt mit einem kurzen
+   Stand und dem Hinweis, was „weiter“ bzw. „nächste Phase“ als Nächstes auslösen würde – und wartet.
+2. Sind bei „nächste Phase“ Ausgangskriterien **nicht** erfüllt, sagt Claude welche und fragt, ob trotzdem
+   gewechselt werden soll. Entscheidest du dich dafür, wird das mit Begründung protokolliert.
+3. „weiter“ am Ende einer Sub-Phase wechselt **nicht** die Phase – Claude weist darauf hin, dass dafür
+   „nächste Phase“ nötig ist.
+4. Andere Formulierungen mit eindeutig gleicher Bedeutung („ja, mach weiter“, „Phase abschließen“) darf
+   Claude als Steuerwort behandeln; im Zweifel nachfragen.
+
+### Grundregel: Bei Unklarheiten fragen
+Claude fragt nach, **bevor** es handelt, wenn ein Auftrag, ein Kriterium, ein Chunk-Umfang, eine
+Designentscheidung oder eine Protokollangabe unklar ist. Lieber eine Rückfrage zu viel als eine Annahme.
+Fragen gesammelt und nummeriert stellen, damit du sie in einer Antwort beantworten kannst.
+Annahmen, die Claude trotzdem treffen musste, werden im Protokoll als *Annahme* markiert.
+
+### Ablauf bei jedem Aufruf
+1. `docs/ifcm/README.md` lesen → **„Aktueller Stand“** (Phase, Sub-Phase, aktiver Chunk, letzter Schritt).
+2. Vollständigkeits-Check des Protokolls (Abschnitt 7.6).
+3. In 2–3 Sätzen sagen: *Wo stehen wir? Was ist der nächste Schritt? Was brauche ich von dir?*
+4. Auf Steuerwort bzw. deine Antworten warten, dann den Schritt ausführen.
+5. **Protokollieren** (Abschnitt 7), committen, pushen – dann wieder anhalten.
+
+Weitere optionale Argumente: `status` (nur Stand anzeigen) · `prompt` (Prompt gegen die Patterns-Richtlinie
+prüfen) · `test` (Testcheckliste für den aktiven Chunk).
 
 ## 5. Die Phasen im Detail
 
@@ -88,7 +114,7 @@ Claude: prüft die Zieldefinition auf ≤ 5 Sätze und Vollständigkeit der Para
 3. **KI-Projekt** festhalten: Claude Code (Web/App) mit GitHub-Anbindung, Modellzugang (z. B. Claude Pro).
 4. **KI-Dokumentations-Agent**: Claude als Protokollant über diesen Skill + `CLAUDE.md`; Commits auf GitHub
    sind die nachvollziehbare Spur.
-**Ausgangskriterium:** Chunkliste steht, Struktur ist eingerichtet → Wechsel in Phase II.
+**Ausgangskriterium:** Chunkliste steht, Struktur ist eingerichtet → Wechsel in Phase II auf „nächste Phase“.
 
 ### Phase II – Flow States (zyklisch, bis alle Chunks fertig sind)
 
@@ -97,8 +123,10 @@ Ein Flow State = **genau ein Chunk**. Datei: `docs/ifcm/flow-states/FS-<NNN>-<ch
 Chunk bekommt eine neue Nummer und verweist auf den vorherigen.
 
 1. **Chunk wählen** – du als Navigator (Claude kann vorschlagen). Status in `chunks.md` → `in Arbeit`.
-2. **Prompten** – Arbeitsauftrag formulieren. Claude prüft den Prompt vorab gegen die 6 Patterns und
-   schlägt ggf. Verbesserungen vor. **Jeder Prompt wird wörtlich protokolliert** (auch Folgeprompts).
+2. **Prompten** – Arbeitsauftrag formulieren. Claude gleicht den Prompt mit der Patterns-Richtlinie ab
+   und gibt höchstens kurze Hinweise (kein Zwang, alle Elemente zu nutzen). Ist der Auftrag unklar,
+   stellt Claude **zuerst Rückfragen** und setzt erst danach um.
+   **Jeder Prompt wird wörtlich protokolliert** (auch Folgeprompts und Antworten auf Rückfragen).
    Für Code: Infinite-Generation-Pattern – in Abschnitte teilen, jeder vollständig, bevor der nächste beginnt.
 3. **Ergebnis** – Claude setzt um, auf einem Arbeitszweig, mit `npm run build` und `npm run lint`.
    Protokoll: geänderte Dateien, Kurzbeschreibung, Commit-Hashes.
@@ -115,6 +143,8 @@ Chunk bekommt eine neue Nummer und verweist auf den vorherigen.
    Nicht bestanden → neuer Flow State zur Korrektur, Erkenntnisse fließen ein.
 
 **Ausgangskriterium Phase II:** alle Chunks `fertig`, alle Projektdateien zusammengeführt, Build grün.
+Innerhalb eines Flow States führt „weiter“ von Schritt zu Schritt (1→6); „nächste Phase“ nach der
+Alpha-Reflexion startet den nächsten Flow State bzw. – wenn alle Chunks fertig sind – Go-Live.
 
 ### Phase III – Go-Live → `docs/ifcm/04-go-live.md`
 

@@ -9,6 +9,9 @@ Skill `ifcm` verwenden** (`.claude/skills/ifcm/SKILL.md`) und den Abschnitt „A
   Phasenwechsel trifft sie, nicht Claude.
 - Claude ist **Protokollant**: Jede Weiterentwicklung wird in `docs/ifcm/` protokolliert (Prompts wörtlich,
   Ergebnisse, Tests, Reflexionen), committet (`ifcm(<Phase|FS-NNN>): …`) und nach GitHub gepusht.
+- Steuerung: **„weiter“** = nächster Schritt in der aktuellen Sub-Phase, **„nächste Phase“** = Phasenwechsel.
+  Ohne diese Steuerwörter geht Claude nicht weiter, sondern hält nach jedem Schritt an.
+- Bei Unklarheiten immer zuerst nachfragen. Die 6 Prompt Patterns sind eine Richtlinie, keine Pflicht.
 - Immer nur ein Chunk zur Zeit; Chunks nicht vermischen.
 - Keine personenbezogenen Daten der Testpersonen ins Repo.
 

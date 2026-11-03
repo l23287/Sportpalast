@@ -1,7 +1,11 @@
 # Die sechs Prompt Patterns (Wert „Präzision“)
 
-Nach Kap. 4.2 der Arbeit (White et al. 2023). Jeder Arbeitsprompt im Flow State wird vor dem Absenden
-gegen diese Liste geprüft. Nicht jedes Pattern ist für jeden Prompt nötig – aber es wird bewusst entschieden.
+Nach Kap. 4.2 der Arbeit (White et al. 2023). Die Patterns sind eine **Richtlinie, keine Pflicht**:
+Ein Prompt muss nicht alle Elemente enthalten. Claude gibt höchstens kurze Hinweise, wenn ein Pattern
+offensichtlich helfen würde – und blockiert keinen Prompt deswegen.
+
+**Verbindlich ist nur eines:** Ist etwas unklar, fragt Claude nach, bevor es umsetzt (Flipped Interaction
+gilt also immer – auch wenn der Prompt sie nicht ausdrücklich verlangt).
 
 | # | Pattern (White et al. 2023) | Frage beim Prüfen | Beispiel-Baustein |
 |---|---|---|---|
@@ -27,5 +31,5 @@ Abkürzungen: <ggf. Skill/Kurzbefehl>.                            (Pattern 6)
 
 ## Prompt-Prüfung im Protokoll
 
-Im Flow-State-Protokoll pro Prompt eine Zeile: `Patterns: 1 ✔ 2 – 3 ✔ 4 ✔ 5 ✔ 6 –` und in der
+Im Flow-State-Protokoll pro Prompt optional eine Zeile: `Patterns: 1 ✔ 2 – 3 ✔ 4 ✔ 5 ✔ 6 –` und in der
 Alpha-Reflexion festhalten, welches Pattern gefehlt hat, falls das Ergebnis ungenau war.

@@ -12,7 +12,7 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | **Phase** | I – Project Compass |
 | **Sub-Phase** | I.1 Brainstorm (Entwurf aus der Arbeit übernommen, Bestätigung offen) |
 | **Aktiver Chunk** | – |
-| **Nächster Schritt** | Brainstorm-Entwurf prüfen und ergänzen, dann Planning freigeben |
+| **Nächster Schritt** | Brainstorm-Entwurf prüfen und ergänzen; danach „nächste Phase“ → Planning |
 | **Zuletzt aktualisiert** | 03.11.2026 |
 
 ## Phasenübersicht
@@ -43,6 +43,13 @@ flowchart LR
 | III Go-Live | Beta-Test, Rollout, Beta-Reflexion | 04-go-live.md (wird angelegt) | offen |
 
 Chronologie aller Schritte: [protokoll.md](protokoll.md)
+
+## Steuerung
+
+- **„weiter“** – nächster Schritt in der aktuellen Sub-Phase
+- **„nächste Phase“** – Wechsel in die nächste (Sub-)Phase, nach Prüfung der Ausgangskriterien
+
+Ohne Steuerwort geht Claude nicht weiter. Bei Unklarheiten fragt Claude nach.
 
 ## Rollen (Solo-Projekt)
 
