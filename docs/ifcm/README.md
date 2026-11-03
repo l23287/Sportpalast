@@ -9,10 +9,10 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 
 | | |
 |---|---|
-| **Phase** | I – Project Compass |
-| **Sub-Phase** | I.2 Planning – gestartet 03.11.2026 |
+| **Phase** | I – Project Compass (Projektzeitraum 01.11.2026 – 01.01.2027) |
+| **Sub-Phase** | I.2 Planning – Zieldefinition, Ressourcen, Erfolgskriterium freigegeben; letzte Rückfragen offen |
 | **Aktiver Chunk** | – |
-| **Nächster Schritt** | Zeitraum, Budget und Zieldefinition klären und freigeben; danach „nächste Phase“ → Initiation |
+| **Nächster Schritt** | Rückfragen klären; „nächste Phase“ → Initiation (Chunkliste) |
 | **Zuletzt aktualisiert** | 03.11.2026 |
 
 ## Phasenübersicht
