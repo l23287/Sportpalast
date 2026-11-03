@@ -9,10 +9,10 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 
 | | |
 |---|---|
-| **Phase** | I – Project Compass (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | I.3 Initiation – Chunkliste (Vorschlag C01–C10) zur Freigabe |
-| **Aktiver Chunk** | – |
-| **Nächster Schritt** | Chunkliste freigeben; danach „nächste Phase“ → Flow State FS-001 |
+| **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
+| **Sub-Phase** | FS-001 – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Aktiver Chunk** | C01 Sportart-Trennung (Branch `ifcm/fs-001-c01-sportart-trennung`) |
+| **Nächster Schritt** | Alpha-Test durch Entwickler:in („weiter“) |
 | **Zuletzt aktualisiert** | 03.11.2026 |
 
 ## Phasenübersicht
@@ -38,8 +38,8 @@ flowchart LR
 |---|---|---|---|
 | I Project Compass | Brainstorm | [01-brainstorm.md](01-brainstorm.md) | abgeschlossen 03.11.2026 |
 | | Planning | [02-planning.md](02-planning.md) | abgeschlossen 03.11.2026 |
-| | Initiation | [03-initiation.md](03-initiation.md), [chunks.md](chunks.md) | in Arbeit |
-| II Flow States | je Chunk | [flow-states/](flow-states/) | offen |
+| | Initiation | [03-initiation.md](03-initiation.md), [chunks.md](chunks.md) | abgeschlossen 03.11.2026 |
+| II Flow States | je Chunk | [flow-states/](flow-states/) | läuft (FS-001) |
 | III Go-Live | Beta-Test, Rollout, Beta-Reflexion | 04-go-live.md (wird angelegt) | offen |
 
 Chronologie aller Schritte: [protokoll.md](protokoll.md)

@@ -1,6 +1,6 @@
 # I.3 Initiation
 
-> **Status: in Arbeit seit 03.11.2026.**
+> **Status: abgeschlossen am 03.11.2026** – Chunkliste freigegeben, Wechsel in Phase II.
 
 ## Projektstruktur
 | Element | Umsetzung |
@@ -14,4 +14,4 @@
 
 ## Chunks
 Siehe [chunks.md](chunks.md). Vorschlag mit 10 Chunks (C01–C10) aus den blau markierten Punkten der Mindmap,
-erstellt am 03.11.2026 – Freigabe offen.
+erstellt am 03.11.2026, von der Entwickler:in freigegeben.

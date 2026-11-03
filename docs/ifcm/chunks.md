@@ -2,14 +2,14 @@
 
 Gepflegt vom Compass Navigator; Claude hält den Status aktuell. Immer nur **ein** Chunk `in Arbeit`.
 
-> **Status: Vorschlag Claude vom 03.11.2026 – Freigabe durch die Entwickler:in offen.**
+> **Status: freigegeben von der Entwickler:in am 03.11.2026** (Vorschlag Claude, unverändert übernommen).
 > Grundlage: alle 🟦 blau markierten Punkte der Brainstorm-Mindmap (blau = umsetzen). 🟧 orange markierte
 > Punkte sind in dieser Phase der Weiterentwicklung nicht relevant (siehe unten).
 > Querschnittsregel für alle Chunks: **Design erhalten** (A3).
 
 | ID | Titel | Inhalt (aus der Skizze) | Bezug | Priorität | Status | Flow States |
 |---|---|---|---|---|---|---|
-| C01 | Sportart-Trennung | Übungen und Pläne gehören zu einer Sportart; beim Wechsel der Sportart erscheinen nur deren Inhalte; bestehende Daten werden Tischtennis zugeordnet | A1, B5 | hoch (Fundament) | offen | – |
+| C01 | Sportart-Trennung | Übungen und Pläne gehören zu einer Sportart; beim Wechsel der Sportart erscheinen nur deren Inhalte; bestehende Daten werden Tischtennis zugeordnet | A1, B5 | hoch (Fundament) | in Arbeit | [FS-001](flow-states/FS-001-C01-sportart-trennung.md) |
 | C02 | Mehr Sportarten & eigene Sportart | Liste weiterer Sportarten (z. B. Fußball, Gym/Fitness); eigene Sportart per Freitextfeld anlegen | A2, A6, A7 | hoch | offen | – |
 | C03 | Farben & Symbole je Sportart | Symbole und Farbakzente passen sich der gewählten Sportart an | A1 | mittel | offen | – |
 | C04 | Aufschlagtraining nur bei Tischtennis | Aufschlagtraining verschwindet aus der Navigation und wird bei Tischtennis in den Übungsbereich integriert; Platz in der Navigation wird frei | B5 | hoch | offen | – |
@@ -31,3 +31,9 @@ Gepflegt vom Compass Navigator; Claude hält den Status aktuell. Immer nur **ein
 | Fotos/Videos zu Übungen | B3, B5 | Speicherplatz im Browser |
 | Digitale Zähltafel / Wettkampf | B4 | sehr aufwendig, Datenschutz |
 | Gemeinsame Pläne, Übungs-Workshop | A8, B5 | nicht in der Mindmap; bräuchten ein Backend (kein Budget) |
+
+## Vorgemerkt außerhalb der Chunks (Befunde)
+| Befund | Gefunden in | Status |
+|---|---|---|
+| Seitenpasswort im Klartext als Kommentar in `src/lib/siteGate.ts` (Guard IT-Security) | FS-001 | offen |
+| `package-lock.json` nicht synchron mit `package.json` (`npm ci` schlägt fehl) | FS-001 | offen |
