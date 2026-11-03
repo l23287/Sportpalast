@@ -70,7 +70,23 @@ Beach Volleyball wird mit `sport: "Beach Volleyball"` gespeichert ✔ · nach R�
 - Recht/Datenschutz: keine neuen Daten erhoben, Speicherung weiterhin nur lokal ✔.
 - Technik-Hinweis: `package-lock.json` passt nicht zu `package.json` (`npm ci` schlägt fehl). → vormerken.
 
-**Bewertung:** *offen*
+### Rückmeldung Entwickler:in (03.11.2026, wörtlich)
+> okay bitte probiere es erneut dieses mal ist der Code nicht funktional. Sobald ich die Sportart in den
+> Sportarten wechsle ist dies ein neuer Bereich in dem nur die Pläne und Übungen sein sollen die ich auch in
+> dieser Sportart erstellt habe. Mache es also nochmal und erkläre auch hier erneut
+
+### Analyse Claude (03.11.2026)
+- Erneuter Test des Branches `ifcm/fs-001-c01-sportart-trennung` in Handy-Ansicht: Plan unter Tischtennis
+  anlegen → Wechsel zu Beach Volleyball: leer → dort eigenen Plan anlegen → zurück zu Tischtennis: nur der
+  TT-Plan. Das gewünschte Verhalten liegt im Branch vor.
+  Nachweis: [assets/fs001-nachweis.png](../assets/fs001-nachweis.png)
+- Wahrscheinliche Ursache: Getestet wurde eine Version **ohne** die Änderung. Die Live-Seite (Netlify) baut den
+  Hauptbranch `claude/trainerpro-web-app-3ox2ys`; C01 liegt bis zur Freigabe nur im Arbeitsbranch.
+- Zweite mögliche Ursache: Daten, die **vor** C01 unter Beach Volleyball angelegt wurden, haben keine
+  Sportart gespeichert und werden deshalb Tischtennis zugeordnet (siehe Migration).
+- Entscheidung Claude: Code nicht blind neu schreiben, sondern Testumgebung klären (Rückfrage gestellt).
+
+**Bewertung:** *offen – Klärung der Testumgebung*
 
 ## 5. Alpha-Reflexion – *offen*
 

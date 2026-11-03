@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-001 – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Sub-Phase** | FS-001 – Alpha-Test: Rückmeldung „nicht funktional“, Klärung der Testumgebung |
 | **Aktiver Chunk** | C01 Sportart-Trennung (Branch `ifcm/fs-001-c01-sportart-trennung`) |
-| **Nächster Schritt** | Alpha-Test durch Entwickler:in („weiter“) |
+| **Nächster Schritt** | Alpha-Test im Arbeitsbranch wiederholen |
 | **Zuletzt aktualisiert** | 03.11.2026 |
 
 ## Phasenübersicht
