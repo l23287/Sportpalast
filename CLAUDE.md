@@ -2,7 +2,7 @@
 
 ## Vorgehensmodell: IFCM
 Die Weiterentwicklung folgt dem Intelligence-Flow-Compass-Modell. **Vor jeder Arbeit an der App den
-Skill `ifcm` verwenden** (`.claude/skills/ifcm/SKILL.md`) und den Abschnitt „Aktueller Stand“ in
+Skill `IFCM` verwenden** (`.claude/skills/IFCM/SKILL.md`) und den Abschnitt „Aktueller Stand“ in
 `docs/ifcm/README.md` lesen.
 
 - Ein Solo-Projekt: alle IFCM-Rollen liegen bei der entwickelnden Person; Entscheidungen und

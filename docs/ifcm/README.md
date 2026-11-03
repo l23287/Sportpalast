@@ -3,14 +3,14 @@
 Die Weiterentwicklung von TrainerPro folgt dem **Intelligence-Flow-Compass-Modell (IFCM)** aus der
 Besonderen Lernleistung (Kap. 3.6–3.10). Dieser Ordner ist das vollständige, nachvollziehbare Protokoll
 des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant über den Skill
-[`.claude/skills/ifcm`](../../.claude/skills/ifcm/SKILL.md).
+[`.claude/skills/IFCM`](../../.claude/skills/IFCM/SKILL.md).
 
 ## Aktueller Stand
 
 | | |
 |---|---|
 | **Phase** | I – Project Compass |
-| **Sub-Phase** | I.1 Brainstorm (Entwurf aus der Arbeit übernommen, Bestätigung offen) |
+| **Sub-Phase** | I.1 Brainstorm – gestartet 03.11.2026, Rückfragen zum Entwurf offen |
 | **Aktiver Chunk** | – |
 | **Nächster Schritt** | Brainstorm-Entwurf prüfen und ergänzen; danach „nächste Phase“ → Planning |
 | **Zuletzt aktualisiert** | 03.11.2026 |

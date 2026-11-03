@@ -14,7 +14,7 @@ gilt also immer – auch wenn der Prompt sie nicht ausdrücklich verlangt).
 | 3 | **Persona – Rolle und Verhalten** (III-E) | Ist eine Rolle für die KI gesetzt? | „Du bist erfahrene:r Frontend-Entwickler:in mit Fokus auf Barrierefreiheit.“ |
 | 4 | **Flipped Interaction – Rückfragen** (III-D) | Darf/soll die KI erst nachfragen? | „Stelle mir zuerst alle Rückfragen, die du brauchst, bevor du Code schreibst.“ |
 | 5 | **Infinite Generation – Abschnitte** (III-K) | Ist der Auftrag in vollständig abzuarbeitende Abschnitte geteilt? | „Abschnitt 1: Datenmodell. Abschnitt 2: Formular. Abschnitt 3: Liste. Schließe jeden vollständig ab.“ |
-| 6 | **Cognitive Enhancement – Abkürzungen/Skills** (III-B) | Gibt es wiederkehrende Aufgaben, die als Abkürzung/Skill hinterlegt sind? | „/ifcm test“ für die Testcheckliste; dieser Skill selbst ist ein Beispiel. |
+| 6 | **Cognitive Enhancement – Abkürzungen/Skills** (III-B) | Gibt es wiederkehrende Aufgaben, die als Abkürzung/Skill hinterlegt sind? | „/IFCM test“ für die Testcheckliste; dieser Skill selbst ist ein Beispiel. |
 
 ## Vorlage für einen vollständigen Arbeitsprompt
 

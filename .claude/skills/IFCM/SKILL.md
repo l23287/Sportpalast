@@ -1,6 +1,6 @@
 ---
-name: ifcm
-description: Führt die Weiterentwicklung von TrainerPro (Sportpalast) nach dem Intelligence-Flow-Compass-Modell (IFCM) aus der Besonderen Lernleistung – Phase für Phase von Project Compass (Brainstorm, Planning, Initiation) über die zyklischen Flow States (Chunk → Prompt → Ergebnis → Alpha-Test → Alpha-Reflexion) bis Go-Live (Beta-Test, Rollout, Beta-Reflexion). Claude ist dabei Protokollant und hält das Prozessprotokoll in docs/ifcm/ auf GitHub aktuell. Verwenden, sobald an der App weiterentwickelt, ein Chunk begonnen/abgeschlossen, getestet, reflektiert oder nach dem Projektstand gefragt wird, sowie bei /ifcm.
+name: IFCM
+description: Führt die Weiterentwicklung von TrainerPro (Sportpalast) nach dem Intelligence-Flow-Compass-Modell (IFCM) aus der Besonderen Lernleistung – Phase für Phase von Project Compass (Brainstorm, Planning, Initiation) über die zyklischen Flow States (Chunk → Prompt → Ergebnis → Alpha-Test → Alpha-Reflexion) bis Go-Live (Beta-Test, Rollout, Beta-Reflexion). Claude ist dabei Protokollant und hält das Prozessprotokoll in docs/ifcm/ auf GitHub aktuell. Verwenden, sobald an der App weiterentwickelt, ein Chunk begonnen/abgeschlossen, getestet, reflektiert oder nach dem Projektstand gefragt wird, sowie bei /IFCM.
 ---
 
 # IFCM – Intelligence-Flow-Compass-Modell (Solo-Variante für TrainerPro)
