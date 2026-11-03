@@ -10,7 +10,7 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | I – Project Compass |
-| **Sub-Phase** | I.1 Brainstorm – gestartet 03.11.2026, Rückfragen zum Entwurf offen |
+| **Sub-Phase** | I.1 Brainstorm – Feedback erfasst, Mindmap-Entwurf liegt vor, Bestätigung offen |
 | **Aktiver Chunk** | – |
 | **Nächster Schritt** | Brainstorm-Entwurf prüfen und ergänzen; danach „nächste Phase“ → Planning |
 | **Zuletzt aktualisiert** | 03.11.2026 |
