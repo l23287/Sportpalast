@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | I – Project Compass |
-| **Sub-Phase** | I.1 Brainstorm – Feedback erfasst, Mindmap-Entwurf liegt vor, Bestätigung offen |
+| **Sub-Phase** | I.2 Planning – gestartet 03.11.2026 |
 | **Aktiver Chunk** | – |
-| **Nächster Schritt** | Brainstorm-Entwurf prüfen und ergänzen; danach „nächste Phase“ → Planning |
+| **Nächster Schritt** | Zeitraum, Budget und Zieldefinition klären und freigeben; danach „nächste Phase“ → Initiation |
 | **Zuletzt aktualisiert** | 03.11.2026 |
 
 ## Phasenübersicht
@@ -36,8 +36,8 @@ flowchart LR
 
 | Phase | Sub-Phase | Dokument | Status |
 |---|---|---|---|
-| I Project Compass | Brainstorm | [01-brainstorm.md](01-brainstorm.md) | Entwurf |
-| | Planning | [02-planning.md](02-planning.md) | Entwurf |
+| I Project Compass | Brainstorm | [01-brainstorm.md](01-brainstorm.md) | abgeschlossen 03.11.2026 |
+| | Planning | [02-planning.md](02-planning.md) | in Arbeit |
 | | Initiation | [03-initiation.md](03-initiation.md), [chunks.md](chunks.md) | teilweise |
 | II Flow States | je Chunk | [flow-states/](flow-states/) | offen |
 | III Go-Live | Beta-Test, Rollout, Beta-Reflexion | 04-go-live.md (wird angelegt) | offen |

@@ -1,48 +1,63 @@
 # I.1 Brainstorm
 
-> **Status: Entwurf** – übernommen aus der BLL (Kap. 2.1, 2.4) und dem Code-Stand (Commit `f3314ea`,
-> 12.08.2026). Bitte prüfen, korrigieren, ergänzen. Erst nach Bestätigung gilt die Sub-Phase als abgeschlossen.
+> **Status: abgeschlossen am 03.11.2026** (Wechsel in I.2 Planning auf Anweisung der Entwickler:in).
+> Ergebnis ist die handgezeichnete Mindmap der Entwickler:in; Claudes Vorschläge (siehe Git-Historie dieser
+> Datei, Commit `fc2e550`) dienten als Input.
 
-## Mindmap (Entwurf, Stand 03.11.2026 – Vorschlag Claude, Bestätigung offen)
+## Mindmap der Entwickler:in (03.11.2026)
 
-```mermaid
-mindmap
-  root((TrainerPro – Entlastung für Trainer:innen aller Sportarten))
-    Sportarten-Fundament
-      Mehr Sportarten, z. B. Gym, Fußball
-      Eigene Sportart anlegen
-      Übungen und Pläne je Sportart getrennt
-      Sportartspezifisches Spezialtraining statt fixem Aufschlagtraining
-      Symbole und Farben je Sportart
-    Planung
-      Vorgefertigter Übungspool je Sportart
-      Fotos und Videos zu Übungen
-      Dauer auch in Sekunden
-      Wiederkehrende Trainings
-      Notizen und Reflexion zum Plan
-    Organisation
-      Erinnerungen und Benachrichtigungen
-      Anwesenheitsliste
-      Kader mit individuellen Statistiken
-    Durchführung
-      Timer vorhanden
-      Digitale Zähltafel
-    Einstieg und Bedienung
-      Einführung in die Funktionen
-      Gelobtes Design beibehalten
-    Profil und USP
-      Alles für die Trainingsorganisation in einer App
-      Für jede Sportart
-    Guards
-      Daten Minderjähriger schützen
-      Bildrechte bei Fotos und Videos
-      Speichergrenze im Browser
-      Backend kostet Budget
-    Parkplatz
-      Gemeinsame Pläne mit mehreren Accounts
-      Übungen anderer Nutzer teilen
-      Turnierfunktion
-```
+Original: [assets/brainstorming-2026-11-03.pdf](assets/brainstorming-2026-11-03.pdf)
+
+![Brainstorm-Mindmap](assets/brainstorming-2026-11-03.jpg)
+
+### Abschrift (Markierungen: 🟦 = blau, 🟧 = orange, 🟥 = rot hervorgehoben; Bedeutung siehe offene Punkte)
+
+**Zentrum:** Brainstorm – Weiterentwicklung App Trainer Pro am 3.11.26
+
+- **Bedienung der App**
+  - 🟦 Einführung in App → mit Claude Design gestalten → evtl. Zeit am 20.11.26, 17 Uhr?
+  - Design erhalten
+- **Datenschutz** → Guards
+  - 🟧 Anwesenheitslisten würden Datenverarbeitung von Minderjährigen bedeuten → daher späteres To-do
+- **Sportarten**
+  - 🟦 Mehr Sportarten → 🟦 Farben/Symbole passend zur Sportart
+  - 🟦 Eigene Sportarten eintragen → Eingabefeld „Eigener Text“
+  - 🟦 Trennung von Sportart und Plänen
+  - 🟦 Aufschlagtraining → nur bei Tischtennis
+- **Planung**
+  - 🟦 Notizzettel / 🟧 Reflexionszettel in Übungen hinzufügen → wie eine Erinnerung fürs nächste Mal der Anwendung
+    - *Skizze:* Übungs-Screen mit Timer; Stift-Icon im Timer öffnet die Notiz; Buttons „Pause“ und „Schließen“
+  - 🟧 Fotos/Videos zu Übung hinzufügen → Speicherplatz? → im Browser nur 🟧 5 MB möglich → 🟥 reicht nicht!
+  - 🟦 Dauer auch in Sekunden möglich machen → *Skizze:* Time-Kreis „10 sek“
+  - 🟦 Wiederkehrende Übungen und Pläne → 🟦 Kalendertool verankern → Kalender-Icon
+    - *Skizze:* Kalender-Icon in der unteren Navigationsleiste; der Platz wird durch das Aufschlagtraining frei → bei Tischtennis in den Übungsbereich integrieren
+- **Ganz neues 🟦 Zielsetzungstool** → Wissen zur Zielsetzung nötig?!
+  - Eintragen von max. 3 Kernzielen im Einstellungsbereich
+  - Motivierendes Anzeigen der Ziele → ?
+  - *Skizze:* Screen „Deine Ziele“ (3 Felder), darunter „Sportart“ als Kachelraster, verschiebbar in der Reihenfolge
+- **Wettkampf / Wettkampfsimulation**
+  - 🟧 Evtl. digitale Zähltafel → sehr aufwendig → erst mal hintanstellen; Datenschutz?
+
+### Bezug zum Feedback
+| Mindmap-Punkt | Feedback |
+|---|---|
+| Einführung in App | B2 |
+| Design erhalten | A3 |
+| Anwesenheitslisten (später) | B1 |
+| Mehr/eigene Sportarten, Farben/Symbole, Trennung, Aufschlagtraining | A1, A2, A6, A7, B5 |
+| Notizzettel/Reflexion | B4 |
+| Fotos/Videos | B3, B5 |
+| Dauer in Sekunden | B3 |
+| Wiederkehrende Übungen/Pläne, Kalender | A6, A7 |
+| Zielsetzungstool | neu (eigene Idee) |
+| Zähltafel / Wettkampf (später) | B4 |
+| nicht aufgenommen: gemeinsame Pläne, Übungs-Workshop, USP | A8, B5, A5 |
+
+### Offene Punkte (bewusst ins Planning mitgenommen)
+- Bedeutung der Farbmarkierungen (Vermutung Claude: 🟦 = umsetzen, 🟧 = fraglich/später) – *zu bestätigen*
+- Einsatzbereich: Nutzung eher zu Hause, in der Halle oder beides – *offen*
+- 3 nicht sichtbare Antworten der Gruppe A – *offen*
+- Zuordnung Screenshot 1 = Gruppe A, Screenshot 2 = Gruppe B – *zu bestätigen*
 
 ## 1. Ist-Zustand (Version vom 27.08.2026)
 - **Übungen:** Erstellen von Einzelübungen (Name, Beschreibung, Ziel, Dauer, Schwierigkeitsgrad).

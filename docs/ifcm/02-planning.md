@@ -1,6 +1,7 @@
 # I.2 Planning
 
-> **Status: Entwurf** – Zieldefinition aus der BLL (Kap. 3.7) übernommen. Bitte bestätigen.
+> **Status: in Arbeit seit 03.11.2026.** Zieldefinition der BLL (Kap. 3.7) liegt vor; Claude schlägt eine an den
+> Brainstorm angepasste Fassung vor. Freigabe offen.
 
 ## Zieldefinition (max. 5 Sätze)
 
@@ -8,6 +9,15 @@
 > stellt besonders für den Vereinssport ein Entlastungstool dar. Sie wird von einer Person mit einem PC,
 > mit einem KI-Zugang (Claude Pro) und mit 40 Euro Budget innerhalb von zwei Monaten zu einer App für
 > alle Sportarten weiterentwickelt.
+
+## Vorschlag Claude: angepasste Zieldefinition (4 Sätze, Freigabe offen)
+
+> Die neue Version von Trainer Pro ist eine einfach zu bedienende App für Trainer:innen jeder Sportart und
+> entlastet besonders im Vereinssport die Planung und Organisation des Trainings. Grundlage der
+> Weiterentwicklung ist das Feedback der beiden Testgruppen aus der Erstbefragung. Sie wird von einer Person
+> mit einem PC, einem KI-Zugang (Claude Pro) und 40 Euro Budget vom <Start> bis zum <Ende> weiterentwickelt.
+> Erfolgreich ist das Projekt, wenn die funktionale Eignung in der Zweitbefragung höher bewertet wird als in
+> der Erstbefragung, ohne dass technische Qualität und Benutzbarkeit sinken.
 
 ## Ressourcen
 
