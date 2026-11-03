@@ -20,6 +20,11 @@ export function Settings() {
       <div className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5">
         <h2 className="font-display text-lg font-bold text-ink">Sportart</h2>
         <PillSelect label="Aktuelle Sportart" options={SPORTS} value={sport} onChange={setSport} />
+        {/* IFCM FS-001 / C01: Hinweis, dass Inhalte jetzt je Sportart getrennt sind */}
+        <p className="text-sm text-muted">
+          Übungen und Trainingspläne werden je Sportart getrennt gespeichert. Beim Wechsel siehst du nur die
+          Inhalte der gewählten Sportart – die anderen bleiben erhalten.
+        </p>
       </div>
 
       <div className="flex items-center gap-3 text-sm font-medium text-muted">

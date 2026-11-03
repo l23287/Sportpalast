@@ -8,6 +8,8 @@ export const SPORTS: Sport[] = ['Tischtennis', 'Beach Volleyball'];
 
 export interface Exercise {
   id: string;
+  // IFCM FS-001 / C01 Sportart-Trennung: Jede Übung gehört zu genau einer Sportart.
+  sport: Sport;
   name: string;
   description: string;
   goal: string;
@@ -16,10 +18,14 @@ export interface Exercise {
   createdAt: string;
 }
 
-export type ExerciseInput = Omit<Exercise, 'id' | 'createdAt'>;
+// IFCM FS-001 / C01: `sport` ist nicht Teil der Formulareingabe – die Sportart wird beim Anlegen
+// automatisch aus der aktuell gewählten Sportart gesetzt (siehe AppDataContext).
+export type ExerciseInput = Omit<Exercise, 'id' | 'createdAt' | 'sport'>;
 
 export interface TrainingPlan {
   id: string;
+  // IFCM FS-001 / C01 Sportart-Trennung: Jeder Trainingsplan gehört zu genau einer Sportart.
+  sport: Sport;
   name: string;
   description: string;
   targetGroup: string;
@@ -28,7 +34,8 @@ export interface TrainingPlan {
   createdAt: string;
 }
 
-export type PlanInput = Omit<TrainingPlan, 'id' | 'createdAt'>;
+// IFCM FS-001 / C01: Sportart wird automatisch gesetzt, nicht im Formular gewählt.
+export type PlanInput = Omit<TrainingPlan, 'id' | 'createdAt' | 'sport'>;
 
 export type ServeLength = 'Kurz' | 'Halblang' | 'Lang';
 

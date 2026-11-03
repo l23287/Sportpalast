@@ -27,7 +27,8 @@ export function PlanDetail() {
         <EmptyState
           icon={<Dumbbell size={28} />}
           title="Plan nicht gefunden"
-          description="Dieser Trainingsplan existiert nicht (mehr)."
+          // IFCM FS-001 / C01: Text um den Fall „andere Sportart“ ergänzt
+          description="Dieser Trainingsplan existiert nicht (mehr) oder gehört zu einer anderen Sportart."
           action={
             <PrimaryButton onClick={() => navigate('/plaene')}>Zurück zur Übersicht</PrimaryButton>
           }
