@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | I – Project Compass (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | I.2 Planning – Zieldefinition, Ressourcen, Erfolgskriterium freigegeben; letzte Rückfragen offen |
+| **Sub-Phase** | I.3 Initiation – Chunkliste (Vorschlag C01–C10) zur Freigabe |
 | **Aktiver Chunk** | – |
-| **Nächster Schritt** | Rückfragen klären; „nächste Phase“ → Initiation (Chunkliste) |
+| **Nächster Schritt** | Chunkliste freigeben; danach „nächste Phase“ → Flow State FS-001 |
 | **Zuletzt aktualisiert** | 03.11.2026 |
 
 ## Phasenübersicht
@@ -37,8 +37,8 @@ flowchart LR
 | Phase | Sub-Phase | Dokument | Status |
 |---|---|---|---|
 | I Project Compass | Brainstorm | [01-brainstorm.md](01-brainstorm.md) | abgeschlossen 03.11.2026 |
-| | Planning | [02-planning.md](02-planning.md) | in Arbeit |
-| | Initiation | [03-initiation.md](03-initiation.md), [chunks.md](chunks.md) | teilweise |
+| | Planning | [02-planning.md](02-planning.md) | abgeschlossen 03.11.2026 |
+| | Initiation | [03-initiation.md](03-initiation.md), [chunks.md](chunks.md) | in Arbeit |
 | II Flow States | je Chunk | [flow-states/](flow-states/) | offen |
 | III Go-Live | Beta-Test, Rollout, Beta-Reflexion | 04-go-live.md (wird angelegt) | offen |
 

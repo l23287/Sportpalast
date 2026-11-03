@@ -1,5 +1,7 @@
 # I.3 Initiation
 
+> **Status: in Arbeit seit 03.11.2026.**
+
 ## Projektstruktur
 | Element | Umsetzung |
 |---|---|
@@ -11,4 +13,5 @@
 | Zielumgebung (Rollout) | Netlify |
 
 ## Chunks
-Siehe [chunks.md](chunks.md). Die Chunkliste wird nach Bestätigung von Brainstorm und Planning erstellt.
+Siehe [chunks.md](chunks.md). Vorschlag mit 10 Chunks (C01–C10) aus den blau markierten Punkten der Mindmap,
+erstellt am 03.11.2026 – Freigabe offen.

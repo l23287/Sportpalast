@@ -1,7 +1,6 @@
 # I.2 Planning
 
-> **Status: inhaltlich fertig seit 03.11.2026 – Zieldefinition und Ressourcen von der Entwickler:in freigegeben.**
-> Phasenwechsel in die Initiation steht aus (Steuerwort „nächste Phase“).
+> **Status: abgeschlossen am 03.11.2026** – Zieldefinition, Ressourcen und Erfolgskriterium freigegeben.
 
 ## Zieldefinition (freigegeben 03.11.2026, 4 Sätze)
 
@@ -39,7 +38,6 @@ Datenbank, App-Store-Gebühren). Alle Features müssen ohne Backend auskommen (D
 In der Zweitbefragung (gleiche Testgruppen, ISO/IEC 25010) wird die **funktionale Eignung** höher bewertet
 als in der Erstbefragung, ohne dass **technische Qualität** und **Benutzbarkeit** sinken.
 
-## Offene Planungsfragen (Stand 03.11.2026)
-- Wöchentliche Arbeitszeit der Entwickler:in – *offen*
-- Liegen Beta-Test und Rollout (Go-Live) innerhalb des Zeitraums bis 01.01.2027 oder danach? – *offen*
-- Puffer / Feature-Freeze vor dem Ende – *offen*
+## Zeitliche Kapazität
+Aussage der Entwickler:in (03.11.2026): so viel Zeit wie möglich, neben anderen Prioritäten (Schule).
+Keine feste Wochenstundenzahl. *Empfehlung Claude:* Feature-Freeze um den 15.12.2026 als Puffer für Korrekturen.

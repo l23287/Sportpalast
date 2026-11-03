@@ -54,7 +54,7 @@ Original: [assets/brainstorming-2026-11-03.pdf](assets/brainstorming-2026-11-03.
 | nicht aufgenommen: gemeinsame Pläne, Übungs-Workshop, USP | A8, B5, A5 |
 
 ### Offene Punkte (bewusst ins Planning mitgenommen)
-- Bedeutung der Farbmarkierungen (Vermutung Claude: 🟦 = umsetzen, 🟧 = fraglich/später) – *zu bestätigen*
+- Bedeutung der Farbmarkierungen – **geklärt 03.11.2026:** 🟦 blau = umsetzen, 🟧 orange = in dieser Phase der Weiterentwicklung nicht relevant
 - Einsatzbereich: Nutzung eher zu Hause, in der Halle oder beides – *offen*
 - 3 nicht sichtbare Antworten der Gruppe A – *offen*
 - Zuordnung Screenshot 1 = Gruppe A, Screenshot 2 = Gruppe B – *zu bestätigen*
