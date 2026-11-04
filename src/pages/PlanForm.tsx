@@ -7,9 +7,10 @@ import { IconButton } from '../components/IconButton';
 import { SearchInput } from '../components/SearchInput';
 import { DifficultyBadge } from '../components/DifficultyBadge';
 import { EmptyState } from '../components/EmptyState'; // IFCM FS-001 / C01
-import { inputClass, labelClass, textareaClass } from '../lib/formStyles';
+import { inputClass, labelClass, selectClass, textareaClass } from '../lib/formStyles';
+import { RECURRENCE_LABELS } from '../lib/recurrence'; // IFCM FS-005 / C06
 import { formatDuration } from '../lib/time';
-import type { Exercise, PlanInput } from '../types';
+import { RECURRENCES, type Exercise, type PlanInput, type Recurrence } from '../types';
 
 export function PlanForm() {
   const { id } = useParams<{ id: string }>();
@@ -31,6 +32,9 @@ export function PlanForm() {
   const presetDate = searchParams.get('datum');
   const initialDate = editingPlan?.date ?? (presetDate && /^\d{4}-\d{2}-\d{2}$/.test(presetDate) ? presetDate : '');
   const [date, setDate] = useState(initialDate);
+  // IFCM FS-005 / C06: Wiederholung und optionales Enddatum (alte Pläne ohne Angabe = einmalig)
+  const [recurrence, setRecurrence] = useState<Recurrence>(editingPlan?.recurrence ?? 'none');
+  const [recurrenceEnd, setRecurrenceEnd] = useState(editingPlan?.recurrenceEnd ?? '');
   const [exerciseIds, setExerciseIds] = useState<string[]>(editingPlan?.exerciseIds ?? []);
   const [poolQuery, setPoolQuery] = useState('');
   const [error, setError] = useState('');
@@ -74,12 +78,24 @@ export function PlanForm() {
       setError('Bitte gib einen Namen für den Plan ein.');
       return;
     }
+    // IFCM FS-005 / C06: Eine Wiederholung braucht einen ersten Termin; das Enddatum darf nicht davor liegen.
+    if (recurrence !== 'none' && !date) {
+      setError('Für einen wiederkehrenden Plan brauchst du ein Datum für den ersten Termin.');
+      return;
+    }
+    if (recurrence !== 'none' && recurrenceEnd && recurrenceEnd < date) {
+      setError('Das Enddatum der Wiederholung darf nicht vor dem ersten Termin liegen.');
+      return;
+    }
     const input: PlanInput = {
       name: name.trim(),
       description: description.trim(),
       targetGroup: targetGroup.trim(),
       date: date || null,
       exerciseIds,
+      // IFCM FS-005 / C06: Regel speichern; bei „Einmalig“ wird ein altes Enddatum verworfen
+      recurrence,
+      recurrenceEnd: recurrence !== 'none' && recurrenceEnd ? recurrenceEnd : null,
     };
     if (editingPlan) {
       updatePlan(editingPlan.id, input);
@@ -114,7 +130,9 @@ export function PlanForm() {
         </h1>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+      {/* IFCM FS-005 / C06: noValidate – die Prüfungen (u. a. Enddatum ≥ erster Termin) übernimmt handleSubmit
+          mit verständlicher deutscher Meldung statt der Browser-Sprechblase */}
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6" noValidate>
         <section className="grid grid-cols-1 gap-5 rounded-3xl border border-border bg-surface p-5 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <label className={labelClass} htmlFor="plan-name">
@@ -165,6 +183,39 @@ export function PlanForm() {
               onChange={(event) => setDate(event.target.value)}
             />
           </div>
+          {/* IFCM FS-005 / C06: Auswahl der Wiederholung; das Datum oben ist der erste Termin */}
+          <div>
+            <label className={labelClass} htmlFor="plan-recurrence">
+              Wiederholung
+            </label>
+            <select
+              id="plan-recurrence"
+              className={`${selectClass} [color-scheme:dark]`}
+              value={recurrence}
+              onChange={(event) => setRecurrence(event.target.value as Recurrence)}
+            >
+              {RECURRENCES.map((option) => (
+                <option key={option} value={option}>
+                  {RECURRENCE_LABELS[option]}
+                </option>
+              ))}
+            </select>
+          </div>
+          {recurrence !== 'none' && (
+            <div>
+              <label className={labelClass} htmlFor="plan-recurrence-end">
+                Wiederholen bis (optional)
+              </label>
+              <input
+                id="plan-recurrence-end"
+                type="date"
+                className={`${inputClass} [color-scheme:dark]`}
+                value={recurrenceEnd}
+                min={date || undefined}
+                onChange={(event) => setRecurrenceEnd(event.target.value)}
+              />
+            </div>
+          )}
         </section>
 
         <section className="grid grid-cols-1 gap-5 lg:grid-cols-2">

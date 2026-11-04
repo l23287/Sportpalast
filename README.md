@@ -13,6 +13,9 @@ bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (
 - **Übungen** – eigene Übungsdatenbank (Name, Beschreibung, Ziel, Dauer, Schwierigkeitsgrad); bei Tischtennis
   zusätzlich der Reiter **Aufschlagtraining** (IFCM C04).
 - **Kalender** – Monatsansicht aller Trainingspläne mit Datum, Tagesliste und „Plan für diesen Tag“ (IFCM C05).
+- **Wiederkehrende Pläne** – Pläne wiederholen sich wöchentlich, alle 2 Wochen oder monatlich (optional mit
+  Enddatum) und erscheinen an jedem Termin im Kalender; sie zeigen ihren nächsten Termin und gelten nie als
+  „überfällig“ (IFCM C06).
 - **Statistiken** – Kennzahlen, Schwierigkeitsgrad-Verteilung, Donut-Chart der meistgenutzten Übungen.
 - **Sportarten** – 12 vordefinierte und eigene Sportarten; jede Sportart ist ein eigener Bereich mit eigenen
   Plänen und Übungen (IFCM C01, C02).

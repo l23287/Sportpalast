@@ -2,7 +2,7 @@
 // Zeigt nur Pläne der aktuell gewählten Sportart (die Filterung übernimmt der AppDataContext aus C01).
 import { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CalendarDays, ChevronLeft, ChevronRight, ClipboardList, Plus } from 'lucide-react';
+import { CalendarDays, ChevronLeft, ChevronRight, ClipboardList, Plus, Repeat } from 'lucide-react';
 import { useAppData } from '../context/AppDataContext';
 import { IconButton } from '../components/IconButton';
 import { PrimaryButton } from '../components/PrimaryButton';
@@ -14,6 +14,7 @@ import {
   plansByDay,
   toDateKey,
 } from '../lib/calendar';
+import { RECURRENCE_LABELS, isRecurring } from '../lib/recurrence'; // IFCM FS-005 / C06
 
 export function CalendarPage() {
   const { plans } = useAppData();
@@ -104,13 +105,20 @@ export function CalendarPage() {
                 }`}
               >
                 <span>{day.day}</span>
-                {/* Punkte = Pläne an diesem Tag (max. 3), rot wenn überfällig */}
+                {/* Punkte = Pläne an diesem Tag (max. 3), rot wenn überfällig.
+                    IFCM FS-005 / C06: vergangene Termine wiederkehrender Pläne sind NICHT überfällig → grau */}
                 <span className="flex h-1.5 gap-0.5">
                   {dayPlans.slice(0, 3).map((plan) => (
                     <span
                       key={plan.id}
                       className={`h-1.5 w-1.5 rounded-full ${
-                        isSelected ? 'bg-white' : isPast ? 'bg-danger' : 'bg-primary'
+                        isSelected
+                          ? 'bg-white'
+                          : isPast
+                            ? isRecurring(plan)
+                              ? 'bg-muted-2'
+                              : 'bg-danger'
+                            : 'bg-primary'
                       }`}
                     />
                   ))}
@@ -138,7 +146,9 @@ export function CalendarPage() {
         ) : (
           <ul className="flex flex-col gap-2">
             {selectedPlans.map((plan) => {
-              const overdue = selectedKey < todayKey;
+              // IFCM FS-005 / C06: nur einmalige Pläne können überfällig sein
+              const recurring = isRecurring(plan);
+              const overdue = selectedKey < todayKey && !recurring;
               return (
                 <li key={plan.id}>
                   <Link
@@ -154,6 +164,12 @@ export function CalendarPage() {
                       <span className="block truncate font-semibold text-ink">{plan.name}</span>
                       <span className={`block text-xs ${overdue ? 'text-danger' : 'text-muted-2'}`}>
                         {plan.exerciseIds.length} Übungen{overdue ? ' · Überfällig' : ''}
+                        {/* IFCM FS-005 / C06: Rhythmus anzeigen */}
+                        {recurring && plan.recurrence && (
+                          <span className="ml-1 inline-flex items-center gap-1">
+                            · <Repeat size={11} /> {RECURRENCE_LABELS[plan.recurrence]}
+                          </span>
+                        )}
                       </span>
                     </span>
                     <ChevronRight size={18} className="text-muted-2" />

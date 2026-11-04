@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Calendar, ChevronLeft, Clock, Dumbbell, Pencil, Play, Trash2, Users } from 'lucide-react';
+import { Calendar, ChevronLeft, Clock, Dumbbell, Pencil, Play, Repeat, Trash2, Users } from 'lucide-react';
 import { useAppData } from '../context/AppDataContext';
 import { IconButton } from '../components/IconButton';
 import { PrimaryButton } from '../components/PrimaryButton';
@@ -8,7 +8,10 @@ import { DifficultyBadge } from '../components/DifficultyBadge';
 import { EmptyState } from '../components/EmptyState';
 import { ConfirmDialog } from '../components/ConfirmDialog';
 import { Timer } from '../components/Timer';
-import { formatDate, formatDuration, isOverdue } from '../lib/time';
+import { formatDuration } from '../lib/time';
+// IFCM FS-005 / C06: zentrale Termin-/Überfällig-Logik für einmalige und wiederkehrende Pläne
+import { RECURRENCE_LABELS, formatDateKey, getPlanSchedule } from '../lib/recurrence';
+import { toDateKey } from '../lib/calendar';
 import type { Exercise } from '../types';
 
 export function PlanDetail() {
@@ -41,7 +44,9 @@ export function PlanDetail() {
     .map((exerciseId) => exercises.find((e) => e.id === exerciseId))
     .filter((e): e is Exercise => Boolean(e));
   const totalMinutes = planExercises.reduce((sum, e) => sum + e.durationMinutes, 0);
-  const overdue = isOverdue(plan.date);
+  // IFCM FS-005 / C06: Nur einmalige Pläne können überfällig sein.
+  const schedule = getPlanSchedule(plan, toDateKey(new Date()));
+  const overdue = schedule.kind === 'once' && schedule.overdue;
 
   return (
     <div className="flex flex-col gap-6 pb-10">
@@ -67,15 +72,30 @@ export function PlanDetail() {
 
       <div className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5">
         <div className="flex flex-wrap items-center gap-2">
-          {plan.date && (
+          {/* IFCM FS-005 / C06: einmaliger Plan → Datum (ggf. „Überfällig“) */}
+          {schedule.kind === 'once' && (
             <span
               className={`inline-flex items-center gap-1.5 rounded-2xl px-3 py-1.5 text-xs font-semibold ${
                 overdue ? 'bg-danger/15 text-danger' : 'bg-surface-2 text-muted'
               }`}
             >
               <Calendar size={13} />
-              {formatDate(plan.date)}
+              {formatDateKey(schedule.dateKey)}
               {overdue && ' · Überfällig'}
+            </span>
+          )}
+          {/* IFCM FS-005 / C06: wiederkehrender Plan → Rhythmus + nächster Termin, nie „Überfällig“ */}
+          {schedule.kind === 'recurring' && (
+            <span className="inline-flex items-center gap-1.5 rounded-2xl bg-primary-soft px-3 py-1.5 text-xs font-semibold text-accent">
+              <Repeat size={13} />
+              {RECURRENCE_LABELS[schedule.recurrence]} · nächster Termin {formatDateKey(schedule.dateKey)}
+              {plan.recurrenceEnd && ` · bis ${formatDateKey(plan.recurrenceEnd)}`}
+            </span>
+          )}
+          {schedule.kind === 'ended' && (
+            <span className="inline-flex items-center gap-1.5 rounded-2xl bg-surface-2 px-3 py-1.5 text-xs font-semibold text-muted">
+              <Repeat size={13} />
+              {RECURRENCE_LABELS[schedule.recurrence]} · Serie beendet
             </span>
           )}
           {plan.targetGroup && (
