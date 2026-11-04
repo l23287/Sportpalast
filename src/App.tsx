@@ -15,6 +15,7 @@ import { Settings } from './pages/Settings';
 import { Statistics } from './pages/Statistics';
 import { ServeTraining } from './pages/ServeTraining';
 import { ExercisesArea, ServeTrainingGuard } from './pages/ExercisesArea'; // IFCM FS-003 / C04
+import { CalendarPage } from './pages/CalendarPage'; // IFCM FS-004 / C05
 
 export default function App() {
   return (
@@ -45,6 +46,8 @@ export default function App() {
                   />
                 </Route>
                 <Route path="/statistiken" element={<Statistics />} />
+                {/* IFCM FS-004 / C05: Kalender mit Monatsansicht */}
+                <Route path="/kalender" element={<CalendarPage />} />
                 {/* IFCM FS-003 / C04: alte Adresse (Lesezeichen/Links) leitet in den Übungsbereich weiter */}
                 <Route path="/aufschlagtraining" element={<Navigate to="/uebungen/aufschlagtraining" replace />} />
                 <Route path="/einstellungen" element={<Settings />} />
