@@ -4,6 +4,7 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 04.11.2026 | II FS-003 Ergebnis | C04 | Aufschlagtraining aus der Navigation genommen und bei Tischtennis als Reiter im Übungsbereich integriert; Weiterleitung alter Adresse; Schutz bei anderen Sportarten. Build grün, automatischer Kurztest bestanden | Alpha-Test durch Entwickler:in offen | [FS-003](flow-states/FS-003-C04-aufschlagtraining.md) |
 | 04.11.2026 | II FS-003 Chunk | C04 | Entwickler:in wechselt zum nächsten Chunk; Claude beschreibt C04 und nennt 3 Prüfpunkte | FS-003 gestartet, Prompt offen | [FS-003](flow-states/FS-003-C04-aufschlagtraining.md) |
 | 04.11.2026 | II FS-002 Abschluss | C02 | Alpha-Test durch Entwickler:in: „zufriedenstellend“ → bestanden; Alpha-Reflexion von der Entwickler:in selbst durchgeführt | C02 fertig; Merge: Freigabe offen | [FS-002](flow-states/FS-002-C02-mehr-sportarten.md) |
 | 04.11.2026 | II FS-002 Ergebnis | C02 | 12 vordefinierte Sportarten, eigene Sportart anlegen/löschen mit Prüfungen umgesetzt (9 Dateien), Build grün, automatischer Kurztest bestanden; Annahmen dokumentiert | Alpha-Test durch Entwickler:in offen | [FS-002](flow-states/FS-002-C02-mehr-sportarten.md) |

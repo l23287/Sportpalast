@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-003 – Chunk gewählt, als Nächstes Prompt/Umsetzung |
-| **Aktiver Chunk** | C04 Aufschlagtraining nur bei Tischtennis |
-| **Nächster Schritt** | Arbeitsauftrag (Prompt) für C04; Merge-Freigabe C01/C02 offen |
+| **Sub-Phase** | FS-003 – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Aktiver Chunk** | C04 Aufschlagtraining nur bei Tischtennis (Branch `ifcm/fs-003-c04-aufschlagtraining`, enthält C01 + C02) |
+| **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe C01/C02/C04 offen |
 | **Zuletzt aktualisiert** | 04.11.2026 |
 
 ## Phasenübersicht
