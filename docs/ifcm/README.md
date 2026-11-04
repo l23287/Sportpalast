@@ -10,10 +10,10 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-002 – Chunk gewählt, als Nächstes Prompt/Umsetzung |
-| **Aktiver Chunk** | C02 Mehr Sportarten & eigene Sportart |
-| **Nächster Schritt** | Arbeitsauftrag (Prompt) für C02; Merge-Freigabe für C01 offen |
-| **Zuletzt aktualisiert** | 03.11.2026 |
+| **Sub-Phase** | FS-002 – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Aktiver Chunk** | C02 Mehr Sportarten & eigene Sportart (Branch `ifcm/fs-002-c02-mehr-sportarten`, enthält C01) |
+| **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe C01/C02 offen |
+| **Zuletzt aktualisiert** | 04.11.2026 |
 
 ## Phasenübersicht
 
