@@ -10,7 +10,7 @@ import { ConfirmDialog } from '../components/ConfirmDialog';
 import { Timer } from '../components/Timer';
 import { formatDuration } from '../lib/time';
 // IFCM FS-005 / C06: zentrale Termin-/Überfällig-Logik für einmalige und wiederkehrende Pläne
-import { RECURRENCE_LABELS, formatDateKey, getPlanSchedule } from '../lib/recurrence';
+import { RECURRENCE_LABELS, describeRecurrence, formatDateKey, formatTime, getPlanSchedule } from '../lib/recurrence';
 import { toDateKey } from '../lib/calendar';
 import type { Exercise } from '../types';
 
@@ -81,6 +81,8 @@ export function PlanDetail() {
             >
               <Calendar size={13} />
               {formatDateKey(schedule.dateKey)}
+              {/* IFCM FS-006 / C06a: Uhrzeit */}
+              {plan.time && `, ${formatTime(plan.time)}`}
               {overdue && ' · Überfällig'}
             </span>
           )}
@@ -88,7 +90,8 @@ export function PlanDetail() {
           {schedule.kind === 'recurring' && (
             <span className="inline-flex items-center gap-1.5 rounded-2xl bg-primary-soft px-3 py-1.5 text-xs font-semibold text-accent">
               <Repeat size={13} />
-              {RECURRENCE_LABELS[schedule.recurrence]} · nächster Termin {formatDateKey(schedule.dateKey)}
+              {/* IFCM FS-006 / C06a: Rhythmus mit Wochentag und Uhrzeit, z. B. „Wöchentlich, dienstags um 18:00 Uhr“ */}
+              {describeRecurrence(plan)} · nächster Termin {formatDateKey(schedule.dateKey)}
               {plan.recurrenceEnd && ` · bis ${formatDateKey(plan.recurrenceEnd)}`}
             </span>
           )}

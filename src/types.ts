@@ -60,6 +60,11 @@ export interface TrainingPlan {
   recurrence?: Recurrence;
   // IFCM FS-005 / C06: letzter möglicher Termin („JJJJ-MM-TT“), null/fehlend = ohne Ende
   recurrenceEnd?: string | null;
+  // IFCM FS-006 / C06a: fester Wochentag der Wiederholung (0 = Montag … 6 = Sonntag), nur bei
+  // wöchentlich / alle 2 Wochen. Fehlt er (Pläne aus C06), gilt wie bisher der Wochentag des Startdatums.
+  recurrenceWeekday?: number | null;
+  // IFCM FS-006 / C06a: Uhrzeit des Trainings „HH:MM“ (gilt für jeden Termin der Wiederholung), optional
+  time?: string | null;
   createdAt: string;
 }
 

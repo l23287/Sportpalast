@@ -24,6 +24,52 @@ export const RECURRENCE_LABELS: Record<Recurrence, string> = {
   monthly: 'Monatlich',
 };
 
+// IFCM FS-006 / C06a: Wochentage, Index 0 = Montag … 6 = Sonntag (deutsche Konvention wie im Kalender)
+export const WEEKDAY_NAMES = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
+const WEEKDAY_ADVERBS = ['montags', 'dienstags', 'mittwochs', 'donnerstags', 'freitags', 'samstags', 'sonntags'];
+
+/** IFCM FS-006 / C06a: Wochentag eines Datums-Schlüssels (0 = Montag … 6 = Sonntag). */
+export function weekdayOfKey(key: string): number {
+  return (new Date(keyToUtc(key)).getUTCDay() + 6) % 7;
+}
+
+/** IFCM FS-006 / C06a: Rhythmen, bei denen ein Wochentag gewählt werden kann. */
+export function usesWeekday(recurrence: Recurrence): boolean {
+  return recurrence === 'weekly' || recurrence === 'biweekly';
+}
+
+/**
+ * IFCM FS-006 / C06a: Erster tatsächlicher Termin einer Serie.
+ * Bei wöchentlich / alle 2 Wochen mit gewähltem Wochentag ist das der erste passende Wochentag am oder nach
+ * dem Startdatum (Start Mi 04.11., Wochentag Dienstag → erster Termin Di 10.11.). Ohne Wochentag: Startdatum.
+ */
+export function seriesStart(plan: TrainingPlan): string | null {
+  if (!plan.date) return null;
+  const weekday = plan.recurrenceWeekday;
+  if (!usesWeekday(plan.recurrence ?? 'none') || weekday === null || weekday === undefined) return plan.date;
+  const shift = (weekday - weekdayOfKey(plan.date) + 7) % 7;
+  return utcToKey(keyToUtc(plan.date) + shift * DAY_MS);
+}
+
+/** IFCM FS-006 / C06a: Uhrzeit als „18:00 Uhr“ (leer, wenn keine Uhrzeit gesetzt ist). */
+export function formatTime(time: string | null | undefined): string {
+  return time ? `${time} Uhr` : '';
+}
+
+/**
+ * IFCM FS-006 / C06a: Rhythmus in Worten, z. B. „Wöchentlich, dienstags um 18:00 Uhr“
+ * oder „Monatlich am 15.“ – für Detailseite und Tooltips.
+ */
+export function describeRecurrence(plan: TrainingPlan): string {
+  const recurrence = plan.recurrence ?? 'none';
+  const start = seriesStart(plan);
+  let text = RECURRENCE_LABELS[recurrence];
+  if (start && usesWeekday(recurrence)) text += `, ${WEEKDAY_ADVERBS[weekdayOfKey(start)]}`;
+  if (start && recurrence === 'monthly') text += ` am ${Number(start.slice(8, 10))}.`;
+  if (plan.time) text += ` um ${formatTime(plan.time)}`;
+  return text;
+}
+
 /** Ist der Plan ein wiederkehrender Plan (mit Starttermin)? */
 export function isRecurring(plan: TrainingPlan): boolean {
   return Boolean(plan.date) && (plan.recurrence ?? 'none') !== 'none';
@@ -52,8 +98,9 @@ function monthlyKey(year: number, month: number, day: number): string {
  * Termine vor dem Start und nach `recurrenceEnd` gibt es nicht.
  */
 export function occurrencesBetween(plan: TrainingPlan, fromKey: string, toKey: string): string[] {
-  if (!plan.date) return [];
-  const start = plan.date;
+  // IFCM FS-006 / C06a: Serie beginnt am ersten Termin mit dem gewählten Wochentag (statt immer am Startdatum)
+  const start = seriesStart(plan);
+  if (!start) return [];
   const end = plan.recurrenceEnd && plan.recurrenceEnd < toKey ? plan.recurrenceEnd : toKey;
   const from = fromKey > start ? fromKey : start;
   if (from > end) return [];
@@ -120,6 +167,7 @@ export type PlanSchedule =
 export function getPlanSchedule(plan: TrainingPlan, todayKey: string): PlanSchedule {
   if (!plan.date) return { kind: 'none' };
   if (!isRecurring(plan)) return { kind: 'once', dateKey: plan.date, overdue: plan.date < todayKey };
+  // (IFCM FS-006 / C06a: der nächste Termin berücksichtigt über occurrencesBetween auch den gewählten Wochentag)
   const recurrence = plan.recurrence as Recurrence;
   const next = nextOccurrence(plan, todayKey);
   return next ? { kind: 'recurring', dateKey: next, recurrence } : { kind: 'ended', recurrence };
