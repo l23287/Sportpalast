@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 03.11.2026 – *offen* |
+| Zeitraum | 03.11.2026 – 03.11.2026 |
 | Chunk | C01 (siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in (Compass Navigator) – erster Chunk laut freigegebener Reihenfolge; Fundament für C02/C03 |
 | Vorgänger | – |
 | Branch / Commits | `ifcm/fs-001-c01-sportart-trennung`, Commit `acece3d` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge in den Hauptbranch: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Übungen und Trainingspläne gehören zu einer Sportart. Nach einem Wechsel der Sportart erscheinen nur deren
@@ -86,8 +86,16 @@ Beach Volleyball wird mit `sport: "Beach Volleyball"` gespeichert ✔ · nach R�
   Sportart gespeichert und werden deshalb Tischtennis zugeordnet (siehe Migration).
 - Entscheidung Claude: Code nicht blind neu schreiben, sondern Testumgebung klären (Rückfrage gestellt).
 
-**Bewertung:** *offen – Klärung der Testumgebung*
+**Bewertung (Entwickler:in, 03.11.2026):** „Das Ergebnis ist sehr zufriedenstellend.“ → **bestanden**
 
-## 5. Alpha-Reflexion – *offen*
+## 5. Alpha-Reflexion
+Durchgeführt von der Entwickler:in (Coach) am 03.11.2026; Inhalte liegen bei der Entwickler:in und wurden
+nicht an Claude übermittelt. *Bei Bedarf hier nachtragen.*
 
-## 6. Abschluss – *offen* (nach bestandenem Alpha-Test: Merge in den Hauptstand nach Freigabe)
+Beobachtung Claude (Protokollant): Die erste Rückmeldung „nicht funktional“ ging vermutlich auf die
+Testumgebung zurück (Live-Seite ohne Arbeitsbranch). Erkenntnis für folgende Flow States: zu jedem Ergebnis
+ausdrücklich angeben, **wo** getestet werden kann.
+
+## 6. Abschluss
+C01 **fertig** (03.11.2026). Merge des Branches in den Hauptbranch (= Live-Seite) nach Freigabe der Entwickler:in – *offen*.
+C02 baut auf dem C01-Branch auf.
