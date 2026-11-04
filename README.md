@@ -12,7 +12,8 @@ bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (
   Reihenfolge; steht heute nichts an, wird der nächste Termin genannt (IFCM C06b).
 - **Trainingspläne** – Pläne als Kacheln, Suche, überfällige Pläne werden rot markiert, Anlegen/Bearbeiten
   mit Übungsauswahl aus dem Pool inkl. Reihenfolge per ↑/↓, Detailansicht mit Start-Timer pro Übung.
-- **Übungen** – eigene Übungsdatenbank (Name, Beschreibung, Ziel, Dauer, Schwierigkeitsgrad); bei Tischtennis
+- **Übungen** – eigene Übungsdatenbank (Name, Beschreibung, Ziel, Dauer in Minuten und Sekunden – IFCM C07,
+  Schwierigkeitsgrad); bei Tischtennis
   zusätzlich der Reiter **Aufschlagtraining** (IFCM C04).
 - **Kalender** – Monatsansicht aller Trainingspläne mit Datum, Tagesliste und „Plan für diesen Tag“ (IFCM C05).
 - **Wiederkehrende Pläne** – Pläne wiederholen sich wöchentlich, alle 2 Wochen oder monatlich (optional mit

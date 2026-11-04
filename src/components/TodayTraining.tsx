@@ -84,7 +84,8 @@ export function TodayTraining({ plans, exercises }: TodayTrainingProps) {
             const planExercises = plan.exerciseIds
               .map((id) => exercises.find((exercise) => exercise.id === id))
               .filter((exercise): exercise is Exercise => Boolean(exercise));
-            const totalMinutes = planExercises.reduce((sum, exercise) => sum + exercise.durationMinutes, 0);
+            // IFCM FS-009 / C07: Summe in Sekunden
+            const totalSeconds = planExercises.reduce((sum, exercise) => sum + exercise.durationSeconds, 0);
             return (
               <li key={plan.id} className="rounded-2xl border border-border bg-surface p-4">
                 <Link to={`/plaene/${plan.id}`} className="group flex items-center gap-3">
@@ -94,7 +95,7 @@ export function TodayTraining({ plans, exercises }: TodayTrainingProps) {
                       {plan.name}
                     </span>
                     <span className="flex items-center gap-1 text-xs text-muted-2">
-                      <Clock size={12} /> {formatDuration(totalMinutes)} · {planExercises.length} {planExercises.length === 1 ? 'Übung' : 'Übungen'}
+                      <Clock size={12} /> {formatDuration(totalSeconds)} · {planExercises.length} {planExercises.length === 1 ? 'Übung' : 'Übungen'}
                     </span>
                   </span>
                   {/* auf dem Handy nur der Pfeil, damit der Planname Platz hat */}
@@ -112,7 +113,7 @@ export function TodayTraining({ plans, exercises }: TodayTrainingProps) {
                           {index + 1}
                         </span>
                         <span className="min-w-0 flex-1 truncate text-ink">{exercise.name}</span>
-                        <span className="shrink-0 text-xs text-muted-2">{formatDuration(exercise.durationMinutes)}</span>
+                        <span className="shrink-0 text-xs text-muted-2">{formatDuration(exercise.durationSeconds)}</span>
                       </li>
                     ))}
                   </ol>

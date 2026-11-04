@@ -18,7 +18,8 @@ export function PlanCard({ plan, exercises, onEdit, onDelete }: PlanCardProps) {
   const planExercises = plan.exerciseIds
     .map((exerciseId) => exercises.find((e) => e.id === exerciseId))
     .filter((e): e is Exercise => Boolean(e));
-  const totalMinutes = planExercises.reduce((sum, e) => sum + e.durationMinutes, 0);
+  // IFCM FS-009 / C07: Summe in Sekunden
+  const totalSeconds = planExercises.reduce((sum, e) => sum + e.durationSeconds, 0);
   // IFCM FS-005 / C06: Nur einmalige Pläne können überfällig sein; wiederkehrende zeigen den nächsten Termin.
   const schedule = getPlanSchedule(plan, toDateKey(new Date()));
   const overdue = schedule.kind === 'once' && schedule.overdue;
@@ -75,7 +76,7 @@ export function PlanCard({ plan, exercises, onEdit, onDelete }: PlanCardProps) {
           <ListChecks size={14} /> {planExercises.length} Übungen
         </span>
         <span className="inline-flex items-center gap-1">
-          <Clock size={14} /> {formatDuration(totalMinutes)}
+          <Clock size={14} /> {formatDuration(totalSeconds)}
         </span>
         {plan.targetGroup && (
           <span className="inline-flex items-center gap-1">

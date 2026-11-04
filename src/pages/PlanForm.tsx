@@ -296,7 +296,7 @@ export function PlanForm() {
                     <span className="block truncate text-sm font-semibold text-ink">{exercise.name}</span>
                     <span className="mt-1.5 flex items-center gap-2 text-xs text-muted-2">
                       <DifficultyBadge difficulty={exercise.difficulty} />
-                      {formatDuration(exercise.durationMinutes)}
+                      {formatDuration(exercise.durationSeconds) /* IFCM FS-009 / C07 */}
                     </span>
                   </span>
                   <Plus size={18} className="shrink-0 text-primary" />
@@ -327,7 +327,7 @@ export function PlanForm() {
                       <span className="block truncate text-sm font-semibold text-ink">{exercise.name}</span>
                       <span className="mt-1.5 flex items-center gap-2 text-xs text-muted-2">
                         <DifficultyBadge difficulty={exercise.difficulty} />
-                        {formatDuration(exercise.durationMinutes)}
+                        {formatDuration(exercise.durationSeconds) /* IFCM FS-009 / C07 */}
                       </span>
                     </span>
                     <div className="flex shrink-0 items-center gap-1">

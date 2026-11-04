@@ -1,8 +1,17 @@
-export function formatDuration(totalMinutes: number): string {
-  if (totalMinutes < 60) return `${totalMinutes} Min.`;
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-  return minutes === 0 ? `${hours} Std.` : `${hours} Std. ${minutes} Min.`;
+// IFCM FS-009 / C07: formatDuration erwartet jetzt SEKUNDEN (vorher Minuten).
+// Beispiele: 10 → „10 Sek.“, 90 → „1 Min. 30 Sek.“, 900 → „15 Min.“, 3900 → „1 Std. 5 Min.“
+// Teile mit 0 werden weggelassen; 0 Sekunden ergibt „0 Min.“ (z. B. leerer Plan).
+export function formatDuration(totalSeconds: number): string {
+  const safe = Math.max(0, Math.round(totalSeconds));
+  if (safe === 0) return '0 Min.';
+  const hours = Math.floor(safe / 3600);
+  const minutes = Math.floor((safe % 3600) / 60);
+  const seconds = safe % 60;
+  const parts: string[] = [];
+  if (hours) parts.push(`${hours} Std.`);
+  if (minutes) parts.push(`${minutes} Min.`);
+  if (seconds) parts.push(`${seconds} Sek.`);
+  return parts.join(' ');
 }
 
 export function formatCountdown(totalSeconds: number): string {
