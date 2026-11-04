@@ -33,6 +33,9 @@ export interface Exercise {
   goal: string;
   // IFCM FS-009 / C07: Dauer in SEKUNDEN (vorher `durationMinutes`); alte Daten werden beim Laden umgerechnet
   durationSeconds: number;
+  // IFCM FS-010 / C08 Notizzettel: Notiz zur Übung als Erinnerung fürs nächste Mal (reiner Text, optional).
+  // Gehört zur ÜBUNG, nicht zum Plan – sie erscheint daher in jedem Plan und bei jedem Start wieder.
+  note?: string;
   difficulty: Difficulty;
   createdAt: string;
 }
