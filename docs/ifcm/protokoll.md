@@ -4,6 +4,9 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 04.11.2026 | II FS-009 Ergebnis | C07 | Dauer intern in Sekunden mit verlustfreier Migration, Formular Min. + Sek., Timer „10 sek“, alle Summen umgestellt; 11 Logiktests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-009](flow-states/FS-009-C07-dauer-sekunden.md) |
+| 04.11.2026 | II FS-009 Chunk | C07 | Entwickler:in wechselt zum nächsten Chunk; Claude beschreibt C07 und nennt 3 Prüfpunkte | FS-009 gestartet, Prompt offen | [FS-009](flow-states/FS-009-C07-dauer-sekunden.md) |
+| 04.11.2026 | II FS-008 Abschluss | C06c | Alpha-Test durch Entwickler:in: „echt zufriedenstellend“ → bestanden; Alpha-Reflexion von der Entwickler:in durchgeführt; **C06 inkl. a–c fertig** | Merge: Freigabe offen | [FS-008](flow-states/FS-008-C06c-suche-oben.md) |
 | 04.11.2026 | II FS-008 Ergebnis | C06c | Suchzeile über den Bereich „Heute“ verschoben, Kennzeichnung `C06c`; Test bestanden | Alpha-Test durch Entwickler:in offen | [FS-008](flow-states/FS-008-C06c-suche-oben.md) |
 | 04.11.2026 | II FS-007 Alpha-Test | C06b | Entwickler:in: „Okay, das ist gut.“ → bestanden; Wunsch: Suche über „Heute“ | C06b fertig | [FS-007](flow-states/FS-007-C06b-heute-bereich.md) |
 | 04.11.2026 | II FS-007 Ergebnis | C06b | Bereich „Heute“ oben in der Planübersicht (heutige Pläne inkl. Wiederholungen mit Übungen; sonst nächster Termin), Kennzeichnung `C06b`; Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-007](flow-states/FS-007-C06b-heute-bereich.md) |
