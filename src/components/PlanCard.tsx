@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Calendar, ClipboardList, Clock, ListChecks, Pencil, Trash2, Users } from 'lucide-react';
+import { Calendar, ClipboardList, Clock, ListChecks, Pencil, Repeat, Trash2, Users } from 'lucide-react';
 import type { Exercise, TrainingPlan } from '../types';
-import { formatDate, formatDuration, isOverdue } from '../lib/time';
+import { formatDuration } from '../lib/time';
+// IFCM FS-005 / C06: Termin und „überfällig“ kommen aus der zentralen Logik für (wiederkehrende) Pläne
+import { RECURRENCE_LABELS, formatDateKey, getPlanSchedule } from '../lib/recurrence';
+import { toDateKey } from '../lib/calendar';
 import { IconButton } from './IconButton';
 
 interface PlanCardProps {
@@ -16,7 +19,9 @@ export function PlanCard({ plan, exercises, onEdit, onDelete }: PlanCardProps) {
     .map((exerciseId) => exercises.find((e) => e.id === exerciseId))
     .filter((e): e is Exercise => Boolean(e));
   const totalMinutes = planExercises.reduce((sum, e) => sum + e.durationMinutes, 0);
-  const overdue = isOverdue(plan.date);
+  // IFCM FS-005 / C06: Nur einmalige Pläne können überfällig sein; wiederkehrende zeigen den nächsten Termin.
+  const schedule = getPlanSchedule(plan, toDateKey(new Date()));
+  const overdue = schedule.kind === 'once' && schedule.overdue;
 
   return (
     <div
@@ -28,14 +33,30 @@ export function PlanCard({ plan, exercises, onEdit, onDelete }: PlanCardProps) {
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white shadow-[0_8px_18px_rgba(37,99,235,0.3)]">
           <ClipboardList size={22} />
         </div>
-        {plan.date && (
+        {/* IFCM FS-005 / C06: einmalig = Datum (rot wenn überfällig); wiederkehrend = Wiederhol-Symbol + nächster Termin */}
+        {schedule.kind === 'once' && (
           <span
             className={`inline-flex items-center gap-1 rounded-2xl px-3 py-1 text-xs font-semibold whitespace-nowrap ${
               overdue ? 'bg-danger/15 text-danger' : 'bg-surface-2 text-muted'
             }`}
           >
             <Calendar size={12} />
-            {formatDate(plan.date)}
+            {formatDateKey(schedule.dateKey)}
+          </span>
+        )}
+        {schedule.kind === 'recurring' && (
+          <span
+            className="inline-flex items-center gap-1 rounded-2xl bg-primary-soft px-3 py-1 text-xs font-semibold whitespace-nowrap text-accent"
+            title={`${RECURRENCE_LABELS[schedule.recurrence]} – nächster Termin`}
+          >
+            <Repeat size={12} />
+            {formatDateKey(schedule.dateKey)}
+          </span>
+        )}
+        {schedule.kind === 'ended' && (
+          <span className="inline-flex items-center gap-1 rounded-2xl bg-surface-2 px-3 py-1 text-xs font-semibold whitespace-nowrap text-muted">
+            <Repeat size={12} />
+            Serie beendet
           </span>
         )}
       </div>

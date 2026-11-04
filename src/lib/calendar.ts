@@ -5,6 +5,7 @@
 // `new Date('2026-11-04')` würde das als UTC-Mitternacht lesen und kann in manchen Zeitzonen auf den Vortag
 // rutschen. Deshalb rechnet der Kalender nur mit solchen Datums-Schlüsseln und lokalen Datumswerten.
 import type { TrainingPlan } from '../types';
+import { occurrencesBetween } from './recurrence'; // IFCM FS-005 / C06
 
 /** Datums-Schlüssel „JJJJ-MM-TT“ eines lokalen Datums (gleiches Format wie TrainingPlan.date). */
 export function toDateKey(date: Date): string {
@@ -67,18 +68,19 @@ export function buildMonthGrid(year: number, month: number): CalendarDay[] {
 /**
  * Ordnet Pläne ihren Tagen zu (Schlüssel „JJJJ-MM-TT“ → Pläne an diesem Tag).
  *
- * Andockpunkt für C06 (wiederkehrende Pläne): Hier wird später aus einem wiederkehrenden Plan jedes Vorkommen
- * im Zeitraum [fromKey, toKey] erzeugt. Die Kalenderseite muss dafür nicht geändert werden.
+ * IFCM FS-005 / C06: Wiederkehrende Pläne erscheinen an JEDEM Termin im Zeitraum [fromKey, toKey].
+ * Die Termine liefert `occurrencesBetween` – die Kalenderseite musste dafür nicht geändert werden
+ * (Andockpunkt aus C05).
  */
 export function plansByDay(plans: TrainingPlan[], fromKey: string, toKey: string): Map<string, TrainingPlan[]> {
   const map = new Map<string, TrainingPlan[]>();
   for (const plan of plans) {
-    if (!plan.date) continue; // Pläne ohne Datum erscheinen nicht im Kalender
-    // Textvergleich funktioniert, weil „JJJJ-MM-TT“ lexikografisch = chronologisch sortiert
-    if (plan.date < fromKey || plan.date > toKey) continue;
-    const list = map.get(plan.date) ?? [];
-    list.push(plan);
-    map.set(plan.date, list);
+    // Pläne ohne Datum liefern keine Termine und erscheinen daher nicht im Kalender
+    for (const key of occurrencesBetween(plan, fromKey, toKey)) {
+      const list = map.get(key) ?? [];
+      list.push(plan);
+      map.set(key, list);
+    }
   }
   return map;
 }

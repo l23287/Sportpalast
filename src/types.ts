@@ -40,6 +40,12 @@ export interface Exercise {
 // automatisch aus der aktuell gewählten Sportart gesetzt (siehe AppDataContext).
 export type ExerciseInput = Omit<Exercise, 'id' | 'createdAt' | 'sport'>;
 
+// IFCM FS-005 / C06 Wiederkehrende Pläne: Rhythmus, in dem sich ein Plan wiederholt.
+// 'none' = einmalig (Standard, entspricht allen Plänen von vor C06).
+export type Recurrence = 'none' | 'weekly' | 'biweekly' | 'monthly';
+
+export const RECURRENCES: Recurrence[] = ['none', 'weekly', 'biweekly', 'monthly'];
+
 export interface TrainingPlan {
   id: string;
   // IFCM FS-001 / C01 Sportart-Trennung: Jeder Trainingsplan gehört zu genau einer Sportart.
@@ -49,6 +55,11 @@ export interface TrainingPlan {
   targetGroup: string;
   date: string | null;
   exerciseIds: string[];
+  // IFCM FS-005 / C06: Wiederholung als REGEL am Plan (keine Kopien). `date` ist der erste Termin.
+  // Beide Felder sind optional, damit alte gespeicherte Pläne ohne Umwandlung gültig bleiben (= einmalig).
+  recurrence?: Recurrence;
+  // IFCM FS-005 / C06: letzter möglicher Termin („JJJJ-MM-TT“), null/fehlend = ohne Ende
+  recurrenceEnd?: string | null;
   createdAt: string;
 }
 
