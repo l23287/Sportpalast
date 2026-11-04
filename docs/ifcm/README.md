@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-004 – Chunk gewählt, als Nächstes Prompt/Umsetzung |
-| **Aktiver Chunk** | C05 Kalendertool |
-| **Nächster Schritt** | Arbeitsauftrag (Prompt) für C05; Merge-Freigabe C01/C02/C04 offen |
+| **Sub-Phase** | FS-004 – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Aktiver Chunk** | C05 Kalendertool (Branch `ifcm/fs-004-c05-kalendertool`, enthält C01, C02, C04) |
+| **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe C01–C05 offen |
 | **Zuletzt aktualisiert** | 04.11.2026 |
 
 ## Phasenübersicht

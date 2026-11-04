@@ -37,3 +37,4 @@ Gepflegt vom Compass Navigator; Claude hält den Status aktuell. Immer nur **ein
 |---|---|---|
 | Seitenpasswort im Klartext als Kommentar in `src/lib/siteGate.ts` (Guard IT-Security) | FS-001 | offen |
 | `package-lock.json` nicht synchron mit `package.json` (`npm ci` schlägt fehl) | FS-001 | offen |
+| `formatDate`/`isOverdue` lesen Datum als UTC (Fehlanzeige nur westlich von UTC möglich) | FS-004 | offen |
