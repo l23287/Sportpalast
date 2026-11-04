@@ -7,7 +7,7 @@ import { EmptyState } from '../components/EmptyState';
 import { computeAverageDuration, computeExerciseUsage } from '../lib/stats';
 import { CATEGORICAL_PALETTE_DARK, CHART_OTHER_COLOR } from '../lib/chartPalette';
 import { formatDuration } from '../lib/time';
-import { SPORT_EMOJI } from '../lib/sport';
+import { sportEmoji } from '../lib/sport'; // IFCM FS-002 / C02: Symbol mit Fallback für neue Sportarten
 import { useSport } from '../context/SportContext';
 
 const MAX_NAMED_SLICES = 5;
@@ -52,7 +52,7 @@ export function Statistics() {
           value={plans.length === 0 ? '–' : formatDuration(averageDuration)}
         />
         <StatTile
-          icon={<span className="text-lg leading-none">{SPORT_EMOJI[sport]}</span>}
+          icon={<span className="text-lg leading-none">{sportEmoji(sport)}</span>}
           label="Sportart"
           value={sport}
         />

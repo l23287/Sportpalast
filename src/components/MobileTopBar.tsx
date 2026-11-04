@@ -1,4 +1,4 @@
-import { SPORT_EMOJI } from '../lib/sport';
+import { sportEmoji } from '../lib/sport'; // IFCM FS-002 / C02: Symbol mit Fallback für neue Sportarten
 import { useSport } from '../context/SportContext';
 import { TrainerProMark } from './Logo';
 
@@ -12,7 +12,7 @@ export function MobileTopBar() {
       </div>
       <p className="font-display text-base font-extrabold leading-none text-ink">TrainerPro</p>
       <div className="ml-auto flex items-center gap-1.5 rounded-2xl border border-border bg-surface px-3 py-1.5 text-xs text-muted">
-        <span>{SPORT_EMOJI[sport]}</span>
+        <span>{sportEmoji(sport)}</span>
         <span className="max-w-[7rem] truncate">{sport}</span>
       </div>
     </header>
