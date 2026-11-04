@@ -38,10 +38,12 @@ export function PlansOverview() {
         </div>
       </header>
 
+      {/* IFCM FS-008 / C06c: Suchzeile steht jetzt ÜBER dem Bereich „Heute“ (vorher darunter).
+          Die Suche filtert weiterhin nur die Planliste unten; der Bereich „Heute“ zeigt immer alle heutigen Termine. */}
+      <SearchInput value={query} onChange={setQuery} placeholder="Pläne durchsuchen…" className="max-w-md" />
+
       {/* IFCM FS-007 / C06b: gesonderter Bereich mit den heute anstehenden Plänen und ihren Übungen */}
       <TodayTraining plans={plans} exercises={exercises} />
-
-      <SearchInput value={query} onChange={setQuery} placeholder="Pläne durchsuchen…" className="max-w-md" />
 
       {filteredPlans.length === 0 ? (
         <EmptyState
