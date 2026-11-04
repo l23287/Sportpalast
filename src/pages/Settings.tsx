@@ -9,12 +9,13 @@ import { ConfirmDialog } from '../components/ConfirmDialog'; // IFCM FS-002 / C0
 import { ImpressumDialog } from '../components/ImpressumDialog';
 import { DatenschutzDialog } from '../components/DatenschutzDialog';
 import { inputClass, labelClass } from '../lib/formStyles'; // IFCM FS-002 / C02
-import { MAX_SPORT_NAME_LENGTH } from '../lib/sport'; // IFCM FS-002 / C02
+import { CUSTOM_SPORT_EMOJIS, MAX_SPORT_NAME_LENGTH } from '../lib/sport'; // IFCM FS-002 / C02, FS-012 / C03
 import type { Sport } from '../types';
 
 export function Settings() {
   // IFCM FS-002 / C02: Liste aller Sportarten (vordefiniert + eigene) statt fester SPORTS-Liste
-  const { sport, setSport, sports, customSports, addCustomSport, removeCustomSport } = useSport();
+  // IFCM FS-012 / C03: emojiFor/colorFor für Symbole und Farbpunkte in der Auswahl
+  const { sport, setSport, sports, customSports, addCustomSport, removeCustomSport, emojiFor, colorFor } = useSport();
   const { countForSport, deleteAllForSport } = useAppData();
   const [impressumOpen, setImpressumOpen] = useState(false);
   const [datenschutzOpen, setDatenschutzOpen] = useState(false);
@@ -22,17 +23,20 @@ export function Settings() {
   const [newSport, setNewSport] = useState('');
   const [sportError, setSportError] = useState('');
   const [sportToDelete, setSportToDelete] = useState<Sport | null>(null);
+  // IFCM FS-012 / C03: gewähltes Symbol für die neue eigene Sportart
+  const [newSportEmoji, setNewSportEmoji] = useState(CUSTOM_SPORT_EMOJIS[0]);
 
   // IFCM FS-002 / C02: eigene Sportart anlegen (Prüfung auf leer, Länge und Dubletten im SportContext)
   function handleAddSport(event: FormEvent) {
     event.preventDefault();
-    const error = addCustomSport(newSport);
+    const error = addCustomSport(newSport, newSportEmoji); // IFCM FS-012 / C03: mit Symbol
     if (error) {
       setSportError(error);
       return;
     }
     setNewSport('');
     setSportError('');
+    setNewSportEmoji(CUSTOM_SPORT_EMOJIS[0]);
   }
 
   // IFCM FS-002 / C02: Löschen einer eigenen Sportart inkl. ihrer Pläne und Übungen (nach Bestätigung)
@@ -54,7 +58,24 @@ export function Settings() {
 
       <div className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5">
         <h2 className="font-display text-lg font-bold text-ink">Sportart</h2>
-        <PillSelect label="Aktuelle Sportart" options={sports} value={sport} onChange={setSport} />
+        {/* IFCM FS-012 / C03: jede Option mit Symbol und Farbpunkt der Sportart */}
+        <PillSelect
+          label="Aktuelle Sportart"
+          options={sports}
+          value={sport}
+          onChange={setSport}
+          renderOption={(option) => (
+            <span className="inline-flex items-center gap-2">
+              <span aria-hidden="true">{emojiFor(option)}</span>
+              {option}
+              <span
+                aria-hidden="true"
+                className="h-2 w-2 rounded-full"
+                style={{ backgroundColor: colorFor(option) }}
+              />
+            </span>
+          )}
+        />
         {/* IFCM FS-001 / C01: Hinweis, dass Inhalte jetzt je Sportart getrennt sind */}
         <p className="text-sm text-muted">
           Übungen und Trainingspläne werden je Sportart getrennt gespeichert. Beim Wechsel siehst du nur die
@@ -84,6 +105,26 @@ export function Settings() {
               Hinzufügen
             </PrimaryButton>
           </div>
+          {/* IFCM FS-012 / C03: Symbol für die eigene Sportart wählen */}
+          <div role="radiogroup" aria-label="Symbol für die eigene Sportart" className="flex flex-wrap gap-1.5">
+            {CUSTOM_SPORT_EMOJIS.map((option) => (
+              <button
+                key={option}
+                type="button"
+                role="radio"
+                aria-checked={newSportEmoji === option}
+                aria-label={`Symbol ${option}`}
+                onClick={() => setNewSportEmoji(option)}
+                className={`flex h-10 w-10 items-center justify-center rounded-xl border text-lg transition ${
+                  newSportEmoji === option
+                    ? 'border-primary bg-primary-soft'
+                    : 'border-border bg-bg-soft hover:border-primary/60'
+                }`}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
           {sportError && (
             <p id="custom-sport-error" className="text-sm font-medium text-danger">
               {sportError}
@@ -101,7 +142,9 @@ export function Settings() {
                   key={custom}
                   className="flex items-center justify-between gap-3 rounded-2xl border border-border bg-bg-soft px-4 py-2"
                 >
-                  <span className="min-w-0 truncate text-sm font-semibold text-ink">{custom}</span>
+                  <span className="min-w-0 truncate text-sm font-semibold text-ink">
+                    {emojiFor(custom)} {custom} {/* IFCM FS-012 / C03: mit Symbol */}
+                  </span>
                   <IconButton
                     icon={<Trash2 size={16} />}
                     label={`Sportart ${custom} löschen`}

@@ -48,10 +48,11 @@ export function TodayTraining({ plans, exercises }: TodayTrainingProps) {
   return (
     <section
       aria-labelledby="today-heading"
-      className="flex flex-col gap-4 rounded-3xl border border-primary/40 bg-gradient-to-br from-primary/15 to-surface p-5"
+      // IFCM FS-012 / C03: Bereich „Heute“ in der Akzentfarbe der Sportart (vorher Blau)
+      className="flex flex-col gap-4 rounded-3xl border border-sport/40 bg-gradient-to-br from-sport/15 to-surface p-5"
     >
       <div className="flex items-center gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sport text-bg">
           <Sun size={20} />
         </span>
         <div className="min-w-0">

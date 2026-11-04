@@ -7,14 +7,13 @@ import { EmptyState } from '../components/EmptyState';
 import { computeAverageDuration, computeExerciseUsage } from '../lib/stats';
 import { CATEGORICAL_PALETTE_DARK, CHART_OTHER_COLOR } from '../lib/chartPalette';
 import { formatDuration } from '../lib/time';
-import { sportEmoji } from '../lib/sport'; // IFCM FS-002 / C02: Symbol mit Fallback für neue Sportarten
 import { useSport } from '../context/SportContext';
 
 const MAX_NAMED_SLICES = 5;
 
 export function Statistics() {
   const { plans, exercises } = useAppData();
-  const { sport } = useSport();
+  const { sport, emoji } = useSport(); // IFCM FS-012 / C03
 
   const beginnerCount = exercises.filter((exercise) => exercise.difficulty === 'Anfänger').length;
   const advancedCount = exercises.filter((exercise) => exercise.difficulty === 'Fortgeschritten').length;
@@ -52,7 +51,7 @@ export function Statistics() {
           value={plans.length === 0 ? '–' : formatDuration(averageDuration)}
         />
         <StatTile
-          icon={<span className="text-lg leading-none">{sportEmoji(sport)}</span>}
+          icon={<span className="text-lg leading-none">{emoji}</span>}
           label="Sportart"
           value={sport}
         />

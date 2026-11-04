@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { labelClass } from '../lib/formStyles';
 
 interface PillSelectProps<T extends string> {
@@ -5,9 +6,11 @@ interface PillSelectProps<T extends string> {
   options: T[];
   value: T | null;
   onChange: (value: T) => void;
+  // IFCM FS-012 / C03: optional eigene Beschriftung je Option (z. B. Symbol + Name der Sportart)
+  renderOption?: (option: T) => ReactNode;
 }
 
-export function PillSelect<T extends string>({ label, options, value, onChange }: PillSelectProps<T>) {
+export function PillSelect<T extends string>({ label, options, value, onChange, renderOption }: PillSelectProps<T>) {
   return (
     <div>
       <p className={labelClass}>{label}</p>
@@ -24,7 +27,7 @@ export function PillSelect<T extends string>({ label, options, value, onChange }
                 : 'border-border bg-bg-soft text-muted hover:text-ink'
             }`}
           >
-            {option}
+            {renderOption ? renderOption(option) : option}
           </button>
         ))}
       </div>

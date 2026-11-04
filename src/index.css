@@ -22,6 +22,10 @@
   --color-sun: #7dd3fc;
   --color-danger: #f87171;
 
+  /* IFCM FS-012 / C03: Akzentfarbe der aktuellen Sportart. Standard = Tischtennis (Himmelblau);
+     zur Laufzeit setzt der SportContext den Wert passend zur gewählten Sportart. */
+  --color-sport: #38bdf8;
+
   --color-ink: #eef2fb;
   --color-muted: #a1b1d1;
   --color-muted-2: #7887a8;

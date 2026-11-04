@@ -24,7 +24,8 @@ bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (
   „überfällig“ (IFCM C06).
 - **Statistiken** – Kennzahlen, Schwierigkeitsgrad-Verteilung, Donut-Chart der meistgenutzten Übungen.
 - **Sportarten** – 12 vordefinierte und eigene Sportarten; jede Sportart ist ein eigener Bereich mit eigenen
-  Plänen und Übungen (IFCM C01, C02).
+  Plänen und Übungen (IFCM C01, C02) und hat ein eigenes Symbol und eine Akzentfarbe; eigene Sportarten
+  bekommen ein wählbares Symbol (IFCM C03).
 
 Die Daten werden lokal im Browser (`localStorage`) gespeichert.
 
