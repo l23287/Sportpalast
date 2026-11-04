@@ -55,3 +55,12 @@ export const LEGACY_SPORT: Sport = 'Tischtennis';
 export function withSport<T extends { sport?: Sport }>(items: T[]): (T & { sport: Sport })[] {
   return items.map((item) => (item.sport ? (item as T & { sport: Sport }) : { ...item, sport: LEGACY_SPORT }));
 }
+
+// IFCM FS-003 / C04: Sportarten mit Aufschlagtraining. Vorerst nur Tischtennis (Feedback B5: „im Fußball gibt
+// es ja gar keinen Aufschlag“). Als Liste angelegt, damit später weitere Sportarten ergänzt werden können.
+export const SERVE_TRAINING_SPORTS: Sport[] = ['Tischtennis'];
+
+// IFCM FS-003 / C04: Hat die Sportart ein Aufschlagtraining?
+export function hasServeTraining(sport: Sport): boolean {
+  return SERVE_TRAINING_SPORTS.includes(sport);
+}

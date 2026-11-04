@@ -14,6 +14,7 @@ import { Exercises } from './pages/Exercises';
 import { Settings } from './pages/Settings';
 import { Statistics } from './pages/Statistics';
 import { ServeTraining } from './pages/ServeTraining';
+import { ExercisesArea, ServeTrainingGuard } from './pages/ExercisesArea'; // IFCM FS-003 / C04
 
 export default function App() {
   return (
@@ -31,9 +32,21 @@ export default function App() {
                 <Route path="/plaene/neu" element={<PlanForm />} />
                 <Route path="/plaene/:id" element={<PlanDetail />} />
                 <Route path="/plaene/:id/bearbeiten" element={<PlanForm />} />
-                <Route path="/uebungen" element={<Exercises />} />
+                {/* IFCM FS-003 / C04: Übungsbereich mit Unterseiten; Aufschlagtraining nur bei Tischtennis */}
+                <Route path="/uebungen" element={<ExercisesArea />}>
+                  <Route index element={<Exercises />} />
+                  <Route
+                    path="aufschlagtraining"
+                    element={
+                      <ServeTrainingGuard>
+                        <ServeTraining />
+                      </ServeTrainingGuard>
+                    }
+                  />
+                </Route>
                 <Route path="/statistiken" element={<Statistics />} />
-                <Route path="/aufschlagtraining" element={<ServeTraining />} />
+                {/* IFCM FS-003 / C04: alte Adresse (Lesezeichen/Links) leitet in den Übungsbereich weiter */}
+                <Route path="/aufschlagtraining" element={<Navigate to="/uebungen/aufschlagtraining" replace />} />
                 <Route path="/einstellungen" element={<Settings />} />
               </Route>
 
