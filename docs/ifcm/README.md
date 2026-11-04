@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-010 – Chunk gewählt, als Nächstes Prompt/Umsetzung |
-| **Aktiver Chunk** | C08 Notizzettel an Übungen |
-| **Nächster Schritt** | Arbeitsauftrag (Prompt) für C08; Merge-Freigabe C01–C07 offen |
+| **Sub-Phase** | FS-010 – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Aktiver Chunk** | C08 Notizzettel an Übungen (Branch `ifcm/fs-010-c08-notizzettel`, enthält C01–C07) |
+| **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe C01–C08 offen |
 | **Zuletzt aktualisiert** | 04.11.2026 |
 
 ## Phasenübersicht

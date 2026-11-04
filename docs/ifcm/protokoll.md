@@ -4,6 +4,7 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 04.11.2026 | II FS-010 Ergebnis | C08 | Notizzettel im Timer (Stift-Icon im Kreis), automatische Speicherung ohne Timer-Unterbrechung, Anzeige auf Übungskarte und in der Planansicht, Datenschutz-Hinweis; Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-010](flow-states/FS-010-C08-notizzettel.md) |
 | 04.11.2026 | II FS-010 Chunk | C08 | Entwickler:in wechselt zum nächsten Chunk; Claude beschreibt C08 und nennt 3 Prüfpunkte | FS-010 gestartet, Prompt offen | [FS-010](flow-states/FS-010-C08-notizzettel.md) |
 | 04.11.2026 | II FS-009 Abschluss | C07 | Alpha-Test durch Entwickler:in: „echt zufriedenstellend“ → bestanden; Alpha-Reflexion von der Entwickler:in durchgeführt | C07 fertig; Merge: Freigabe offen | [FS-009](flow-states/FS-009-C07-dauer-sekunden.md) |
 | 04.11.2026 | II FS-009 Ergebnis | C07 | Dauer intern in Sekunden mit verlustfreier Migration, Formular Min. + Sek., Timer „10 sek“, alle Summen umgestellt; 11 Logiktests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-009](flow-states/FS-009-C07-dauer-sekunden.md) |
