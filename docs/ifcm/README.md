@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-005 – Chunk gewählt, Rückfrage zu „wiederkehrenden Übungen“ offen |
-| **Aktiver Chunk** | C06 Wiederkehrende Pläne & Übungen |
-| **Nächster Schritt** | Rückfrage beantworten, Arbeitsauftrag für C06; Merge-Freigabe C01–C05 offen |
+| **Sub-Phase** | FS-005 – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Aktiver Chunk** | C06 Wiederkehrende Pläne & Übungen (Branch `ifcm/fs-005-c06-wiederkehrende-plaene`, enthält C01–C05) |
+| **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe C01–C06 offen |
 | **Zuletzt aktualisiert** | 04.11.2026 |
 
 ## Phasenübersicht
