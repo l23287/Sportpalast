@@ -4,6 +4,8 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 04.11.2026 | II FS-007 Ergebnis | C06b | Bereich „Heute“ oben in der Planübersicht (heutige Pläne inkl. Wiederholungen mit Übungen; sonst nächster Termin), Kennzeichnung `C06b`; Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-007](flow-states/FS-007-C06b-heute-bereich.md) |
+| 04.11.2026 | II FS-006 Alpha-Test | C06a | Entwickler:in: „Okay, das ist gut.“ → bestanden; Erweiterung C06b beauftragt | C06a fertig | [FS-006](flow-states/FS-006-C06a-wochentag-uhrzeit.md) |
 | 04.11.2026 | II FS-006 Ergebnis | C06a | Wochentag (wöchentlich/alle 2 Wochen) und optionale Uhrzeit umgesetzt, Kennzeichnung `C06a`; 12 neue Logiktests + 13 Regressionstests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-006](flow-states/FS-006-C06a-wochentag-uhrzeit.md) |
 | 04.11.2026 | II FS-005 Alpha-Test | C06 | Entwickler:in: „schon ein guter Start“, Auftrag: Wochentag und Uhrzeit ergänzen → teilweise bestanden; Korrektur-Flow-State FS-006 (C06a) gestartet | Erkenntnis: realen Vereinsablauf vorab erfragen | [FS-005](flow-states/FS-005-C06-wiederkehrende-plaene.md) |
 | 04.11.2026 | II FS-005 Ergebnis | C06 | Wiederkehrende Pläne als Regel umgesetzt; Schwerpunkt der Entwickler:in (Überfällig-Logik) zentral in `getPlanSchedule`. Rückfrage zu „wiederkehrenden Übungen“ unbeantwortet → als Annahme dokumentiert. Build grün, 13 Logiktests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-005](flow-states/FS-005-C06-wiederkehrende-plaene.md) |
