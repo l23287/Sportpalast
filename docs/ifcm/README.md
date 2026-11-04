@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-012 – Chunk gewählt, als Nächstes Prompt/Umsetzung |
-| **Aktiver Chunk** | C03 Farben & Symbole je Sportart |
-| **Nächster Schritt** | Arbeitsauftrag (Prompt) für C03; Merge-Freigabe C01–C08 offen |
+| **Sub-Phase** | FS-012 – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Aktiver Chunk** | C03 Farben & Symbole je Sportart (Branch `ifcm/fs-012-c03-farben-symbole`, enthält C01–C08) |
+| **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe offen |
 | **Zuletzt aktualisiert** | 04.11.2026 |
 
 ## Phasenübersicht
