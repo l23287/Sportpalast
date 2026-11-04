@@ -4,6 +4,8 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 04.11.2026 | II FS-008 Ergebnis | C06c | Suchzeile über den Bereich „Heute“ verschoben, Kennzeichnung `C06c`; Test bestanden | Alpha-Test durch Entwickler:in offen | [FS-008](flow-states/FS-008-C06c-suche-oben.md) |
+| 04.11.2026 | II FS-007 Alpha-Test | C06b | Entwickler:in: „Okay, das ist gut.“ → bestanden; Wunsch: Suche über „Heute“ | C06b fertig | [FS-007](flow-states/FS-007-C06b-heute-bereich.md) |
 | 04.11.2026 | II FS-007 Ergebnis | C06b | Bereich „Heute“ oben in der Planübersicht (heutige Pläne inkl. Wiederholungen mit Übungen; sonst nächster Termin), Kennzeichnung `C06b`; Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-007](flow-states/FS-007-C06b-heute-bereich.md) |
 | 04.11.2026 | II FS-006 Alpha-Test | C06a | Entwickler:in: „Okay, das ist gut.“ → bestanden; Erweiterung C06b beauftragt | C06a fertig | [FS-006](flow-states/FS-006-C06a-wochentag-uhrzeit.md) |
 | 04.11.2026 | II FS-006 Ergebnis | C06a | Wochentag (wöchentlich/alle 2 Wochen) und optionale Uhrzeit umgesetzt, Kennzeichnung `C06a`; 12 neue Logiktests + 13 Regressionstests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-006](flow-states/FS-006-C06a-wochentag-uhrzeit.md) |

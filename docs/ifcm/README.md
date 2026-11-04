@@ -10,8 +10,8 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-007 (Erweiterung zu C06) – Ergebnis liegt vor, als Nächstes Alpha-Test |
-| **Aktiver Chunk** | C06 / C06b Bereich „Heute“ (Branch `ifcm/fs-007-c06b-heute-bereich`, enthält C01–C06a) |
+| **Sub-Phase** | FS-008 (Erweiterung zu C06) – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Aktiver Chunk** | C06 / C06c Suchzeile oben (Branch `ifcm/fs-008-c06c-suche-oben`, enthält C01–C06b) |
 | **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe C01–C06 offen |
 | **Zuletzt aktualisiert** | 04.11.2026 |
 
@@ -39,7 +39,7 @@ flowchart LR
 | I Project Compass | Brainstorm | [01-brainstorm.md](01-brainstorm.md) | abgeschlossen 03.11.2026 |
 | | Planning | [02-planning.md](02-planning.md) | abgeschlossen 03.11.2026 |
 | | Initiation | [03-initiation.md](03-initiation.md), [chunks.md](chunks.md) | abgeschlossen 03.11.2026 |
-| II Flow States | je Chunk | [flow-states/](flow-states/) | läuft (FS-001–FS-004, FS-006 bestanden; FS-005 teilweise; FS-007 aktiv) |
+| II Flow States | je Chunk | [flow-states/](flow-states/) | läuft (FS-001–FS-004, FS-006, FS-007 bestanden; FS-005 teilweise; FS-008 aktiv) |
 | III Go-Live | Beta-Test, Rollout, Beta-Reflexion | 04-go-live.md (wird angelegt) | offen |
 
 Chronologie aller Schritte: [protokoll.md](protokoll.md)

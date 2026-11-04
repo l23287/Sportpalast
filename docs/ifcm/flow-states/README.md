@@ -11,4 +11,5 @@ Ein Dokument pro Flow State: `FS-<NNN>-<chunk-id>-<kurzname>.md` (Vorlage:
 | [FS-004](FS-004-C05-kalendertool.md) | C05 Kalendertool | 04.11.2026 | bestanden |
 | [FS-005](FS-005-C06-wiederkehrende-plaene.md) | C06 Wiederkehrende Pläne & Übungen | 04.11.2026 | teilweise bestanden → FS-006 |
 | [FS-006](FS-006-C06a-wochentag-uhrzeit.md) | C06a Wochentag & Uhrzeit (Korrektur zu C06) | 04.11.2026 | bestanden |
-| [FS-007](FS-007-C06b-heute-bereich.md) | C06b Bereich „Heute“ (Erweiterung zu C06) | ab 04.11.2026 | Ergebnis liegt vor, Alpha-Test offen |
+| [FS-007](FS-007-C06b-heute-bereich.md) | C06b Bereich „Heute“ (Erweiterung zu C06) | 04.11.2026 | bestanden |
+| [FS-008](FS-008-C06c-suche-oben.md) | C06c Suchzeile über „Heute“ | ab 04.11.2026 | Ergebnis liegt vor, Alpha-Test offen |

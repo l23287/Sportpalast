@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 04.11.2026 – *offen* |
+| Zeitraum | 04.11.2026 – 04.11.2026 |
 | Chunk | C06 (Erweiterung „C06b“) |
 | Ausgewählt von | Entwickler:in – im Anschluss an den bestandenen Alpha-Test von FS-006 |
 | Vorgänger | [FS-006](FS-006-C06a-wochentag-uhrzeit.md) |
 | Branch / Commits | `ifcm/fs-007-c06b-heute-bereich` (enthält C01–C06a), Commit `df7196f` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Die Übungen, die am jeweiligen Tag anstehen, erscheinen direkt oben in der Trainingsplan-Übersicht in einem
@@ -45,11 +45,14 @@ Nachweis: [assets/fs007-nachweis.png](../assets/fs007-nachweis.png)
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-007-c06b-heute-bereich` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 04.11.2026):** „Okay, das ist gut.“ (mit eigenem Screenshot aus dem Test) → **bestanden**;
+Wunsch: Suchzeile über den Bereich „Heute“ → FS-008 (C06c).
+
 **Guards (Claude):** keine neuen Abhängigkeiten, keine neuen Daten ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Von der Entwickler:in nicht gesondert übermittelt. *Bei Bedarf nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C06b fertig (04.11.2026). Weiter mit FS-008 (C06c).
