@@ -9,7 +9,8 @@ bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (
 - **Onboarding & Konto** – 3-teilige Einführung vor dem ersten Login, danach Registrierung/Anmeldung
   (lokales Session-Gate ohne Backend) mit Konto-Verwaltung in den Einstellungen.
 - **Heute** – oben in der Planübersicht: alle heute anstehenden Pläne (auch Wiederholungen) mit ihren Übungen in
-  Reihenfolge; steht heute nichts an, wird der nächste Termin genannt (IFCM C06b).
+  Reihenfolge und ihren Notizen (lange Notizen ausklappbar, IFCM C08a); steht heute nichts an, wird der nächste
+  Termin genannt (IFCM C06b).
 - **Trainingspläne** – Pläne als Kacheln, Suche, überfällige Pläne werden rot markiert, Anlegen/Bearbeiten
   mit Übungsauswahl aus dem Pool inkl. Reihenfolge per ↑/↓, Detailansicht mit Start-Timer pro Übung.
 - **Übungen** – eigene Übungsdatenbank (Name, Beschreibung, Ziel, Dauer in Minuten und Sekunden – IFCM C07,

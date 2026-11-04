@@ -8,6 +8,7 @@ import type { Exercise, TrainingPlan } from '../types';
 import { plansByDay, toDateKey, formatLongDate } from '../lib/calendar';
 import { formatDateKey } from '../lib/recurrence';
 import { formatDuration } from '../lib/time';
+import { ExpandableNote } from './ExpandableNote'; // IFCM FS-011 / C08a
 
 interface TodayTrainingProps {
   plans: TrainingPlan[]; // bereits auf die aktuelle Sportart gefiltert (C01)
@@ -106,14 +107,23 @@ export function TodayTraining({ plans, exercises }: TodayTrainingProps) {
                 {planExercises.length === 0 ? (
                   <p className="mt-3 text-xs text-muted-2">Diesem Plan sind noch keine Übungen zugeordnet.</p>
                 ) : (
-                  <ol className="mt-3 flex flex-col gap-1.5 border-t border-border pt-3">
+                  <ol className="mt-3 flex flex-col gap-2 border-t border-border pt-3">
                     {planExercises.map((exercise, index) => (
-                      <li key={exercise.id} className="flex items-center gap-3 text-sm">
-                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-soft text-xs font-bold text-accent">
-                          {index + 1}
-                        </span>
-                        <span className="min-w-0 flex-1 truncate text-ink">{exercise.name}</span>
-                        <span className="shrink-0 text-xs text-muted-2">{formatDuration(exercise.durationSeconds)}</span>
+                      <li key={exercise.id} className="flex flex-col gap-1">
+                        <div className="flex items-center gap-3 text-sm">
+                          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-soft text-xs font-bold text-accent">
+                            {index + 1}
+                          </span>
+                          <span className="min-w-0 flex-1 truncate text-ink">{exercise.name}</span>
+                          <span className="shrink-0 text-xs text-muted-2">{formatDuration(exercise.durationSeconds)}</span>
+                        </div>
+                        {/* IFCM FS-011 / C08a: Notiz der Übung (aus C08) immer anzeigen, eingerückt unter dem Namen;
+                            lange Notizen gekürzt und ausklappbar */}
+                        {exercise.note && (
+                          <div className="pl-9">
+                            <ExpandableNote note={exercise.note} />
+                          </div>
+                        )}
                       </li>
                     ))}
                   </ol>
