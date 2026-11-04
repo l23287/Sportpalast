@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 04.11.2026 – *offen* |
+| Zeitraum | 04.11.2026 – 04.11.2026 |
 | Chunk | C06 (Erweiterung „C06a“) |
 | Ausgewählt von | Entwickler:in – Ergebnis des Alpha-Tests von FS-005 |
 | Vorgänger | [FS-005](FS-005-C06-wiederkehrende-plaene.md) |
 | Branch / Commits | `ifcm/fs-006-c06a-wochentag-uhrzeit` (enthält C01–C06), Commit `81decff` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Für eine Wiederholung lassen sich zusätzlich ein **Wochentag** und eine **Uhrzeit** festlegen
@@ -50,11 +50,13 @@ Hinweis: Der Testbrowser zeigt Datum/Uhrzeit im US-Format (06:00 PM); auf deutsc
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-006-c06a-wochentag-uhrzeit` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 04.11.2026):** „Okay, das ist gut.“ → **bestanden**; direkt anschließend Erweiterung C06b (FS-007).
+
 **Guards (Claude):** keine neuen Abhängigkeiten ✔ · Uhrzeit wird auf HH:MM geprüft ✔ · keine personenbezogenen Daten ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Von der Entwickler:in nicht gesondert übermittelt. *Bei Bedarf nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C06a fertig (04.11.2026). Weiter mit FS-007 (C06b) auf Basis dieses Branches.
