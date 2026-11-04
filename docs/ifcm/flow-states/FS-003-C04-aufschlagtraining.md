@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 04.11.2026 – *offen* |
+| Zeitraum | 04.11.2026 – 04.11.2026 |
 | Chunk | C04 (siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in (Compass Navigator) – nächster Chunk laut freigegebener Reihenfolge (C01 → C02 → **C04**) |
 | Vorgänger | – (baut auf FS-001/FS-002 auf) |
 | Branch / Commits | `ifcm/fs-003-c04-aufschlagtraining` (enthält C01 + C02 + C04), Commit `b1ba0d0` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge in den Hauptbranch: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Das Aufschlagtraining verschwindet als eigener Navigationspunkt. Bei Tischtennis wird es in den Übungsbereich
@@ -49,12 +49,14 @@ direkte Adresse führt zu `/uebungen` ✔. Nachweis: [assets/fs003-nachweis.png]
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-003-c04-aufschlagtraining` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 04.11.2026):** „Das Ergebnis ist zufriedenstellend.“ → **bestanden**
+
 **Guards (Claude):** keine neuen Abhängigkeiten, keine neuen Daten, keine Secrets ✔.
 Hinweis außerhalb von C04: Der Einführungstext im Onboarding spricht noch von Tischtennis („Einheit am Tisch“) → Thema von C10.
 
 ## 5. Alpha-Reflexion
-*offen*
+Durchgeführt von der Entwickler:in (Coach) am 04.11.2026; Inhalte liegen bei der Entwickler:in. *Bei Bedarf hier nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C04 **fertig** (04.11.2026). Merge nach Freigabe – *offen*. C05 baut auf dem C04-Branch auf.
