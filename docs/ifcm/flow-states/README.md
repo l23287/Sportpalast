@@ -13,4 +13,4 @@ Ein Dokument pro Flow State: `FS-<NNN>-<chunk-id>-<kurzname>.md` (Vorlage:
 | [FS-006](FS-006-C06a-wochentag-uhrzeit.md) | C06a Wochentag & Uhrzeit (Korrektur zu C06) | 04.11.2026 | bestanden |
 | [FS-007](FS-007-C06b-heute-bereich.md) | C06b Bereich „Heute“ (Erweiterung zu C06) | 04.11.2026 | bestanden |
 | [FS-008](FS-008-C06c-suche-oben.md) | C06c Suchzeile über „Heute“ | 04.11.2026 | bestanden |
-| [FS-009](FS-009-C07-dauer-sekunden.md) | C07 Dauer in Sekunden | ab 04.11.2026 | Chunk gewählt |
+| [FS-009](FS-009-C07-dauer-sekunden.md) | C07 Dauer in Sekunden | ab 04.11.2026 | Ergebnis liegt vor, Alpha-Test offen |
