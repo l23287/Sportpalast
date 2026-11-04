@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 04.11.2026 – *offen* |
+| Zeitraum | 04.11.2026 – 04.11.2026 |
 | Chunk | C08 (Erweiterung „C08a“) |
 | Ausgewählt von | Entwickler:in – Ergebnis des Alpha-Tests von FS-010 |
 | Vorgänger | [FS-010](FS-010-C08-notizzettel.md) |
 | Branch / Commits | `ifcm/fs-011-c08a-notizen-heute` (enthält C01–C08), Commit `8ea0f46` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Im Bereich mit den tagesaktuellen Übungen („Heute“, C06b) werden die Notizen der Übungen immer mit angezeigt. Lange
@@ -37,11 +37,13 @@ ohne Notizfeld ✔. Nachweis: [assets/fs011-nachweis.png](../assets/fs011-nachwe
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-011-c08a-notizen-heute` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 04.11.2026):** „Die Ergebnisse sind grade echt zufriedenstellend.“ → **bestanden**
+
 **Guards (Claude):** Notiz wird als Text dargestellt (kein HTML) ✔ · keine neuen Daten ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Durchgeführt von der Entwickler:in (Coach) am 04.11.2026; Inhalte liegen bei der Entwickler:in. *Bei Bedarf nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C08 inkl. C08a **fertig** (04.11.2026). C03 baut auf diesem Branch auf.
