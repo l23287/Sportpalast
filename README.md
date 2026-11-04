@@ -1,8 +1,8 @@
 # TrainerPro
 
-TrainerPro ist eine Web-App für Tischtennis-Trainer:innen im Vereins- und Freizeitsport, um
+TrainerPro ist eine Web-App für Trainer:innen **aller Sportarten** im Vereins- und Freizeitsport, um
 Trainingspläne und Übungen zu verwalten – von der Übungsdatenbank über die Planzusammenstellung
-bis zur Trainingsdurchführung mit Timer.
+bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (siehe [`docs/ifcm/`](docs/ifcm/README.md)).
 
 ## Bereiche
 
@@ -10,8 +10,12 @@ bis zur Trainingsdurchführung mit Timer.
   (lokales Session-Gate ohne Backend) mit Konto-Verwaltung in den Einstellungen.
 - **Trainingspläne** – Pläne als Kacheln, Suche, überfällige Pläne werden rot markiert, Anlegen/Bearbeiten
   mit Übungsauswahl aus dem Pool inkl. Reihenfolge per ↑/↓, Detailansicht mit Start-Timer pro Übung.
-- **Übungen** – eigene Tischtennis-Übungsdatenbank (Name, Beschreibung, Ziel, Dauer, Schwierigkeitsgrad).
+- **Übungen** – eigene Übungsdatenbank (Name, Beschreibung, Ziel, Dauer, Schwierigkeitsgrad); bei Tischtennis
+  zusätzlich der Reiter **Aufschlagtraining** (IFCM C04).
+- **Kalender** – Monatsansicht aller Trainingspläne mit Datum, Tagesliste und „Plan für diesen Tag“ (IFCM C05).
 - **Statistiken** – Kennzahlen, Schwierigkeitsgrad-Verteilung, Donut-Chart der meistgenutzten Übungen.
+- **Sportarten** – 12 vordefinierte und eigene Sportarten; jede Sportart ist ein eigener Bereich mit eigenen
+  Plänen und Übungen (IFCM C01, C02).
 
 Die Daten werden lokal im Browser (`localStorage`) gespeichert.
 

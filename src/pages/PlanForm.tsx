@@ -1,5 +1,5 @@
 import { useMemo, useState, type FormEvent } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowDown, ArrowUp, Check, ChevronLeft, Dumbbell, Plus, X } from 'lucide-react';
 import { useAppData } from '../context/AppDataContext';
 import { PrimaryButton } from '../components/PrimaryButton';
@@ -25,7 +25,12 @@ export function PlanForm() {
   const [name, setName] = useState(editingPlan?.name ?? '');
   const [description, setDescription] = useState(editingPlan?.description ?? '');
   const [targetGroup, setTargetGroup] = useState(editingPlan?.targetGroup ?? '');
-  const [date, setDate] = useState(editingPlan?.date ?? '');
+  // IFCM FS-004 / C05: Beim Anlegen aus dem Kalender („Plan für diesen Tag“) kommt das Datum als ?datum=JJJJ-MM-TT.
+  // Nur ein gültiges Datumsformat wird übernommen; beim Bearbeiten gilt immer das gespeicherte Datum.
+  const [searchParams] = useSearchParams();
+  const presetDate = searchParams.get('datum');
+  const initialDate = editingPlan?.date ?? (presetDate && /^\d{4}-\d{2}-\d{2}$/.test(presetDate) ? presetDate : '');
+  const [date, setDate] = useState(initialDate);
   const [exerciseIds, setExerciseIds] = useState<string[]>(editingPlan?.exerciseIds ?? []);
   const [poolQuery, setPoolQuery] = useState('');
   const [error, setError] = useState('');
