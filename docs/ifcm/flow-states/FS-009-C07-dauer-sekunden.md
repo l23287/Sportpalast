@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 04.11.2026 – *offen* |
+| Zeitraum | 04.11.2026 – 04.11.2026 |
 | Chunk | C07 (siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in (Compass Navigator) – nächster Chunk laut Reihenfolge (… → C06 → **C07**) |
 | Vorgänger | – |
 | Branch / Commits | `ifcm/fs-009-c07-dauer-sekunden` (enthält C01–C07), Commit `0bead06` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Die Dauer einer Übung kann auch in Sekunden angegeben werden (z. B. 10 Sek. oder 1 Min. 30 Sek.); der Timer-Kreis
@@ -57,12 +57,14 @@ sichtbare alte Fehlermeldung wurde danach behoben (verschwindet jetzt beim Korri
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-009-c07-dauer-sekunden` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 04.11.2026):** „Die Ergebnisse sind grade echt zufriedenstellend.“ → **bestanden**
+
 **Guards (Claude):** keine neuen Abhängigkeiten ✔ · Datenmigration verlustfrei und wiederholbar ✔ · Eingaben auf
 gültige Zahlen und Höchstdauer geprüft ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Durchgeführt von der Entwickler:in (Coach) am 04.11.2026; Inhalte liegen bei der Entwickler:in. *Bei Bedarf nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C07 **fertig** (04.11.2026). C08 baut auf diesem Branch auf.
