@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 04.11.2026 – *offen* |
+| Zeitraum | 04.11.2026 – 04.11.2026 |
 | Chunk | C08 (siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in (Compass Navigator) – nächster Chunk laut Reihenfolge (… → C07 → **C08**) |
 | Vorgänger | – |
 | Branch / Commits | `ifcm/fs-010-c08-notizzettel` (enthält C01–C08), Commit `45d233b` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **teilweise bestanden** → Erweiterung in [FS-011](FS-011-C08a-notizen-heute.md) |
 
 ## 1. Chunk & Ziel
 Im Timer-Screen öffnet ein Stift-Icon im Kreis einen Notizzettel zur Übung – „wie eine Erinnerung fürs nächste Mal
@@ -54,12 +54,17 @@ Nachweis: [assets/fs010-nachweis.png](../assets/fs010-nachweis.png) (Timer mit N
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-010-c08-notizzettel` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 04.11.2026, wörtlich):** „Okay, das ist schon ein guter Start.“ – mit dem Auftrag, die
+Notizen im Bereich mit den tagesaktuellen Übungen immer anzuzeigen (lang = gekürzt, ausklappbar). → **teilweise
+bestanden**, Erweiterung als **FS-011 (C08a)**.
+
 **Guards (Claude):** keine neuen Abhängigkeiten ✔ · Notiz wird als Text dargestellt (kein HTML) ✔ · Längengrenze ✔ ·
 nur lokale Speicherung ✔ · Hinweis gegen personenbezogene Daten im Notizfeld ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Beobachtung Claude: Die Notiz war an drei Stellen sichtbar, aber nicht dort, wo das Training tatsächlich vorbereitet
+wird – im Bereich „Heute“. Erkenntnis: Neue Informationen dort zeigen, wo im Alltag zuerst hingeschaut wird.
 
 ## 6. Abschluss
-*offen*
+Weiter in FS-011 (C08a) auf Basis dieses Branches.
