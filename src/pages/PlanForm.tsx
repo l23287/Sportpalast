@@ -8,7 +8,7 @@ import { SearchInput } from '../components/SearchInput';
 import { DifficultyBadge } from '../components/DifficultyBadge';
 import { EmptyState } from '../components/EmptyState'; // IFCM FS-001 / C01
 import { inputClass, labelClass, selectClass, textareaClass } from '../lib/formStyles';
-import { RECURRENCE_LABELS } from '../lib/recurrence'; // IFCM FS-005 / C06
+import { RECURRENCE_LABELS, WEEKDAY_NAMES, usesWeekday, weekdayOfKey } from '../lib/recurrence'; // IFCM FS-005 / C06, FS-006 / C06a
 import { formatDuration } from '../lib/time';
 import { RECURRENCES, type Exercise, type PlanInput, type Recurrence } from '../types';
 
@@ -35,6 +35,16 @@ export function PlanForm() {
   // IFCM FS-005 / C06: Wiederholung und optionales Enddatum (alte Pläne ohne Angabe = einmalig)
   const [recurrence, setRecurrence] = useState<Recurrence>(editingPlan?.recurrence ?? 'none');
   const [recurrenceEnd, setRecurrenceEnd] = useState(editingPlan?.recurrenceEnd ?? '');
+  // IFCM FS-006 / C06a: Wochentag der Wiederholung. Vorbelegung: gespeicherter Wochentag, sonst der Wochentag
+  // des Startdatums. Solange der Wochentag nicht selbst gewählt wurde, folgt er dem Startdatum.
+  const [weekday, setWeekday] = useState<number>(
+    editingPlan?.recurrenceWeekday ?? (initialDate ? weekdayOfKey(initialDate) : 0),
+  );
+  const [weekdayTouched, setWeekdayTouched] = useState(
+    editingPlan?.recurrenceWeekday !== undefined && editingPlan?.recurrenceWeekday !== null,
+  );
+  // IFCM FS-006 / C06a: Uhrzeit „HH:MM“ (optional), gilt für jeden Termin
+  const [time, setTime] = useState(editingPlan?.time ?? '');
   const [exerciseIds, setExerciseIds] = useState<string[]>(editingPlan?.exerciseIds ?? []);
   const [poolQuery, setPoolQuery] = useState('');
   const [error, setError] = useState('');
@@ -87,6 +97,11 @@ export function PlanForm() {
       setError('Das Enddatum der Wiederholung darf nicht vor dem ersten Termin liegen.');
       return;
     }
+    // IFCM FS-006 / C06a: Uhrzeit nur im Format HH:MM (00:00–23:59) übernehmen
+    if (time && !/^([01]\d|2[0-3]):[0-5]\d$/.test(time)) {
+      setError('Bitte gib die Uhrzeit im Format HH:MM an.');
+      return;
+    }
     const input: PlanInput = {
       name: name.trim(),
       description: description.trim(),
@@ -96,6 +111,9 @@ export function PlanForm() {
       // IFCM FS-005 / C06: Regel speichern; bei „Einmalig“ wird ein altes Enddatum verworfen
       recurrence,
       recurrenceEnd: recurrence !== 'none' && recurrenceEnd ? recurrenceEnd : null,
+      // IFCM FS-006 / C06a: Wochentag nur bei wöchentlich / alle 2 Wochen speichern; Uhrzeit für alle Pläne
+      recurrenceWeekday: usesWeekday(recurrence) ? weekday : null,
+      time: time || null,
     };
     if (editingPlan) {
       updatePlan(editingPlan.id, input);
@@ -173,14 +191,32 @@ export function PlanForm() {
           </div>
           <div>
             <label className={labelClass} htmlFor="plan-date">
-              Datum (optional)
+              {/* IFCM FS-006 / C06a: bei Wiederholung ist das Datum der Beginn der Serie */}
+              {recurrence === 'none' ? 'Datum (optional)' : 'Startdatum'}
             </label>
             <input
               id="plan-date"
               type="date"
               className={`${inputClass} [color-scheme:dark]`}
               value={date}
-              onChange={(event) => setDate(event.target.value)}
+              onChange={(event) => {
+                setDate(event.target.value);
+                // IFCM FS-006 / C06a: Wochentag folgt dem Startdatum, bis er selbst gewählt wurde
+                if (!weekdayTouched && event.target.value) setWeekday(weekdayOfKey(event.target.value));
+              }}
+            />
+          </div>
+          {/* IFCM FS-006 / C06a: Uhrzeit des Trainings (bei Wiederholung für jeden Termin) */}
+          <div>
+            <label className={labelClass} htmlFor="plan-time">
+              Uhrzeit (optional)
+            </label>
+            <input
+              id="plan-time"
+              type="time"
+              className={`${inputClass} [color-scheme:dark]`}
+              value={time}
+              onChange={(event) => setTime(event.target.value)}
             />
           </div>
           {/* IFCM FS-005 / C06: Auswahl der Wiederholung; das Datum oben ist der erste Termin */}
@@ -201,6 +237,29 @@ export function PlanForm() {
               ))}
             </select>
           </div>
+          {/* IFCM FS-006 / C06a: Wochentag nur bei wöchentlich / alle 2 Wochen (monatlich = gleicher Tag im Monat) */}
+          {usesWeekday(recurrence) && (
+            <div>
+              <label className={labelClass} htmlFor="plan-weekday">
+                Wochentag
+              </label>
+              <select
+                id="plan-weekday"
+                className={`${selectClass} [color-scheme:dark]`}
+                value={weekday}
+                onChange={(event) => {
+                  setWeekday(Number(event.target.value));
+                  setWeekdayTouched(true);
+                }}
+              >
+                {WEEKDAY_NAMES.map((dayName, index) => (
+                  <option key={dayName} value={index}>
+                    {dayName}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
           {recurrence !== 'none' && (
             <div>
               <label className={labelClass} htmlFor="plan-recurrence-end">

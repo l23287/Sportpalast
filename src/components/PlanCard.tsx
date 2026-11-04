@@ -3,7 +3,7 @@ import { Calendar, ClipboardList, Clock, ListChecks, Pencil, Repeat, Trash2, Use
 import type { Exercise, TrainingPlan } from '../types';
 import { formatDuration } from '../lib/time';
 // IFCM FS-005 / C06: Termin und „überfällig“ kommen aus der zentralen Logik für (wiederkehrende) Pläne
-import { RECURRENCE_LABELS, formatDateKey, getPlanSchedule } from '../lib/recurrence';
+import { describeRecurrence, formatDateKey, getPlanSchedule } from '../lib/recurrence';
 import { toDateKey } from '../lib/calendar';
 import { IconButton } from './IconButton';
 
@@ -42,15 +42,19 @@ export function PlanCard({ plan, exercises, onEdit, onDelete }: PlanCardProps) {
           >
             <Calendar size={12} />
             {formatDateKey(schedule.dateKey)}
+            {/* IFCM FS-006 / C06a: Uhrzeit ergänzt */}
+            {plan.time && ` · ${plan.time}`}
           </span>
         )}
         {schedule.kind === 'recurring' && (
           <span
             className="inline-flex items-center gap-1 rounded-2xl bg-primary-soft px-3 py-1 text-xs font-semibold whitespace-nowrap text-accent"
-            title={`${RECURRENCE_LABELS[schedule.recurrence]} – nächster Termin`}
+            title={`${describeRecurrence(plan)} – nächster Termin`} // IFCM FS-006 / C06a: Rhythmus in Worten
           >
             <Repeat size={12} />
             {formatDateKey(schedule.dateKey)}
+            {/* IFCM FS-006 / C06a: Uhrzeit ergänzt */}
+            {plan.time && ` · ${plan.time}`}
           </span>
         )}
         {schedule.kind === 'ended' && (

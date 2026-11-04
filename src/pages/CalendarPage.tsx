@@ -35,8 +35,12 @@ export function CalendarPage() {
     () => plansByDay(plans, days[0].key, days[days.length - 1].key),
     [plans, days],
   );
+  // IFCM FS-006 / C06a: Tagesliste nach Uhrzeit sortiert (Pläne ohne Uhrzeit ans Ende)
   const selectedPlans = useMemo(
-    () => plansByDay(plans, selectedKey, selectedKey).get(selectedKey) ?? [],
+    () =>
+      [...(plansByDay(plans, selectedKey, selectedKey).get(selectedKey) ?? [])].sort((a, b) =>
+        (a.time ?? '99:99').localeCompare(b.time ?? '99:99'),
+      ),
     [plans, selectedKey],
   );
   const undatedCount = plans.filter((plan) => !plan.date).length;
@@ -161,7 +165,11 @@ export function CalendarPage() {
                       <ClipboardList size={18} />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate font-semibold text-ink">{plan.name}</span>
+                      <span className="block truncate font-semibold text-ink">
+                        {/* IFCM FS-006 / C06a: Uhrzeit vor dem Namen */}
+                        {plan.time && <span className="mr-1.5 text-primary">{plan.time}</span>}
+                        {plan.name}
+                      </span>
                       <span className={`block text-xs ${overdue ? 'text-danger' : 'text-muted-2'}`}>
                         {plan.exerciseIds.length} Übungen{overdue ? ' · Überfällig' : ''}
                         {/* IFCM FS-005 / C06: Rhythmus anzeigen */}
