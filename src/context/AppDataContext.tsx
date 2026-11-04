@@ -14,6 +14,7 @@ import { loadJSON, saveJSON } from '../lib/storage';
 // IFCM FS-001 / C01: aktuelle Sportart und Migration alter Daten
 import { useSport } from './SportContext';
 import { withSport } from '../lib/sport';
+import { migrateExerciseDurations } from '../lib/duration'; // IFCM FS-009 / C07
 
 interface AppDataContextValue {
   // IFCM FS-001 / C01: `plans` und `exercises` enthalten nur noch die Einträge der aktuell gewählten Sportart.
@@ -45,7 +46,8 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
   // Beim Laden werden alte Einträge ohne Sportart per `withSport` Tischtennis zugeordnet (Migration).
   const [plans, setPlans] = useState<TrainingPlan[]>(() => withSport(loadJSON<TrainingPlan[]>('plans', [])));
   const [exercises, setExercises] = useState<Exercise[]>(() =>
-    withSport(loadJSON<Exercise[]>('exercises', [])),
+    // IFCM FS-009 / C07: zusätzlich Minuten → Sekunden umrechnen (alte Übungen)
+    withSport(migrateExerciseDurations(loadJSON<Exercise[]>('exercises', []))),
   );
   const { sport } = useSport();
   const [serveSessions, setServeSessions] = useState<ServeSession[]>(() => loadJSON('serveSessions', []));

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Pause, Play, RotateCcw, X } from 'lucide-react';
-import { formatCountdown } from '../lib/time';
+import { formatCountdown, formatDuration } from '../lib/time'; // IFCM FS-009 / C07: formatDuration
 import type { Exercise } from '../types';
 
 interface TimerProps {
@@ -9,7 +9,10 @@ interface TimerProps {
 }
 
 export function Timer({ exercise, onClose }: TimerProps) {
-  const totalSeconds = exercise.durationMinutes * 60;
+  // IFCM FS-009 / C07: Dauer liegt direkt in Sekunden vor (vorher Minuten × 60)
+  const totalSeconds = exercise.durationSeconds;
+  // IFCM FS-009 / C07: Übungen unter einer Minute zeigen im Kreis „10 sek“ statt „00:10“ (Mindmap-Skizze)
+  const shortExercise = totalSeconds < 60;
   const [remaining, setRemaining] = useState(totalSeconds);
   const [running, setRunning] = useState(true);
 
@@ -92,14 +95,14 @@ export function Timer({ exercise, onClose }: TimerProps) {
             </defs>
           </svg>
           <span className="font-display text-4xl font-extrabold tabular-nums text-ink">
-            {formatCountdown(remaining)}
+            {shortExercise ? `${remaining} sek` : formatCountdown(remaining)}
           </span>
         </div>
 
         {isDone ? (
           <p className="mb-6 font-semibold text-accent">Übung abgeschlossen! 🎉</p>
         ) : (
-          <p className="mb-6 text-sm text-muted">Gesamtdauer: {exercise.durationMinutes} Min.</p>
+          <p className="mb-6 text-sm text-muted">Gesamtdauer: {formatDuration(exercise.durationSeconds)}</p>
         )}
 
         <div className="flex gap-3">

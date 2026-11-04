@@ -31,7 +31,8 @@ export interface Exercise {
   name: string;
   description: string;
   goal: string;
-  durationMinutes: number;
+  // IFCM FS-009 / C07: Dauer in SEKUNDEN (vorher `durationMinutes`); alte Daten werden beim Laden umgerechnet
+  durationSeconds: number;
   difficulty: Difficulty;
   createdAt: string;
 }

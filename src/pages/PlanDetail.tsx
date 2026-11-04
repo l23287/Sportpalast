@@ -43,7 +43,8 @@ export function PlanDetail() {
   const planExercises = plan.exerciseIds
     .map((exerciseId) => exercises.find((e) => e.id === exerciseId))
     .filter((e): e is Exercise => Boolean(e));
-  const totalMinutes = planExercises.reduce((sum, e) => sum + e.durationMinutes, 0);
+  // IFCM FS-009 / C07: Summe in Sekunden
+  const totalSeconds = planExercises.reduce((sum, e) => sum + e.durationSeconds, 0);
   // IFCM FS-005 / C06: Nur einmalige Pläne können überfällig sein.
   const schedule = getPlanSchedule(plan, toDateKey(new Date()));
   const overdue = schedule.kind === 'once' && schedule.overdue;
@@ -109,7 +110,7 @@ export function PlanDetail() {
           )}
           <span className="inline-flex items-center gap-1.5 rounded-2xl bg-primary-soft px-3 py-1.5 text-xs font-semibold text-accent">
             <Clock size={13} />
-            {formatDuration(totalMinutes)} gesamt · {planExercises.length} Übungen
+            {formatDuration(totalSeconds)} gesamt · {planExercises.length} Übungen
           </span>
         </div>
         {plan.description && <p className="text-sm text-muted">{plan.description}</p>}
@@ -144,7 +145,7 @@ export function PlanDetail() {
                 <div className="mt-1.5 flex flex-wrap items-center gap-2">
                   <DifficultyBadge difficulty={exercise.difficulty} />
                   <span className="inline-flex items-center gap-1 text-xs text-muted-2">
-                    <Clock size={13} /> {formatDuration(exercise.durationMinutes)}
+                    <Clock size={13} /> {formatDuration(exercise.durationSeconds)}
                   </span>
                 </div>
               </div>
