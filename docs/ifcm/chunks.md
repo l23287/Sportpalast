@@ -16,7 +16,7 @@ Gepflegt vom Compass Navigator; Claude hält den Status aktuell. Immer nur **ein
 | C05 | Kalendertool | Kalender-Icon im frei gewordenen Navigationsplatz; Kalenderansicht mit den geplanten Trainings | A7 | hoch | fertig (Merge offen) | [FS-004](flow-states/FS-004-C05-kalendertool.md) |
 | C06 | Wiederkehrende Pläne & Übungen | Trainingspläne wiederholen sich automatisch (z. B. wöchentlich) und erscheinen im Kalender | A6, A7 | hoch | fertig (Merge offen) | [FS-005](flow-states/FS-005-C06-wiederkehrende-plaene.md), [FS-006](flow-states/FS-006-C06a-wochentag-uhrzeit.md), [FS-007](flow-states/FS-007-C06b-heute-bereich.md), [FS-008](flow-states/FS-008-C06c-suche-oben.md) |
 | C07 | Dauer in Sekunden | Übungsdauer auch in Sekunden; Timer-Kreis zeigt z. B. „10 sek“ | B3 | mittel | fertig (Merge offen) | [FS-009](flow-states/FS-009-C07-dauer-sekunden.md) |
-| C08 | Notizzettel an Übungen | Stift-Icon im Timer-Screen öffnet eine Notiz zur Übung, als Erinnerung fürs nächste Mal; Buttons „Pause“ und „Schließen“ | B4 | mittel | in Arbeit | [FS-010](flow-states/FS-010-C08-notizzettel.md) |
+| C08 | Notizzettel an Übungen | Stift-Icon im Timer-Screen öffnet eine Notiz zur Übung, als Erinnerung fürs nächste Mal; Buttons „Pause“ und „Schließen“ | B4 | mittel | in Arbeit | [FS-010](flow-states/FS-010-C08-notizzettel.md), [FS-011](flow-states/FS-011-C08a-notizen-heute.md) |
 | C09 | Zielsetzungstool | Bis zu 3 Kernziele im Einstellungsbereich eintragen; motivierende Anzeige der Ziele; Sportarten als Kacheln, in der Reihenfolge verschiebbar | neu (eigene Idee) | niedrig | offen | – |
 | C10 | Einführung in die App | Neue Einführung in die Funktionen, gestaltet mit Claude Design; zuletzt, damit sie alle neuen Funktionen zeigt | B2 | hoch | offen | – |
 
