@@ -9,6 +9,7 @@ import { EmptyState } from '../components/EmptyState';
 import { ConfirmDialog } from '../components/ConfirmDialog';
 import { sportEmoji } from '../lib/sport'; // IFCM FS-002 / C02: Symbol mit Fallback für neue Sportarten
 import { useSport } from '../context/SportContext';
+import { TodayTraining } from '../components/TodayTraining'; // IFCM FS-007 / C06b
 
 export function PlansOverview() {
   const { plans, exercises, deletePlan } = useAppData();
@@ -36,6 +37,9 @@ export function PlansOverview() {
           </PrimaryButton>
         </div>
       </header>
+
+      {/* IFCM FS-007 / C06b: gesonderter Bereich mit den heute anstehenden Plänen und ihren Übungen */}
+      <TodayTraining plans={plans} exercises={exercises} />
 
       <SearchInput value={query} onChange={setQuery} placeholder="Pläne durchsuchen…" className="max-w-md" />
 
