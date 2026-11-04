@@ -6,4 +6,5 @@ Ein Dokument pro Flow State: `FS-<NNN>-<chunk-id>-<kurzname>.md` (Vorlage:
 | FS | Chunk | Zeitraum | Ergebnis |
 |---|---|---|---|
 | [FS-001](FS-001-C01-sportart-trennung.md) | C01 Sportart-Trennung | 03.11.2026 | bestanden |
-| [FS-002](FS-002-C02-mehr-sportarten.md) | C02 Mehr Sportarten & eigene Sportart | ab 03.11.2026 | Ergebnis liegt vor, Alpha-Test offen |
+| [FS-002](FS-002-C02-mehr-sportarten.md) | C02 Mehr Sportarten & eigene Sportart | 03.–04.11.2026 | bestanden |
+| [FS-003](FS-003-C04-aufschlagtraining.md) | C04 Aufschlagtraining nur bei Tischtennis | ab 04.11.2026 | Ergebnis liegt vor, Alpha-Test offen |
