@@ -1,11 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { NAV_ITEMS } from '../lib/nav';
-import { sportEmoji } from '../lib/sport'; // IFCM FS-002 / C02: Symbol mit Fallback für neue Sportarten
 import { useSport } from '../context/SportContext';
 import { TrainerProMark } from './Logo';
 
 export function Sidebar() {
-  const { sport } = useSport();
+  const { sport, emoji } = useSport(); // IFCM FS-012 / C03
 
   return (
     <aside className="hidden shrink-0 py-6 pl-6 md:block md:w-64 lg:w-72">
@@ -16,8 +15,9 @@ export function Sidebar() {
           </div>
           <div className="min-w-0">
             <p className="font-display text-lg font-extrabold leading-none text-ink">TrainerPro</p>
-            <p className="mt-1.5 truncate text-xs text-muted-2">
-              {sportEmoji(sport)} {sport}
+            {/* IFCM FS-012 / C03: Sportart in der Sportfarbe */}
+            <p className="mt-1.5 truncate text-xs font-semibold text-sport">
+              {emoji} {sport}
             </p>
           </div>
         </div>

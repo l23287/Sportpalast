@@ -7,13 +7,12 @@ import { SearchInput } from '../components/SearchInput';
 import { PlanCard } from '../components/PlanCard';
 import { EmptyState } from '../components/EmptyState';
 import { ConfirmDialog } from '../components/ConfirmDialog';
-import { sportEmoji } from '../lib/sport'; // IFCM FS-002 / C02: Symbol mit Fallback für neue Sportarten
 import { useSport } from '../context/SportContext';
 import { TodayTraining } from '../components/TodayTraining'; // IFCM FS-007 / C06b
 
 export function PlansOverview() {
   const { plans, exercises, deletePlan } = useAppData();
-  const { sport } = useSport();
+  const { emoji } = useSport(); // IFCM FS-012 / C03: Symbol aus dem Context
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
@@ -29,7 +28,7 @@ export function PlansOverview() {
   return (
     <div className="flex flex-col gap-6">
       <header className="flex flex-col gap-2">
-        <p className="text-sm text-muted-2">{sportEmoji(sport)} Willkommen zurück</p>
+        <p className="text-sm text-muted-2">{emoji} Willkommen zurück</p>
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h1 className="font-display text-3xl font-extrabold text-ink">Trainingspläne</h1>
           <PrimaryButton icon={<Plus size={18} />} onClick={() => navigate('/plaene/neu')}>

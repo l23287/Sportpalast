@@ -1,20 +1,65 @@
 import type { Sport } from '../types';
 import { SPORTS } from '../types';
 
-// IFCM FS-002 / C02: Symbole gibt es (wie bisher) nur für die zwei ursprünglichen Sportarten.
-// Passende Symbole für alle Sportarten sind Thema von C03 – bis dahin bekommen neue Sportarten ein
-// neutrales Symbol (siehe sportEmoji).
+// IFCM FS-012 / C03 Farben & Symbole: Symbol für JEDE vordefinierte Sportart (vorher nur Tischtennis und
+// Beach Volleyball). Emojis kommen aus der Schrift des Geräts – keine Bilddateien, keine Lizenzkosten.
 export const SPORT_EMOJI: Record<string, string> = {
   Tischtennis: '🏓',
   'Beach Volleyball': '🏐',
+  Badminton: '🏸',
+  Basketball: '🏀',
+  Fußball: '⚽',
+  'Gym/Fitness': '🏋️',
+  Handball: '🤾',
+  Leichtathletik: '🏃',
+  Schwimmen: '🏊',
+  Tennis: '🎾',
+  Turnen: '🤸',
+  Volleyball: '🏐',
 };
+
+// IFCM FS-012 / C03: Akzentfarbe je Sportart. Nur für Akzente (Sportart-Abzeichen, Bereich „Heute“) –
+// Hauptbuttons und Layout bleiben im bekannten Blau (Design-Lob A3). Alle Farben sind helle 300/400-Töne,
+// damit sie auf dem dunklen Hintergrund (#0a0f1c) gut lesbar sind (Kontrast ≥ 4,5:1, siehe Protokoll FS-012).
+// Rot ist bewusst ausgelassen – es ist für „überfällig“ reserviert.
+export const SPORT_COLORS: Record<string, string> = {
+  Tischtennis: '#38bdf8', // Himmelblau – entspricht dem bisherigen Akzent der App
+  'Beach Volleyball': '#facc15', // Sand-Gelb (unterscheidet sich so von Volleyball, gleiches Symbol 🏐)
+  Badminton: '#e879f9',
+  Basketball: '#fb923c',
+  Fußball: '#4ade80', // Rasengrün
+  'Gym/Fitness': '#a78bfa',
+  Handball: '#f472b6',
+  Leichtathletik: '#fbbf24',
+  Schwimmen: '#2dd4bf', // Wasser-Türkis
+  Tennis: '#a3e635',
+  Turnen: '#818cf8',
+  Volleyball: '#93c5fd',
+};
+
+// IFCM FS-012 / C03: Auswahl an Symbolen für EIGENE Sportarten (beim Anlegen wählbar).
+export const CUSTOM_SPORT_EMOJIS = ['🏅', '🏑', '🏒', '🥋', '🚴', '⛳', '🥊', '🧗', '🏇', '⛷️', '🛹', '🏉', '🥏', '🤺', '🛶', '🏄'];
+
+// IFCM FS-012 / C03: Farbpalette für eigene Sportarten – die Farbe wird stabil aus dem Namen berechnet,
+// damit eine Sportart immer dieselbe Farbe hat, ohne dass sie gespeichert werden muss.
+const CUSTOM_SPORT_COLORS = ['#38bdf8', '#4ade80', '#fbbf24', '#a78bfa', '#f472b6', '#2dd4bf', '#fb923c', '#818cf8'];
+
+/** IFCM FS-012 / C03: Akzentfarbe einer Sportart (vordefiniert oder aus dem Namen berechnet). */
+export function sportColor(sport: Sport): string {
+  const fixed = SPORT_COLORS[sport];
+  if (fixed) return fixed;
+  let hash = 0;
+  for (const char of sportKey(sport)) hash = (hash * 31 + char.codePointAt(0)!) >>> 0;
+  return CUSTOM_SPORT_COLORS[hash % CUSTOM_SPORT_COLORS.length];
+}
 
 // IFCM FS-002 / C02: neutrales Symbol für alle Sportarten ohne eigenes Symbol
 export const NEUTRAL_SPORT_EMOJI = '🏅';
 
 // IFCM FS-002 / C02: liefert das Symbol einer Sportart, sonst das neutrale Symbol
-export function sportEmoji(sport: Sport): string {
-  return SPORT_EMOJI[sport] ?? NEUTRAL_SPORT_EMOJI;
+// IFCM FS-012 / C03: zusätzlich das selbst gewählte Symbol einer eigenen Sportart (customEmojis)
+export function sportEmoji(sport: Sport, customEmojis: Record<string, string> = {}): string {
+  return SPORT_EMOJI[sport] ?? customEmojis[sport] ?? NEUTRAL_SPORT_EMOJI;
 }
 
 // IFCM FS-002 / C02: maximale Länge eines eigenen Sportartnamens (passt in Kopfzeile und Auswahl-Buttons)
