@@ -15,6 +15,8 @@ bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (
 - **Übungen** – eigene Übungsdatenbank (Name, Beschreibung, Ziel, Dauer in Minuten und Sekunden – IFCM C07,
   Schwierigkeitsgrad); bei Tischtennis
   zusätzlich der Reiter **Aufschlagtraining** (IFCM C04).
+- **Notizzettel** – im Timer öffnet ein Stift-Icon eine Notiz zur Übung; sie erscheint beim nächsten Start, auf der
+  Übungskarte und in der Planansicht wieder (IFCM C08).
 - **Kalender** – Monatsansicht aller Trainingspläne mit Datum, Tagesliste und „Plan für diesen Tag“ (IFCM C05).
 - **Wiederkehrende Pläne** – Pläne wiederholen sich wöchentlich, alle 2 Wochen oder monatlich (optional mit
   Enddatum) und erscheinen an jedem Termin im Kalender; sie zeigen ihren nächsten Termin und gelten nie als

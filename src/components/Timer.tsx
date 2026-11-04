@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Pause, Play, RotateCcw, X } from 'lucide-react';
+import { Pause, Pencil, Play, RotateCcw, StickyNote, X } from 'lucide-react';
+import { useAppData } from '../context/AppDataContext'; // IFCM FS-010 / C08
+import { MAX_NOTE_LENGTH, NOTE_PRIVACY_HINT } from '../lib/note'; // IFCM FS-010 / C08
 import { formatCountdown, formatDuration } from '../lib/time'; // IFCM FS-009 / C07: formatDuration
 import type { Exercise } from '../types';
 
@@ -15,6 +17,18 @@ export function Timer({ exercise, onClose }: TimerProps) {
   const shortExercise = totalSeconds < 60;
   const [remaining, setRemaining] = useState(totalSeconds);
   const [running, setRunning] = useState(true);
+
+  // IFCM FS-010 / C08 Notizzettel: Entwurf der Notiz (Start: gespeicherte Notiz vom letzten Mal).
+  // Jede Änderung wird sofort gespeichert. Der Countdown hängt nur an exercise.id/totalSeconds – das Speichern
+  // der Notiz setzt den Timer daher NICHT zurück und unterbricht ihn nicht.
+  const { updateExerciseNote } = useAppData();
+  const [noteDraft, setNoteDraft] = useState(exercise.note ?? '');
+  const [noteOpen, setNoteOpen] = useState(false);
+
+  function handleNoteChange(value: string) {
+    setNoteDraft(value);
+    updateExerciseNote(exercise.id, value);
+  }
 
   useEffect(() => {
     setRemaining(totalSeconds);
@@ -54,7 +68,8 @@ export function Timer({ exercise, onClose }: TimerProps) {
       role="presentation"
     >
       <div
-        className="relative w-full max-w-sm rounded-3xl border border-border bg-surface p-8 text-center"
+        // IFCM FS-010 / C08: max-h + overflow, damit der Dialog mit offener Notiz und Handy-Tastatur scrollbar bleibt
+        className="relative max-h-[calc(100dvh-2rem)] w-full max-w-sm overflow-y-auto rounded-3xl border border-border bg-surface p-8 text-center"
         onClick={(event) => event.stopPropagation()}
         role="dialog"
         aria-modal="true"
@@ -94,10 +109,62 @@ export function Timer({ exercise, onClose }: TimerProps) {
               </linearGradient>
             </defs>
           </svg>
-          <span className="font-display text-4xl font-extrabold tabular-nums text-ink">
-            {shortExercise ? `${remaining} sek` : formatCountdown(remaining)}
-          </span>
+          {/* IFCM FS-010 / C08: Stift-Icon im Kreis unter der Zeit (Mindmap-Skizze) öffnet/schließt den Notizzettel */}
+          <div className="relative flex flex-col items-center gap-2">
+            <span className="font-display text-4xl font-extrabold tabular-nums text-ink">
+              {shortExercise ? `${remaining} sek` : formatCountdown(remaining)}
+            </span>
+            <button
+              type="button"
+              onClick={() => setNoteOpen((prev) => !prev)}
+              aria-label={noteOpen ? 'Notiz schließen' : 'Notiz öffnen'}
+              aria-expanded={noteOpen}
+              className={`flex h-9 w-9 items-center justify-center rounded-full border transition ${
+                noteOpen || noteDraft
+                  ? 'border-transparent bg-primary text-white'
+                  : 'border-border bg-bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              <Pencil size={15} />
+            </button>
+          </div>
         </div>
+
+        {/* IFCM FS-010 / C08: Notizzettel – geschlossen als Erinnerung „vom letzten Mal“, geöffnet als Eingabefeld */}
+        {noteOpen ? (
+          <div className="mb-6 flex flex-col gap-1.5 text-left">
+            <label htmlFor="exercise-note" className="text-xs font-semibold text-muted">
+              Notiz fürs nächste Mal
+            </label>
+            <textarea
+              id="exercise-note"
+              rows={3}
+              autoFocus
+              maxLength={MAX_NOTE_LENGTH}
+              value={noteDraft}
+              onChange={(event) => handleNoteChange(event.target.value)}
+              placeholder="z. B. Abstand verkürzen, lieber 2 Durchgänge …"
+              className="w-full resize-none rounded-2xl border border-border bg-bg-soft px-4 py-3 text-sm text-ink outline-none placeholder:text-muted-2 focus:border-primary"
+            />
+            <div className="flex justify-between gap-3 text-[11px] text-muted-2">
+              <span>{NOTE_PRIVACY_HINT} Wird automatisch gespeichert.</span>
+              <span className="shrink-0 tabular-nums">
+                {noteDraft.length}/{MAX_NOTE_LENGTH}
+              </span>
+            </div>
+          </div>
+        ) : (
+          noteDraft && (
+            <button
+              type="button"
+              onClick={() => setNoteOpen(true)}
+              className="mb-6 flex w-full items-start gap-2 rounded-2xl border border-primary/40 bg-primary-soft px-4 py-3 text-left text-sm text-ink"
+            >
+              <StickyNote size={16} className="mt-0.5 shrink-0 text-primary" />
+              <span className="min-w-0 whitespace-pre-line break-words">{noteDraft}</span>
+            </button>
+          )
+        )}
 
         {isDone ? (
           <p className="mb-6 font-semibold text-accent">Übung abgeschlossen! 🎉</p>

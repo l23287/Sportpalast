@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Calendar, ChevronLeft, Clock, Dumbbell, Pencil, Play, Repeat, Trash2, Users } from 'lucide-react';
+import { Calendar, ChevronLeft, Clock, Dumbbell, Pencil, Play, Repeat, StickyNote, Trash2, Users } from 'lucide-react';
 import { useAppData } from '../context/AppDataContext';
 import { IconButton } from '../components/IconButton';
 import { PrimaryButton } from '../components/PrimaryButton';
@@ -142,6 +142,13 @@ export function PlanDetail() {
               </span>
               <div className="min-w-0 flex-1">
                 <p className="truncate font-semibold text-ink">{exercise.name}</p>
+                {/* IFCM FS-010 / C08: Notiz vom letzten Mal direkt in der Planansicht */}
+                {exercise.note && (
+                  <p className="mt-1 flex items-start gap-1 text-xs text-muted">
+                    <StickyNote size={12} className="mt-0.5 shrink-0 text-primary" />
+                    <span className="line-clamp-2 break-words">{exercise.note}</span>
+                  </p>
+                )}
                 <div className="mt-1.5 flex flex-wrap items-center gap-2">
                   <DifficultyBadge difficulty={exercise.difficulty} />
                   <span className="inline-flex items-center gap-1 text-xs text-muted-2">

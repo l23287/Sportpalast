@@ -1,4 +1,4 @@
-import { Clock, Dumbbell, Pencil, Target, Trash2 } from 'lucide-react';
+import { Clock, Dumbbell, Pencil, StickyNote, Target, Trash2 } from 'lucide-react';
 import type { Exercise } from '../types';
 import { DifficultyBadge } from './DifficultyBadge';
 import { IconButton } from './IconButton';
@@ -26,6 +26,14 @@ export function ExerciseCard({ exercise, onEdit, onDelete }: ExerciseCardProps) 
           <p className="mt-1 line-clamp-2 text-sm text-muted">{exercise.description}</p>
         )}
       </div>
+
+      {/* IFCM FS-010 / C08: vorhandene Notiz als Erinnerung auf der Karte anzeigen (gekürzt) */}
+      {exercise.note && (
+        <p className="flex items-start gap-1.5 rounded-2xl bg-primary-soft px-3 py-2 text-xs text-ink">
+          <StickyNote size={13} className="mt-0.5 shrink-0 text-primary" />
+          <span className="line-clamp-2 break-words">{exercise.note}</span>
+        </p>
+      )}
 
       <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted-2">
         {exercise.goal && (

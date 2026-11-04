@@ -15,6 +15,7 @@ import { loadJSON, saveJSON } from '../lib/storage';
 import { useSport } from './SportContext';
 import { withSport } from '../lib/sport';
 import { migrateExerciseDurations } from '../lib/duration'; // IFCM FS-009 / C07
+import { cleanNote } from '../lib/note'; // IFCM FS-010 / C08
 
 interface AppDataContextValue {
   // IFCM FS-001 / C01: `plans` und `exercises` enthalten nur noch die Einträge der aktuell gewählten Sportart.
@@ -27,6 +28,8 @@ interface AppDataContextValue {
   getPlan: (id: string) => TrainingPlan | undefined;
   addExercise: (input: ExerciseInput) => Exercise;
   updateExercise: (id: string, input: ExerciseInput) => void;
+  // IFCM FS-010 / C08: nur die Notiz einer Übung ändern (aus dem Timer, ohne das ganze Formular)
+  updateExerciseNote: (id: string, note: string) => void;
   deleteExercise: (id: string) => void;
   getExercise: (id: string) => Exercise | undefined;
   // IFCM FS-002 / C02: Anzahl und Löschen aller Pläne/Übungen einer Sportart (für das Löschen eigener Sportarten)
@@ -87,6 +90,18 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         };
         setExercises((prev) => [exercise, ...prev]);
         return exercise;
+      },
+      // IFCM FS-010 / C08: Notiz bereinigt speichern; leere Notiz entfernt das Feld wieder
+      updateExerciseNote: (id, note) => {
+        const cleaned = cleanNote(note);
+        setExercises((prev) =>
+          prev.map((e) => {
+            if (e.id !== id) return e;
+            if (cleaned) return { ...e, note: cleaned };
+            const { note: _removed, ...rest } = e; // Feld „note“ weglassen
+            return rest;
+          }),
+        );
       },
       updateExercise: (id, input) => {
         setExercises((prev) => prev.map((e) => (e.id === id ? { ...e, ...input } : e)));
