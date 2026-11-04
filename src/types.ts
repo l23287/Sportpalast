@@ -2,9 +2,27 @@ export type Difficulty = 'Anfänger' | 'Fortgeschritten';
 
 export const DIFFICULTIES: Difficulty[] = ['Anfänger', 'Fortgeschritten'];
 
-export type Sport = 'Tischtennis' | 'Beach Volleyball';
+// IFCM FS-002 / C02 Mehr Sportarten: Die Sportart ist jetzt ein frei erweiterbarer Name statt einer festen
+// Zweierliste. So können vordefinierte UND eigene Sportarten verwendet werden. Bestehende Werte
+// ('Tischtennis', 'Beach Volleyball') bleiben gültig – gespeicherte Daten aus C01 funktionieren weiter.
+export type Sport = string;
 
-export const SPORTS: Sport[] = ['Tischtennis', 'Beach Volleyball'];
+// IFCM FS-002 / C02: Vordefinierte Sportarten (Tischtennis und Beach Volleyball wie bisher zuerst,
+// danach alphabetisch). Eigene Sportarten werden zusätzlich im SportContext gespeichert.
+export const SPORTS: Sport[] = [
+  'Tischtennis',
+  'Beach Volleyball',
+  'Badminton',
+  'Basketball',
+  'Fußball',
+  'Gym/Fitness',
+  'Handball',
+  'Leichtathletik',
+  'Schwimmen',
+  'Tennis',
+  'Turnen',
+  'Volleyball',
+];
 
 export interface Exercise {
   id: string;

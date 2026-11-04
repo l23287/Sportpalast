@@ -4,6 +4,7 @@ import type {
   ExerciseInput,
   PlanInput,
   ServeResult,
+  Sport,
   ServeSession,
   ServeSessionGoal,
   TrainingPlan,
@@ -27,6 +28,9 @@ interface AppDataContextValue {
   updateExercise: (id: string, input: ExerciseInput) => void;
   deleteExercise: (id: string) => void;
   getExercise: (id: string) => Exercise | undefined;
+  // IFCM FS-002 / C02: Anzahl und Löschen aller Pläne/Übungen einer Sportart (für das Löschen eigener Sportarten)
+  countForSport: (sport: Sport) => { plans: number; exercises: number };
+  deleteAllForSport: (sport: Sport) => void;
   serveSessions: ServeSession[];
   startServeSession: (goal: ServeSessionGoal) => ServeSession;
   addServeAttempt: (sessionId: string, result: ServeResult) => void;
@@ -92,6 +96,15 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         );
       },
       getExercise: (id) => sportExercises.find((e) => e.id === id), // IFCM FS-001 / C01: nur aktuelle Sportart
+      // IFCM FS-002 / C02: zählt über ALLE gespeicherten Daten, nicht nur die aktuelle Sportart
+      countForSport: (target) => ({
+        plans: plans.filter((p) => p.sport === target).length,
+        exercises: exercises.filter((e) => e.sport === target).length,
+      }),
+      deleteAllForSport: (target) => {
+        setPlans((prev) => prev.filter((p) => p.sport !== target));
+        setExercises((prev) => prev.filter((e) => e.sport !== target));
+      },
       serveSessions,
       startServeSession: (goal) => {
         const session: ServeSession = {
@@ -126,7 +139,8 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
       },
     }),
     // IFCM FS-001 / C01: `sport` und die gefilterten Listen als Abhängigkeiten ergänzt
-    [sport, sportPlans, sportExercises, serveSessions],
+    // IFCM FS-002 / C02: `plans`/`exercises` ergänzt (für countForSport)
+    [sport, plans, exercises, sportPlans, sportExercises, serveSessions],
   );
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;
