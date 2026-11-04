@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 04.11.2026 – *offen* |
+| Zeitraum | 04.11.2026 – 04.11.2026 |
 | Chunk | C06 (siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in (Compass Navigator) – nächster Chunk laut Reihenfolge (… → C05 → **C06**) |
 | Vorgänger | – (baut auf dem Kalender aus FS-004 / C05 auf) |
 | Branch / Commits | `ifcm/fs-005-c06-wiederkehrende-plaene` (enthält C01, C02, C04, C05, C06), Commit `cbff329` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **teilweise bestanden** → Erweiterung in [FS-006](FS-006-C06a-wochentag-uhrzeit.md) |
 
 ## 1. Chunk & Ziel
 Trainingspläne können sich automatisch wiederholen (Vorschlag Claude: wöchentlich, alle 2 Wochen, monatlich,
@@ -65,12 +65,18 @@ Serientermine grau, kommende blau ✔. Nachweis: [assets/fs005-nachweis.png](../
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-005-c06-wiederkehrende-plaene` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 04.11.2026, wörtlich):** „Okay, das ist schon ein guter Start.“ – mit dem Auftrag,
+Wochentag und Uhrzeit der Wiederholung zu ergänzen (Screenshot der Auswahl „Wöchentlich“). → **teilweise bestanden**,
+Erweiterung als Korrektur-Flow-State **FS-006 (C06a)**.
+
 **Guards (Claude):** keine neuen Abhängigkeiten ✔ · neue gespeicherte Felder nur am Plan (Rhythmus, Enddatum),
 keine personenbezogenen Daten ✔ · Terminberechnung begrenzt auf den angefragten Zeitraum (keine Endlosschleife) ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Beobachtung Claude: Wochentag und Uhrzeit wurden in der Chunkbeschreibung nicht genannt – erst im Test fiel auf,
+dass Trainer:innen in festen Trainingszeiten denken („dienstags 18 Uhr“). Erkenntnis: Bei Planungsfunktionen
+vorab nach dem realen Ablauf im Verein fragen.
 
 ## 6. Abschluss
-*offen*
+Weiter in FS-006 (C06a) auf Basis dieses Branches.
