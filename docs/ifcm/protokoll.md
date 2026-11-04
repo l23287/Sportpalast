@@ -4,6 +4,8 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 04.11.2026 | II FS-005 Chunk | C06 | Entwickler:in wechselt zum nächsten Chunk; Claude beschreibt C06, nennt 3 Prüfpunkte und stellt 1 Rückfrage (Bedeutung „wiederkehrende Übungen“) | FS-005 gestartet | [FS-005](flow-states/FS-005-C06-wiederkehrende-plaene.md) |
+| 04.11.2026 | II FS-004 Abschluss | C05 | Alpha-Test durch Entwickler:in: „echt zufriedenstellend“ → bestanden; Alpha-Reflexion von der Entwickler:in selbst durchgeführt | C05 fertig; Merge: Freigabe offen | [FS-004](flow-states/FS-004-C05-kalendertool.md) |
 | 04.11.2026 | II FS-004 Ergebnis | C05 | Kalender (Monatsansicht, Tagesliste, „Plan für diesen Tag“) ohne externe Bibliothek umgesetzt, Navigation wieder 5 Punkte, README aktualisiert. Build grün, automatischer Kurztest bestanden. Vorgemerkt: UTC-Lesart in `time.ts` | Alpha-Test durch Entwickler:in offen | [FS-004](flow-states/FS-004-C05-kalendertool.md) |
 | 04.11.2026 | II FS-004 Chunk | C05 | Entwickler:in wechselt zum nächsten Chunk; Claude beschreibt C05 und nennt 3 Prüfpunkte | FS-004 gestartet, Prompt offen | [FS-004](flow-states/FS-004-C05-kalendertool.md) |
 | 04.11.2026 | II FS-003 Abschluss | C04 | Alpha-Test durch Entwickler:in: „zufriedenstellend“ → bestanden; Alpha-Reflexion von der Entwickler:in selbst durchgeführt | C04 fertig; Merge: Freigabe offen | [FS-003](flow-states/FS-003-C04-aufschlagtraining.md) |

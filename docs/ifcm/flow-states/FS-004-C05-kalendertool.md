@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 04.11.2026 – *offen* |
+| Zeitraum | 04.11.2026 – 04.11.2026 |
 | Chunk | C05 (siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in (Compass Navigator) – nächster Chunk laut Reihenfolge (C01 → C02 → C04 → **C05**) |
 | Vorgänger | – (nutzt den in C04 frei gewordenen Navigationsplatz) |
 | Branch / Commits | `ifcm/fs-004-c05-kalendertool` (enthält C01 + C02 + C04 + C05), Commit `6fc59fa` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge in den Hauptbranch: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Ein Kalender-Icon kommt auf den frei gewordenen Platz in der Navigation. Dahinter liegt eine Monatsansicht, die
@@ -55,7 +55,9 @@ Formular mit Datum 2026-12-15 ✔. Screenshot: [assets/fs004-kalender.png](../as
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-004-c05-kalendertool` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 04.11.2026):** „Die Ergebnisse sind grade echt zufriedenstellend.“ → **bestanden**
+
 **Guards (Claude):** keine neuen Abhängigkeiten, keine neuen gespeicherten Daten ✔ · URL-Parameter `datum` wird
 auf das Format `JJJJ-MM-TT` geprüft, bevor er übernommen wird ✔.
 **Hinweis außerhalb von C05:** Die bestehenden Funktionen `formatDate`/`isOverdue` (`src/lib/time.ts`) lesen
@@ -63,7 +65,7 @@ das Datum als UTC und können in Zeitzonen westlich von UTC einen Tag zu früh a
 nicht auf → vorgemerkt, nicht geändert.
 
 ## 5. Alpha-Reflexion
-*offen*
+Durchgeführt von der Entwickler:in (Coach) am 04.11.2026; Inhalte liegen bei der Entwickler:in. *Bei Bedarf hier nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C05 **fertig** (04.11.2026). Merge nach Freigabe – *offen*. C06 baut auf dem C05-Branch auf.
