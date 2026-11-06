@@ -4,6 +4,8 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 06.11.2026 | II FS-013 Ergebnis | C09 | Zielsetzungstool nach SMART umgesetzt (SMART-Check, max. 3 offene Ziele je Sportart, Restzeit, Fortschritt, Feiern; Anzeige in Übersicht und Einstellungen; Sportart-Reihenfolge); 8 Logiktests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-013](flow-states/FS-013-C09-zielsetzungstool.md) |
+| 06.11.2026 | II FS-013 Recherche | C09 | Auf Wunsch der Entwickler:in Quelle zur SMART-Methode gelesen (karrierebibel.de); Netzwerkfreigabe der Seite in der Cloud-Umgebung mit Zustimmung; Zusammenfassung und Abgleich dokumentiert | Grundlage für Umsetzung (Prompt Pattern 2 „Fact Check“) | [quellen/smart-methode.md](quellen/smart-methode.md) |
 | 06.11.2026 | II FS-013 Chunk | C09 | Claude beschreibt C09 (Zielsetzungstool) und nennt 3 Prüfpunkte | FS-013 gestartet, Prompt offen | [FS-013](flow-states/FS-013-C09-zielsetzungstool.md) |
 | 06.11.2026 | II FS-012 Abschluss | C03 | Steuerwort „Vorarbeit“: Alpha-Test bestanden, Alpha-Reflexion von der Entwickler:in durchgeführt; **C03 fertig** | Merge: Freigabe offen | [FS-012](flow-states/FS-012-C03-farben-symbole.md) |
 | 06.11.2026 | Prozess | – | **Neues Steuerwort „Vorarbeit“** eingeführt (Entscheidung Entwickler:in): ersetzt den wiederkehrenden Prompt zum Chunk-Wechsel; in Skill, `CLAUDE.md` und README festgehalten | Prozess-Erkenntnis: wiederkehrende Abläufe als Abkürzung (Prompt Pattern 6 „Cognitive Enhancement“) | [SKILL.md](../../.claude/skills/IFCM/SKILL.md) |

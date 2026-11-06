@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-013 – Chunk gewählt, als Nächstes Prompt/Umsetzung |
-| **Aktiver Chunk** | C09 Zielsetzungstool |
-| **Nächster Schritt** | Arbeitsauftrag (Prompt) für C09; Merge-Freigabe C01–C08 offen |
+| **Sub-Phase** | FS-013 – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Aktiver Chunk** | C09 Zielsetzungstool (Branch `ifcm/fs-013-c09-zielsetzungstool`, enthält C01–C08) |
+| **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe offen |
 | **Zuletzt aktualisiert** | 06.11.2026 |
 
 ## Phasenübersicht
@@ -42,7 +42,7 @@ flowchart LR
 | II Flow States | je Chunk | [flow-states/](flow-states/) | läuft (FS-001–FS-008 abgeschlossen, C01–C08 fertig; FS-013 aktiv) |
 | III Go-Live | Beta-Test, Rollout, Beta-Reflexion | 04-go-live.md (wird angelegt) | offen |
 
-Chronologie aller Schritte: [protokoll.md](protokoll.md)
+Chronologie aller Schritte: [protokoll.md](protokoll.md) · Recherchierte Quellen: [quellen/](quellen/)
 
 ## Steuerung
 
