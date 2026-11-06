@@ -4,6 +4,8 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 06.11.2026 | II FS-015 Chunk | C10 | Claude beschreibt C10 (letzter Chunk), nennt 3 Prüfpunkte und stellt 1 Rückfrage (Gestaltung in Claude Design vorab oder direkt im App-Design) | FS-015 gestartet | [FS-015](flow-states/FS-015-C10-einfuehrung.md) |
+| 06.11.2026 | II FS-014 Abschluss | C09a | Steuerwort „Vorarbeit“: Alpha-Test bestanden, Alpha-Reflexion von der Entwickler:in durchgeführt; **C09 inkl. C09a fertig** | Merge: Freigabe offen | [FS-014](flow-states/FS-014-C09a-smart-erklaerung-ausklappen.md) |
 | 06.11.2026 | II FS-014 Ergebnis | C09a | SMART-Prüfung in fünf dokumentierte Einzelfunktionen aufgeteilt und erklärt (inkl. Verbesserung: Unicode-Wortvergleich, Zahlwörter); „Deine Ziele“ und „Sportart“ als aufklappbare Bereiche; 13 neue Logiktests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-014](flow-states/FS-014-C09a-smart-erklaerung-ausklappen.md) |
 | 06.11.2026 | II FS-013 Alpha-Test | C09 | Entwickler:in: „Schon ein gute Anfang“, Auftrag: Validierung erklären/kommentieren, Einstellungen aufklappbar → teilweise bestanden; FS-014 (C09a) gestartet | Erkenntnis: Heuristiken offenlegen, Platz planen | [FS-013](flow-states/FS-013-C09-zielsetzungstool.md) |
 | 06.11.2026 | II FS-013 Ergebnis | C09 | Zielsetzungstool nach SMART umgesetzt (SMART-Check, max. 3 offene Ziele je Sportart, Restzeit, Fortschritt, Feiern; Anzeige in Übersicht und Einstellungen; Sportart-Reihenfolge); 8 Logiktests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-013](flow-states/FS-013-C09-zielsetzungstool.md) |
