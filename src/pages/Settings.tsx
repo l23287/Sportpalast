@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from 'react';
-import { ArrowDown, ArrowUp, ArrowUpDown, Plus, Trash2 } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import { ArrowDown, ArrowUp, ArrowUpDown, Flag, Plus, Trash2, Trophy } from 'lucide-react';
+import { CollapsibleSection } from '../components/CollapsibleSection'; // IFCM FS-014 / C09a
 import { useGoals } from '../context/GoalsContext'; // IFCM FS-013 / C09
 import { GoalForm } from '../components/GoalForm'; // IFCM FS-013 / C09
 import { GoalsBoard } from '../components/GoalsBoard'; // IFCM FS-013 / C09
@@ -18,10 +20,12 @@ import type { Sport } from '../types';
 export function Settings() {
   // IFCM FS-002 / C02: Liste aller Sportarten (vordefiniert + eigene) statt fester SPORTS-Liste
   // IFCM FS-012 / C03: emojiFor/colorFor für Symbole und Farbpunkte in der Auswahl
-  const { sport, setSport, sports, customSports, addCustomSport, removeCustomSport, emojiFor, colorFor, moveSport } =
-    useSport();
+  const { sport, setSport, sports, customSports, addCustomSport, removeCustomSport, emojiFor, colorFor, moveSport, emoji } =
+    useSport(); // IFCM FS-014 / C09a: + emoji für die Kopfzeile des Sportart-Bereichs
   // IFCM FS-013 / C09: Kernziele der aktuellen Sportart und Modus „Reihenfolge ändern“
-  const { addGoal, canAddGoal, deleteGoalsForSport } = useGoals();
+  const { addGoal, canAddGoal, deleteGoalsForSport, openGoals, achievedGoals } = useGoals();
+  // IFCM FS-014 / C09a: Kommt man über „/einstellungen#ziele“ (Link in der Planübersicht), ist „Deine Ziele“ offen
+  const { hash } = useLocation();
   const [reorderMode, setReorderMode] = useState(false);
   const { countForSport, deleteAllForSport } = useAppData();
   const [impressumOpen, setImpressumOpen] = useState(false);
@@ -64,9 +68,26 @@ export function Settings() {
         <p className="text-sm text-muted">Passe TrainerPro an deine Bedürfnisse an.</p>
       </header>
 
-      {/* IFCM FS-013 / C09: „Deine Ziele“ oben im Einstellungsbereich (Mindmap-Skizze) – je Sportart */}
-      <div id="ziele" className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5">
-        <GoalsBoard mode="manage" />
+      {/* IFCM FS-013 / C09: „Deine Ziele“ oben im Einstellungsbereich (Mindmap-Skizze) – je Sportart
+          IFCM FS-014 / C09a: als aufklappbarer Bereich, eingeklappt mit Kurzinfo „x/3 offen · y erreicht“ */}
+      <CollapsibleSection
+        id="ziele"
+        title="Deine Ziele"
+        icon={<Flag size={20} />}
+        defaultOpen={hash === '#ziele'}
+        summary={
+          <>
+            {openGoals.length}/3 offen
+            {achievedGoals.length > 0 && (
+              <>
+                {' · '}
+                <Trophy size={11} className="inline" aria-hidden="true" /> {achievedGoals.length} erreicht
+              </>
+            )}
+          </>
+        }
+      >
+        <GoalsBoard mode="manage" showHeading={false} />
         {canAddGoal ? (
           <GoalForm onSubmit={addGoal} />
         ) : (
@@ -75,11 +96,15 @@ export function Settings() {
             anzulegen.
           </p>
         )}
-      </div>
+      </CollapsibleSection>
 
-      <div className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5">
-        <div className="flex items-center justify-between gap-3">
-          <h2 className="font-display text-lg font-bold text-ink">Sportart</h2>
+      {/* IFCM FS-014 / C09a: Sportart-Einstellungen als aufklappbarer Bereich, eingeklappt mit aktueller Sportart */}
+      <CollapsibleSection
+        title="Sportart"
+        icon={<span className="text-xl leading-none">{emoji}</span>}
+        summary={`${sport} · Auswahl & Reihenfolge`}
+      >
+        <div className="flex justify-end">
           {/* IFCM FS-013 / C09: Kacheln in der Reihenfolge verschieben (Skizze) */}
           <button
             type="button"
@@ -216,7 +241,7 @@ export function Settings() {
             </ul>
           </div>
         )}
-      </div>
+      </CollapsibleSection>
 
       {/* IFCM FS-002 / C02: Sicherheitsabfrage – nennt, wie viele Pläne/Übungen mitgelöscht werden */}
       <ConfirmDialog
