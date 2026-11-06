@@ -21,16 +21,12 @@ export const GOAL_EXAMPLES = [
   'Ich plane bis Ende Dezember jede Woche beide Trainingseinheiten spätestens zwei Tage vorher vollständig in TrainerPro.',
 ];
 
-// Wörter, die auf eine Vermeidungs-Formulierung hindeuten („Ich will nicht mehr …“). Die Quelle empfiehlt positive
-// Formulierungen, weil sie stärker motivieren (Kriterium „Attraktiv“).
-const NEGATIVE_WORDS = /\b(nicht|kein|keine|keinen|keiner|nie|niemals|aufhören|vermeiden)\b/i;
-
 export interface SmartCheck {
-  S: boolean; // Spezifisch: konkret ausgeschrieben (mind. 5 Wörter)
-  M: boolean; // Messbar: Messgröße angegeben oder Zahl im Ziel
-  A: boolean; // Attraktiv: positiv formuliert (keine Verneinung)
-  R: boolean; // Realistisch: Selbsteinschätzung „mit meinen Mitteln machbar“
-  T: boolean; // Terminiert: Zieldatum gesetzt
+  S: boolean; // Spezifisch
+  M: boolean; // Messbar
+  A: boolean; // Attraktiv
+  R: boolean; // Realistisch
+  T: boolean; // Terminiert
 }
 
 export const SMART_LABELS: Record<keyof SmartCheck, { name: string; hint: string }> = {
@@ -43,15 +39,106 @@ export const SMART_LABELS: Record<keyof SmartCheck, { name: string; hint: string
 
 type GoalDraft = Pick<Goal, 'text' | 'measure' | 'realistic' | 'dueDate'>;
 
-/** Welche SMART-Kriterien sind an der Formulierung erkennbar erfüllt? (Hinweis, keine Pflicht) */
+// ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
+// IFCM FS-014 / C09a: Validierung der SMART-Kriterien – ausführlich erklärt
+//
+// Grundsatz: Eine App kann nicht „verstehen“, ob ein Ziel wirklich spezifisch oder realistisch ist. Jede Prüfung
+// unten ist daher eine einfache, nachvollziehbare REGEL (Heuristik), die typische Merkmale eines guten Ziels
+// erkennt. Ergebnis ist true („erkennbar erfüllt“) oder false („noch offen“). Die Kacheln im Formular zeigen das an;
+// ein Ziel wird NIE wegen eines offenen Kriteriums abgelehnt (Quelle: Kriterien sind unterschiedlich auslegbar).
+// Jede Prüfung ist eine eigene Funktion, damit sie einzeln getestet und später verfeinert werden kann.
+// ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+/** Zerlegt einen Text in Wörter (Folgen von Buchstaben/Ziffern, inkl. Umlaute und ß). */
+function words(text: string): string[] {
+  return text.match(/[\p{L}\p{N}]+/gu) ?? [];
+}
+
+/** Mindestzahl an Wörtern für „spezifisch“. */
+const MIN_SPECIFIC_WORDS = 5;
+
+/**
+ * S – Spezifisch
+ * Regel: Das Ziel hat mindestens 5 Wörter.
+ * Warum: Vage Ziele sind fast immer sehr kurz („Besser werden“, „Mehr Kondition“ – 2 Wörter). Ein spezifisches Ziel
+ *        beantwortet „Was genau soll bis wann von wem erreicht werden?“ und braucht dafür zwangsläufig mehr Wörter
+ *        („Meine U12 spielt den Aufschlag sicher ins Feld“ – 8 Wörter).
+ * Grenze: Ein langer, aber schwammiger Satz wird ebenfalls als erfüllt erkannt. Deshalb zeigt der Tipp zusätzlich
+ *         die Leitfrage der Quelle.
+ */
+export function checkSpecific(text: string): boolean {
+  return words(text).length >= MIN_SPECIFIC_WORDS;
+}
+
+/** Zahlwörter, die eine Menge ausdrücken („zwei Einheiten pro Woche“). „ein/eine“ fehlt bewusst – zu häufig als Artikel. */
+const NUMBER_WORDS = new Set([
+  'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn', 'elf', 'zwölf',
+  'zwanzig', 'dreißig', 'vierzig', 'fünfzig', 'hundert', 'hälfte', 'doppelt', 'verdoppeln',
+]);
+
+/**
+ * M – Messbar
+ * Regel: erfüllt, wenn (a) das Feld „Woran misst du den Erfolg?“ ausgefüllt ist ODER (b) im Ziel eine Ziffer
+ *        („8 von 10“, „3×“, „20 %“) ODER (c) ein Zahlwort („zwei Einheiten“) vorkommt.
+ * Warum: Laut Quelle muss man rückblickend feststellen können, ob das Ziel erreicht ist – das gelingt mit Zahlen,
+ *        Mengen, Zeiten oder einer ausdrücklich genannten Ersatzgröße (dafür das eigene Feld).
+ * Grenze: Eine Zahl, die nur ein Datum ist („bis 2027“), zählt ebenfalls – das Datum gehört eigentlich zu „T“.
+ */
+export function checkMeasurable(text: string, measure: string): boolean {
+  if (measure.trim().length > 0) return true; // (a)
+  if (/\d/.test(text)) return true; // (b)
+  return words(text).some((word) => NUMBER_WORDS.has(word.toLocaleLowerCase('de-DE'))); // (c)
+}
+
+/** Verneinungen bzw. Vermeidungswörter, die auf ein negativ formuliertes Ziel hindeuten. */
+const NEGATIVE_WORDS = new Set(['nicht', 'kein', 'keine', 'keinen', 'keinem', 'keiner', 'nie', 'niemals', 'nichts', 'aufhören', 'vermeiden', 'weniger']);
+
+/**
+ * A – Attraktiv
+ * Regel: Das Ziel ist ausgefüllt und weder Ziel noch Messgröße enthalten ein Verneinungs-/Vermeidungswort
+ *        (nicht, kein…, nie, niemals, nichts, aufhören, vermeiden, weniger).
+ * Warum: Die Quelle empfiehlt positive Formulierungen: „Ich möchte finanziell unabhängig werden“ motiviert mehr als
+ *        „Ich will nicht mehr arm sein“. Ob ein Ziel jemanden persönlich reizt, kann die App nicht prüfen – die
+ *        Formulierung schon.
+ * Technik: Verglichen werden ganze Wörter (über words()), daher löst „Nichtschwimmer“ oder „Keiler“ KEINEN
+ *          Treffer aus – anders als eine einfache Textsuche.
+ * Grenze: Doppelte Verneinungen oder Formulierungen wie „ohne Fehler“ werden nicht erkannt.
+ */
+export function checkAttractive(text: string, measure: string): boolean {
+  if (text.trim().length === 0) return false;
+  return !words(`${text} ${measure}`).some((word) => NEGATIVE_WORDS.has(word.toLocaleLowerCase('de-DE')));
+}
+
+/**
+ * R – Realistisch
+ * Regel: Die Trainer:in hat den „Realitäts-Check“ selbst abgehakt.
+ * Warum: Ob Zeit, Wissen und Mittel reichen, weiß nur die Person selbst – die Quelle empfiehlt dafür eine „ehrliche
+ *        Bestandsaufnahme“. Eine automatische Bewertung wäre geraten; das bewusste Abhaken zwingt zum Nachdenken.
+ */
+export function checkRealistic(realistic: boolean): boolean {
+  return realistic;
+}
+
+/**
+ * T – Terminiert
+ * Regel: Ein Zieldatum ist gesetzt.
+ * Warum: „Jedes Ziel braucht eine Deadline“ (Quelle) – als Kontrollpunkt und Ansporn. Das Datum speist auch die
+ *        Restzeit („noch 10 Tage“) und die Fortschrittsleiste.
+ * Hinweis: Ein Datum in der Vergangenheit verhindert das Speichern nicht (z. B. beim Nachtragen); in der Anzeige
+ *          erscheint dann „überschritten“ mit dem Hinweis, das Ziel anzupassen.
+ */
+export function checkTimeBound(dueDate: string | null): boolean {
+  return Boolean(dueDate);
+}
+
+/** Fasst die fünf Einzelprüfungen zusammen (Grundlage für die S-M-A-R-T-Kacheln im Formular). */
 export function smartCheck(goal: GoalDraft): SmartCheck {
-  const text = goal.text.trim();
   return {
-    S: text.split(/\s+/).filter(Boolean).length >= 5,
-    M: goal.measure.trim().length > 0 || /\d/.test(text),
-    A: text.length > 0 && !NEGATIVE_WORDS.test(`${text} ${goal.measure}`),
-    R: goal.realistic,
-    T: Boolean(goal.dueDate),
+    S: checkSpecific(goal.text),
+    M: checkMeasurable(goal.text, goal.measure),
+    A: checkAttractive(goal.text, goal.measure),
+    R: checkRealistic(goal.realistic),
+    T: checkTimeBound(goal.dueDate),
   };
 }
 

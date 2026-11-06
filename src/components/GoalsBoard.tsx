@@ -15,9 +15,11 @@ import { GoalForm } from './GoalForm';
 
 interface GoalsBoardProps {
   mode: 'overview' | 'manage';
+  // IFCM FS-014 / C09a: Überschrift ausblenden, wenn der umgebende aufklappbare Bereich sie schon zeigt
+  showHeading?: boolean;
 }
 
-export function GoalsBoard({ mode }: GoalsBoardProps) {
+export function GoalsBoard({ mode, showHeading = true }: GoalsBoardProps) {
   const { openGoals, achievedGoals, toggleAchieved, deleteGoal, updateGoal } = useGoals();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [celebrate, setCelebrate] = useState<string | null>(null); // Text der Erfolgsmeldung
@@ -45,6 +47,7 @@ export function GoalsBoard({ mode }: GoalsBoardProps) {
 
   return (
     <section aria-labelledby={`goals-heading-${mode}`} className="flex flex-col gap-3">
+      {showHeading && (
       <div className="flex items-center gap-2">
         <Flag size={18} className="text-sport" />
         <h2 id={`goals-heading-${mode}`} className="font-display text-lg font-bold text-ink">
@@ -54,6 +57,7 @@ export function GoalsBoard({ mode }: GoalsBoardProps) {
           {openGoals.length}/{MAX_OPEN_GOALS} offen
         </span>
       </div>
+      )}
 
       {celebrate && (
         <p role="status" className="rounded-2xl border border-sport/40 bg-sport/15 px-4 py-3 text-sm font-semibold text-ink">
