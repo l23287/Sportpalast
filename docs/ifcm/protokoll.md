@@ -4,6 +4,9 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 06.11.2026 | II FS-013 Chunk | C09 | Claude beschreibt C09 (Zielsetzungstool) und nennt 3 Prüfpunkte | FS-013 gestartet, Prompt offen | [FS-013](flow-states/FS-013-C09-zielsetzungstool.md) |
+| 06.11.2026 | II FS-012 Abschluss | C03 | Steuerwort „Vorarbeit“: Alpha-Test bestanden, Alpha-Reflexion von der Entwickler:in durchgeführt; **C03 fertig** | Merge: Freigabe offen | [FS-012](flow-states/FS-012-C03-farben-symbole.md) |
+| 06.11.2026 | Prozess | – | **Neues Steuerwort „Vorarbeit“** eingeführt (Entscheidung Entwickler:in): ersetzt den wiederkehrenden Prompt zum Chunk-Wechsel; in Skill, `CLAUDE.md` und README festgehalten | Prozess-Erkenntnis: wiederkehrende Abläufe als Abkürzung (Prompt Pattern 6 „Cognitive Enhancement“) | [SKILL.md](../../.claude/skills/IFCM/SKILL.md) |
 | 04.11.2026 | II FS-012 Ergebnis | C03 | Symbole für alle 12 Sportarten, wählbares Symbol für eigene Sportarten, Akzentfarbe je Sportart über `--color-sport` (Kontrast geprüft, min. 5,3:1); Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-012](flow-states/FS-012-C03-farben-symbole.md) |
 | 04.11.2026 | II FS-012 Chunk | C03 | Entwickler:in wechselt zum nächsten Chunk; Claude beschreibt C03 und nennt 3 Prüfpunkte | FS-012 gestartet, Prompt offen | [FS-012](flow-states/FS-012-C03-farben-symbole.md) |
 | 04.11.2026 | II FS-011 Abschluss | C08a | Alpha-Test durch Entwickler:in: „echt zufriedenstellend“ → bestanden; Alpha-Reflexion von der Entwickler:in durchgeführt; **C08 inkl. C08a fertig** | Merge: Freigabe offen | [FS-011](flow-states/FS-011-C08a-notizen-heute.md) |

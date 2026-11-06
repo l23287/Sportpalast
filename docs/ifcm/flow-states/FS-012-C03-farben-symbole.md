@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 04.11.2026 – *offen* |
+| Zeitraum | 04.11.2026 – 06.11.2026 |
 | Chunk | C03 (siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in (Compass Navigator) – nächster Chunk laut Reihenfolge (… → C08 → **C03**) |
 | Vorgänger | – (baut auf C02 auf: neue Sportarten zeigen bisher das neutrale 🏅) |
 | Branch / Commits | `ifcm/fs-012-c03-farben-symbole` (enthält C01–C08 und C03), Commit `b058b2b` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Symbole und Farbakzente passen sich der gewählten Sportart an. Bezug: A1 („Individuelles Design (Symbole etc.)“),
@@ -74,12 +74,14 @@ Nachweis: [assets/fs012-nachweis.png](../assets/fs012-nachweis.png) (Tischtennis
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-012-c03-farben-symbole` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 06.11.2026):** Steuerwort „Vorarbeit“ (= Ergebnis zufriedenstellend) → **bestanden**
+
 **Guards (Claude):** keine neuen Abhängigkeiten, keine Bild-/Icon-Pakete (keine Lizenzfragen) ✔ · Logo und
 Markenfarben unverändert ✔ · neue lokale Daten nur Symbole eigener Sportarten ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Durchgeführt von der Entwickler:in (Coach); Inhalte liegen bei der Entwickler:in. *Bei Bedarf nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C03 **fertig** (06.11.2026). C09 baut auf diesem Branch auf.
