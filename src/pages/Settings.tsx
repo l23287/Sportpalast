@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowDown, ArrowUp, ArrowUpDown, Flag, Plus, Trash2, Trophy } from 'lucide-react';
 import { CollapsibleSection } from '../components/CollapsibleSection'; // IFCM FS-014 / C09a
 import { useGoals } from '../context/GoalsContext'; // IFCM FS-013 / C09
@@ -26,6 +26,7 @@ export function Settings() {
   const { addGoal, canAddGoal, deleteGoalsForSport, openGoals, achievedGoals } = useGoals();
   // IFCM FS-014 / C09a: Kommt man über „/einstellungen#ziele“ (Link in der Planübersicht), ist „Deine Ziele“ offen
   const { hash } = useLocation();
+  const navigate = useNavigate(); // IFCM FS-015 / C10: „Einführung erneut ansehen“
   const [reorderMode, setReorderMode] = useState(false);
   const { countForSport, deleteAllForSport } = useAppData();
   const [impressumOpen, setImpressumOpen] = useState(false);
@@ -255,7 +256,16 @@ export function Settings() {
         onCancel={() => setSportToDelete(null)}
       />
 
-      <div className="flex items-center gap-3 text-sm font-medium text-muted">
+      <div className="flex flex-wrap items-center gap-3 text-sm font-medium text-muted">
+        {/* IFCM FS-015 / C10: Einführung jederzeit erneut aufrufbar (Feedback B2) */}
+        <button
+          type="button"
+          onClick={() => navigate('/onboarding')}
+          className="underline-offset-2 transition hover:text-ink hover:underline"
+        >
+          Einführung erneut ansehen
+        </button>
+        <span aria-hidden="true">·</span>
         <button
           type="button"
           onClick={() => setDatenschutzOpen(true)}

@@ -6,8 +6,8 @@ bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (
 
 ## Bereiche
 
-- **Onboarding & Konto** – 3-teilige Einführung vor dem ersten Login, danach Registrierung/Anmeldung
-  (lokales Session-Gate ohne Backend) mit Konto-Verwaltung in den Einstellungen.
+- **Einführung** – 5 Schritte mit Sportart-Auswahl und allen neuen Funktionen; erscheint beim ersten Start und
+  einmalig nach dem Update, jederzeit erneut über die Einstellungen (IFCM C10).
 - **Heute** – oben in der Planübersicht: alle heute anstehenden Pläne (auch Wiederholungen) mit ihren Übungen in
   Reihenfolge und ihren Notizen (lange Notizen ausklappbar, IFCM C08a); steht heute nichts an, wird der nächste
   Termin genannt (IFCM C06b).

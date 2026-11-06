@@ -6,7 +6,7 @@ import { AppShell } from './components/AppShell';
 import { Disclaimer } from './components/Disclaimer';
 import { SiteGate } from './components/SiteGate';
 import { ScrollToTop } from './components/ScrollToTop';
-import { RootRedirect } from './components/RouteGuards';
+import { OnboardingGate, RootRedirect } from './components/RouteGuards'; // IFCM FS-015 / C10: OnboardingGate
 import { Onboarding } from './pages/Onboarding';
 import { PlansOverview } from './pages/PlansOverview';
 import { PlanForm } from './pages/PlanForm';
@@ -31,7 +31,14 @@ export default function App() {
               <Route path="/" element={<RootRedirect />} />
               <Route path="/onboarding" element={<Onboarding />} />
 
-              <Route element={<AppShell />}>
+              {/* IFCM FS-015 / C10: neue Einführung einmalig auch für bestehende Nutzer:innen */}
+              <Route
+                element={
+                  <OnboardingGate>
+                    <AppShell />
+                  </OnboardingGate>
+                }
+              >
                 <Route path="/plaene" element={<PlansOverview />} />
                 <Route path="/plaene/neu" element={<PlanForm />} />
                 <Route path="/plaene/:id" element={<PlanDetail />} />

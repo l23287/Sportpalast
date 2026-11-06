@@ -1,18 +1,23 @@
+// IFCM FS-015 / C10 Einführung in die App: neue Einführung mit 5 Schritten (vorher 3, auf Tischtennis zugeschnitten).
+// Gestaltung: Entwurf in Claude Design (Canvas „TrainerPro Einführung (C10)“, 06.11.2026) – Reihenfolge, Texte und
+// die Sportart-Auswahl im ersten Schritt stammen aus dem Entwurf; Illustrationen, Buttons und Punkte-Navigation
+// bleiben im bestehenden App-Design (Design-Lob A3). Bezug: Feedback B2 „Einleitung in die Funktionen der App“.
 import { useState, type ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
-  BarChart3,
-  Calendar,
-  CheckCircle2,
+  CalendarDays,
+  Check,
   ChevronLeft,
   ClipboardList,
   Clock,
   Dumbbell,
-  ListChecks,
-  Play,
+  Flag,
+  Repeat,
+  StickyNote,
+  Sun,
   Target,
   Timer,
-  Users,
+  Trophy,
 } from 'lucide-react';
 import { PrimaryButton } from '../components/PrimaryButton';
 import { IconButton } from '../components/IconButton';
@@ -20,42 +25,61 @@ import { OnboardingIllustration } from '../components/OnboardingIllustration';
 import { BlobBackground } from '../components/BlobBackground';
 import { TrainerProMark } from '../components/Logo';
 import { markOnboardingSeen } from '../lib/onboarding';
+import { useSport } from '../context/SportContext'; // IFCM FS-015 / C10: Sportart direkt in der Einführung wählen
 
 interface Slide {
+  kicker?: string; // IFCM FS-015 / C10: kleine Überzeile (nur Schritt 1)
   title: string;
   body: string;
+  extra?: string; // IFCM FS-015 / C10: zweiter Absatz für die neuen Funktionen
   hero: ReactNode;
   accents: [ReactNode, ReactNode, ReactNode];
+  sportPicker?: boolean; // IFCM FS-015 / C10: Schritt mit Sportart-Auswahl statt Illustration
 }
 
+// IFCM FS-015 / C10: Texte sportartneutral und auf dem Stand der Weiterentwicklung (C01–C09)
 const SLIDES: Slide[] = [
   {
-    title: 'Baue deine Übungsdatenbank',
-    body: 'Lege Vorhand-, Rückhand- und Aufschlagübungen mit Ziel, Dauer und Schwierigkeitsgrad an – dein Pool für jede Einheit am Tisch.',
+    kicker: 'Willkommen bei TrainerPro',
+    title: 'Dein Training. Jede Sportart.',
+    body: 'Wähle deine Sportart. Jede Sportart ist ein eigener Bereich mit eigenen Plänen, Übungen und Zielen – du kannst jederzeit wechseln.',
+    extra: '12 Sportarten zur Auswahl, eigene Sportarten mit eigenem Symbol jederzeit in den Einstellungen.',
+    hero: <Flag size={30} />,
+    accents: [<Dumbbell key="d" size={17} />, <ClipboardList key="c" size={17} />, <Target key="t" size={17} />],
+    sportPicker: true,
+  },
+  {
+    title: 'Deine Übungsdatenbank',
+    body: 'Lege Übungen mit Ziel, Schwierigkeit und Dauer an – auf die Sekunde genau, von 10 Sek. bis zu langen Einheiten.',
+    extra: 'Im Timer hältst du über den Stift eine Notiz fürs nächste Mal fest.',
     hero: <Dumbbell size={30} />,
-    accents: [<Target key="target" size={17} />, <Clock key="clock" size={17} />, <BarChart3 key="bar" size={17} />],
+    accents: [<Clock key="clock" size={17} />, <StickyNote key="note" size={17} />, <Target key="target" size={17} />],
   },
   {
-    title: 'Deine Pläne, immer griffbereit',
-    body: 'Stelle Trainingspläne aus deinem Übungspool zusammen und behalte Zielgruppe, Dauer und Termin auf einen Blick.',
-    hero: <ClipboardList size={30} />,
-    accents: [
-      <Calendar key="calendar" size={17} />,
-      <Users key="users" size={17} />,
-      <Clock key="clock" size={17} />,
-    ],
+    title: 'Einmal planen – jede Woche trainieren',
+    body: 'Stelle Pläne aus deinen Übungen zusammen und lass sie wöchentlich, alle 2 Wochen oder monatlich wiederholen – mit Wochentag und Uhrzeit.',
+    extra: 'Im Kalender siehst du alle Termine und legst mit einem Tipp einen Plan für einen Tag an.',
+    hero: <CalendarDays size={30} />,
+    accents: [<Repeat key="repeat" size={17} />, <ClipboardList key="plan" size={17} />, <Clock key="clock" size={17} />],
   },
   {
-    title: 'Training, Schritt für Schritt',
-    body: 'TrainerPro führt dich live durchs Training – mit Timer für jede Übung, genau nach Plan.',
-    hero: <Play size={30} />,
-    accents: [
-      <Timer key="timer" size={17} />,
-      <CheckCircle2 key="check" size={17} />,
-      <ListChecks key="list" size={17} />,
-    ],
+    title: 'Auf einen Blick: Heute',
+    body: 'Oben in den Trainingsplänen steht, was heute ansteht – mit allen Übungen und deinen Notizen.',
+    extra: 'Im Plan startest du für jede Übung den Timer und führst so Schritt für Schritt durchs Training.',
+    hero: <Sun size={30} />,
+    accents: [<Timer key="timer" size={17} />, <StickyNote key="note" size={17} />, <Check key="check" size={17} />],
+  },
+  {
+    title: 'Bis zu 3 Kernziele',
+    body: 'Formuliere deine Ziele nach der SMART-Methode – die App zeigt dir, welche Punkte schon erfüllt sind. Erreichte Ziele hakst du ab und feierst sie.',
+    extra: 'Diese Einführung findest du jederzeit in den Einstellungen.',
+    hero: <Flag size={30} />,
+    accents: [<Target key="target" size={17} />, <Trophy key="trophy" size={17} />, <CalendarDays key="cal" size={17} />],
   },
 ];
+
+// IFCM FS-015 / C10: so viele Sportarten zeigt die Auswahl zunächst (Rest über „Alle Sportarten“)
+const PICKER_PREVIEW = 6;
 
 export function Onboarding() {
   const location = useLocation();
@@ -66,6 +90,10 @@ export function Onboarding() {
   const navigate = useNavigate();
   const isLast = step === SLIDES.length - 1;
   const slide = SLIDES[step];
+  // IFCM FS-015 / C10: Sportart-Auswahl im ersten Schritt nutzt die echte Einstellung (SportContext)
+  const { sport, setSport, sports, emojiFor, colorFor } = useSport();
+  const [showAllSports, setShowAllSports] = useState(false);
+  const visibleSports = showAllSports ? sports : sports.slice(0, PICKER_PREVIEW);
 
   function handleSkip() {
     setStep(SLIDES.length - 1);
@@ -97,16 +125,64 @@ export function Onboarding() {
       </div>
 
       <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center py-6">
+        {/* IFCM FS-015 / C10: Überzeile, Titel, zwei Absätze (Texte aus dem Claude-Design-Entwurf) */}
+        {slide.kicker && (
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.08em] text-sun">{slide.kicker}</p>
+        )}
         <h1 className="font-display text-3xl font-extrabold leading-tight text-ink">{slide.title}</h1>
-        <p className="mt-3 max-w-xs text-sm text-muted">{slide.body}</p>
+        <p className="mt-3 text-sm text-muted">{slide.body}</p>
+        {slide.extra && <p className="mt-2 text-sm text-muted-2">{slide.extra}</p>}
 
-        <div className="mt-10">
-          <OnboardingIllustration hero={slide.hero} accents={slide.accents} />
-        </div>
+        {slide.sportPicker ? (
+          // IFCM FS-015 / C10: Sportart wählen – Auswahl wird sofort gespeichert (gleiche Einstellung wie in den Einstellungen)
+          <div className="mt-6 flex flex-col gap-2">
+            <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label="Sportart wählen">
+              {visibleSports.map((option) => {
+                const selected = option === sport;
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    role="radio"
+                    aria-checked={selected}
+                    onClick={() => setSport(option)}
+                    className={`flex h-12 items-center gap-2 rounded-2xl border px-3 text-left text-sm font-semibold text-ink transition ${
+                      selected ? 'border-2 bg-primary-soft' : 'border-border bg-bg-soft hover:border-primary/60'
+                    }`}
+                    style={selected ? { borderColor: colorFor(option) } : undefined}
+                  >
+                    <span aria-hidden="true">{emojiFor(option)}</span>
+                    <span className="min-w-0 flex-1 truncate">{option}</span>
+                    <span
+                      aria-hidden="true"
+                      className="h-2 w-2 shrink-0 rounded-full"
+                      style={{ backgroundColor: colorFor(option) }}
+                    />
+                  </button>
+                );
+              })}
+            </div>
+            {sports.length > PICKER_PREVIEW && (
+              <button
+                type="button"
+                onClick={() => setShowAllSports((prev) => !prev)}
+                aria-expanded={showAllSports}
+                className="self-start py-2 text-sm font-semibold text-primary hover:underline"
+              >
+                {showAllSports ? 'Weniger anzeigen' : `Alle ${sports.length} Sportarten`}
+              </button>
+            )}
+          </div>
+        ) : (
+          <div className="mt-10">
+            <OnboardingIllustration hero={slide.hero} accents={slide.accents} />
+          </div>
+        )}
       </div>
 
       <div className="mx-auto flex w-full max-w-sm flex-col gap-6 pb-4">
-        <div className="flex items-center gap-2">
+        {/* IFCM FS-015 / C10: Fortschritt für Screenreader ansagen */}
+        <div className="flex items-center gap-2" role="img" aria-label={`Schritt ${step + 1} von ${SLIDES.length}`}>
           {SLIDES.map((s, index) => (
             <span
               key={s.title}
