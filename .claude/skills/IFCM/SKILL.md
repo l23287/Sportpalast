@@ -57,6 +57,7 @@ aktuellen Schritt. **Weiter geht es aber nur auf dein Wort.**
 |---|---|---|
 | **„weiter“** | nächster Schritt **innerhalb** der aktuellen Sub-Phase (z. B. im Flow State vom Prompt zum Ergebnis, vom Ergebnis zum Alpha-Test) | führt genau den nächsten Schritt aus, protokolliert ihn und hält dann wieder an |
 | **„nächste Phase“** | Wechsel in die nächste Sub-Phase bzw. Phase (z. B. Brainstorm → Planning, Initiation → Flow States, Alpha-Reflexion → nächster Flow State, letzter Flow State → Go-Live) | prüft zuerst die Ausgangskriterien (Abschnitt 5), nennt offene Punkte, protokolliert den Wechsel als **deine Entscheidung** und beginnt die neue Phase mit ihrem ersten Schritt |
+| **„Vorarbeit“** (seit 06.11.2026) | Kurzform für: *„Agiere als Teamkollege. Das Ergebnis ist zufriedenstellend. Daher gehen wir nun zum nächsten Chunk über, die Alpha-Reflexion liegt in meiner Hand und wurde von mir ausgeführt. Beschreibe also kurz den nächsten Chunk und benenne die Dinge, welche zu beachten sind, in 3 Stichpunkten.“* | 1) aktuellen Flow State abschließen: Alpha-Test **bestanden**, Alpha-Reflexion von dir durchgeführt (Inhalte bei dir), Chunk `fertig`; 2) nächsten Chunk laut Reihenfolge wählen, neuen Flow State anlegen; 3) Chunk kurz beschreiben + **3 Prüfpunkte**; protokollieren, pushen – dann auf den Arbeitsauftrag warten (kein Code) |
 
 Regeln:
 1. **Kein Schritt und kein Phasenwechsel ohne Steuerwort.** Claude beendet jeden Schritt mit einem kurzen
