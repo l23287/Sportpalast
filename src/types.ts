@@ -103,3 +103,17 @@ export interface ServeSession extends ServeSessionGoal {
   startedAt: string;
   endedAt: string | null;
 }
+
+// IFCM FS-013 / C09 Zielsetzungstool: ein Kernziel der Trainer:in (max. 3 offene je Sportart).
+export interface Goal {
+  id: string;
+  sport: Sport; // je Sportart getrennt (wie Pläne und Übungen, C01)
+  text: string; // das Ziel selbst – spezifisch und positiv formuliert (S, A)
+  measure: string; // woran der Erfolg gemessen wird (M), optional
+  realistic: boolean; // Selbsteinschätzung „mit meinen Mitteln machbar“ (R)
+  dueDate: string | null; // Zieldatum „JJJJ-MM-TT“ (T), optional
+  achievedAt: string | null; // Zeitpunkt, an dem das Ziel als erreicht abgehakt wurde
+  createdAt: string;
+}
+
+export type GoalInput = Pick<Goal, 'text' | 'measure' | 'realistic' | 'dueDate'>;
