@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-015 – Chunk gewählt, Rückfrage zur Gestaltung offen |
-| **Aktiver Chunk** | C10 Einführung in die App (letzter Chunk) |
-| **Nächster Schritt** | Rückfrage beantworten, Arbeitsauftrag für C10; danach Phase III Go-Live (Merge-Freigabe nötig) |
+| **Sub-Phase** | FS-015 – Ergebnis liegt vor, als Nächstes Alpha-Test (letzter Chunk) |
+| **Aktiver Chunk** | C10 Einführung in die App (Branch `ifcm/fs-015-c10-einfuehrung`, enthält C01–C09) |
+| **Nächster Schritt** | Alpha-Test; danach „nächste Phase“ → III Go-Live (vorher Merge-Freigabe) |
 | **Zuletzt aktualisiert** | 06.11.2026 |
 
 ## Phasenübersicht
