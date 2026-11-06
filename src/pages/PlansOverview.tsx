@@ -9,6 +9,7 @@ import { EmptyState } from '../components/EmptyState';
 import { ConfirmDialog } from '../components/ConfirmDialog';
 import { useSport } from '../context/SportContext';
 import { TodayTraining } from '../components/TodayTraining'; // IFCM FS-007 / C06b
+import { GoalsBoard } from '../components/GoalsBoard'; // IFCM FS-013 / C09
 
 export function PlansOverview() {
   const { plans, exercises, deletePlan } = useAppData();
@@ -43,6 +44,9 @@ export function PlansOverview() {
 
       {/* IFCM FS-007 / C06b: gesonderter Bereich mit den heute anstehenden Plänen und ihren Übungen */}
       <TodayTraining plans={plans} exercises={exercises} />
+
+      {/* IFCM FS-013 / C09: Kernziele dauerhaft sichtbar unter „Heute“ (Visualisieren statt in der Schublade) */}
+      <GoalsBoard mode="overview" />
 
       {filteredPlans.length === 0 ? (
         <EmptyState

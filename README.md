@@ -11,6 +11,9 @@ bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (
 - **Heute** – oben in der Planübersicht: alle heute anstehenden Pläne (auch Wiederholungen) mit ihren Übungen in
   Reihenfolge und ihren Notizen (lange Notizen ausklappbar, IFCM C08a); steht heute nichts an, wird der nächste
   Termin genannt (IFCM C06b).
+- **Ziele** – bis zu 3 Kernziele je Sportart nach der SMART-Methode (SMART-Check beim Formulieren, Restzeit,
+  Fortschritt, Abhaken mit Erfolgsmeldung), sichtbar in der Planübersicht und in den Einstellungen; Reihenfolge der
+  Sportarten frei sortierbar (IFCM C09).
 - **Trainingspläne** – Pläne als Kacheln, Suche, überfällige Pläne werden rot markiert, Anlegen/Bearbeiten
   mit Übungsauswahl aus dem Pool inkl. Reihenfolge per ↑/↓, Detailansicht mit Start-Timer pro Übung.
 - **Übungen** – eigene Übungsdatenbank (Name, Beschreibung, Ziel, Dauer in Minuten und Sekunden – IFCM C07,

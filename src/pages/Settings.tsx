@@ -1,5 +1,8 @@
 import { useState, type FormEvent } from 'react';
-import { Plus, Trash2 } from 'lucide-react';
+import { ArrowDown, ArrowUp, ArrowUpDown, Plus, Trash2 } from 'lucide-react';
+import { useGoals } from '../context/GoalsContext'; // IFCM FS-013 / C09
+import { GoalForm } from '../components/GoalForm'; // IFCM FS-013 / C09
+import { GoalsBoard } from '../components/GoalsBoard'; // IFCM FS-013 / C09
 import { useSport } from '../context/SportContext';
 import { useAppData } from '../context/AppDataContext'; // IFCM FS-002 / C02
 import { PillSelect } from '../components/PillSelect';
@@ -15,7 +18,11 @@ import type { Sport } from '../types';
 export function Settings() {
   // IFCM FS-002 / C02: Liste aller Sportarten (vordefiniert + eigene) statt fester SPORTS-Liste
   // IFCM FS-012 / C03: emojiFor/colorFor für Symbole und Farbpunkte in der Auswahl
-  const { sport, setSport, sports, customSports, addCustomSport, removeCustomSport, emojiFor, colorFor } = useSport();
+  const { sport, setSport, sports, customSports, addCustomSport, removeCustomSport, emojiFor, colorFor, moveSport } =
+    useSport();
+  // IFCM FS-013 / C09: Kernziele der aktuellen Sportart und Modus „Reihenfolge ändern“
+  const { addGoal, canAddGoal, deleteGoalsForSport } = useGoals();
+  const [reorderMode, setReorderMode] = useState(false);
   const { countForSport, deleteAllForSport } = useAppData();
   const [impressumOpen, setImpressumOpen] = useState(false);
   const [datenschutzOpen, setDatenschutzOpen] = useState(false);
@@ -43,6 +50,7 @@ export function Settings() {
   function confirmDeleteSport() {
     if (!sportToDelete) return;
     deleteAllForSport(sportToDelete);
+    deleteGoalsForSport(sportToDelete); // IFCM FS-013 / C09: Ziele der Sportart ebenfalls entfernen
     removeCustomSport(sportToDelete);
     setSportToDelete(null);
   }
@@ -56,8 +64,61 @@ export function Settings() {
         <p className="text-sm text-muted">Passe TrainerPro an deine Bedürfnisse an.</p>
       </header>
 
+      {/* IFCM FS-013 / C09: „Deine Ziele“ oben im Einstellungsbereich (Mindmap-Skizze) – je Sportart */}
+      <div id="ziele" className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5">
+        <GoalsBoard mode="manage" />
+        {canAddGoal ? (
+          <GoalForm onSubmit={addGoal} />
+        ) : (
+          <p className="text-sm text-muted">
+            Du hast 3 offene Kernziele – konzentriere dich auf diese. Hake ein Ziel ab oder lösche es, um ein neues
+            anzulegen.
+          </p>
+        )}
+      </div>
+
       <div className="flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5">
-        <h2 className="font-display text-lg font-bold text-ink">Sportart</h2>
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="font-display text-lg font-bold text-ink">Sportart</h2>
+          {/* IFCM FS-013 / C09: Kacheln in der Reihenfolge verschieben (Skizze) */}
+          <button
+            type="button"
+            onClick={() => setReorderMode((prev) => !prev)}
+            aria-pressed={reorderMode}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+          >
+            <ArrowUpDown size={15} /> {reorderMode ? 'Fertig' : 'Reihenfolge ändern'}
+          </button>
+        </div>
+        {/* IFCM FS-013 / C09: Reihenfolge mit ↑/↓ statt Ziehen – funktioniert auf dem Handy, mit Tastatur und Screenreader */}
+        {reorderMode && (
+          <ol className="flex flex-col gap-1.5" aria-label="Reihenfolge der Sportarten">
+            {sports.map((option, index) => (
+              <li
+                key={option}
+                className="flex items-center gap-3 rounded-2xl border border-border bg-bg-soft px-3 py-1.5 text-sm text-ink"
+              >
+                <span className="w-5 text-right text-xs text-muted-2">{index + 1}</span>
+                <span aria-hidden="true">{emojiFor(option)}</span>
+                <span className="min-w-0 flex-1 truncate">{option}</span>
+                <IconButton
+                  icon={<ArrowUp size={15} />}
+                  label={`${option} nach oben`}
+                  onClick={() => moveSport(option, -1)}
+                  disabled={index === 0}
+                  className="disabled:opacity-30"
+                />
+                <IconButton
+                  icon={<ArrowDown size={15} />}
+                  label={`${option} nach unten`}
+                  onClick={() => moveSport(option, 1)}
+                  disabled={index === sports.length - 1}
+                  className="disabled:opacity-30"
+                />
+              </li>
+            ))}
+          </ol>
+        )}
         {/* IFCM FS-012 / C03: jede Option mit Symbol und Farbpunkt der Sportart */}
         <PillSelect
           label="Aktuelle Sportart"

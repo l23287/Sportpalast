@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AppDataProvider } from './context/AppDataContext';
 import { SportProvider } from './context/SportContext';
+import { GoalsProvider } from './context/GoalsContext'; // IFCM FS-013 / C09
 import { AppShell } from './components/AppShell';
 import { Disclaimer } from './components/Disclaimer';
 import { SiteGate } from './components/SiteGate';
@@ -22,6 +23,8 @@ export default function App() {
     <SportProvider>
       <SiteGate>
         <AppDataProvider>
+          {/* IFCM FS-013 / C09: Kernziele je Sportart */}
+          <GoalsProvider>
           <BrowserRouter>
             <ScrollToTop />
             <Routes>
@@ -56,6 +59,7 @@ export default function App() {
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </BrowserRouter>
+          </GoalsProvider>
         </AppDataProvider>
       </SiteGate>
       <Disclaimer />
