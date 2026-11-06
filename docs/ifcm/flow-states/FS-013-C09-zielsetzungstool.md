@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 06.11.2026 – *offen* |
+| Zeitraum | 06.11.2026 – 06.11.2026 |
 | Chunk | C09 (siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in (Compass Navigator) – Steuerwort „Vorarbeit“, nächster Chunk laut Reihenfolge (… → C03 → **C09**) |
 | Vorgänger | – |
 | Branch / Commits | `ifcm/fs-013-c09-zielsetzungstool` (enthält C01–C09), Commit `ea1935f` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **teilweise bestanden** → Erweiterung in [FS-014](FS-014-C09a-smart-erklaerung-ausklappen.md) |
 
 ## 1. Chunk & Ziel
 „Ganz neues Zielsetzungstool“ aus der Mindmap: bis zu **3 Kernziele** im Einstellungsbereich eintragen und die Ziele
@@ -66,13 +66,18 @@ nach Neuladen erhalten ✔. Nachweis: [assets/fs013-nachweis.png](../assets/fs01
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-013-c09-zielsetzungstool` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 06.11.2026, wörtlich):** „Schon ein gute Anfang“ – mit dem Auftrag, die Validierung der
+SMART-Punkte zu erklären und genauer zu kommentieren sowie Ziele und Sportart-Einstellung aufklappbar zu machen.
+→ **teilweise bestanden**, Erweiterung als **FS-014 (C09a)**.
+
 **Guards (Claude):** keine neuen Abhängigkeiten ✔ · Ziele nur lokal gespeichert, Längengrenzen, Text statt HTML ✔ ·
 Datenschutz-Hinweis im Formular ✔ · Quelle dokumentiert, Inhalte zusammengefasst statt kopiert (Urheberrecht) ✔ ·
 Umgebung: Netzwerkfreigabe `karrierebibel.de` (nur lesend, nach Zustimmung).
 
 ## 5. Alpha-Reflexion
-*offen*
+Beobachtung Claude: Mit dem Zieltool wurden die Einstellungen sehr lang; die Prüfregeln waren für Außenstehende
+nicht nachvollziehbar. Erkenntnis: Heuristiken offenlegen (Transparenz) und Bildschirmplatz bei wachsenden Seiten früh planen.
 
 ## 6. Abschluss
-*offen*
+Weiter in FS-014 (C09a) auf Basis dieses Branches.

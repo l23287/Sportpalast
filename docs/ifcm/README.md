@@ -10,8 +10,8 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-013 – Ergebnis liegt vor, als Nächstes Alpha-Test |
-| **Aktiver Chunk** | C09 Zielsetzungstool (Branch `ifcm/fs-013-c09-zielsetzungstool`, enthält C01–C08) |
+| **Sub-Phase** | FS-014 (Erweiterung zu C09) – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Aktiver Chunk** | C09 / C09a (Branch `ifcm/fs-014-c09a-smart-erklaerung-ausklappen`, enthält C01–C09) |
 | **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe offen |
 | **Zuletzt aktualisiert** | 06.11.2026 |
 
@@ -39,7 +39,7 @@ flowchart LR
 | I Project Compass | Brainstorm | [01-brainstorm.md](01-brainstorm.md) | abgeschlossen 03.11.2026 |
 | | Planning | [02-planning.md](02-planning.md) | abgeschlossen 03.11.2026 |
 | | Initiation | [03-initiation.md](03-initiation.md), [chunks.md](chunks.md) | abgeschlossen 03.11.2026 |
-| II Flow States | je Chunk | [flow-states/](flow-states/) | läuft (FS-001–FS-008 abgeschlossen, C01–C08 fertig; FS-013 aktiv) |
+| II Flow States | je Chunk | [flow-states/](flow-states/) | läuft (FS-001–FS-008 abgeschlossen, C01–C08 fertig; FS-013 teilweise → FS-014 aktiv) |
 | III Go-Live | Beta-Test, Rollout, Beta-Reflexion | 04-go-live.md (wird angelegt) | offen |
 
 Chronologie aller Schritte: [protokoll.md](protokoll.md) · Recherchierte Quellen: [quellen/](quellen/)

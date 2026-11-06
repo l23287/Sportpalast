@@ -17,4 +17,5 @@ Ein Dokument pro Flow State: `FS-<NNN>-<chunk-id>-<kurzname>.md` (Vorlage:
 | [FS-010](FS-010-C08-notizzettel.md) | C08 Notizzettel an Übungen | 04.11.2026 | teilweise bestanden → FS-011 |
 | [FS-011](FS-011-C08a-notizen-heute.md) | C08a Notizen im Bereich „Heute“ | 04.11.2026 | bestanden |
 | [FS-012](FS-012-C03-farben-symbole.md) | C03 Farben & Symbole je Sportart | 04.–06.11.2026 | bestanden |
-| [FS-013](FS-013-C09-zielsetzungstool.md) | C09 Zielsetzungstool | ab 06.11.2026 | Ergebnis liegt vor, Alpha-Test offen |
+| [FS-013](FS-013-C09-zielsetzungstool.md) | C09 Zielsetzungstool | 06.11.2026 | teilweise bestanden → FS-014 |
+| [FS-014](FS-014-C09a-smart-erklaerung-ausklappen.md) | C09a SMART-Prüfung erklärt & Einstellungen aufklappbar | ab 06.11.2026 | Ergebnis liegt vor, Alpha-Test offen |
