@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 06.11.2026 – *offen* |
+| Zeitraum | 06.11.2026 – 06.11.2026 |
 | Chunk | C09 (Erweiterung „C09a“) |
 | Ausgewählt von | Entwickler:in – Ergebnis des Alpha-Tests von FS-013 |
 | Vorgänger | [FS-013](FS-013-C09-zielsetzungstool.md) |
 | Branch / Commits | `ifcm/fs-014-c09a-smart-erklaerung-ausklappen` (enthält C01–C09), Commit `86269cd` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 1. Erklären, wie die Validierung der einzelnen SMART-Punkte funktioniert, und dies im Code genauer kommentieren.
@@ -60,11 +60,13 @@ Nachweis: [assets/fs014-nachweis.png](../assets/fs014-nachweis.png) (eingeklappt
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-014-c09a-smart-erklaerung-ausklappen` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 06.11.2026):** Steuerwort „Vorarbeit“ (= Ergebnis zufriedenstellend) → **bestanden**
+
 **Guards (Claude):** keine neuen Abhängigkeiten, keine neuen Daten ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Durchgeführt von der Entwickler:in (Coach); Inhalte liegen bei der Entwickler:in. *Bei Bedarf nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C09 inkl. C09a **fertig** (06.11.2026). C10 baut auf diesem Branch auf.
