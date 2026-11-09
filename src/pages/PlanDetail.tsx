@@ -9,6 +9,7 @@ import { EmptyState } from '../components/EmptyState';
 import { ConfirmDialog } from '../components/ConfirmDialog';
 import { Timer } from '../components/Timer';
 import { formatDuration } from '../lib/time';
+import { exerciseSummary } from '../lib/strength'; // IFCM FS-017 / C11
 // IFCM FS-005 / C06: zentrale Termin-/Überfällig-Logik für einmalige und wiederkehrende Pläne
 import { RECURRENCE_LABELS, describeRecurrence, formatDateKey, formatTime, getPlanSchedule } from '../lib/recurrence';
 import { toDateKey } from '../lib/calendar';
@@ -152,7 +153,7 @@ export function PlanDetail() {
                 <div className="mt-1.5 flex flex-wrap items-center gap-2">
                   <DifficultyBadge difficulty={exercise.difficulty} />
                   <span className="inline-flex items-center gap-1 text-xs text-muted-2">
-                    <Clock size={13} /> {formatDuration(exercise.durationSeconds)}
+                    <Clock size={13} /> {exerciseSummary(exercise) /* IFCM FS-017 / C11: „3 × 12 · 40 kg“ oder Dauer */}
                   </span>
                 </div>
               </div>

@@ -30,6 +30,8 @@ interface AppDataContextValue {
   updateExercise: (id: string, input: ExerciseInput) => void;
   // IFCM FS-010 / C08: nur die Notiz einer Übung ändern (aus dem Timer, ohne das ganze Formular)
   updateExerciseNote: (id: string, note: string) => void;
+  // IFCM FS-017 / C11: nur das Vorgabe-Gewicht einer Übung ändern (schnelles +/− ohne Formular)
+  updateExerciseWeight: (id: string, weightKg: number) => void;
   deleteExercise: (id: string) => void;
   getExercise: (id: string) => Exercise | undefined;
   // IFCM FS-002 / C02: Anzahl und Löschen aller Pläne/Übungen einer Sportart (für das Löschen eigener Sportarten)
@@ -92,6 +94,10 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         return exercise;
       },
       // IFCM FS-010 / C08: Notiz bereinigt speichern; leere Notiz entfernt das Feld wieder
+      // IFCM FS-017 / C11: 0 kg = kein Gewicht (null); die geschätzte Dauer bleibt gleich (Gewicht ändert sie nicht)
+      updateExerciseWeight: (id, weightKg) => {
+        setExercises((prev) => prev.map((e) => (e.id === id ? { ...e, weightKg: weightKg > 0 ? weightKg : null } : e)));
+      },
       updateExerciseNote: (id, note) => {
         const cleaned = cleanNote(note);
         setExercises((prev) =>

@@ -24,6 +24,21 @@ export const SPORTS: Sport[] = [
   'Volleyball',
 ];
 
+// IFCM FS-017 / C11: Art einer Übung – feste Dauer (bisher) oder Sätze × Wiederholungen (Krafttraining)
+export type ExerciseFormat = 'duration' | 'sets';
+
+// IFCM FS-017 / C11: Muskelgruppen zum Ordnen der Übungen
+export type MuscleGroup =
+  | 'Beine'
+  | 'Gesäß'
+  | 'Brust'
+  | 'Rücken'
+  | 'Schultern'
+  | 'Arme'
+  | 'Bauch & Rumpf'
+  | 'Ganzkörper'
+  | 'Ausdauer';
+
 export interface Exercise {
   id: string;
   // IFCM FS-001 / C01 Sportart-Trennung: Jede Übung gehört zu genau einer Sportart.
@@ -33,6 +48,13 @@ export interface Exercise {
   goal: string;
   // IFCM FS-009 / C07: Dauer in SEKUNDEN (vorher `durationMinutes`); alte Daten werden beim Laden umgerechnet
   durationSeconds: number;
+  // IFCM FS-017 / C11 Gym: Art der Übung und Kraft-Angaben (alle optional → alte Übungen bleiben gültig)
+  format?: ExerciseFormat; // fehlt = 'duration'
+  sets?: number; // Anzahl Sätze (nur bei 'sets')
+  reps?: number; // Wiederholungen pro Satz (nur bei 'sets')
+  weightKg?: number | null; // Vorgabe-Gewicht der Trainer:in, schnell anpassbar (+/−), kein Personen-Tagebuch
+  restSeconds?: number; // Satzpause in Sekunden (nur bei 'sets')
+  muscleGroup?: MuscleGroup | null; // zum Ordnen im Übungsbereich, in jeder Sportart möglich
   // IFCM FS-010 / C08 Notizzettel: Notiz zur Übung als Erinnerung fürs nächste Mal (reiner Text, optional).
   // Gehört zur ÜBUNG, nicht zum Plan – sie erscheint daher in jedem Plan und bei jedem Start wieder.
   note?: string;
