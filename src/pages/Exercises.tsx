@@ -9,9 +9,11 @@ import { ExerciseCard } from '../components/ExerciseCard';
 import { ExerciseFormModal } from '../components/ExerciseFormModal';
 import type { Exercise, ExerciseInput } from '../types';
 import { MUSCLE_GROUPS } from '../lib/strength'; // IFCM FS-017 / C11
+import { useStreak } from '../context/StreakContext'; // IFCM FS-022 / C12
 
 export function Exercises() {
   const { exercises, addExercise, updateExercise, deleteExercise } = useAppData();
+  const { recordActivity } = useStreak(); // IFCM FS-022 / C12
   const [query, setQuery] = useState('');
   const [modalExercise, setModalExercise] = useState<Exercise | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -51,6 +53,7 @@ export function Exercises() {
       updateExercise(modalExercise.id, input);
     } else {
       addExercise(input);
+      recordActivity(); // IFCM FS-022 / C12: neue Übung erstellt → heutiger Tag zählt für den Streak
     }
     setModalOpen(false);
   }

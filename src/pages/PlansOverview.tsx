@@ -11,6 +11,7 @@ import { useSport } from '../context/SportContext';
 import { TodayTraining } from '../components/TodayTraining'; // IFCM FS-007 / C06b
 import { GoalsBoard } from '../components/GoalsBoard'; // IFCM FS-013 / C09
 import { useGoals } from '../context/GoalsContext'; // IFCM FS-016 / C15
+import { StreakBadge } from '../components/StreakBadge'; // IFCM FS-022 / C12
 
 export function PlansOverview() {
   const { plans, exercises, deletePlan } = useAppData();
@@ -43,6 +44,9 @@ export function PlansOverview() {
       {/* IFCM FS-008 / C06c: Suchzeile steht jetzt ÜBER dem Bereich „Heute“ (vorher darunter).
           Die Suche filtert weiterhin nur die Planliste unten; der Bereich „Heute“ zeigt immer alle heutigen Termine. */}
       <SearchInput value={query} onChange={setQuery} placeholder="Pläne durchsuchen…" className="max-w-md" />
+
+      {/* IFCM FS-022 / C12: Streak über allen anderen Bereichen (ausblendbar in den Einstellungen) */}
+      <StreakBadge />
 
       {/* IFCM FS-007 / C06b: gesonderter Bereich mit den heute anstehenden Plänen und ihren Übungen */}
       <TodayTraining plans={plans} exercises={exercises} />
