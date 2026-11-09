@@ -4,6 +4,8 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 09.11.2026 | II Chunkliste 2 | C11–C15 | Entwickler:in legt neue Chunkliste fest: C11 Sportart „Gym“ verbessern, C12 Streak, C13 Stoppuhr, C14 Erweiterung der Statistik, C15 Ziel-Funktion nicht verpflichtend; Claude ergänzt Kurzbeschreibungen als Vorschlag | Go-Live verschoben; Reihenfolge offen | [chunks.md](chunks.md) |
+| 09.11.2026 | II FS-015 Abschluss | C10 | Entwickler:in: Flow-State-Zyklus abgeschlossen → C10 bestanden; **Chunkliste 1 (C01–C10) vollständig** | Merge C01–C10: Freigabe offen | [FS-015](flow-states/FS-015-C10-einfuehrung.md) |
 | 06.11.2026 | II FS-015 Ergebnis | C10 | Entwurf der Einführung in Claude Design (5 Screens, privat) und Umsetzung im Code: 5 Schritte mit Sportart-Auswahl, Version-2-Merker (einmalig für bestehende Nutzer:innen), „Einführung erneut ansehen“; Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen; danach alle Chunks fertig | [FS-015](flow-states/FS-015-C10-einfuehrung.md) |
 | 06.11.2026 | II FS-015 Rückfrage | C10 | Entwickler:in: Gestaltung mit Claude Design auf heute vorgezogen, Durchführung freigegeben | Arbeitsauftrag C10 | [FS-015](flow-states/FS-015-C10-einfuehrung.md) |
 | 06.11.2026 | II FS-015 Chunk | C10 | Claude beschreibt C10 (letzter Chunk), nennt 3 Prüfpunkte und stellt 1 Rückfrage (Gestaltung in Claude Design vorab oder direkt im App-Design) | FS-015 gestartet | [FS-015](flow-states/FS-015-C10-einfuehrung.md) |

@@ -15,3 +15,8 @@
 ## Chunks
 Siehe [chunks.md](chunks.md). Vorschlag mit 10 Chunks (C01–C10) aus den blau markierten Punkten der Mindmap,
 erstellt am 03.11.2026, von der Entwickler:in freigegeben.
+
+## Chunkliste 2 (09.11.2026)
+Nach Abschluss aller Flow States der ersten Liste legt die Entwickler:in (Compass Navigator) eine zweite Chunkliste
+fest: C11–C15 (siehe [chunks.md](chunks.md)). Go-Live (Phase III) wird damit nach hinten verschoben; die Flow States
+laufen mit der neuen Liste weiter.

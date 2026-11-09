@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 06.11.2026 – *offen* |
+| Zeitraum | 06.11.2026 – 09.11.2026 |
 | Chunk | C10 (siehe [../chunks.md](../chunks.md)) – letzter Chunk der Chunkliste |
 | Ausgewählt von | Entwickler:in (Compass Navigator) – Steuerwort „Vorarbeit“, Reihenfolge (… → C09 → **C10**) |
 | Vorgänger | – (baut auf allen bisherigen Chunks auf) |
 | Branch / Commits | `ifcm/fs-015-c10-einfuehrung` (enthält C01–C10), Commit `2b9fe70` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Neue Einführung in die Funktionen der App. Bezug: B2 („Einleitung in die Funktionen der App“), Mindmap „Einführung in
@@ -68,12 +68,14 @@ Nachweis: [assets/fs015-nachweis.png](../assets/fs015-nachweis.png) (Schritt 1 �
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-015-c10-einfuehrung` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 09.11.2026):** „dieser Flowstate Zyklus ist nun abgeschlossen“ → **bestanden**
+
 **Guards (Claude):** keine neuen Abhängigkeiten, keine fremden Bilder ✔ · Entwurf in Claude Design ist privat ✔ ·
 barrierefrei: echte Buttons, `aria-checked`, Fortschritt als Text ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Durch die Entwickler:in (Coach); Inhalte liegen bei der Entwickler:in. *Bei Bedarf nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C10 **fertig** (09.11.2026) – damit ist die erste Chunkliste (C01–C10) vollständig abgearbeitet.

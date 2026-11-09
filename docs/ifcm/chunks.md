@@ -1,5 +1,7 @@
 # Chunkliste
 
+> **Chunkliste 1 (C01–C10): vollständig abgearbeitet am 09.11.2026.** Chunkliste 2 (C11–C15) siehe unten.
+
 Gepflegt vom Compass Navigator; Claude hält den Status aktuell. Immer nur **ein** Chunk `in Arbeit`.
 
 > **Status: freigegeben von der Entwickler:in am 03.11.2026** (Vorschlag Claude, unverändert übernommen).
@@ -18,10 +20,24 @@ Gepflegt vom Compass Navigator; Claude hält den Status aktuell. Immer nur **ein
 | C07 | Dauer in Sekunden | Übungsdauer auch in Sekunden; Timer-Kreis zeigt z. B. „10 sek“ | B3 | mittel | fertig (Merge offen) | [FS-009](flow-states/FS-009-C07-dauer-sekunden.md) |
 | C08 | Notizzettel an Übungen | Stift-Icon im Timer-Screen öffnet eine Notiz zur Übung, als Erinnerung fürs nächste Mal; Buttons „Pause“ und „Schließen“ | B4 | mittel | fertig (Merge offen) | [FS-010](flow-states/FS-010-C08-notizzettel.md), [FS-011](flow-states/FS-011-C08a-notizen-heute.md) |
 | C09 | Zielsetzungstool | Bis zu 3 Kernziele im Einstellungsbereich eintragen; motivierende Anzeige der Ziele; Sportarten als Kacheln, in der Reihenfolge verschiebbar | neu (eigene Idee) | niedrig | fertig (Merge offen) | [FS-013](flow-states/FS-013-C09-zielsetzungstool.md), [FS-014](flow-states/FS-014-C09a-smart-erklaerung-ausklappen.md) |
-| C10 | Einführung in die App | Neue Einführung in die Funktionen, gestaltet mit Claude Design; zuletzt, damit sie alle neuen Funktionen zeigt | B2 | hoch | in Arbeit | [FS-015](flow-states/FS-015-C10-einfuehrung.md) |
+| C10 | Einführung in die App | Neue Einführung in die Funktionen, gestaltet mit Claude Design; zuletzt, damit sie alle neuen Funktionen zeigt | B2 | hoch | fertig (Merge offen) | [FS-015](flow-states/FS-015-C10-einfuehrung.md) |
 
 **Empfohlene Reihenfolge:** C01 → C02 → C04 → C05 → C06 → C07 → C08 → C03 → C09 → C10
 (C01 ist Voraussetzung für C02/C03; C04 macht den Platz für C05 frei; C06 baut auf C05 auf.)
+
+## Chunkliste 2 (ab 09.11.2026)
+
+> **Status: vorgegeben von der Entwickler:in am 09.11.2026** (Compass Navigator). IDs im Format der ersten Liste
+> (Vorgabe „C011 … C015“ → C11 … C15). Inhalte: Kurzbeschreibung = Vorschlag Claude, wird je Chunk in der
+> „Vorarbeit“ genauer geklärt.
+
+| ID | Titel (Vorgabe) | Inhalt (Vorschlag Claude) | Bezug | Priorität | Status | Flow States |
+|---|---|---|---|---|---|---|
+| C11 | Sportart „Gym“ verbessern | Gym/Fitness passend zur Sportart: z. B. Sätze × Wiederholungen und Gewicht statt nur Dauer | A2 (Gym fehlte) | *offen* | offen | – |
+| C12 | Streak einführen | Serie aufeinanderfolgender Trainings/Wochen als Motivation, sichtbar in der Übersicht | neu | *offen* | offen | – |
+| C13 | Stoppuhr für Sportarten | Hochzählende Stoppuhr (mit Runden/Zwischenzeiten) zusätzlich zum herunterzählenden Timer, z. B. für Schwimmen, Leichtathletik | neu | *offen* | offen | – |
+| C14 | Erweiterung der Statistik | Mehr Auswertungen, z. B. absolvierte Trainings, Trainingszeit pro Woche, Ziele, Streak | neu | *offen* | offen | – |
+| C15 | Ziel-Funktion nicht verpflichtend | Zieltool (C09) ein- und ausschaltbar; ausgeschaltet keine Ziel-Hinweise in der Übersicht | Rückmeldung zu C09 | *offen* | offen | – |
 
 ## Nicht in dieser Phase (🟧 orange in der Mindmap)
 | Thema | Bezug | Grund laut Mindmap |
