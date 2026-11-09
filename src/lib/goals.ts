@@ -15,11 +15,7 @@ export const MAX_GOAL_MEASURE = 80;
 /** Datenschutz-Hinweis wie bei den Notizen (C08): Ziele sind Ziele der Trainer:innen. */
 export const GOAL_PRIVACY_HINT = 'Bitte keine Namen oder persönlichen Daten von Sportler:innen eintragen.';
 
-/** Beispiele im Muster der Quelle („Ich werde … bis …, indem …“), auf Vereinstraining übertragen. */
-export const GOAL_EXAMPLES = [
-  'Bis zum 31.01. spielen 8 von 10 Kindern meiner U12 den Aufschlag sicher ins Feld, indem wir jede Einheit 10 Minuten Aufschläge üben.',
-  'Ich plane bis Ende Dezember jede Woche beide Trainingseinheiten spätestens zwei Tage vorher vollständig in TrainerPro.',
-];
+// IFCM FS-018 / C16: Beispielziele je Sportart stehen jetzt in lib/sportExamples.ts (examplesFor(sport).goals).
 
 export interface SmartCheck {
   S: boolean; // Spezifisch

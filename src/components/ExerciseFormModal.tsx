@@ -20,6 +20,7 @@ import {
   formatOf,
 } from '../lib/strength'; // IFCM FS-017 / C11
 import { formatDuration } from '../lib/time'; // IFCM FS-017 / C11: geschätzte Dauer anzeigen
+import { examplesFor } from '../lib/sportExamples'; // IFCM FS-018 / C16
 
 interface ExerciseFormModalProps {
   open: boolean;
@@ -39,6 +40,7 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
   const [error, setError] = useState('');
   // IFCM FS-017 / C11: Art der Übung, Kraft-Angaben und Muskelgruppe
   const { sport } = useSport();
+  const examples = examplesFor(sport); // IFCM FS-018 / C16: Vorschläge passend zur Sportart
   const [format, setFormat] = useState<ExerciseFormat>('duration');
   const [sets, setSets] = useState(3);
   const [reps, setReps] = useState(10);
@@ -151,7 +153,7 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
             className={inputClass}
             value={name}
             onChange={(event) => setName(event.target.value)}
-            placeholder="z. B. Vorhand-Rückhand-Wechsel"
+            placeholder={`z. B. ${examples.exerciseName}`} // IFCM FS-018 / C16
           />
         </div>
         <div>
@@ -176,7 +178,7 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
             className={inputClass}
             value={goal}
             onChange={(event) => setGoal(event.target.value)}
-            placeholder="z. B. Schlagpräzision"
+            placeholder={`z. B. ${examples.exerciseGoal}`} // IFCM FS-018 / C16
           />
         </div>
         {/* IFCM FS-017 / C11: Art der Übung wählen – Dauer oder Sätze × Wiederholungen */}
