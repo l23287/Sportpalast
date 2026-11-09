@@ -8,6 +8,7 @@ import { ConfirmDialog } from '../components/ConfirmDialog';
 import { ExerciseCard } from '../components/ExerciseCard';
 import { ExerciseFormModal } from '../components/ExerciseFormModal';
 import type { Exercise, ExerciseInput } from '../types';
+import { MUSCLE_GROUPS } from '../lib/strength'; // IFCM FS-017 / C11
 
 export function Exercises() {
   const { exercises, addExercise, updateExercise, deleteExercise } = useAppData();
@@ -21,6 +22,17 @@ export function Exercises() {
     if (!q) return exercises;
     return exercises.filter((exercise) => exercise.name.toLowerCase().includes(q));
   }, [exercises, query]);
+
+  // IFCM FS-017 / C11: Übungen nach Muskelgruppen ordnen. Nur wenn mindestens eine Übung eine Muskelgruppe hat,
+  // erscheinen Abschnitte (Reihenfolge wie MUSCLE_GROUPS, „Ohne Muskelgruppe“ zuletzt) – sonst wie bisher eine Liste.
+  const groupedExercises = useMemo(() => {
+    if (!filteredExercises.some((exercise) => exercise.muscleGroup)) return null;
+    const groups = [...MUSCLE_GROUPS, null].map((group) => ({
+      title: group ?? 'Ohne Muskelgruppe',
+      items: filteredExercises.filter((exercise) => (exercise.muscleGroup ?? null) === group),
+    }));
+    return groups.filter((group) => group.items.length > 0);
+  }, [filteredExercises]);
 
   const pendingDeleteExercise = exercises.find((exercise) => exercise.id === pendingDeleteId);
 
@@ -71,6 +83,27 @@ export function Exercises() {
             ) : undefined
           }
         />
+      ) : groupedExercises ? (
+        // IFCM FS-017 / C11: ein Abschnitt je Muskelgruppe mit Anzahl
+        <div className="flex flex-col gap-8">
+          {groupedExercises.map((group) => (
+            <section key={group.title} aria-label={group.title} className="flex flex-col gap-3">
+              <h2 className="font-display text-lg font-bold text-ink">
+                {group.title} <span className="text-sm font-medium text-muted-2">({group.items.length})</span>
+              </h2>
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                {group.items.map((exercise) => (
+                  <ExerciseCard
+                    key={exercise.id}
+                    exercise={exercise}
+                    onEdit={() => openEditModal(exercise)}
+                    onDelete={() => setPendingDeleteId(exercise.id)}
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
       ) : (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {filteredExercises.map((exercise) => (

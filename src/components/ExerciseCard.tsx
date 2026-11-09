@@ -1,8 +1,10 @@
-import { Clock, Dumbbell, Pencil, StickyNote, Target, Trash2 } from 'lucide-react';
+import { Clock, Dumbbell, Layers, Pencil, Repeat2, StickyNote, Target, Timer, Trash2 } from 'lucide-react';
 import type { Exercise } from '../types';
 import { DifficultyBadge } from './DifficultyBadge';
 import { IconButton } from './IconButton';
 import { formatDuration } from '../lib/time';
+import { formatOf } from '../lib/strength'; // IFCM FS-017 / C11
+import { WeightStepper } from './WeightStepper'; // IFCM FS-017 / C11
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -41,10 +43,30 @@ export function ExerciseCard({ exercise, onEdit, onDelete }: ExerciseCardProps) 
             <Target size={13} /> {exercise.goal}
           </span>
         )}
-        <span className="inline-flex items-center gap-1">
-          <Clock size={13} /> {formatDuration(exercise.durationSeconds) /* IFCM FS-009 / C07 */}
-        </span>
+        {/* IFCM FS-017 / C11: Satz-Übung zeigt Sätze × Wdh. und Satzpause, Dauer-Übung wie bisher die Dauer */}
+        {formatOf(exercise) === 'sets' ? (
+          <>
+            <span className="inline-flex items-center gap-1">
+              <Repeat2 size={13} /> {exercise.sets} × {exercise.reps}
+            </span>
+            <span className="inline-flex items-center gap-1">
+              <Timer size={13} /> {exercise.restSeconds ?? 0} Sek. Pause
+            </span>
+          </>
+        ) : (
+          <span className="inline-flex items-center gap-1">
+            <Clock size={13} /> {formatDuration(exercise.durationSeconds) /* IFCM FS-009 / C07 */}
+          </span>
+        )}
+        {exercise.muscleGroup && (
+          <span className="inline-flex items-center gap-1">
+            <Layers size={13} /> {exercise.muscleGroup}
+          </span>
+        )}
       </div>
+
+      {/* IFCM FS-017 / C11: Gewicht direkt auf der Karte anpassen */}
+      {formatOf(exercise) === 'sets' && <WeightStepper exercise={exercise} />}
 
       <div className="mt-1 flex gap-2">
         <IconButton icon={<Pencil size={16} />} label="Übung bearbeiten" onClick={onEdit} />

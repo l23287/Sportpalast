@@ -6,6 +6,20 @@ import { inputClass, labelClass, selectClass, textareaClass } from '../lib/formS
 import { DIFFICULTIES } from '../types';
 import type { Difficulty, Exercise, ExerciseInput } from '../types';
 import { MAX_EXERCISE_SECONDS, splitSeconds } from '../lib/duration'; // IFCM FS-009 / C07
+import type { ExerciseFormat, MuscleGroup } from '../types'; // IFCM FS-017 / C11
+import { useSport } from '../context/SportContext'; // IFCM FS-017 / C11: Standard-Art je Sportart
+import {
+  DEFAULT_REST_SECONDS,
+  MAX_REPS,
+  MAX_REST_SECONDS,
+  MAX_SETS,
+  MAX_WEIGHT_KG,
+  MUSCLE_GROUPS,
+  defaultFormatFor,
+  estimateSetsSeconds,
+  formatOf,
+} from '../lib/strength'; // IFCM FS-017 / C11
+import { formatDuration } from '../lib/time'; // IFCM FS-017 / C11: geschätzte Dauer anzeigen
 
 interface ExerciseFormModalProps {
   open: boolean;
@@ -23,6 +37,14 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
   const [durationSecondsPart, setDurationSecondsPart] = useState(0);
   const [difficulty, setDifficulty] = useState<Difficulty>('Anfänger');
   const [error, setError] = useState('');
+  // IFCM FS-017 / C11: Art der Übung, Kraft-Angaben und Muskelgruppe
+  const { sport } = useSport();
+  const [format, setFormat] = useState<ExerciseFormat>('duration');
+  const [sets, setSets] = useState(3);
+  const [reps, setReps] = useState(10);
+  const [weight, setWeight] = useState(''); // Text, damit „42,5“ mit Komma eingegeben werden kann
+  const [restSeconds, setRestSeconds] = useState(DEFAULT_REST_SECONDS);
+  const [muscleGroup, setMuscleGroup] = useState<MuscleGroup | ''>('');
 
   useEffect(() => {
     if (!open) return;
@@ -35,12 +57,54 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
     setDurationSecondsPart(split.seconds);
     setDifficulty(exercise?.difficulty ?? 'Anfänger');
     setError('');
-  }, [open, exercise]);
+    // IFCM FS-017 / C11: neue Übung in Gym/Fitness startet als Satz-Übung, sonst als Dauer-Übung
+    setFormat(exercise ? formatOf(exercise) : defaultFormatFor(sport));
+    setSets(exercise?.sets ?? 3);
+    setReps(exercise?.reps ?? 10);
+    setWeight(exercise?.weightKg ? String(exercise.weightKg).replace('.', ',') : '');
+    setRestSeconds(exercise?.restSeconds ?? DEFAULT_REST_SECONDS);
+    setMuscleGroup(exercise?.muscleGroup ?? '');
+  }, [open, exercise, sport]);
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
     if (!name.trim()) {
       setError('Bitte gib einen Namen für die Übung ein.');
+      return;
+    }
+    // IFCM FS-017 / C11: Satz-Übung – eigene Prüfung, Dauer wird geschätzt statt eingegeben
+    if (format === 'sets') {
+      const weightKg = weight.trim() ? Number(weight.replace(',', '.')) : null;
+      if (!Number.isInteger(sets) || sets < 1 || sets > MAX_SETS) {
+        setError(`Bitte gib zwischen 1 und ${MAX_SETS} Sätze an.`);
+        return;
+      }
+      if (!Number.isInteger(reps) || reps < 1 || reps > MAX_REPS) {
+        setError(`Bitte gib zwischen 1 und ${MAX_REPS} Wiederholungen an.`);
+        return;
+      }
+      if (weightKg !== null && (!Number.isFinite(weightKg) || weightKg < 0 || weightKg > MAX_WEIGHT_KG)) {
+        setError(`Das Gewicht muss zwischen 0 und ${MAX_WEIGHT_KG} kg liegen.`);
+        return;
+      }
+      if (!Number.isInteger(restSeconds) || restSeconds < 0 || restSeconds > MAX_REST_SECONDS) {
+        setError(`Die Satzpause muss zwischen 0 und ${MAX_REST_SECONDS} Sekunden liegen.`);
+        return;
+      }
+      onSubmit({
+        name: name.trim(),
+        description: description.trim(),
+        goal: goal.trim(),
+        difficulty,
+        format: 'sets',
+        sets,
+        reps,
+        weightKg: weightKg || null, // 0 kg = kein Gewicht (z. B. Eigengewicht)
+        restSeconds,
+        muscleGroup: muscleGroup || null,
+        // geschätzte Dauer, damit Plansummen, „Heute“ und Statistik ohne Umbau weiter stimmen
+        durationSeconds: estimateSetsSeconds(sets, reps, restSeconds),
+      });
       return;
     }
     // IFCM FS-009 / C07: Prüfung beider Felder; die Gesamtdauer muss größer als 0 sein
@@ -69,6 +133,8 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
       goal: goal.trim(),
       durationSeconds, // IFCM FS-009 / C07
       difficulty,
+      format: 'duration', // IFCM FS-017 / C11
+      muscleGroup: muscleGroup || null, // IFCM FS-017 / C11
     });
   }
 
@@ -113,7 +179,69 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
             placeholder="z. B. Schlagpräzision"
           />
         </div>
+        {/* IFCM FS-017 / C11: Art der Übung wählen – Dauer oder Sätze × Wiederholungen */}
+        <div role="radiogroup" aria-label="Art der Übung" className="grid grid-cols-2 gap-2">
+          {(
+            [
+              ['duration', 'Dauer'],
+              ['sets', 'Sätze × Wdh.'],
+            ] as const
+          ).map(([value, label]) => (
+            <button
+              key={value}
+              type="button"
+              role="radio"
+              aria-checked={format === value}
+              onClick={() => {
+                setFormat(value);
+                setError('');
+              }}
+              className={`h-11 rounded-2xl border text-sm font-semibold transition ${
+                format === value
+                  ? 'border-transparent bg-gradient-to-br from-primary to-primary-dark text-white'
+                  : 'border-border bg-bg-soft text-muted hover:text-ink'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        {format === 'sets' && (
+          // IFCM FS-017 / C11: Kraft-Angaben; Gewicht optional (leer = Eigengewicht), Komma erlaubt
+          <fieldset className="flex flex-col gap-3">
+            <legend className="sr-only">Sätze, Wiederholungen, Gewicht und Satzpause</legend>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className={labelClass} htmlFor="exercise-sets">Sätze</label>
+                <input id="exercise-sets" type="number" inputMode="numeric" min={1} max={MAX_SETS} className={inputClass}
+                  value={sets} onChange={(event) => { setSets(Number(event.target.value)); setError(''); }} />
+              </div>
+              <div>
+                <label className={labelClass} htmlFor="exercise-reps">Wiederholungen</label>
+                <input id="exercise-reps" type="number" inputMode="numeric" min={1} max={MAX_REPS} className={inputClass}
+                  value={reps} onChange={(event) => { setReps(Number(event.target.value)); setError(''); }} />
+              </div>
+              <div>
+                <label className={labelClass} htmlFor="exercise-weight">Gewicht in kg (optional)</label>
+                <input id="exercise-weight" inputMode="decimal" className={inputClass} placeholder="z. B. 40"
+                  value={weight} onChange={(event) => { setWeight(event.target.value); setError(''); }} />
+              </div>
+              <div>
+                <label className={labelClass} htmlFor="exercise-rest">Satzpause in Sek.</label>
+                <input id="exercise-rest" type="number" inputMode="numeric" min={0} max={MAX_REST_SECONDS} className={inputClass}
+                  value={restSeconds} onChange={(event) => { setRestSeconds(Number(event.target.value)); setError(''); }} />
+              </div>
+            </div>
+            <p className="text-xs text-muted-2">
+              Geschätzte Dauer: {formatDuration(estimateSetsSeconds(sets || 0, reps || 0, restSeconds || 0))} (für
+              Plansummen). Das Gewicht kannst du später direkt auf der Übungskarte oder im Timer mit +/− anpassen.
+            </p>
+          </fieldset>
+        )}
+
         {/* IFCM FS-009 / C07: Dauer mit Minuten UND Sekunden (vorher nur ganze Minuten, mindestens 1) */}
+        {format === 'duration' && (
         <fieldset>
           <legend className={labelClass}>Dauer</legend>
           <div className="grid grid-cols-2 gap-4">
@@ -154,7 +282,27 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
             </div>
           </div>
         </fieldset>
-        <div className="grid grid-cols-1 gap-4">
+        )}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {/* IFCM FS-017 / C11: Muskelgruppe zum Ordnen (optional, in jeder Sportart) */}
+          <div>
+            <label className={labelClass} htmlFor="exercise-muscle">
+              Muskelgruppe (optional)
+            </label>
+            <select
+              id="exercise-muscle"
+              className={selectClass}
+              value={muscleGroup}
+              onChange={(event) => setMuscleGroup(event.target.value as MuscleGroup | '')}
+            >
+              <option value="">– keine –</option>
+              {MUSCLE_GROUPS.map((group) => (
+                <option key={group} value={group}>
+                  {group}
+                </option>
+              ))}
+            </select>
+          </div>
           <div>
             <label className={labelClass} htmlFor="exercise-difficulty">
               Schwierigkeitsgrad

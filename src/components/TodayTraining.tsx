@@ -8,6 +8,7 @@ import type { Exercise, TrainingPlan } from '../types';
 import { plansByDay, toDateKey, formatLongDate } from '../lib/calendar';
 import { formatDateKey } from '../lib/recurrence';
 import { formatDuration } from '../lib/time';
+import { exerciseSummary } from '../lib/strength'; // IFCM FS-017 / C11
 import { ExpandableNote } from './ExpandableNote'; // IFCM FS-011 / C08a
 
 interface TodayTrainingProps {
@@ -116,7 +117,7 @@ export function TodayTraining({ plans, exercises }: TodayTrainingProps) {
                             {index + 1}
                           </span>
                           <span className="min-w-0 flex-1 truncate text-ink">{exercise.name}</span>
-                          <span className="shrink-0 text-xs text-muted-2">{formatDuration(exercise.durationSeconds)}</span>
+                          <span className="shrink-0 text-xs text-muted-2">{exerciseSummary(exercise) /* IFCM FS-017 / C11: „3 × 12 · 40 kg“ oder Dauer */}</span>
                         </div>
                         {/* IFCM FS-011 / C08a: Notiz der Übung (aus C08) immer anzeigen, eingerückt unter dem Namen;
                             lange Notizen gekürzt und ausklappbar */}

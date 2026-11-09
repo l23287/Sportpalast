@@ -17,6 +17,8 @@ bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (
   (IFCM C09a).
 - **Trainingspläne** – Pläne als Kacheln, Suche, überfällige Pläne werden rot markiert, Anlegen/Bearbeiten
   mit Übungsauswahl aus dem Pool inkl. Reihenfolge per ↑/↓, Detailansicht mit Start-Timer pro Übung.
+- **Krafttraining (Gym)** – Übungen als Sätze × Wiederholungen mit Gewicht und Satzpause, Gewicht per +/− auf der
+  Karte und im Timer anpassbar, Satz- und Pausen-Timer, Ordnung nach Muskelgruppen (IFCM C11).
 - **Übungen** – eigene Übungsdatenbank (Name, Beschreibung, Ziel, Dauer in Minuten und Sekunden – IFCM C07,
   Schwierigkeitsgrad); bei Tischtennis
   zusätzlich der Reiter **Aufschlagtraining** (IFCM C04).

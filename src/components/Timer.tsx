@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Pause, Pencil, Play, RotateCcw, StickyNote, X } from 'lucide-react';
+import { Check, Pause, Pencil, Play, RotateCcw, SkipForward, StickyNote, X } from 'lucide-react';
 import { useAppData } from '../context/AppDataContext'; // IFCM FS-010 / C08
 import { MAX_NOTE_LENGTH, NOTE_PRIVACY_HINT } from '../lib/note'; // IFCM FS-010 / C08
 import { formatCountdown, formatDuration } from '../lib/time'; // IFCM FS-009 / C07: formatDuration
 import type { Exercise } from '../types';
+import { formatOf } from '../lib/strength'; // IFCM FS-017 / C11
+import { WeightStepper } from './WeightStepper'; // IFCM FS-017 / C11
 
 interface TimerProps {
   exercise: Exercise;
@@ -15,8 +17,22 @@ export function Timer({ exercise, onClose }: TimerProps) {
   const totalSeconds = exercise.durationSeconds;
   // IFCM FS-009 / C07: Übungen unter einer Minute zeigen im Kreis „10 sek“ statt „00:10“ (Mindmap-Skizze)
   const shortExercise = totalSeconds < 60;
-  const [remaining, setRemaining] = useState(totalSeconds);
-  const [running, setRunning] = useState(true);
+  // IFCM FS-017 / C11 Satz- und Pausen-Timer: Bei Satz-Übungen läuft KEIN Gesamt-Countdown. Stattdessen:
+  //   Phase „work“: „Satz x von n“ – die Person trainiert und tippt „Satz geschafft“
+  //   Phase „rest“: Satzpause zählt herunter (remaining); bei 0 oder „Pause überspringen“ → nächster Satz
+  //   Phase „done“: alle Sätze geschafft
+  // Die Hooks stehen immer (React-Regel), die Darstellung unterscheidet sich je nach Art der Übung.
+  const isSets = formatOf(exercise) === 'sets';
+  const totalSets = exercise.sets ?? 1;
+  const restSeconds = exercise.restSeconds ?? 0;
+  const [phase, setPhase] = useState<'work' | 'rest' | 'done'>('work');
+  const [currentSet, setCurrentSet] = useState(1);
+  const { getExercise } = useAppData();
+  // live aus dem Speicher lesen, damit das per +/− geänderte Gewicht sofort im Timer erscheint
+  const liveExercise = getExercise(exercise.id) ?? exercise;
+
+  const [remaining, setRemaining] = useState(isSets ? 0 : totalSeconds);
+  const [running, setRunning] = useState(!isSets); // Satz-Übung startet in Phase „work“ ohne Countdown
 
   // IFCM FS-010 / C08 Notizzettel: Entwurf der Notiz (Start: gespeicherte Notiz vom letzten Mal).
   // Jede Änderung wird sofort gespeichert. Der Countdown hängt nur an exercise.id/totalSeconds – das Speichern
@@ -31,9 +47,48 @@ export function Timer({ exercise, onClose }: TimerProps) {
   }
 
   useEffect(() => {
-    setRemaining(totalSeconds);
-    setRunning(true);
-  }, [exercise.id, totalSeconds]);
+    // IFCM FS-017 / C11: Satz-Übung beginnt bei Satz 1 ohne Countdown
+    setRemaining(isSets ? 0 : totalSeconds);
+    setRunning(!isSets);
+    setPhase('work');
+    setCurrentSet(1);
+  }, [exercise.id, totalSeconds, isSets]);
+
+  // IFCM FS-017 / C11: Satzpause abgelaufen → automatisch zum nächsten Satz
+  useEffect(() => {
+    if (isSets && phase === 'rest' && remaining === 0) {
+      setPhase('work');
+      setCurrentSet((prev) => prev + 1);
+    }
+  }, [isSets, phase, remaining]);
+
+  // IFCM FS-017 / C11: „Satz geschafft“ – nach dem letzten Satz fertig, sonst Satzpause starten (oder ohne Pause weiter)
+  function completeSet() {
+    if (currentSet >= totalSets) {
+      setPhase('done');
+      setRunning(false);
+      return;
+    }
+    if (restSeconds > 0) {
+      setPhase('rest');
+      setRemaining(restSeconds);
+      setRunning(true);
+    } else {
+      setCurrentSet((prev) => prev + 1);
+    }
+  }
+
+  function skipRest() {
+    setRunning(false);
+    setRemaining(0); // löst den Effekt oben aus → nächster Satz
+  }
+
+  function restartSets() {
+    setPhase('work');
+    setCurrentSet(1);
+    setRemaining(0);
+    setRunning(false);
+  }
 
   useEffect(() => {
     if (!running) return undefined;
@@ -57,8 +112,13 @@ export function Timer({ exercise, onClose }: TimerProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  const isDone = remaining === 0;
-  const progress = totalSeconds === 0 ? 1 : 1 - remaining / totalSeconds;
+  // IFCM FS-017 / C11: „fertig“ und Fortschrittsring je nach Art – bei Sätzen = Anteil geschaffter Sätze
+  const isDone = isSets ? phase === 'done' : remaining === 0;
+  const progress = isSets
+    ? (phase === 'done' ? totalSets : currentSet - 1) / totalSets
+    : totalSeconds === 0
+      ? 1
+      : 1 - remaining / totalSeconds;
   const circumference = 2 * Math.PI * 45;
 
   return (
@@ -111,9 +171,29 @@ export function Timer({ exercise, onClose }: TimerProps) {
           </svg>
           {/* IFCM FS-010 / C08: Stift-Icon im Kreis unter der Zeit (Mindmap-Skizze) öffnet/schließt den Notizzettel */}
           <div className="relative flex flex-col items-center gap-2">
-            <span className="font-display text-4xl font-extrabold tabular-nums text-ink">
-              {shortExercise ? `${remaining} sek` : formatCountdown(remaining)}
-            </span>
+            {isSets ? (
+              // IFCM FS-017 / C11: „Satz 2 von 3“ bzw. Pausen-Countdown im Kreis
+              phase === 'rest' ? (
+                <span className="flex flex-col items-center">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-muted">Pause</span>
+                  <span className="font-display text-4xl font-extrabold tabular-nums text-ink">
+                    {remaining < 60 ? `${remaining} sek` : formatCountdown(remaining)}
+                  </span>
+                </span>
+              ) : (
+                <span className="flex flex-col items-center">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-muted">Satz</span>
+                  <span className="font-display text-4xl font-extrabold tabular-nums text-ink">
+                    {Math.min(currentSet, totalSets)} von {totalSets}
+                  </span>
+                  <span className="text-sm text-muted">{liveExercise.reps} Wdh.</span>
+                </span>
+              )
+            ) : (
+              <span className="font-display text-4xl font-extrabold tabular-nums text-ink">
+                {shortExercise ? `${remaining} sek` : formatCountdown(remaining)}
+              </span>
+            )}
             <button
               type="button"
               onClick={() => setNoteOpen((prev) => !prev)}
@@ -166,17 +246,55 @@ export function Timer({ exercise, onClose }: TimerProps) {
           )
         )}
 
+        {/* IFCM FS-017 / C11: Gewicht direkt am Gerät anpassen (gespeichert für das nächste Mal) */}
+        {isSets && (
+          <div className="mb-4 flex flex-col items-center gap-1">
+            <span className="text-xs font-semibold text-muted">Gewicht</span>
+            <WeightStepper exercise={liveExercise} size="lg" />
+          </div>
+        )}
+
         {isDone ? (
           <p className="mb-6 font-semibold text-accent">Übung abgeschlossen! 🎉</p>
+        ) : isSets ? (
+          <p className="mb-6 text-sm text-muted">
+            {totalSets} × {liveExercise.reps} · {restSeconds} Sek. Satzpause
+          </p>
         ) : (
           <p className="mb-6 text-sm text-muted">Gesamtdauer: {formatDuration(exercise.durationSeconds)}</p>
         )}
 
         <div className="flex gap-3">
-          {isDone ? (
+          {/* IFCM FS-017 / C11: eigene Buttons für Satz-Übungen */}
+          {isSets && !isDone ? (
+            phase === 'rest' ? (
+              <button
+                type="button"
+                onClick={skipRest}
+                className="flex h-14 flex-1 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-primary-dark font-semibold text-white shadow-[0_10px_25px_rgba(37,99,235,0.35)] transition hover:brightness-110"
+              >
+                <SkipForward size={18} />
+                {/* kurzer Text, damit der Button auf dem Handy einzeilig bleibt */}
+                Nächster Satz
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={completeSet}
+                className="flex h-14 flex-1 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-primary-dark font-semibold text-white shadow-[0_10px_25px_rgba(37,99,235,0.35)] transition hover:brightness-110"
+              >
+                <Check size={18} />
+                Satz geschafft
+              </button>
+            )
+          ) : isDone ? (
             <button
               type="button"
               onClick={() => {
+                if (isSets) {
+                  restartSets(); // IFCM FS-017 / C11
+                  return;
+                }
                 setRemaining(totalSeconds);
                 setRunning(true);
               }}
