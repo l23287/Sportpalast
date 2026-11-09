@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 09.11.2026 – *offen* |
+| Zeitraum | 09.11.2026 – 09.11.2026 |
 | Chunk | C13 (Chunkliste 2, siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in – Steuerwort „Vorarbeit“, bestätigte Reihenfolge (C15 → C11 → **C13** → C12 → C14) |
 | Vorgänger | – (ergänzt den herunterzählenden Timer aus C07/C11) |
 | Branch / Commits | `ifcm/fs-019-c13-stoppuhr` (enthält C01–C11, C15, C16, C13), Commit `fd82a56` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **teilweise bestanden** → Erweiterung in [FS-020](FS-020-C13a-stoppuhr-menue.md) |
 
 ## 1. Chunk & Ziel
 Bisher zählt der Timer nur **herunter** (feste Dauer bzw. Satzpause). Viele Sportarten **messen** aber Zeiten:
@@ -60,12 +60,18 @@ Plan zeigt „Zeit messen · Bestzeit 0:00,7“ ✔. Nachweis: [assets/fs019-nac
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-019-c13-stoppuhr` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 09.11.2026, wörtlich):** „Okay, dass war ein guter Anfang aber bitte stelle immer erst die
+Fragen bevor du programmierst. Bitte mache es für alle Sportarten zugänglich, sprich es muss wie das Aufschlagtraining
+damals in die Menü Zeile und bitte achte darauf das sich de Beschriftung anpassen muss (Sportartbedingt). Also Programmiere“
+→ **teilweise bestanden**, Erweiterung **FS-020 (C13a)**.
+
 **Guards (Claude):** keine neuen Abhängigkeiten ✔ · gespeicherte Zeiten nur an der Übung, ohne Personenbezug, Hinweis im
 Dialog ✔ · freie Stoppuhr speichert nichts ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+**Prozess-Erkenntnis:** Claude hat bei unbeantworteten Rückfragen mit Annahmen programmiert; die Entwickler:in wünscht,
+dass zuerst die Fragen geklärt werden. → Regel in Skill und `CLAUDE.md` ergänzt.
 
 ## 6. Abschluss
-*offen*
+Weiter in FS-020 (C13a) auf Basis dieses Branches.

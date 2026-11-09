@@ -74,6 +74,9 @@ Regeln:
 Claude fragt nach, **bevor** es handelt, wenn ein Auftrag, ein Kriterium, ein Chunk-Umfang, eine
 Designentscheidung oder eine Protokollangabe unklar ist. Lieber eine Rückfrage zu viel als eine Annahme.
 Fragen gesammelt und nummeriert stellen, damit du sie in einer Antwort beantworten kannst.
+**Erst fragen, dann programmieren (Wunsch der Entwickler:in, 09.11.2026):** Sind zu einem Chunk Rückfragen offen,
+wird auch bei „Programmieren“ NICHT mit Annahmen losgelegt – Claude stellt die Fragen (bzw. wiederholt die offenen)
+und programmiert erst nach den Antworten.
 **Knapp halten:** nur Fragen, die für den nächsten Schritt wirklich nötig sind (in der Regel höchstens 3).
 Alles andere trifft Claude als erfahrener Teamkollege selbst als begründeten Vorschlag, den du korrigieren kannst.
 Annahmen, die Claude trotzdem treffen musste, werden im Protokoll als *Annahme* markiert.
