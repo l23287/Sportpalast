@@ -4,6 +4,7 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 09.11.2026 | II FS-018 Ergebnis | C16 | **Zwischen-Chunk** auf Hinweis der Entwickler:in („Vorschläge passen nicht zur Sportart“, Bild nicht angekommen): Beispieltexte je Sportart in `lib/sportExamples.ts`, eingesetzt in Übungs-, Plan-, Notiz- und Zielformular; Test bestanden | Alpha-Tests C11 und C16 offen | [FS-018](flow-states/FS-018-C16-sportart-vorschlaege.md) |
 | 09.11.2026 | II FS-017 Ergebnis | C11 | Gym: Sätze × Wdh. + Gewicht + Satzpause, Gewicht ±2,5 kg auf Karte und im Timer, Satz- und Pausen-Timer, Muskelgruppen; 10 Logiktests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-017](flow-states/FS-017-C11-gym.md) |
 | 09.11.2026 | II FS-017 Rückfragen / Prozess | C11 | Antworten: a, b, c; Gewicht schnell anpassbar. **Neues Steuerwort „Programmieren“** (ersetzt den Umsetzungs-Prompt) in Skill, `CLAUDE.md`, README | Arbeitsauftrag C11 | [FS-017](flow-states/FS-017-C11-gym.md) |
 | 09.11.2026 | II FS-017 Chunk | C11 | Claude beschreibt C11, nennt 3 Prüfpunkte; auf Wunsch der Entwickler:in („stelle Fragen, falls mein Chunk zu ungenau ist“) 3 Rückfragen zum Umfang | FS-017 gestartet, Rückfragen offen | [FS-017](flow-states/FS-017-C11-gym.md) |
