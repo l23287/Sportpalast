@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 09.11.2026 – *offen* |
+| Zeitraum | 09.11.2026 – 09.11.2026 |
 | Chunk | C13 (Erweiterung „C13a“) |
 | Ausgewählt von | Entwickler:in – Ergebnis des Alpha-Tests von FS-019 |
 | Vorgänger | [FS-019](FS-019-C13-stoppuhr.md) |
 | Branch / Commits | `ifcm/fs-020-c13a-stoppuhr-menue` (enthält alle bisherigen Chunks), Commit `6fbf0ab` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden mit Erweiterungswunsch** → [FS-021](FS-021-C13b-zeiten-speichern.md) |
 
 ## 1. Chunk & Ziel
 Die Stoppuhr soll für alle Sportarten in der **Menüzeile** stehen – wie früher das Aufschlagtraining (vor C04 eigener
@@ -54,11 +54,15 @@ Nachweis: [assets/fs020-nachweis.png](../assets/fs020-nachweis.png) (Schwimmen �
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-020-c13a-stoppuhr-menue` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, wörtlich):** „Okay, gut aber mache es möglich 10 Zeiten zu speichern und zu benennen. Die
+gespeicherten Zeiten sollen unter der Stoppuhr selbst stehen. Bitte Programmiere die ´s als erfahrener Programmierer
+hinzu und Dokumentiere mit C13b. Also Programmiere“ → **bestanden**, Erweiterung **FS-021 (C13b)**.
+
 **Guards (Claude):** keine neuen Abhängigkeiten, keine neuen Daten ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Von der Entwickler:in nicht gesondert übermittelt.
 
 ## 6. Abschluss
-*offen*
+C13a fertig. Weiter mit FS-021 (C13b) auf Basis dieses Branches.
