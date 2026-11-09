@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 09.11.2026 – *offen* |
+| Zeitraum | 09.11.2026 – 09.11.2026 |
 | Chunk | C15 (Chunkliste 2, siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in (Compass Navigator) – bestätigte Reihenfolge, erster Chunk der Liste 2; Steuerwort „Vorarbeit“ |
 | Vorgänger | – (ändert das Zieltool aus FS-013/FS-014, C09/C09a) |
 | Branch / Commits | `ifcm/fs-016-c15-ziele-optional` (enthält C01–C10 und C15), Commit `5b01107` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Das Zieltool soll ein Angebot sein, keine Pflicht: Wer keine Ziele setzen möchte, schaltet die Funktion aus und
@@ -54,11 +54,13 @@ Nachweis: [assets/fs016-nachweis.png](../assets/fs016-nachweis.png) (aus · an �
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-016-c15-ziele-optional` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 09.11.2026):** Steuerwort „Vorarbeit“ (= Ergebnis zufriedenstellend) → **bestanden**
+
 **Guards (Claude):** keine neuen Abhängigkeiten ✔ · neue lokale Einstellung nur ein Ja/Nein-Wert ✔ · keine Datenlöschung beim Ausschalten ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Durch die Entwickler:in (Coach); Inhalte liegen bei der Entwickler:in. *Bei Bedarf nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C15 **fertig** (09.11.2026). C11 baut auf diesem Branch auf.
