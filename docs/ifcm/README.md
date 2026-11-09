@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-023 – Chunk gewählt, Rückfragen zu C14 offen (noch kein Code) |
+| **Sub-Phase** | FS-023 – Ergebnis C14 liegt vor, Alpha-Test offen |
 | **Aktiver Chunk** | C14 Erweiterung der Statistik (letzter Chunk der Liste 2) |
-| **Nächster Schritt** | Rückfragen zu C14 beantworten, dann „Programmieren“; danach Go-Live (Merge-Freigabe nötig) |
+| **Nächster Schritt** | Alpha-Test C14 (Branch `ifcm/fs-023-c14-statistik`), Verbesserungen; danach Go-Live (Merge-Freigabe nötig) |
 | **Zuletzt aktualisiert** | 09.11.2026 |
 
 ## Phasenübersicht

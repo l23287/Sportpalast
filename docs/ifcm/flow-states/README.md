@@ -27,4 +27,4 @@ Ein Dokument pro Flow State: `FS-<NNN>-<chunk-id>-<kurzname>.md` (Vorlage:
 | [FS-020](FS-020-C13a-stoppuhr-menue.md) | C13a Stoppuhr in der Menüzeile, Beschriftung je Sportart | 09.11.2026 | bestanden |
 | [FS-021](FS-021-C13b-zeiten-speichern.md) | C13b 10 Zeiten speichern und benennen | 09.11.2026 | bestanden |
 | [FS-022](FS-022-C12-streak.md) | C12 Streak einführen | 09.11.2026 | bestanden |
-| [FS-023](FS-023-C14-statistik.md) | C14 Erweiterung der Statistik | ab 09.11.2026 | Rückfragen offen |
+| [FS-023](FS-023-C14-statistik.md) | C14 Erweiterung der Statistik | ab 09.11.2026 | Alpha-Test offen |

@@ -4,6 +4,7 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 09.11.2026 | II FS-023 Ergebnis | C14 | Entwickler:in: „Programmiere mal so wie du es für richtig hältst“ → Claude entscheidet: alle Auswertungen, Aktivitätsprotokoll ab jetzt, je Sportart (Aktivität/Streak gesamt); Wochenbalken, Aktivitätsraster, Art/Muskelgruppen, Bestzeiten, Ziele, Termine; 6 Logiktests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-023](flow-states/FS-023-C14-statistik.md) |
 | 09.11.2026 | II FS-023 Chunk | C14 | Claude beschreibt C14 (Statistik), Befund: es gibt kein Protokoll absolvierter Übungen (nur Streak-Tage); 3 Prüfpunkte, 3 Rückfragen – noch kein Code | Rückfragen offen | [FS-023](flow-states/FS-023-C14-statistik.md) |
 | 09.11.2026 | II FS-022 Abschluss | C12 | Entwickler:in: „auch gut so umgesetzt“ + „Vorarbeit“ → bestanden; **C12 fertig** | Merge: Freigabe offen | [FS-022](flow-states/FS-022-C12-streak.md) |
 | 09.11.2026 | II FS-022 Ergebnis | C12 | Alle Rückfragen geklärt (Gesamt-Streak, Kriterien bestätigt), dann programmiert: aktive Tage, Serie + Rekord in der Übersicht, Schalter; 8 Logiktests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-022](flow-states/FS-022-C12-streak.md) |
