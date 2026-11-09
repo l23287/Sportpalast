@@ -27,17 +27,18 @@ Gepflegt vom Compass Navigator; Claude hält den Status aktuell. Immer nur **ein
 
 ## Chunkliste 2 (ab 09.11.2026)
 
-> **Status: vorgegeben von der Entwickler:in am 09.11.2026** (Compass Navigator). IDs im Format der ersten Liste
+> **Status: vorgegeben von der Entwickler:in am 09.11.2026** (Compass Navigator); **Reihenfolge C15 → C11 → C13 → C12 → C14
+> (Vorschlag Claude) am 09.11.2026 bestätigt**. IDs im Format der ersten Liste
 > (Vorgabe „C011 … C015“ → C11 … C15). Inhalte: Kurzbeschreibung = Vorschlag Claude, wird je Chunk in der
 > „Vorarbeit“ genauer geklärt.
 
 | ID | Titel (Vorgabe) | Inhalt (Vorschlag Claude) | Bezug | Priorität | Status | Flow States |
 |---|---|---|---|---|---|---|
-| C11 | Sportart „Gym“ verbessern | Gym/Fitness passend zur Sportart: z. B. Sätze × Wiederholungen und Gewicht statt nur Dauer | A2 (Gym fehlte) | *offen* | offen | – |
-| C12 | Streak einführen | Serie aufeinanderfolgender Trainings/Wochen als Motivation, sichtbar in der Übersicht | neu | *offen* | offen | – |
-| C13 | Stoppuhr für Sportarten | Hochzählende Stoppuhr (mit Runden/Zwischenzeiten) zusätzlich zum herunterzählenden Timer, z. B. für Schwimmen, Leichtathletik | neu | *offen* | offen | – |
-| C14 | Erweiterung der Statistik | Mehr Auswertungen, z. B. absolvierte Trainings, Trainingszeit pro Woche, Ziele, Streak | neu | *offen* | offen | – |
-| C15 | Ziel-Funktion nicht verpflichtend | Zieltool (C09) ein- und ausschaltbar; ausgeschaltet keine Ziel-Hinweise in der Übersicht | Rückmeldung zu C09 | *offen* | offen | – |
+| C11 | Sportart „Gym“ verbessern | Gym/Fitness passend zur Sportart: z. B. Sätze × Wiederholungen und Gewicht statt nur Dauer | A2 (Gym fehlte) | hoch (2.) | offen | – |
+| C12 | Streak einführen | Serie aufeinanderfolgender Trainings/Wochen als Motivation, sichtbar in der Übersicht | neu | mittel (4.) | offen | – |
+| C13 | Stoppuhr für Sportarten | Hochzählende Stoppuhr (mit Runden/Zwischenzeiten) zusätzlich zum herunterzählenden Timer, z. B. für Schwimmen, Leichtathletik | neu | mittel (3.) | offen | – |
+| C14 | Erweiterung der Statistik | Mehr Auswertungen, z. B. absolvierte Trainings, Trainingszeit pro Woche, Ziele, Streak | neu | mittel (5.) | offen | – |
+| C15 | Ziel-Funktion nicht verpflichtend | Zieltool (C09) ein- und ausschaltbar; ausgeschaltet keine Ziel-Hinweise in der Übersicht | Rückmeldung zu C09 | hoch (1.) | in Arbeit | [FS-016](flow-states/FS-016-C15-ziele-optional.md) |
 
 ## Nicht in dieser Phase (🟧 orange in der Mindmap)
 | Thema | Bezug | Grund laut Mindmap |
