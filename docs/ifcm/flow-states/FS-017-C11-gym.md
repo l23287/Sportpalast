@@ -77,7 +77,7 @@ Nach dem Screenshot: Button „Pause überspringen“ in „Nächster Satz“ um
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-017-c11-gym` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test – *offen, durch Entwickler:in* (am 09.11.2026 durch den Zwischen-Chunk C16 / FS-018 unterbrochen; Rückmeldung „Okay“)
 **Guards (Claude):** keine neuen Abhängigkeiten ✔ · Gewicht ist Vorgabe der Trainer:in an der Übung, keine
 Leistungsdaten einzelner Personen ✔ · Eingabegrenzen (Sätze ≤ 20, Wdh. ≤ 100, Gewicht ≤ 500 kg, Pause ≤ 600 s) ✔.
 

@@ -38,6 +38,7 @@ Gepflegt vom Compass Navigator; Claude hält den Status aktuell. Immer nur **ein
 | C12 | Streak einführen | Serie aufeinanderfolgender Trainings/Wochen als Motivation, sichtbar in der Übersicht | neu | mittel (4.) | offen | – |
 | C13 | Stoppuhr für Sportarten | Hochzählende Stoppuhr (mit Runden/Zwischenzeiten) zusätzlich zum herunterzählenden Timer, z. B. für Schwimmen, Leichtathletik | neu | mittel (3.) | offen | – |
 | C14 | Erweiterung der Statistik | Mehr Auswertungen, z. B. absolvierte Trainings, Trainingszeit pro Woche, Ziele, Streak | neu | mittel (5.) | offen | – |
+| C16 | Sportartgerechte Vorschläge (Zwischen-Chunk) | Beispieltexte in Formularen passend zur Sportart | Befund Entwickler:in beim Test von C11 | hoch (eingeschoben) | in Arbeit | [FS-018](flow-states/FS-018-C16-sportart-vorschlaege.md) |
 | C15 | Ziel-Funktion nicht verpflichtend | Zieltool (C09) ein- und ausschaltbar; ausgeschaltet keine Ziel-Hinweise in der Übersicht | Rückmeldung zu C09 | hoch (1.) | fertig (Merge offen) | [FS-016](flow-states/FS-016-C15-ziele-optional.md) |
 
 ## Nicht in dieser Phase (🟧 orange in der Mindmap)
