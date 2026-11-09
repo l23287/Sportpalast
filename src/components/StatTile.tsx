@@ -13,7 +13,8 @@ export function StatTile({ icon, label, value }: StatTileProps) {
         {icon}
       </div>
       <div>
-        <p className="font-display text-2xl font-extrabold text-ink break-words">{value}</p>
+        {/* IFCM FS-023 / C14: Silbentrennung statt Umbruch mitten im Wort (z. B. „Schwim-men“ in der schmalen Kachel) */}
+        <p className="font-display text-2xl font-extrabold text-ink break-words hyphens-auto">{value}</p>
         <p className="text-sm text-muted">{label}</p>
       </div>
     </div>
