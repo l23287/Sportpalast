@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-022 – Chunk gewählt, Rückfragen zu C12 offen (noch kein Code) |
+| **Sub-Phase** | FS-022 – Ergebnis liegt vor, als Nächstes Alpha-Test |
 | **Aktiver Chunk** | C12 Streak einführen (Chunkliste 2: C15, C11, C16, C13 fertig → C12 → C14) |
-| **Nächster Schritt** | Rückfragen zu C12 beantworten, dann „Programmieren“; Merge-Freigabe offen |
+| **Nächster Schritt** | Alpha-Test; danach „Vorarbeit“ für C14 (letzter Chunk der Liste 2); Merge-Freigabe offen |
 | **Zuletzt aktualisiert** | 09.11.2026 |
 
 ## Phasenübersicht

@@ -4,6 +4,7 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 09.11.2026 | II FS-022 Ergebnis | C12 | Alle Rückfragen geklärt (Gesamt-Streak, Kriterien bestätigt), dann programmiert: aktive Tage, Serie + Rekord in der Übersicht, Schalter; 8 Logiktests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-022](flow-states/FS-022-C12-streak.md) |
 | 09.11.2026 | II FS-022 Rückfragen | C12 | Antwort: Streak zählt Tage mit vollständig abgelaufener Übungszeit oder neu erstellter Übung; zwei Punkte noch offen (je Sportart/abschaltbar; Satz- und Zeit-messen-Übungen) → kurz nachgefragt | noch kein Code | [FS-022](flow-states/FS-022-C12-streak.md) |
 | 09.11.2026 | II FS-022 Chunk | C12 | Claude beschreibt C12 (Streak), Befund: App kennt noch keine absolvierten Trainings; 3 Prüfpunkte, 3 Rückfragen – noch kein Code | Rückfragen offen | [FS-022](flow-states/FS-022-C12-streak.md) |
 | 09.11.2026 | II FS-021 Abschluss | C13b | Steuerwort „Vorarbeit“: bestanden; **C13 inkl. C13a/C13b fertig** | Merge: Freigabe offen | [FS-021](flow-states/FS-021-C13b-zeiten-speichern.md) |
