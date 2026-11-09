@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-018 (Zwischen-Chunk C16) – Ergebnis liegt vor; Alpha-Tests von C11 und C16 offen |
-| **Aktiver Chunk** | C16 Sportartgerechte Vorschläge (Branch `ifcm/fs-018-c16-sportart-vorschlaege`, enthält C11) |
-| **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe offen |
+| **Sub-Phase** | FS-019 – Chunk gewählt, Rückfragen zu C13 offen |
+| **Aktiver Chunk** | C13 Stoppuhr für Sportarten (Chunkliste 2: ~~C15~~ → ~~C11~~ (+ C16) → C13 → C12 → C14) |
+| **Nächster Schritt** | Rückfragen beantworten, dann „Programmieren“; Merge-Freigabe offen |
 | **Zuletzt aktualisiert** | 09.11.2026 |
 
 ## Phasenübersicht
@@ -39,7 +39,7 @@ flowchart LR
 | I Project Compass | Brainstorm | [01-brainstorm.md](01-brainstorm.md) | abgeschlossen 03.11.2026 |
 | | Planning | [02-planning.md](02-planning.md) | abgeschlossen 03.11.2026 |
 | | Initiation | [03-initiation.md](03-initiation.md), [chunks.md](chunks.md) | abgeschlossen 03.11.2026 |
-| II Flow States | je Chunk | [flow-states/](flow-states/) | läuft (Chunkliste 1 C01–C10 fertig; Chunkliste 2: C15 fertig, FS-017 aktiv) |
+| II Flow States | je Chunk | [flow-states/](flow-states/) | läuft (Chunkliste 1 C01–C10 fertig; Chunkliste 2: C15, C11, C16 fertig; FS-019 aktiv) |
 | III Go-Live | Beta-Test, Rollout, Beta-Reflexion | 04-go-live.md (wird angelegt) | offen |
 
 Chronologie aller Schritte: [protokoll.md](protokoll.md) · Recherchierte Quellen: [quellen/](quellen/)

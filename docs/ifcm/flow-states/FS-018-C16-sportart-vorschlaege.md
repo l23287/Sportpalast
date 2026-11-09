@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 09.11.2026 – *offen* |
+| Zeitraum | 09.11.2026 – 09.11.2026 |
 | Chunk | C16 (Zwischen-Chunk, außerhalb der geplanten Reihenfolge eingeschoben) |
 | Ausgewählt von | Entwickler:in – Befund während des Tests von C11 |
 | Vorgänger | [FS-017](FS-017-C11-gym.md) (C11, Alpha-Test noch offen) |
 | Branch / Commits | `ifcm/fs-018-c16-sportart-vorschlaege` (enthält C01–C11, C15), Commit `1eaf6ad` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Die Vorschläge (Beispieltexte „z. B. …“) passen in vielen Sportarten nicht zur Sportart – sie stammen aus der
@@ -43,11 +43,13 @@ Zielformular sowie passende Beispielziele ✔. Nachweis: [assets/fs018-nachweis.
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-018-c16-sportart-vorschlaege` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 09.11.2026):** Steuerwort „Vorarbeit“ (= Ergebnis zufriedenstellend; C11 und C16 gemeinsam im C16-Branch getestet) → **bestanden**
+
 **Guards (Claude):** keine neuen Abhängigkeiten, keine Daten ✔ · Beispieltexte selbst formuliert, keine Personennamen ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Durch die Entwickler:in (Coach); Inhalte liegen bei der Entwickler:in. *Bei Bedarf nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C16 **fertig** (09.11.2026). C13 baut auf diesem Branch auf.
