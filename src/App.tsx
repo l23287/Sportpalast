@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AppDataProvider } from './context/AppDataContext';
 import { SportProvider } from './context/SportContext';
 import { GoalsProvider } from './context/GoalsContext'; // IFCM FS-013 / C09
+import { StreakProvider } from './context/StreakContext'; // IFCM FS-022 / C12
 import { AppShell } from './components/AppShell';
 import { Disclaimer } from './components/Disclaimer';
 import { SiteGate } from './components/SiteGate';
@@ -26,6 +27,8 @@ export default function App() {
         <AppDataProvider>
           {/* IFCM FS-013 / C09: Kernziele je Sportart */}
           <GoalsProvider>
+          {/* IFCM FS-022 / C12: Streak (aktive Tage, gemeinsam für alle Sportarten) */}
+          <StreakProvider>
           <BrowserRouter>
             <ScrollToTop />
             <Routes>
@@ -71,6 +74,7 @@ export default function App() {
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </BrowserRouter>
+          </StreakProvider>
           </GoalsProvider>
         </AppDataProvider>
       </SiteGate>

@@ -9,6 +9,7 @@ import { WeightStepper } from './WeightStepper'; // IFCM FS-017 / C11
 import { useSport } from '../context/SportContext'; // IFCM FS-018 / C16
 import { examplesFor } from '../lib/sportExamples'; // IFCM FS-018 / C16
 import { StopwatchPanel } from './StopwatchPanel'; // IFCM FS-019 / C13
+import { useStreak } from '../context/StreakContext'; // IFCM FS-022 / C12
 import { formatStopwatch, isNewBest } from '../lib/stopwatch'; // IFCM FS-019 / C13
 
 interface TimerProps {
@@ -35,6 +36,8 @@ export function Timer({ exercise, onClose }: TimerProps) {
   // IFCM FS-019 / C13: „Zeit messen“ – Stoppuhr statt Countdown; Rückmeldung nach dem Übernehmen einer Zeit
   const isStopwatch = formatOf(exercise) === 'stopwatch';
   const [savedMessage, setSavedMessage] = useState('');
+  // IFCM FS-022 / C12: vollständig abgelaufene Übungszeit zählt für den Streak (jeder Tag nur einmal)
+  const { recordActivity } = useStreak();
   const { sport } = useSport(); // IFCM FS-018 / C16: Notiz-Vorschlag passend zur Sportart
   // live aus dem Speicher lesen, damit das per +/− geänderte Gewicht sofort im Timer erscheint
   const liveExercise = getExercise(exercise.id) ?? exercise;
@@ -62,6 +65,12 @@ export function Timer({ exercise, onClose }: TimerProps) {
     setCurrentSet(1);
   }, [exercise.id, totalSeconds, isSets, isStopwatch]);
 
+  // IFCM FS-022 / C12: Dauer-Übung bis 0 heruntergezählt → Tag zählt für den Streak.
+  // (Satz-Übung: in completeSet beim letzten Satz; „Zeit messen“: beim Übernehmen einer Zeit.)
+  useEffect(() => {
+    if (!isSets && !isStopwatch && totalSeconds > 0 && remaining === 0) recordActivity();
+  }, [isSets, isStopwatch, totalSeconds, remaining, recordActivity]);
+
   // IFCM FS-017 / C11: Satzpause abgelaufen → automatisch zum nächsten Satz
   useEffect(() => {
     if (isSets && phase === 'rest' && remaining === 0) {
@@ -75,6 +84,7 @@ export function Timer({ exercise, onClose }: TimerProps) {
     if (currentSet >= totalSets) {
       setPhase('done');
       setRunning(false);
+      recordActivity(); // IFCM FS-022 / C12: alle Sätze geschafft → Tag zählt
       return;
     }
     if (restSeconds > 0) {
@@ -160,6 +170,7 @@ export function Timer({ exercise, onClose }: TimerProps) {
               // Bestzeit-Vergleich mit dem Stand VOR dem Speichern (live aus dem Speicher)
               const best = isNewBest(timeMs, liveExercise.bestTimeMs);
               recordExerciseTime(exercise.id, timeMs);
+              recordActivity(); // IFCM FS-022 / C12: Messung übernommen → Tag zählt
               setSavedMessage(
                 best ? `Neue Bestzeit: ${formatStopwatch(timeMs)} 🎉` : `Zeit gespeichert: ${formatStopwatch(timeMs)}`,
               );

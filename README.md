@@ -15,6 +15,8 @@ bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (
   Fortschritt, Abhaken mit Erfolgsmeldung), sichtbar in der Planübersicht und in den Einstellungen; Reihenfolge der
   Sportarten frei sortierbar (IFCM C09). In den Einstellungen sind „Deine Ziele“ und „Sportart“ aufklappbare Bereiche
   (IFCM C09a).
+- **Streak** – Tage in Folge (über alle Sportarten), an denen eine Übung komplett durchgelaufen ist oder eine neue
+  Übung angelegt wurde; mit Rekord, in der Planübersicht, abschaltbar (IFCM C12).
 - **Trainingspläne** – Pläne als Kacheln, Suche, überfällige Pläne werden rot markiert, Anlegen/Bearbeiten
   mit Übungsauswahl aus dem Pool inkl. Reihenfolge per ↑/↓, Detailansicht mit Start-Timer pro Übung.
 - **Krafttraining (Gym)** – Übungen als Sätze × Wiederholungen mit Gewicht und Satzpause, Gewicht per +/− auf der

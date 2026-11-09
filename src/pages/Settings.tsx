@@ -1,8 +1,9 @@
 import { useState, type FormEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArrowDown, ArrowUp, ArrowUpDown, Flag, Plus, Trash2, Trophy } from 'lucide-react';
+import { ArrowDown, ArrowUp, ArrowUpDown, Flag, Flame, Plus, Trash2, Trophy } from 'lucide-react';
 import { CollapsibleSection } from '../components/CollapsibleSection'; // IFCM FS-014 / C09a
 import { Switch } from '../components/Switch'; // IFCM FS-016 / C15
+import { useStreak } from '../context/StreakContext'; // IFCM FS-022 / C12
 import { useGoals } from '../context/GoalsContext'; // IFCM FS-013 / C09
 import { GoalForm } from '../components/GoalForm'; // IFCM FS-013 / C09
 import { GoalsBoard } from '../components/GoalsBoard'; // IFCM FS-013 / C09
@@ -28,6 +29,7 @@ export function Settings() {
     useGoals(); // IFCM FS-016 / C15: + Schalter „Ziele verwenden“
   // IFCM FS-014 / C09a: Kommt man über „/einstellungen#ziele“ (Link in der Planübersicht), ist „Deine Ziele“ offen
   const { hash } = useLocation();
+  const streak = useStreak(); // IFCM FS-022 / C12
   const navigate = useNavigate(); // IFCM FS-015 / C10: „Einführung erneut ansehen“
   const [reorderMode, setReorderMode] = useState(false);
   const { countForSport, deleteAllForSport } = useAppData();
@@ -124,6 +126,24 @@ export function Settings() {
                 : ` Deine ${openGoals.length + achievedGoals.length} gespeicherten Ziele dieser Sportart bleiben erhalten und sind beim Einschalten sofort wieder da.`)}
           </p>
         )}
+      </CollapsibleSection>
+
+      {/* IFCM FS-022 / C12: Streak – Anzeige ein-/ausschalten; gezählt wird weiter, damit beim Einschalten alles stimmt */}
+      <CollapsibleSection
+        title="Streak"
+        icon={<Flame size={20} />}
+        summary={
+          streak.enabled
+            ? `${streak.current} ${streak.current === 1 ? 'Tag' : 'Tage'} in Folge · Rekord ${streak.longest}`
+            : 'Anzeige aus'
+        }
+      >
+        <Switch
+          checked={streak.enabled}
+          onChange={streak.setEnabled}
+          label="Streak in der Planübersicht anzeigen"
+          description="Ein Tag zählt, wenn eine Übung komplett durchläuft (Countdown bis 0, alle Sätze, Zeit übernommen) oder du eine neue Übung anlegst – über alle Sportarten."
+        />
       </CollapsibleSection>
 
       {/* IFCM FS-014 / C09a: Sportart-Einstellungen als aufklappbarer Bereich, eingeklappt mit aktueller Sportart */}
