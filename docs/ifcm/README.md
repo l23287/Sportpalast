@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-020 (Erweiterung zu C13) – Rückfragen offen, noch kein Code |
-| **Aktiver Chunk** | C13 Stoppuhr für Sportarten (Chunkliste 2: ~~C15~~ → ~~C11~~ (+ C16) → C13 → C12 → C14) |
-| **Nächster Schritt** | Rückfragen zu C13a beantworten, dann „Programmieren“ |
+| **Sub-Phase** | FS-020 (Erweiterung zu C13) – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Aktiver Chunk** | C13 / C13a Stoppuhr (Branch `ifcm/fs-020-c13a-stoppuhr-menue`) |
+| **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe offen |
 | **Zuletzt aktualisiert** | 09.11.2026 |
 
 ## Phasenübersicht

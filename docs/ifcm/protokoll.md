@@ -4,6 +4,7 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 09.11.2026 | II FS-020 Ergebnis | C13a | Rückfragen beantwortet (Vorschläge bestätigt + Voreinstellung für neue Sportarten); Stoppuhr als 6. Menüpunkt für alle Sportarten, Name/Taste/Liste/Text je Sportart, eigene Sportarten mit Voreinstellung; Test bestanden | Alpha-Test durch Entwickler:in offen | [FS-020](flow-states/FS-020-C13a-stoppuhr-menue.md) |
 | 09.11.2026 | II FS-020 Rückfragen | C13a | Claude stellt 2 Rückfragen (Menüposition, sportartabhängige Beschriftungen) mit Vorschlag – noch kein Code | Antworten offen | [FS-020](flow-states/FS-020-C13a-stoppuhr-menue.md) |
 | 09.11.2026 | II FS-019 Alpha-Test / Prozess | C13 | Entwickler:in: „guter Anfang“, Stoppuhr in die Menüzeile für alle Sportarten, Beschriftung sportartbedingt → teilweise bestanden; **Prozessregel: erst Fragen, dann programmieren** in Skill und `CLAUDE.md` | FS-020 (C13a) | [FS-019](flow-states/FS-019-C13-stoppuhr.md) |
 | 09.11.2026 | II FS-019 Ergebnis | C13 | Stoppuhr: freier Reiter für alle Sportarten + Übungsart „Zeit messen“ mit Bestzeit/letzter Zeit (ohne Personenbezug), Zeit aus der Systemuhr; Rückfragen unbeantwortet → Vorschläge als Annahmen; 7 Logiktests + Oberflächentest (inkl. Genauigkeit) bestanden | Alpha-Test durch Entwickler:in offen | [FS-019](flow-states/FS-019-C13-stoppuhr.md) |
