@@ -22,7 +22,14 @@ Vorab genannte Prüfpunkte (Claude, 09.11.2026):
 3. Motivation ohne Druck: positive Anzeige (Serie + Rekord), keine Schuldgefühle bei Pause/Ferien; ggf. abschaltbar wie die
    Ziele (C15); nur Daten der Trainer:in, keine Anwesenheit oder Leistungen einzelner Sportler:innen.
 
-**Rückfragen an die Entwickler:in (09.11.2026):** siehe Chat; Code erst nach den Antworten. *offen*
+**Rückfragen (Claude, 09.11.2026):** 1. Was zählt als Training? (a) „Training erledigt“ abhaken, (b) Timer/Stoppuhr benutzt,
+(c) App geöffnet · 2. Tage oder Wochen? · 3. Je Sportart oder insgesamt, abschaltbar?
+
+**Antwort (Entwickler:in, 09.11.2026, wörtlich):** „Nein zählt die Tage an denen eine Übungszeit vollständig durch gelaufen
+ist oder eine neu Übung erstellt wurde. Bitte Programmiere“
+→ Frage 1: **Tag zählt, wenn eine Übungszeit vollständig abgelaufen ist ODER eine neue Übung erstellt wurde**; Frage 2: **Tage**.
+Noch offen (gemäß Regel „erst fragen“ nachgefragt): Frage 3 sowie, was bei Satz-Übungen (C11) und „Zeit messen“ (C13) als
+„vollständig durchgelaufen“ gilt. Noch kein Code.
 
 ## 2. Prompts
 *offen*
