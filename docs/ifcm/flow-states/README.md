@@ -23,4 +23,5 @@ Ein Dokument pro Flow State: `FS-<NNN>-<chunk-id>-<kurzname>.md` (Vorlage:
 | [FS-016](FS-016-C15-ziele-optional.md) | C15 Ziel-Funktion nicht verpflichtend | 09.11.2026 | bestanden |
 | [FS-017](FS-017-C11-gym.md) | C11 Sportart „Gym“ verbessern | 09.11.2026 | bestanden |
 | [FS-018](FS-018-C16-sportart-vorschlaege.md) | C16 Sportartgerechte Vorschläge (Zwischen-Chunk) | 09.11.2026 | bestanden |
-| [FS-019](FS-019-C13-stoppuhr.md) | C13 Stoppuhr für Sportarten | ab 09.11.2026 | Ergebnis liegt vor, Alpha-Test offen |
+| [FS-019](FS-019-C13-stoppuhr.md) | C13 Stoppuhr für Sportarten | 09.11.2026 | teilweise bestanden → FS-020 |
+| [FS-020](FS-020-C13a-stoppuhr-menue.md) | C13a Stoppuhr in der Menüzeile, Beschriftung je Sportart | ab 09.11.2026 | Ergebnis liegt vor, Alpha-Test offen |

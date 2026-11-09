@@ -15,7 +15,7 @@ Skill `IFCM` verwenden** (`.claude/skills/IFCM/SKILL.md`) und den Abschnitt „A
   Chunk anlegen, kurz beschreiben und 3 Prüfpunkte nennen; noch keinen Code schreiben (Details im Skill).
 - **„Programmieren“** = vorbereiteten Chunk als erfahrener Programmierer umsetzen – mit Kommentaren im Code und
   Dokumentation (Details im Skill).
-- Bei Unklarheiten immer zuerst nachfragen. Die 6 Prompt Patterns sind eine Richtlinie, keine Pflicht.
+- Bei Unklarheiten immer zuerst nachfragen – **offene Rückfragen erst klären, dann programmieren** (auch bei „Programmieren“). Die 6 Prompt Patterns sind eine Richtlinie, keine Pflicht.
 - Immer nur ein Chunk zur Zeit; Chunks nicht vermischen.
 - Keine personenbezogenen Daten der Testpersonen ins Repo.
 
