@@ -50,6 +50,7 @@ Chronologie aller Schritte: [protokoll.md](protokoll.md) · Recherchierte Quelle
 - **„nächste Phase“** – Wechsel in die nächste (Sub-)Phase, nach Prüfung der Ausgangskriterien
 - **„Vorarbeit“** – aktueller Flow State bestanden, Alpha-Reflexion durch die Entwickler:in erledigt → nächsten Chunk
   vorbereiten (Beschreibung + 3 Prüfpunkte), noch ohne Code
+- **„Programmieren“** – vorbereiteten Chunk umsetzen (Code mit Kommentaren + Dokumentation)
 
 Ohne Steuerwort geht Claude nicht weiter. Bei Unklarheiten fragt Claude nach.
 
