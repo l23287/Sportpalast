@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-022 – Ergebnis liegt vor, als Nächstes Alpha-Test |
-| **Aktiver Chunk** | C12 Streak einführen (Chunkliste 2: C15, C11, C16, C13 fertig → C12 → C14) |
-| **Nächster Schritt** | Alpha-Test; danach „Vorarbeit“ für C14 (letzter Chunk der Liste 2); Merge-Freigabe offen |
+| **Sub-Phase** | FS-023 – Ergebnis C14 liegt vor, Alpha-Test offen |
+| **Aktiver Chunk** | C14 Erweiterung der Statistik (letzter Chunk der Liste 2) |
+| **Nächster Schritt** | Alpha-Test C14 (Branch `ifcm/fs-023-c14-statistik`), Verbesserungen; danach Go-Live (Merge-Freigabe nötig) |
 | **Zuletzt aktualisiert** | 09.11.2026 |
 
 ## Phasenübersicht
@@ -39,7 +39,7 @@ flowchart LR
 | I Project Compass | Brainstorm | [01-brainstorm.md](01-brainstorm.md) | abgeschlossen 03.11.2026 |
 | | Planning | [02-planning.md](02-planning.md) | abgeschlossen 03.11.2026 |
 | | Initiation | [03-initiation.md](03-initiation.md), [chunks.md](chunks.md) | abgeschlossen 03.11.2026 |
-| II Flow States | je Chunk | [flow-states/](flow-states/) | läuft (Chunkliste 1 C01–C10 fertig; Chunkliste 2: C15, C11, C16, C13 fertig; FS-022 aktiv) |
+| II Flow States | je Chunk | [flow-states/](flow-states/) | läuft (Chunkliste 1 C01–C10 fertig; Chunkliste 2: C15, C11, C16, C13, C12 fertig; FS-023 aktiv) |
 | III Go-Live | Beta-Test, Rollout, Beta-Reflexion | 04-go-live.md (wird angelegt) | offen |
 
 Chronologie aller Schritte: [protokoll.md](protokoll.md) · Recherchierte Quellen: [quellen/](quellen/)

@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 09.11.2026 – *offen* |
+| Zeitraum | 09.11.2026 – 09.11.2026 |
 | Chunk | C12 (Chunkliste 2, siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in – Steuerwort „Vorarbeit“, bestätigte Reihenfolge (… → C13 → **C12** → C14) |
 | Vorgänger | – |
 | Branch / Commits | `ifcm/fs-022-c12-streak` (enthält alle bisherigen Chunks), Commit `50b5726` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Ein **Streak** (Serie) zeigt, wie viele Trainings bzw. Zeiträume in Folge geschafft wurden – als Motivation, sichtbar
@@ -63,12 +63,14 @@ Vorgemerkt (nicht Teil von C12): Plankarte zeigt „1 Übungen“ (Einzahl fehlt
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-022-c12-streak` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 09.11.2026, wörtlich):** „Okay das ist auch gut so umgesetzt mit der Übung oder der Zeit als Kriterium. Bitte Vorarbeit“ → **bestanden**
+
 **Guards (Claude):** keine neuen Abhängigkeiten ✔ · gespeichert werden nur Datums-Schlüssel, keine Übungen, Uhrzeiten oder
 Personen ✔ · positive Formulierung ohne Druck ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Durch die Entwickler:in (Coach); Inhalte liegen bei der Entwickler:in. *Bei Bedarf nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C12 **fertig** (09.11.2026). C14 baut auf diesem Branch auf.
