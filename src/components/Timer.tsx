@@ -8,6 +8,8 @@ import { formatOf } from '../lib/strength'; // IFCM FS-017 / C11
 import { WeightStepper } from './WeightStepper'; // IFCM FS-017 / C11
 import { useSport } from '../context/SportContext'; // IFCM FS-018 / C16
 import { examplesFor } from '../lib/sportExamples'; // IFCM FS-018 / C16
+import { StopwatchPanel } from './StopwatchPanel'; // IFCM FS-019 / C13
+import { formatStopwatch, isNewBest } from '../lib/stopwatch'; // IFCM FS-019 / C13
 
 interface TimerProps {
   exercise: Exercise;
@@ -29,13 +31,16 @@ export function Timer({ exercise, onClose }: TimerProps) {
   const restSeconds = exercise.restSeconds ?? 0;
   const [phase, setPhase] = useState<'work' | 'rest' | 'done'>('work');
   const [currentSet, setCurrentSet] = useState(1);
-  const { getExercise } = useAppData();
+  const { getExercise, recordExerciseTime } = useAppData(); // IFCM FS-019 / C13: + recordExerciseTime
+  // IFCM FS-019 / C13: „Zeit messen“ – Stoppuhr statt Countdown; Rückmeldung nach dem Übernehmen einer Zeit
+  const isStopwatch = formatOf(exercise) === 'stopwatch';
+  const [savedMessage, setSavedMessage] = useState('');
   const { sport } = useSport(); // IFCM FS-018 / C16: Notiz-Vorschlag passend zur Sportart
   // live aus dem Speicher lesen, damit das per +/− geänderte Gewicht sofort im Timer erscheint
   const liveExercise = getExercise(exercise.id) ?? exercise;
 
   const [remaining, setRemaining] = useState(isSets ? 0 : totalSeconds);
-  const [running, setRunning] = useState(!isSets); // Satz-Übung startet in Phase „work“ ohne Countdown
+  const [running, setRunning] = useState(!isSets && formatOf(exercise) !== 'stopwatch'); // Satz-/Stoppuhr-Übung: kein Countdown
 
   // IFCM FS-010 / C08 Notizzettel: Entwurf der Notiz (Start: gespeicherte Notiz vom letzten Mal).
   // Jede Änderung wird sofort gespeichert. Der Countdown hängt nur an exercise.id/totalSeconds – das Speichern
@@ -52,10 +57,10 @@ export function Timer({ exercise, onClose }: TimerProps) {
   useEffect(() => {
     // IFCM FS-017 / C11: Satz-Übung beginnt bei Satz 1 ohne Countdown
     setRemaining(isSets ? 0 : totalSeconds);
-    setRunning(!isSets);
+    setRunning(!isSets && !isStopwatch); // IFCM FS-019 / C13: bei „Zeit messen“ läuft kein Countdown
     setPhase('work');
     setCurrentSet(1);
-  }, [exercise.id, totalSeconds, isSets]);
+  }, [exercise.id, totalSeconds, isSets, isStopwatch]);
 
   // IFCM FS-017 / C11: Satzpause abgelaufen → automatisch zum nächsten Satz
   useEffect(() => {
@@ -123,6 +128,66 @@ export function Timer({ exercise, onClose }: TimerProps) {
       ? 1
       : 1 - remaining / totalSeconds;
   const circumference = 2 * Math.PI * 45;
+
+  // IFCM FS-019 / C13: Übung der Art „Zeit messen“ → eigener Dialog mit Stoppuhr (alle Hooks stehen oben)
+  if (isStopwatch) {
+    return (
+      <div
+        className="animate-fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+        onClick={onClose}
+        role="presentation"
+      >
+        <div
+          className="relative max-h-[calc(100dvh-2rem)] w-full max-w-sm overflow-y-auto rounded-3xl border border-border bg-surface p-8 text-center"
+          onClick={(event) => event.stopPropagation()}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Stoppuhr für ${exercise.name}`}
+        >
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Schließen"
+            className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-bg-soft text-muted transition hover:text-ink"
+          >
+            <X size={16} />
+          </button>
+          <p className="text-sm font-medium text-muted-2">Zeit messen</p>
+          <h3 className="mt-1 mb-6 px-6 font-display text-xl font-bold text-ink">{exercise.name}</h3>
+
+          <StopwatchPanel
+            onSave={(timeMs) => {
+              // Bestzeit-Vergleich mit dem Stand VOR dem Speichern (live aus dem Speicher)
+              const best = isNewBest(timeMs, liveExercise.bestTimeMs);
+              recordExerciseTime(exercise.id, timeMs);
+              setSavedMessage(
+                best ? `Neue Bestzeit: ${formatStopwatch(timeMs)} 🎉` : `Zeit gespeichert: ${formatStopwatch(timeMs)}`,
+              );
+            }}
+          />
+
+          {savedMessage && (
+            <p role="status" className="mt-4 font-semibold text-accent">
+              {savedMessage}
+            </p>
+          )}
+          <p className="mt-4 text-sm text-muted">
+            {liveExercise.bestTimeMs ? `Bestzeit ${formatStopwatch(liveExercise.bestTimeMs)}` : 'Noch keine Bestzeit'}
+            {liveExercise.lastTimeMs ? ` · zuletzt ${formatStopwatch(liveExercise.lastTimeMs)}` : ''}
+          </p>
+          <p className="mt-1 text-[11px] text-muted-2">Gespeichert wird nur die Zeit an der Übung – ohne Namen.</p>
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="mt-6 h-14 w-full rounded-2xl border border-border font-semibold text-muted transition hover:bg-surface-2 hover:text-ink"
+          >
+            Schließen
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

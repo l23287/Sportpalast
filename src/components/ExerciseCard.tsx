@@ -4,6 +4,7 @@ import { DifficultyBadge } from './DifficultyBadge';
 import { IconButton } from './IconButton';
 import { formatDuration } from '../lib/time';
 import { formatOf } from '../lib/strength'; // IFCM FS-017 / C11
+import { formatStopwatch } from '../lib/stopwatch'; // IFCM FS-019 / C13
 import { WeightStepper } from './WeightStepper'; // IFCM FS-017 / C11
 
 interface ExerciseCardProps {
@@ -44,7 +45,20 @@ export function ExerciseCard({ exercise, onEdit, onDelete }: ExerciseCardProps) 
           </span>
         )}
         {/* IFCM FS-017 / C11: Satz-Übung zeigt Sätze × Wdh. und Satzpause, Dauer-Übung wie bisher die Dauer */}
-        {formatOf(exercise) === 'sets' ? (
+        {/* IFCM FS-019 / C13: „Zeit messen“ – Bestzeit und letzte Zeit */}
+        {formatOf(exercise) === 'stopwatch' ? (
+          <>
+            <span className="inline-flex items-center gap-1">
+              <Timer size={13} /> Zeit messen
+            </span>
+            {exercise.bestTimeMs ? (
+              <span className="inline-flex items-center gap-1 font-semibold text-sport">
+                Bestzeit {formatStopwatch(exercise.bestTimeMs)}
+              </span>
+            ) : null}
+            {exercise.lastTimeMs ? <span>Zuletzt {formatStopwatch(exercise.lastTimeMs)}</span> : null}
+          </>
+        ) : formatOf(exercise) === 'sets' ? (
           <>
             <span className="inline-flex items-center gap-1">
               <Repeat2 size={13} /> {exercise.sets} × {exercise.reps}

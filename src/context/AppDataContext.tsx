@@ -16,6 +16,7 @@ import { useSport } from './SportContext';
 import { withSport } from '../lib/sport';
 import { migrateExerciseDurations } from '../lib/duration'; // IFCM FS-009 / C07
 import { cleanNote } from '../lib/note'; // IFCM FS-010 / C08
+import { isNewBest } from '../lib/stopwatch'; // IFCM FS-019 / C13
 
 interface AppDataContextValue {
   // IFCM FS-001 / C01: `plans` und `exercises` enthalten nur noch die Einträge der aktuell gewählten Sportart.
@@ -32,6 +33,8 @@ interface AppDataContextValue {
   updateExerciseNote: (id: string, note: string) => void;
   // IFCM FS-017 / C11: nur das Vorgabe-Gewicht einer Übung ändern (schnelles +/− ohne Formular)
   updateExerciseWeight: (id: string, weightKg: number) => void;
+  // IFCM FS-019 / C13: gemessene Zeit übernehmen → letzte Zeit, ggf. neue Bestzeit (kleiner = besser)
+  recordExerciseTime: (id: string, timeMs: number) => void;
   deleteExercise: (id: string) => void;
   getExercise: (id: string) => Exercise | undefined;
   // IFCM FS-002 / C02: Anzahl und Löschen aller Pläne/Übungen einer Sportart (für das Löschen eigener Sportarten)
@@ -97,6 +100,15 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
       // IFCM FS-017 / C11: 0 kg = kein Gewicht (null); die geschätzte Dauer bleibt gleich (Gewicht ändert sie nicht)
       updateExerciseWeight: (id, weightKg) => {
         setExercises((prev) => prev.map((e) => (e.id === id ? { ...e, weightKg: weightKg > 0 ? weightKg : null } : e)));
+      },
+      recordExerciseTime: (id, timeMs) => {
+        setExercises((prev) =>
+          prev.map((e) =>
+            e.id === id
+              ? { ...e, lastTimeMs: timeMs, bestTimeMs: isNewBest(timeMs, e.bestTimeMs) ? timeMs : e.bestTimeMs }
+              : e,
+          ),
+        );
       },
       updateExerciseNote: (id, note) => {
         const cleaned = cleanNote(note);
