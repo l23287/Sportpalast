@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 09.11.2026 – *offen* |
+| Zeitraum | 09.11.2026 – 09.11.2026 |
 | Chunk | C13 (Erweiterung „C13b“) |
 | Ausgewählt von | Entwickler:in – Ergebnis des Alpha-Tests von FS-020 |
 | Vorgänger | [FS-020](FS-020-C13a-stoppuhr-menue.md) |
 | Branch / Commits | `ifcm/fs-021-c13b-zeiten-speichern` (enthält alle bisherigen Chunks), Commit `9b06669` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 An der (freien) Stoppuhr lassen sich bis zu **10 Zeiten speichern und benennen**; die gespeicherten Zeiten stehen
@@ -52,12 +52,15 @@ abgeschnitten werden. Nachweis: [assets/fs021-nachweis.png](../assets/fs021-nach
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-021-c13b-zeiten-speichern` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in*
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 09.11.2026):** Steuerwort „Vorarbeit“ (= Ergebnis zufriedenstellend) → **bestanden**
+
 **Guards (Claude):** keine neuen Abhängigkeiten ✔ · nur lokal gespeichert, max. 10 je Sportart, Länge begrenzt ✔ · freie
 Namen können Personenbezug enthalten → unverbindlicher Hinweis gegen Namen von Sportler:innen ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Durch die Entwickler:in (Coach); Inhalte liegen bei der Entwickler:in. *Bei Bedarf nachtragen.*
+Beobachtung Claude: Mit der Regel „erst fragen“ kam C13b ohne Korrekturschleife durch.
 
 ## 6. Abschluss
-*offen*
+C13 inkl. C13a und C13b **fertig** (09.11.2026). C12 baut auf diesem Branch auf.

@@ -25,4 +25,5 @@ Ein Dokument pro Flow State: `FS-<NNN>-<chunk-id>-<kurzname>.md` (Vorlage:
 | [FS-018](FS-018-C16-sportart-vorschlaege.md) | C16 Sportartgerechte Vorschläge (Zwischen-Chunk) | 09.11.2026 | bestanden |
 | [FS-019](FS-019-C13-stoppuhr.md) | C13 Stoppuhr für Sportarten | 09.11.2026 | teilweise bestanden → FS-020 |
 | [FS-020](FS-020-C13a-stoppuhr-menue.md) | C13a Stoppuhr in der Menüzeile, Beschriftung je Sportart | 09.11.2026 | bestanden |
-| [FS-021](FS-021-C13b-zeiten-speichern.md) | C13b 10 Zeiten speichern und benennen | ab 09.11.2026 | Ergebnis liegt vor, Alpha-Test offen |
+| [FS-021](FS-021-C13b-zeiten-speichern.md) | C13b 10 Zeiten speichern und benennen | 09.11.2026 | bestanden |
+| [FS-022](FS-022-C12-streak.md) | C12 Streak einführen | ab 09.11.2026 | Ergebnis liegt vor, Alpha-Test offen |
