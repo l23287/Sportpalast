@@ -18,6 +18,9 @@ interface GoalsContextValue {
   toggleAchieved: (id: string) => void;
   deleteGoal: (id: string) => void;
   deleteGoalsForSport: (sport: Sport) => void; // beim Löschen einer eigenen Sportart
+  // IFCM FS-016 / C15: Ziel-Funktion ist freiwillig – global ein- und ausschaltbar (für alle Sportarten)
+  goalsEnabled: boolean;
+  setGoalsEnabled: (enabled: boolean) => void;
 }
 
 const GoalsContext = createContext<GoalsContextValue | null>(null);
@@ -39,6 +42,15 @@ export function GoalsProvider({ children }: { children: ReactNode }) {
   const { sport } = useSport();
   const [allGoals, setAllGoals] = useState<Goal[]>(() => loadJSON<Goal[]>('goals', []));
   useEffect(() => saveJSON('goals', allGoals), [allGoals]);
+
+  // IFCM FS-016 / C15: Schalter „Ziele verwenden“.
+  // Standard, solange nichts gespeichert ist: AN, wenn schon Ziele existieren (niemand verliert Gewohntes),
+  // sonst AUS (neue Nutzer:innen werden nicht zu Zielen gedrängt). Ausschalten löscht KEINE Ziele –
+  // sie werden nur ausgeblendet und sind beim Wiedereinschalten sofort zurück.
+  const [goalsEnabled, setGoalsEnabled] = useState<boolean>(() =>
+    loadJSON<boolean>('goalsEnabled', loadJSON<Goal[]>('goals', []).length > 0),
+  );
+  useEffect(() => saveJSON('goalsEnabled', goalsEnabled), [goalsEnabled]);
 
   const value = useMemo<GoalsContextValue>(() => {
     const goals = allGoals.filter((goal) => goal.sport === sport);
@@ -89,8 +101,10 @@ export function GoalsProvider({ children }: { children: ReactNode }) {
       },
       deleteGoal: (id) => setAllGoals((prev) => prev.filter((goal) => goal.id !== id)),
       deleteGoalsForSport: (target) => setAllGoals((prev) => prev.filter((goal) => goal.sport !== target)),
+      goalsEnabled, // IFCM FS-016 / C15
+      setGoalsEnabled,
     };
-  }, [allGoals, sport]);
+  }, [allGoals, sport, goalsEnabled]);
 
   return <GoalsContext.Provider value={value}>{children}</GoalsContext.Provider>;
 }

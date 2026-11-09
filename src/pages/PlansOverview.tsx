@@ -10,10 +10,12 @@ import { ConfirmDialog } from '../components/ConfirmDialog';
 import { useSport } from '../context/SportContext';
 import { TodayTraining } from '../components/TodayTraining'; // IFCM FS-007 / C06b
 import { GoalsBoard } from '../components/GoalsBoard'; // IFCM FS-013 / C09
+import { useGoals } from '../context/GoalsContext'; // IFCM FS-016 / C15
 
 export function PlansOverview() {
   const { plans, exercises, deletePlan } = useAppData();
   const { emoji } = useSport(); // IFCM FS-012 / C03: Symbol aus dem Context
+  const { goalsEnabled } = useGoals(); // IFCM FS-016 / C15: Ziele nur, wenn eingeschaltet
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
@@ -46,7 +48,8 @@ export function PlansOverview() {
       <TodayTraining plans={plans} exercises={exercises} />
 
       {/* IFCM FS-013 / C09: Kernziele dauerhaft sichtbar unter „Heute“ (Visualisieren statt in der Schublade) */}
-      <GoalsBoard mode="overview" />
+      {/* IFCM FS-016 / C15: ausgeschaltet weder Ziel-Block noch Hinweis „Setze dir Ziele …“ – Ziele sind freiwillig */}
+      {goalsEnabled && <GoalsBoard mode="overview" />}
 
       {filteredPlans.length === 0 ? (
         <EmptyState

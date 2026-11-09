@@ -26,6 +26,8 @@ import { BlobBackground } from '../components/BlobBackground';
 import { TrainerProMark } from '../components/Logo';
 import { markOnboardingSeen } from '../lib/onboarding';
 import { useSport } from '../context/SportContext'; // IFCM FS-015 / C10: Sportart direkt in der Einführung wählen
+import { useGoals } from '../context/GoalsContext'; // IFCM FS-016 / C15
+import { Switch } from '../components/Switch'; // IFCM FS-016 / C15
 
 interface Slide {
   kicker?: string; // IFCM FS-015 / C10: kleine Überzeile (nur Schritt 1)
@@ -35,6 +37,7 @@ interface Slide {
   hero: ReactNode;
   accents: [ReactNode, ReactNode, ReactNode];
   sportPicker?: boolean; // IFCM FS-015 / C10: Schritt mit Sportart-Auswahl statt Illustration
+  goalsSwitch?: boolean; // IFCM FS-016 / C15: Schritt mit Schalter „Ziele verwenden“
 }
 
 // IFCM FS-015 / C10: Texte sportartneutral und auf dem Stand der Weiterentwicklung (C01–C09)
@@ -70,9 +73,11 @@ const SLIDES: Slide[] = [
     accents: [<Timer key="timer" size={17} />, <StickyNote key="note" size={17} />, <Check key="check" size={17} />],
   },
   {
-    title: 'Bis zu 3 Kernziele',
-    body: 'Formuliere deine Ziele nach der SMART-Methode – die App zeigt dir, welche Punkte schon erfüllt sind. Erreichte Ziele hakst du ab und feierst sie.',
-    extra: 'Diese Einführung findest du jederzeit in den Einstellungen.',
+    // IFCM FS-016 / C15: Ziele als freiwilliges Angebot formuliert, mit Schalter direkt im Schritt
+    title: 'Ziele – wenn du magst',
+    body: 'Wer möchte, setzt sich bis zu 3 Kernziele nach der SMART-Methode – die App zeigt dir, welche Punkte schon erfüllt sind, und du feierst erreichte Ziele.',
+    extra: 'Ganz freiwillig: Du kannst die Ziele hier oder später in den Einstellungen ein- und ausschalten. Diese Einführung findest du ebenfalls dort.',
+    goalsSwitch: true,
     hero: <Flag size={30} />,
     accents: [<Target key="target" size={17} />, <Trophy key="trophy" size={17} />, <CalendarDays key="cal" size={17} />],
   },
@@ -93,6 +98,7 @@ export function Onboarding() {
   // IFCM FS-015 / C10: Sportart-Auswahl im ersten Schritt nutzt die echte Einstellung (SportContext)
   const { sport, setSport, sports, emojiFor, colorFor } = useSport();
   const [showAllSports, setShowAllSports] = useState(false);
+  const { goalsEnabled, setGoalsEnabled } = useGoals(); // IFCM FS-016 / C15
   const visibleSports = showAllSports ? sports : sports.slice(0, PICKER_PREVIEW);
 
   function handleSkip() {
@@ -176,6 +182,12 @@ export function Onboarding() {
         ) : (
           <div className="mt-10">
             <OnboardingIllustration hero={slide.hero} accents={slide.accents} />
+          </div>
+        )}
+        {/* IFCM FS-016 / C15: Ziele direkt in der Einführung ein-/ausschalten (gleiche Einstellung wie in den Einstellungen) */}
+        {slide.goalsSwitch && (
+          <div className="mt-6">
+            <Switch checked={goalsEnabled} onChange={setGoalsEnabled} label="Ziele verwenden" />
           </div>
         )}
       </div>
