@@ -1,5 +1,6 @@
 // IFCM FS-019 / C13 Stoppuhr: Anzeige und Bedienung – genutzt als freie Stoppuhr (Reiter im Übungsbereich) und im
 // Timer bei Übungen der Art „Zeit messen“. Große Tasten (h-14) für die Bedienung in Halle oder Schwimmbad.
+import type { ReactNode } from 'react';
 import { Flag, Pause, Play, RotateCcw, Save } from 'lucide-react';
 import { useStopwatch } from '../hooks/useStopwatch';
 import { formatStopwatch, lapDurations, stopwatchLabelsFor } from '../lib/stopwatch';
@@ -8,9 +9,12 @@ import { useSport } from '../context/SportContext'; // IFCM FS-020 / C13a
 interface StopwatchPanelProps {
   // optional: „Zeit übernehmen“ – nur im Timer einer Übung (speichert letzte Zeit/Bestzeit an der Übung)
   onSave?: (timeMs: number) => void;
+  // IFCM FS-021 / C13b: optionaler Bereich zum Speichern mit Namen (freie Stoppuhr). Bekommt die gestoppte Zeit,
+  // die Zwischenzeiten und reset(), damit die Stoppuhr nach dem Speichern wieder bei 0 steht.
+  renderSave?: (args: { elapsedMs: number; splits: number[]; running: boolean; reset: () => void }) => ReactNode;
 }
 
-export function StopwatchPanel({ onSave }: StopwatchPanelProps) {
+export function StopwatchPanel({ onSave, renderSave }: StopwatchPanelProps) {
   const { elapsedMs, running, splits, start, stop, lap, reset } = useStopwatch();
   // IFCM FS-020 / C13a: „Runde“ heißt je Sportart z. B. „Bahn“ (Schwimmen) oder „Satz“ (Gym/Fitness)
   const { sport } = useSport();
@@ -81,6 +85,9 @@ export function StopwatchPanel({ onSave }: StopwatchPanelProps) {
           <Save size={18} /> Zeit übernehmen
         </button>
       )}
+
+      {/* IFCM FS-021 / C13b: Speichern mit Namen (nur freie Stoppuhr) */}
+      {renderSave?.({ elapsedMs, splits, running, reset })}
 
       {/* Runden: neueste oben; schnellste Runde markiert */}
       {laps.length > 0 && (

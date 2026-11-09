@@ -22,7 +22,8 @@ bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (
 - **Stoppuhr** – hochzählend mit Runden (Zehntelsekunden, genau auch bei gesperrtem Bildschirm), als eigener
   Menüpunkt für alle Sportarten (Name und Beschriftungen je Sportart, z. B. „Zeitmessung“ mit „Bahn“ beim Schwimmen;
   neue eigene Sportarten mit Voreinstellung „Stoppuhr“/„Runde“) und als Übungsart „Zeit messen“ mit Bestzeit/letzter
-  Zeit (IFCM C13, C13a).
+  Zeit (IFCM C13, C13a). Gestoppte Zeiten lassen sich benennen und speichern – bis zu 10 je Sportart, direkt unter der
+  Stoppuhr, mit Zwischenzeiten, umbenennbar und löschbar (IFCM C13b).
 - **Übungen** – eigene Übungsdatenbank (Name, Beschreibung, Ziel, Dauer in Minuten und Sekunden – IFCM C07,
   Schwierigkeitsgrad); bei Tischtennis
   zusätzlich der Reiter **Aufschlagtraining** (IFCM C04).
