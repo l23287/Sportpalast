@@ -47,8 +47,8 @@ export default function App() {
                 {/* IFCM FS-003 / C04: Übungsbereich mit Unterseiten; Aufschlagtraining nur bei Tischtennis */}
                 <Route path="/uebungen" element={<ExercisesArea />}>
                   <Route index element={<Exercises />} />
-                  {/* IFCM FS-019 / C13: freie Stoppuhr für alle Sportarten */}
-                  <Route path="stoppuhr" element={<StopwatchPage />} />
+                  {/* IFCM FS-020 / C13a: Stoppuhr ist jetzt ein eigener Menüpunkt (/stoppuhr) – alte Adresse leitet weiter */}
+                  <Route path="stoppuhr" element={<Navigate to="/stoppuhr" replace />} />
                   <Route
                     path="aufschlagtraining"
                     element={
@@ -59,6 +59,8 @@ export default function App() {
                   />
                 </Route>
                 <Route path="/statistiken" element={<Statistics />} />
+                {/* IFCM FS-020 / C13a: Stoppuhr in der Hauptnavigation, für alle Sportarten */}
+                <Route path="/stoppuhr" element={<StopwatchPage />} />
                 {/* IFCM FS-004 / C05: Kalender mit Monatsansicht */}
                 <Route path="/kalender" element={<CalendarPage />} />
                 {/* IFCM FS-003 / C04: alte Adresse (Lesezeichen/Links) leitet in den Übungsbereich weiter */}

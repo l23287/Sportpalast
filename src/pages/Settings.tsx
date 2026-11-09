@@ -239,6 +239,8 @@ export function Settings() {
               </button>
             ))}
           </div>
+          {/* IFCM FS-020 / C13a: Hinweis – neue Sportarten bekommen die Stoppuhr mit Standard-Beschriftung */}
+          <p className="text-xs text-muted-2">Neue Sportarten erhalten automatisch die Stoppuhr mit „Runde“ als Zwischenzeit.</p>
           {sportError && (
             <p id="custom-sport-error" className="text-sm font-medium text-danger">
               {sportError}

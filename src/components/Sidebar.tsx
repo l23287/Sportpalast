@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { NAV_ITEMS } from '../lib/nav';
+import { NAV_ITEMS, navLabel } from '../lib/nav'; // IFCM FS-020 / C13a: navLabel
 import { useSport } from '../context/SportContext';
 import { TrainerProMark } from './Logo';
 
@@ -36,7 +36,7 @@ export function Sidebar() {
               }
             >
               <item.icon size={20} />
-              {item.label}
+              {navLabel(item, sport) /* IFCM FS-020 / C13a */}
             </NavLink>
           ))}
         </nav>

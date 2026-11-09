@@ -19,8 +19,10 @@ bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (
   mit Übungsauswahl aus dem Pool inkl. Reihenfolge per ↑/↓, Detailansicht mit Start-Timer pro Übung.
 - **Krafttraining (Gym)** – Übungen als Sätze × Wiederholungen mit Gewicht und Satzpause, Gewicht per +/− auf der
   Karte und im Timer anpassbar, Satz- und Pausen-Timer, Ordnung nach Muskelgruppen (IFCM C11).
-- **Stoppuhr** – hochzählend mit Runden (Zehntelsekunden, genau auch bei gesperrtem Bildschirm), frei im
-  Übungsbereich für alle Sportarten und als Übungsart „Zeit messen“ mit Bestzeit/letzter Zeit (IFCM C13).
+- **Stoppuhr** – hochzählend mit Runden (Zehntelsekunden, genau auch bei gesperrtem Bildschirm), als eigener
+  Menüpunkt für alle Sportarten (Name und Beschriftungen je Sportart, z. B. „Zeitmessung“ mit „Bahn“ beim Schwimmen;
+  neue eigene Sportarten mit Voreinstellung „Stoppuhr“/„Runde“) und als Übungsart „Zeit messen“ mit Bestzeit/letzter
+  Zeit (IFCM C13, C13a).
 - **Übungen** – eigene Übungsdatenbank (Name, Beschreibung, Ziel, Dauer in Minuten und Sekunden – IFCM C07,
   Schwierigkeitsgrad); bei Tischtennis
   zusätzlich der Reiter **Aufschlagtraining** (IFCM C04).
