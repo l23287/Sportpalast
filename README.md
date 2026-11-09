@@ -29,6 +29,8 @@ bis zur Trainingsdurchführung mit Timer. Die Weiterentwicklung folgt dem IFCM (
   Enddatum) und erscheinen an jedem Termin im Kalender; sie zeigen ihren nächsten Termin und gelten nie als
   „überfällig“ (IFCM C06).
 - **Statistiken** – Kennzahlen, Schwierigkeitsgrad-Verteilung, Donut-Chart der meistgenutzten Übungen.
+- **Sportartgerechte Vorschläge** – Beispieltexte in Formularen (Übung, Plan, Notiz, Ziele) passen zur gewählten
+  Sportart; eigene Sportarten erhalten neutrale Vorschläge (IFCM C16).
 - **Sportarten** – 12 vordefinierte und eigene Sportarten; jede Sportart ist ein eigener Bereich mit eigenen
   Plänen und Übungen (IFCM C01, C02) und hat ein eigenes Symbol und eine Akzentfarbe; eigene Sportarten
   bekommen ein wählbares Symbol (IFCM C03).

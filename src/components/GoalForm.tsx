@@ -6,7 +6,6 @@ import { Check, Lightbulb, X } from 'lucide-react';
 import type { Goal, GoalInput } from '../types';
 import { inputClass, labelClass, textareaClass } from '../lib/formStyles';
 import {
-  GOAL_EXAMPLES,
   GOAL_PRIVACY_HINT,
   MAX_GOAL_MEASURE,
   MAX_GOAL_TEXT,
@@ -15,6 +14,8 @@ import {
   type SmartCheck,
 } from '../lib/goals';
 import { PrimaryButton } from './PrimaryButton';
+import { useSport } from '../context/SportContext'; // IFCM FS-018 / C16
+import { examplesFor } from '../lib/sportExamples'; // IFCM FS-018 / C16
 
 interface GoalFormProps {
   goal?: Goal; // vorhanden = bearbeiten
@@ -29,6 +30,9 @@ export function GoalForm({ goal, onSubmit, onCancel }: GoalFormProps) {
   const [dueDate, setDueDate] = useState(goal?.dueDate ?? '');
   const [error, setError] = useState('');
   const [showExamples, setShowExamples] = useState(false);
+  // IFCM FS-018 / C16: Messgröße und Beispielziele passend zur Sportart (vorher immer Tischtennis-Beispiele)
+  const { sport } = useSport();
+  const examples = examplesFor(sport);
 
   const check = smartCheck({ text, measure, realistic, dueDate: dueDate || null });
   const fulfilled = Object.values(check).filter(Boolean).length;
@@ -81,7 +85,7 @@ export function GoalForm({ goal, onSubmit, onCancel }: GoalFormProps) {
             className={inputClass}
             value={measure}
             onChange={(event) => setMeasure(event.target.value)}
-            placeholder="z. B. 8 von 10 Aufschlägen im Feld"
+            placeholder={`z. B. ${examples.goalMeasure}`} // IFCM FS-018 / C16
           />
         </div>
         <div>
@@ -148,7 +152,7 @@ export function GoalForm({ goal, onSubmit, onCancel }: GoalFormProps) {
         </button>
         {showExamples && (
           <ul className="mt-2 flex flex-col gap-1.5 text-xs text-muted">
-            {GOAL_EXAMPLES.map((example) => (
+            {examples.goals.map((example) => (
               <li key={example} className="rounded-xl bg-surface px-3 py-2">„{example}“</li>
             ))}
           </ul>

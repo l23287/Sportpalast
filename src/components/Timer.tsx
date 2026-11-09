@@ -6,6 +6,8 @@ import { formatCountdown, formatDuration } from '../lib/time'; // IFCM FS-009 / 
 import type { Exercise } from '../types';
 import { formatOf } from '../lib/strength'; // IFCM FS-017 / C11
 import { WeightStepper } from './WeightStepper'; // IFCM FS-017 / C11
+import { useSport } from '../context/SportContext'; // IFCM FS-018 / C16
+import { examplesFor } from '../lib/sportExamples'; // IFCM FS-018 / C16
 
 interface TimerProps {
   exercise: Exercise;
@@ -28,6 +30,7 @@ export function Timer({ exercise, onClose }: TimerProps) {
   const [phase, setPhase] = useState<'work' | 'rest' | 'done'>('work');
   const [currentSet, setCurrentSet] = useState(1);
   const { getExercise } = useAppData();
+  const { sport } = useSport(); // IFCM FS-018 / C16: Notiz-Vorschlag passend zur Sportart
   // live aus dem Speicher lesen, damit das per +/− geänderte Gewicht sofort im Timer erscheint
   const liveExercise = getExercise(exercise.id) ?? exercise;
 
@@ -223,7 +226,7 @@ export function Timer({ exercise, onClose }: TimerProps) {
               maxLength={MAX_NOTE_LENGTH}
               value={noteDraft}
               onChange={(event) => handleNoteChange(event.target.value)}
-              placeholder="z. B. Abstand verkürzen, lieber 2 Durchgänge …"
+              placeholder={`z. B. ${examplesFor(sport).note}`} // IFCM FS-018 / C16
               className="w-full resize-none rounded-2xl border border-border bg-bg-soft px-4 py-3 text-sm text-ink outline-none placeholder:text-muted-2 focus:border-primary"
             />
             <div className="flex justify-between gap-3 text-[11px] text-muted-2">

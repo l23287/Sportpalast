@@ -11,12 +11,15 @@ import { inputClass, labelClass, selectClass, textareaClass } from '../lib/formS
 import { RECURRENCE_LABELS, WEEKDAY_NAMES, usesWeekday, weekdayOfKey } from '../lib/recurrence'; // IFCM FS-005 / C06, FS-006 / C06a
 // formatDuration nicht mehr nötig: Übungen zeigen exerciseSummary (IFCM FS-017 / C11)
 import { exerciseSummary } from '../lib/strength'; // IFCM FS-017 / C11
+import { useSport } from '../context/SportContext'; // IFCM FS-018 / C16
+import { examplesFor } from '../lib/sportExamples'; // IFCM FS-018 / C16
 import { RECURRENCES, type Exercise, type PlanInput, type Recurrence } from '../types';
 
 export function PlanForm() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { exercises, plans, addPlan, updatePlan } = useAppData();
+  const { sport } = useSport(); // IFCM FS-018 / C16
   const editingPlan = id ? plans.find((plan) => plan.id === id) : undefined;
   const isEditing = Boolean(editingPlan);
   // IFCM FS-001 / C01: Bearbeiten-URL eines Plans, der nicht (mehr) zur aktuellen Sportart gehört.
@@ -162,7 +165,7 @@ export function PlanForm() {
               className={inputClass}
               value={name}
               onChange={(event) => setName(event.target.value)}
-              placeholder="z. B. Techniktraining U14"
+              placeholder={`z. B. ${examplesFor(sport).planName}`} // IFCM FS-018 / C16
             />
           </div>
           <div className="sm:col-span-2">
