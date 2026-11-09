@@ -10,6 +10,7 @@
 // Speichern eine GESCHÄTZTE Dauer in `durationSeconds` abgelegt (siehe estimateSetsSeconds).
 import type { Exercise, ExerciseFormat, MuscleGroup, Sport } from '../types';
 import { formatDuration } from './time';
+import { formatStopwatch } from './stopwatch'; // IFCM FS-019 / C13
 
 /** Muskelgruppen in der Reihenfolge, in der sie im Übungsbereich gruppiert werden. */
 export const MUSCLE_GROUPS: MuscleGroup[] = [
@@ -70,6 +71,10 @@ export function formatWeight(kg: number): string {
  *   Dauer-Übung: „15 Min.“ (wie bisher)
  */
 export function exerciseSummary(exercise: Exercise): string {
+  // IFCM FS-019 / C13: „Zeit messen“ – mit Bestzeit, sobald eine Zeit übernommen wurde
+  if (formatOf(exercise) === 'stopwatch') {
+    return exercise.bestTimeMs ? `Zeit messen · Bestzeit ${formatStopwatch(exercise.bestTimeMs)}` : 'Zeit messen';
+  }
   if (formatOf(exercise) === 'sets') {
     const base = `${exercise.sets ?? 1} × ${exercise.reps ?? 1}`;
     return exercise.weightKg ? `${base} · ${formatWeight(exercise.weightKg)}` : base;

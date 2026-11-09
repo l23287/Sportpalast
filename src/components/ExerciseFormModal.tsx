@@ -135,7 +135,7 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
       goal: goal.trim(),
       durationSeconds, // IFCM FS-009 / C07
       difficulty,
-      format: 'duration', // IFCM FS-017 / C11
+      format, // IFCM FS-017 / C11 · IFCM FS-019 / C13: 'duration' oder 'stopwatch'
       muscleGroup: muscleGroup || null, // IFCM FS-017 / C11
     });
   }
@@ -182,11 +182,12 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
           />
         </div>
         {/* IFCM FS-017 / C11: Art der Übung wählen – Dauer oder Sätze × Wiederholungen */}
-        <div role="radiogroup" aria-label="Art der Übung" className="grid grid-cols-2 gap-2">
+        <div role="radiogroup" aria-label="Art der Übung" className="grid grid-cols-3 gap-2">
           {(
             [
               ['duration', 'Dauer'],
               ['sets', 'Sätze × Wdh.'],
+              ['stopwatch', 'Zeit messen'], // IFCM FS-019 / C13
             ] as const
           ).map(([value, label]) => (
             <button
@@ -198,7 +199,7 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
                 setFormat(value);
                 setError('');
               }}
-              className={`h-11 rounded-2xl border text-sm font-semibold transition ${
+              className={`h-11 rounded-2xl border px-1 text-sm font-semibold transition ${
                 format === value
                   ? 'border-transparent bg-gradient-to-br from-primary to-primary-dark text-white'
                   : 'border-border bg-bg-soft text-muted hover:text-ink'
@@ -242,10 +243,11 @@ export function ExerciseFormModal({ open, exercise, onClose, onSubmit }: Exercis
           </fieldset>
         )}
 
-        {/* IFCM FS-009 / C07: Dauer mit Minuten UND Sekunden (vorher nur ganze Minuten, mindestens 1) */}
-        {format === 'duration' && (
+        {/* IFCM FS-009 / C07: Dauer mit Minuten UND Sekunden (vorher nur ganze Minuten, mindestens 1)
+            IFCM FS-019 / C13: bei „Zeit messen“ dieselben Felder als geplante Dauer (für Plansummen) */}
+        {format !== 'sets' && (
         <fieldset>
-          <legend className={labelClass}>Dauer</legend>
+          <legend className={labelClass}>{format === 'stopwatch' ? 'Geplante Dauer (für Plansummen)' : 'Dauer'}</legend>
           <div className="grid grid-cols-2 gap-4">
             <div className="relative">
               <input

@@ -17,6 +17,7 @@ import { Statistics } from './pages/Statistics';
 import { ServeTraining } from './pages/ServeTraining';
 import { ExercisesArea, ServeTrainingGuard } from './pages/ExercisesArea'; // IFCM FS-003 / C04
 import { CalendarPage } from './pages/CalendarPage'; // IFCM FS-004 / C05
+import { StopwatchPage } from './pages/StopwatchPage'; // IFCM FS-019 / C13
 
 export default function App() {
   return (
@@ -46,6 +47,8 @@ export default function App() {
                 {/* IFCM FS-003 / C04: Übungsbereich mit Unterseiten; Aufschlagtraining nur bei Tischtennis */}
                 <Route path="/uebungen" element={<ExercisesArea />}>
                   <Route index element={<Exercises />} />
+                  {/* IFCM FS-019 / C13: freie Stoppuhr für alle Sportarten */}
+                  <Route path="stoppuhr" element={<StopwatchPage />} />
                   <Route
                     path="aufschlagtraining"
                     element={

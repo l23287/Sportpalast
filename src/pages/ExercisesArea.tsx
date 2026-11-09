@@ -1,15 +1,17 @@
 // IFCM FS-003 / C04 Aufschlagtraining nur bei Tischtennis: neuer Rahmen für den Übungsbereich.
-// Bei Tischtennis zeigt er oben zwei Reiter („Übungen“ | „Aufschlagtraining“), bei allen anderen Sportarten
-// nur die Übungen – ohne Reiter. Die eigentlichen Seiten (Exercises, ServeTraining) bleiben unverändert.
+// Bei Tischtennis zeigt er oben die Reiter „Übungen“ | „Stoppuhr“ | „Aufschlagtraining“, bei allen anderen Sportarten
+// „Übungen“ | „Stoppuhr“ (IFCM FS-019 / C13). Die eigentlichen Seiten (Exercises, ServeTraining) bleiben unverändert.
 import type { ReactNode } from 'react';
 import { Navigate, NavLink, Outlet } from 'react-router-dom';
-import { Crosshair, Dumbbell } from 'lucide-react';
+import { Crosshair, Dumbbell, Timer } from 'lucide-react';
 import { useSport } from '../context/SportContext';
 import { hasServeTraining } from '../lib/sport';
 
+// IFCM FS-019 / C13: Reiter „Stoppuhr“ für ALLE Sportarten; „Aufschlagtraining“ weiterhin nur bei Tischtennis (C04)
 const TABS = [
-  { to: '/uebungen', label: 'Übungen', icon: Dumbbell, end: true },
-  { to: '/uebungen/aufschlagtraining', label: 'Aufschlagtraining', icon: Crosshair, end: false },
+  { to: '/uebungen', label: 'Übungen', icon: Dumbbell, end: true, serveOnly: false },
+  { to: '/uebungen/stoppuhr', label: 'Stoppuhr', icon: Timer, end: false, serveOnly: false },
+  { to: '/uebungen/aufschlagtraining', label: 'Aufschlagtraining', icon: Crosshair, end: false, serveOnly: true },
 ];
 
 export function ExercisesArea() {
@@ -17,9 +19,9 @@ export function ExercisesArea() {
 
   return (
     <div className="flex flex-col gap-6">
-      {hasServeTraining(sport) && (
-        <nav aria-label="Bereiche im Übungsbereich" className="flex flex-wrap gap-2">
-          {TABS.map((tab) => (
+      {/* IFCM FS-019 / C13: Reiterleiste jetzt immer sichtbar (mind. „Übungen“ und „Stoppuhr“) */}
+      <nav aria-label="Bereiche im Übungsbereich" className="flex flex-wrap gap-2">
+          {TABS.filter((tab) => !tab.serveOnly || hasServeTraining(sport)).map((tab) => (
             <NavLink
               key={tab.to}
               to={tab.to}
@@ -38,7 +40,6 @@ export function ExercisesArea() {
             </NavLink>
           ))}
         </nav>
-      )}
       <Outlet />
     </div>
   );

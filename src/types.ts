@@ -25,7 +25,8 @@ export const SPORTS: Sport[] = [
 ];
 
 // IFCM FS-017 / C11: Art einer Übung – feste Dauer (bisher) oder Sätze × Wiederholungen (Krafttraining)
-export type ExerciseFormat = 'duration' | 'sets';
+// IFCM FS-019 / C13: + 'stopwatch' = „Zeit messen“ (Stoppuhr zählt hoch, Bestzeit/letzte Zeit an der Übung)
+export type ExerciseFormat = 'duration' | 'sets' | 'stopwatch';
 
 // IFCM FS-017 / C11: Muskelgruppen zum Ordnen der Übungen
 export type MuscleGroup =
@@ -55,6 +56,10 @@ export interface Exercise {
   weightKg?: number | null; // Vorgabe-Gewicht der Trainer:in, schnell anpassbar (+/−), kein Personen-Tagebuch
   restSeconds?: number; // Satzpause in Sekunden (nur bei 'sets')
   muscleGroup?: MuscleGroup | null; // zum Ordnen im Übungsbereich, in jeder Sportart möglich
+  // IFCM FS-019 / C13: gemessene Zeiten einer „Zeit messen“-Übung in Millisekunden – ohne Personenbezug
+  // (keine Ergebnislisten einzelner Sportler:innen, nur Referenz für die Übung)
+  bestTimeMs?: number | null;
+  lastTimeMs?: number | null;
   // IFCM FS-010 / C08 Notizzettel: Notiz zur Übung als Erinnerung fürs nächste Mal (reiner Text, optional).
   // Gehört zur ÜBUNG, nicht zum Plan – sie erscheint daher in jedem Plan und bei jedem Start wieder.
   note?: string;
