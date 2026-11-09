@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowDown, ArrowUp, ArrowUpDown, Flag, Plus, Trash2, Trophy } from 'lucide-react';
 import { CollapsibleSection } from '../components/CollapsibleSection'; // IFCM FS-014 / C09a
+import { Switch } from '../components/Switch'; // IFCM FS-016 / C15
 import { useGoals } from '../context/GoalsContext'; // IFCM FS-013 / C09
 import { GoalForm } from '../components/GoalForm'; // IFCM FS-013 / C09
 import { GoalsBoard } from '../components/GoalsBoard'; // IFCM FS-013 / C09
@@ -23,7 +24,8 @@ export function Settings() {
   const { sport, setSport, sports, customSports, addCustomSport, removeCustomSport, emojiFor, colorFor, moveSport, emoji } =
     useSport(); // IFCM FS-014 / C09a: + emoji für die Kopfzeile des Sportart-Bereichs
   // IFCM FS-013 / C09: Kernziele der aktuellen Sportart und Modus „Reihenfolge ändern“
-  const { addGoal, canAddGoal, deleteGoalsForSport, openGoals, achievedGoals } = useGoals();
+  const { addGoal, canAddGoal, deleteGoalsForSport, openGoals, achievedGoals, goalsEnabled, setGoalsEnabled } =
+    useGoals(); // IFCM FS-016 / C15: + Schalter „Ziele verwenden“
   // IFCM FS-014 / C09a: Kommt man über „/einstellungen#ziele“ (Link in der Planübersicht), ist „Deine Ziele“ offen
   const { hash } = useLocation();
   const navigate = useNavigate(); // IFCM FS-015 / C10: „Einführung erneut ansehen“
@@ -77,6 +79,10 @@ export function Settings() {
         icon={<Flag size={20} />}
         defaultOpen={hash === '#ziele'}
         summary={
+          // IFCM FS-016 / C15: ausgeschaltet zeigt die Kopfzeile „Aus · freiwillig“ statt der Zielzahlen
+          !goalsEnabled ? (
+            'Aus · freiwillig – bei Bedarf einschalten'
+          ) : (
           <>
             {openGoals.length}/3 offen
             {achievedGoals.length > 0 && (
@@ -86,15 +92,36 @@ export function Settings() {
               </>
             )}
           </>
+          )
         }
       >
-        <GoalsBoard mode="manage" showHeading={false} />
-        {canAddGoal ? (
-          <GoalForm onSubmit={addGoal} />
+        {/* IFCM FS-016 / C15: Schalter steht immer oben im Bereich */}
+        <Switch
+          checked={goalsEnabled}
+          onChange={setGoalsEnabled}
+          label="Ziele verwenden"
+          description="Freiwillig: Kernziele nach der SMART-Methode, sichtbar in der Planübersicht."
+        />
+        {goalsEnabled ? (
+          <>
+            <GoalsBoard mode="manage" showHeading={false} />
+            {canAddGoal ? (
+              <GoalForm onSubmit={addGoal} />
+            ) : (
+              <p className="text-sm text-muted">
+                Du hast 3 offene Kernziele – konzentriere dich auf diese. Hake ein Ziel ab oder lösche es, um ein
+                neues anzulegen.
+              </p>
+            )}
+          </>
         ) : (
+          // IFCM FS-016 / C15: ausgeschaltet nur ein Hinweis – gespeicherte Ziele bleiben erhalten
           <p className="text-sm text-muted">
-            Du hast 3 offene Kernziele – konzentriere dich auf diese. Hake ein Ziel ab oder lösche es, um ein neues
-            anzulegen.
+            Ziele sind ausgeschaltet und erscheinen nirgends in der App.
+            {openGoals.length + achievedGoals.length > 0 &&
+              (openGoals.length + achievedGoals.length === 1
+                ? ' Dein gespeichertes Ziel dieser Sportart bleibt erhalten und ist beim Einschalten sofort wieder da.'
+                : ` Deine ${openGoals.length + achievedGoals.length} gespeicherten Ziele dieser Sportart bleiben erhalten und sind beim Einschalten sofort wieder da.`)}
           </p>
         )}
       </CollapsibleSection>
