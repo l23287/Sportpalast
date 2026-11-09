@@ -4,6 +4,8 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 09.11.2026 | II FS-022 Chunk | C12 | Claude beschreibt C12 (Streak), Befund: App kennt noch keine absolvierten Trainings; 3 Prüfpunkte, 3 Rückfragen – noch kein Code | Rückfragen offen | [FS-022](flow-states/FS-022-C12-streak.md) |
+| 09.11.2026 | II FS-021 Abschluss | C13b | Steuerwort „Vorarbeit“: bestanden; **C13 inkl. C13a/C13b fertig** | Merge: Freigabe offen | [FS-021](flow-states/FS-021-C13b-zeiten-speichern.md) |
 | 09.11.2026 | II FS-021 Ergebnis | C13b | Alle Rückfragen geklärt (10 je Sportart, freie Benennung, Variante a), dann programmiert: Zeiten speichern/benennen/umbenennen/löschen unter der Stoppuhr, mit Zwischenzeiten; Test bestanden | Alpha-Test durch Entwickler:in offen | [FS-021](flow-states/FS-021-C13b-zeiten-speichern.md) |
 | 09.11.2026 | II FS-021 Rückfragen | C13b | Antworten: freie Benennung, Variante a (11. Zeit gesperrt); Frage 1 (je Sportart?) offen → erneut gefragt; Umsetzung erst nach „Programmieren“ | noch kein Code | [FS-021](flow-states/FS-021-C13b-zeiten-speichern.md) |
 | 09.11.2026 | II FS-021 Rückfragen | C13b | Entwickler:in: C13a gut, Erweiterung „10 Zeiten speichern und benennen, unter der Stoppuhr“; Claude stellt gemäß Regel zuerst 3 Rückfragen – noch kein Code | Antworten offen | [FS-021](flow-states/FS-021-C13b-zeiten-speichern.md) |

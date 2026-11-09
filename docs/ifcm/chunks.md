@@ -35,8 +35,8 @@ Gepflegt vom Compass Navigator; Claude hält den Status aktuell. Immer nur **ein
 | ID | Titel (Vorgabe) | Inhalt (Vorschlag Claude) | Bezug | Priorität | Status | Flow States |
 |---|---|---|---|---|---|---|
 | C11 | Sportart „Gym“ verbessern | Gym/Fitness passend zur Sportart: z. B. Sätze × Wiederholungen und Gewicht statt nur Dauer | A2 (Gym fehlte) | hoch (2.) | fertig (Merge offen) | [FS-017](flow-states/FS-017-C11-gym.md) |
-| C12 | Streak einführen | Serie aufeinanderfolgender Trainings/Wochen als Motivation, sichtbar in der Übersicht | neu | mittel (4.) | offen | – |
-| C13 | Stoppuhr für Sportarten | Hochzählende Stoppuhr (mit Runden/Zwischenzeiten) zusätzlich zum herunterzählenden Timer, z. B. für Schwimmen, Leichtathletik | neu | mittel (3.) | in Arbeit | [FS-019](flow-states/FS-019-C13-stoppuhr.md), [FS-020](flow-states/FS-020-C13a-stoppuhr-menue.md), [FS-021](flow-states/FS-021-C13b-zeiten-speichern.md) |
+| C12 | Streak einführen | Serie aufeinanderfolgender Trainings/Wochen als Motivation, sichtbar in der Übersicht | neu | mittel (4.) | in Arbeit | [FS-022](flow-states/FS-022-C12-streak.md) |
+| C13 | Stoppuhr für Sportarten | Hochzählende Stoppuhr (mit Runden/Zwischenzeiten) zusätzlich zum herunterzählenden Timer, z. B. für Schwimmen, Leichtathletik | neu | mittel (3.) | fertig (Merge offen) | [FS-019](flow-states/FS-019-C13-stoppuhr.md), [FS-020](flow-states/FS-020-C13a-stoppuhr-menue.md), [FS-021](flow-states/FS-021-C13b-zeiten-speichern.md) |
 | C14 | Erweiterung der Statistik | Mehr Auswertungen, z. B. absolvierte Trainings, Trainingszeit pro Woche, Ziele, Streak | neu | mittel (5.) | offen | – |
 | C16 | Sportartgerechte Vorschläge (Zwischen-Chunk) | Beispieltexte in Formularen passend zur Sportart | Befund Entwickler:in beim Test von C11 | hoch (eingeschoben) | fertig (Merge offen) | [FS-018](flow-states/FS-018-C16-sportart-vorschlaege.md) |
 | C15 | Ziel-Funktion nicht verpflichtend | Zieltool (C09) ein- und ausschaltbar; ausgeschaltet keine Ziel-Hinweise in der Übersicht | Rückmeldung zu C09 | hoch (1.) | fertig (Merge offen) | [FS-016](flow-states/FS-016-C15-ziele-optional.md) |
