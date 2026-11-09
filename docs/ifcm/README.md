@@ -10,9 +10,9 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-017 – Chunk gewählt, Rückfragen zu C11 offen |
+| **Sub-Phase** | FS-017 – Ergebnis liegt vor, als Nächstes Alpha-Test |
 | **Aktiver Chunk** | C11 Sportart „Gym“ verbessern (Chunkliste 2: ~~C15~~ → C11 → C13 → C12 → C14) |
-| **Nächster Schritt** | Rückfragen beantworten, Arbeitsauftrag für C11; Merge-Freigabe offen |
+| **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe offen |
 | **Zuletzt aktualisiert** | 09.11.2026 |
 
 ## Phasenübersicht
