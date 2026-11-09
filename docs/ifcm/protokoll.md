@@ -4,6 +4,7 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 09.11.2026 | II FS-021 Ergebnis | C13b | Alle Rückfragen geklärt (10 je Sportart, freie Benennung, Variante a), dann programmiert: Zeiten speichern/benennen/umbenennen/löschen unter der Stoppuhr, mit Zwischenzeiten; Test bestanden | Alpha-Test durch Entwickler:in offen | [FS-021](flow-states/FS-021-C13b-zeiten-speichern.md) |
 | 09.11.2026 | II FS-021 Rückfragen | C13b | Antworten: freie Benennung, Variante a (11. Zeit gesperrt); Frage 1 (je Sportart?) offen → erneut gefragt; Umsetzung erst nach „Programmieren“ | noch kein Code | [FS-021](flow-states/FS-021-C13b-zeiten-speichern.md) |
 | 09.11.2026 | II FS-021 Rückfragen | C13b | Entwickler:in: C13a gut, Erweiterung „10 Zeiten speichern und benennen, unter der Stoppuhr“; Claude stellt gemäß Regel zuerst 3 Rückfragen – noch kein Code | Antworten offen | [FS-021](flow-states/FS-021-C13b-zeiten-speichern.md) |
 | 09.11.2026 | II FS-020 Ergebnis | C13a | Rückfragen beantwortet (Vorschläge bestätigt + Voreinstellung für neue Sportarten); Stoppuhr als 6. Menüpunkt für alle Sportarten, Name/Taste/Liste/Text je Sportart, eigene Sportarten mit Voreinstellung; Test bestanden | Alpha-Test durch Entwickler:in offen | [FS-020](flow-states/FS-020-C13a-stoppuhr-menue.md) |
