@@ -4,6 +4,7 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 09.11.2026 | II FS-019 Ergebnis | C13 | Stoppuhr: freier Reiter für alle Sportarten + Übungsart „Zeit messen“ mit Bestzeit/letzter Zeit (ohne Personenbezug), Zeit aus der Systemuhr; Rückfragen unbeantwortet → Vorschläge als Annahmen; 7 Logiktests + Oberflächentest (inkl. Genauigkeit) bestanden | Alpha-Test durch Entwickler:in offen | [FS-019](flow-states/FS-019-C13-stoppuhr.md) |
 | 09.11.2026 | II FS-019 Chunk | C13 | Claude beschreibt C13 (Stoppuhr), nennt 3 Prüfpunkte und stellt 3 Rückfragen (Ort, Sportarten, Speichern von Zeiten) | FS-019 gestartet, Rückfragen offen | [FS-019](flow-states/FS-019-C13-stoppuhr.md) |
 | 09.11.2026 | II FS-017/FS-018 Abschluss | C11, C16 | Steuerwort „Vorarbeit“: C11 und C16 (gemeinsam im C16-Branch getestet) bestanden; Alpha-Reflexion durch die Entwickler:in | Merge: Freigabe offen | [FS-018](flow-states/FS-018-C16-sportart-vorschlaege.md) |
 | 09.11.2026 | II FS-018 Ergebnis | C16 | **Zwischen-Chunk** auf Hinweis der Entwickler:in („Vorschläge passen nicht zur Sportart“, Bild nicht angekommen): Beispieltexte je Sportart in `lib/sportExamples.ts`, eingesetzt in Übungs-, Plan-, Notiz- und Zielformular; Test bestanden | Alpha-Tests C11 und C16 offen | [FS-018](flow-states/FS-018-C16-sportart-vorschlaege.md) |
