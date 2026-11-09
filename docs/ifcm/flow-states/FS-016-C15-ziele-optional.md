@@ -6,8 +6,8 @@
 | Chunk | C15 (Chunkliste 2, siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in (Compass Navigator) – bestätigte Reihenfolge, erster Chunk der Liste 2; Steuerwort „Vorarbeit“ |
 | Vorgänger | – (ändert das Zieltool aus FS-013/FS-014, C09/C09a) |
-| Branch / Commits | *offen* (geplant: `ifcm/fs-016-c15-ziele-optional`, abgezweigt vom C10-Branch) |
-| Status | **Chunk gewählt – Prompt offen** |
+| Branch / Commits | `ifcm/fs-016-c15-ziele-optional` (enthält C01–C10 und C15), Commit `5b01107` |
+| Status | **Ergebnis liegt vor – Alpha-Test offen** |
 
 ## 1. Chunk & Ziel
 Das Zieltool soll ein Angebot sein, keine Pflicht: Wer keine Ziele setzen möchte, schaltet die Funktion aus und
@@ -26,13 +26,36 @@ Vorab genannte Prüfpunkte (Claude, 09.11.2026):
    kein Umbau des Zieltools selbst.
 
 ## 2. Prompts
-*offen*
+### Prompt 1 – 09.11.2026 (Entwickler:in, wörtlich)
+> Agiere als erfahrener Programmierer und setzte dies, mit den entsprechenden Kommentaren im Code, sowie der
+> Dokumentation um
+
+Patterns (Richtlinie): 1 ✔ · 3 Persona ✔ · Kontext aus Chunkbeschreibung und 3 Prüfpunkten. Keine Rückfragen.
+**Annahmen Claude:** wie in den Prüfpunkten vorgeschlagen (ein globaler Schalter; Standard aus, bei vorhandenen
+Zielen an; Ausschalten ohne Datenverlust); zusätzlich Schalter direkt in Schritt 5 der Einführung.
 
 ## 3. Ergebnis
-*offen*
+| Datei | Änderung |
+|---|---|
+| `src/components/Switch.tsx` (neu) | barrierefreier Schalter (`role="switch"`, `aria-checked`, Zustand zusätzlich als Text „An/Aus“) |
+| `src/context/GoalsContext.tsx` | `goalsEnabled` / `setGoalsEnabled`, lokal gespeichert (`goalsEnabled`); Standard ohne gespeicherten Wert: an, wenn Ziele existieren, sonst aus |
+| `src/pages/PlansOverview.tsx` | Ziel-Block bzw. Hinweis nur bei eingeschalteten Zielen |
+| `src/pages/Settings.tsx` | Schalter „Ziele verwenden“ oben im Bereich „Deine Ziele“; Kopfzeile „Aus · freiwillig – bei Bedarf einschalten“; ausgeschaltet Hinweis, dass gespeicherte Ziele erhalten bleiben |
+| `src/pages/Onboarding.tsx` | Schritt 5 „Ziele – wenn du magst“ mit freiwilliger Formulierung und Schalter |
+| `README.md` | ergänzt |
 
-## 4. Alpha-Test
-*offen*
+Ziele werden beim Ausschalten **nicht gelöscht**. Kennzeichnung: `// IFCM FS-016 / C15`. Keine neue Abhängigkeit.
+**Build/Lint:** grün, 0 Fehler (2 bekannte Warnungen).
+**Oberflächentest (Playwright):** neue:r Nutzer:in: keine Ziele in der Übersicht, Kopfzeile „Aus · freiwillig“, Schalter aus,
+kein Formular ✔ · Einschalten → Formular, Wert gespeichert, Hinweis in der Übersicht ✔ · bestehende:r Nutzer:in mit Ziel:
+Ziele standardmäßig an ✔ · Ausschalten → nichts in der Übersicht, Ziel bleibt gespeichert, Hinweis „bleibt erhalten“ ✔ ·
+Wiedereinschalten → Ziel sofort wieder sichtbar ✔ · Einführung Schritt 5 „Ziele – wenn du magst“ mit Schalter ✔.
+Nachweis: [assets/fs016-nachweis.png](../assets/fs016-nachweis.png) (aus · an · Übersicht ohne Ziele · Einführung)
+
+**Testmöglichkeit:** lokal im Branch `ifcm/fs-016-c15-ziele-optional` – noch nicht auf der Live-Seite.
+
+## 4. Alpha-Test – *offen, durch Entwickler:in*
+**Guards (Claude):** keine neuen Abhängigkeiten ✔ · neue lokale Einstellung nur ein Ja/Nein-Wert ✔ · keine Datenlöschung beim Ausschalten ✔.
 
 ## 5. Alpha-Reflexion
 *offen*

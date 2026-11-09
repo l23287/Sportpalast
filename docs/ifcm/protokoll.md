@@ -4,6 +4,7 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 09.11.2026 | II FS-016 Ergebnis | C15 | Ziel-Funktion freiwillig: Schalter „Ziele verwenden“ (Einstellungen + Einführung), Standard aus bzw. an bei vorhandenen Zielen, Ausschalten ohne Datenverlust; Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-016](flow-states/FS-016-C15-ziele-optional.md) |
 | 09.11.2026 | II FS-016 Chunk | C15 | Entwickler:in bestätigt Reihenfolge C15 → C11 → C13 → C12 → C14; Steuerwort „Vorarbeit“: Claude beschreibt C15 und nennt 3 Prüfpunkte | FS-016 gestartet, Prompt offen | [FS-016](flow-states/FS-016-C15-ziele-optional.md) |
 | 09.11.2026 | II Chunkliste 2 | C11–C15 | Entwickler:in legt neue Chunkliste fest: C11 Sportart „Gym“ verbessern, C12 Streak, C13 Stoppuhr, C14 Erweiterung der Statistik, C15 Ziel-Funktion nicht verpflichtend; Claude ergänzt Kurzbeschreibungen als Vorschlag | Go-Live verschoben; Reihenfolge offen | [chunks.md](chunks.md) |
 | 09.11.2026 | II FS-015 Abschluss | C10 | Entwickler:in: Flow-State-Zyklus abgeschlossen → C10 bestanden; **Chunkliste 1 (C01–C10) vollständig** | Merge C01–C10: Freigabe offen | [FS-015](flow-states/FS-015-C10-einfuehrung.md) |
