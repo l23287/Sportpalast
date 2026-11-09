@@ -2,12 +2,12 @@
 
 | Feld | Wert |
 |---|---|
-| Zeitraum | 09.11.2026 – *offen* |
+| Zeitraum | 09.11.2026 – 09.11.2026 |
 | Chunk | C11 (Chunkliste 2, siehe [../chunks.md](../chunks.md)) |
 | Ausgewählt von | Entwickler:in – Steuerwort „Vorarbeit“, bestätigte Reihenfolge (C15 → **C11**) |
 | Vorgänger | – (baut auf C02 „Gym/Fitness“ und C07 „Dauer in Sekunden“ auf) |
 | Branch / Commits | `ifcm/fs-017-c11-gym` (enthält C01–C10, C15, C11), Commit `40e236e` |
-| Status | **Ergebnis liegt vor – Alpha-Test offen** |
+| Status | **bestanden** (Merge: Freigabe offen) |
 
 ## 1. Chunk & Ziel
 Die Sportart „Gym/Fitness“ (seit C02, Bezug A2 „gym als Sportart hinzufügen“) soll besser zur Sportart passen. Heute
@@ -77,12 +77,14 @@ Nach dem Screenshot: Button „Pause überspringen“ in „Nächster Satz“ um
 
 **Testmöglichkeit:** lokal im Branch `ifcm/fs-017-c11-gym` – noch nicht auf der Live-Seite.
 
-## 4. Alpha-Test – *offen, durch Entwickler:in* (am 09.11.2026 durch den Zwischen-Chunk C16 / FS-018 unterbrochen; Rückmeldung „Okay“)
+## 4. Alpha-Test
+**Bewertung (Entwickler:in, 09.11.2026):** Steuerwort „Vorarbeit“ (= Ergebnis zufriedenstellend; C11 und C16 gemeinsam im C16-Branch getestet) → **bestanden**
+
 **Guards (Claude):** keine neuen Abhängigkeiten ✔ · Gewicht ist Vorgabe der Trainer:in an der Übung, keine
 Leistungsdaten einzelner Personen ✔ · Eingabegrenzen (Sätze ≤ 20, Wdh. ≤ 100, Gewicht ≤ 500 kg, Pause ≤ 600 s) ✔.
 
 ## 5. Alpha-Reflexion
-*offen*
+Durch die Entwickler:in (Coach); Inhalte liegen bei der Entwickler:in. *Bei Bedarf nachtragen.*
 
 ## 6. Abschluss
-*offen*
+C11 **fertig** (09.11.2026). Abnahme gemeinsam mit C16 im C16-Branch.
