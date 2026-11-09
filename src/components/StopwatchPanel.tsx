@@ -2,7 +2,8 @@
 // Timer bei Übungen der Art „Zeit messen“. Große Tasten (h-14) für die Bedienung in Halle oder Schwimmbad.
 import { Flag, Pause, Play, RotateCcw, Save } from 'lucide-react';
 import { useStopwatch } from '../hooks/useStopwatch';
-import { formatStopwatch, lapDurations } from '../lib/stopwatch';
+import { formatStopwatch, lapDurations, stopwatchLabelsFor } from '../lib/stopwatch';
+import { useSport } from '../context/SportContext'; // IFCM FS-020 / C13a
 
 interface StopwatchPanelProps {
   // optional: „Zeit übernehmen“ – nur im Timer einer Übung (speichert letzte Zeit/Bestzeit an der Übung)
@@ -11,6 +12,9 @@ interface StopwatchPanelProps {
 
 export function StopwatchPanel({ onSave }: StopwatchPanelProps) {
   const { elapsedMs, running, splits, start, stop, lap, reset } = useStopwatch();
+  // IFCM FS-020 / C13a: „Runde“ heißt je Sportart z. B. „Bahn“ (Schwimmen) oder „Satz“ (Gym/Fitness)
+  const { sport } = useSport();
+  const labels = stopwatchLabelsFor(sport);
   const laps = lapDurations(splits);
   const fastest = laps.length > 1 ? Math.min(...laps) : null;
 
@@ -51,7 +55,7 @@ export function StopwatchPanel({ onSave }: StopwatchPanelProps) {
             onClick={lap}
             className="flex h-14 items-center justify-center gap-2 rounded-2xl border border-border font-semibold text-ink transition hover:bg-surface-2"
           >
-            <Flag size={18} /> Runde
+            <Flag size={18} /> {labels.lap}
           </button>
         ) : (
           <button
@@ -80,7 +84,7 @@ export function StopwatchPanel({ onSave }: StopwatchPanelProps) {
 
       {/* Runden: neueste oben; schnellste Runde markiert */}
       {laps.length > 0 && (
-        <ol className="flex w-full flex-col gap-1 text-sm" aria-label="Runden">
+        <ol className="flex w-full flex-col gap-1 text-sm" aria-label={labels.laps}>
           {laps
             .map((lapMs, index) => ({ lapMs, index, split: splits[index] }))
             .reverse()
@@ -92,7 +96,7 @@ export function StopwatchPanel({ onSave }: StopwatchPanelProps) {
                 }`}
               >
                 <span>
-                  Runde {index + 1}
+                  {labels.lap} {index + 1}
                   {lapMs === fastest && <span className="ml-2 text-xs font-semibold text-sport">schnellste</span>}
                 </span>
                 <span className="font-semibold text-ink">{formatStopwatch(lapMs)}</span>
