@@ -34,11 +34,11 @@ Gepflegt vom Compass Navigator; Claude hält den Status aktuell. Immer nur **ein
 
 | ID | Titel (Vorgabe) | Inhalt (Vorschlag Claude) | Bezug | Priorität | Status | Flow States |
 |---|---|---|---|---|---|---|
-| C11 | Sportart „Gym“ verbessern | Gym/Fitness passend zur Sportart: z. B. Sätze × Wiederholungen und Gewicht statt nur Dauer | A2 (Gym fehlte) | hoch (2.) | offen | – |
+| C11 | Sportart „Gym“ verbessern | Gym/Fitness passend zur Sportart: z. B. Sätze × Wiederholungen und Gewicht statt nur Dauer | A2 (Gym fehlte) | hoch (2.) | in Arbeit | [FS-017](flow-states/FS-017-C11-gym.md) |
 | C12 | Streak einführen | Serie aufeinanderfolgender Trainings/Wochen als Motivation, sichtbar in der Übersicht | neu | mittel (4.) | offen | – |
 | C13 | Stoppuhr für Sportarten | Hochzählende Stoppuhr (mit Runden/Zwischenzeiten) zusätzlich zum herunterzählenden Timer, z. B. für Schwimmen, Leichtathletik | neu | mittel (3.) | offen | – |
 | C14 | Erweiterung der Statistik | Mehr Auswertungen, z. B. absolvierte Trainings, Trainingszeit pro Woche, Ziele, Streak | neu | mittel (5.) | offen | – |
-| C15 | Ziel-Funktion nicht verpflichtend | Zieltool (C09) ein- und ausschaltbar; ausgeschaltet keine Ziel-Hinweise in der Übersicht | Rückmeldung zu C09 | hoch (1.) | in Arbeit | [FS-016](flow-states/FS-016-C15-ziele-optional.md) |
+| C15 | Ziel-Funktion nicht verpflichtend | Zieltool (C09) ein- und ausschaltbar; ausgeschaltet keine Ziel-Hinweise in der Übersicht | Rückmeldung zu C09 | hoch (1.) | fertig (Merge offen) | [FS-016](flow-states/FS-016-C15-ziele-optional.md) |
 
 ## Nicht in dieser Phase (🟧 orange in der Mindmap)
 | Thema | Bezug | Grund laut Mindmap |

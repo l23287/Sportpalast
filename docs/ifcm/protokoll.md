@@ -4,6 +4,10 @@ Neueste Einträge oben. Jede Weiterentwicklung erzeugt mindestens eine Zeile.
 
 | Datum | Phase / Sub-Phase | Chunk | Was | Ergebnis / Entscheidung | Link |
 |---|---|---|---|---|---|
+| 09.11.2026 | II FS-017 Ergebnis | C11 | Gym: Sätze × Wdh. + Gewicht + Satzpause, Gewicht ±2,5 kg auf Karte und im Timer, Satz- und Pausen-Timer, Muskelgruppen; 10 Logiktests + Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-017](flow-states/FS-017-C11-gym.md) |
+| 09.11.2026 | II FS-017 Rückfragen / Prozess | C11 | Antworten: a, b, c; Gewicht schnell anpassbar. **Neues Steuerwort „Programmieren“** (ersetzt den Umsetzungs-Prompt) in Skill, `CLAUDE.md`, README | Arbeitsauftrag C11 | [FS-017](flow-states/FS-017-C11-gym.md) |
+| 09.11.2026 | II FS-017 Chunk | C11 | Claude beschreibt C11, nennt 3 Prüfpunkte; auf Wunsch der Entwickler:in („stelle Fragen, falls mein Chunk zu ungenau ist“) 3 Rückfragen zum Umfang | FS-017 gestartet, Rückfragen offen | [FS-017](flow-states/FS-017-C11-gym.md) |
+| 09.11.2026 | II FS-016 Abschluss | C15 | Steuerwort „Vorarbeit“: Alpha-Test bestanden, Alpha-Reflexion von der Entwickler:in durchgeführt; **C15 fertig** | Merge: Freigabe offen | [FS-016](flow-states/FS-016-C15-ziele-optional.md) |
 | 09.11.2026 | II FS-016 Ergebnis | C15 | Ziel-Funktion freiwillig: Schalter „Ziele verwenden“ (Einstellungen + Einführung), Standard aus bzw. an bei vorhandenen Zielen, Ausschalten ohne Datenverlust; Oberflächentest bestanden | Alpha-Test durch Entwickler:in offen | [FS-016](flow-states/FS-016-C15-ziele-optional.md) |
 | 09.11.2026 | II FS-016 Chunk | C15 | Entwickler:in bestätigt Reihenfolge C15 → C11 → C13 → C12 → C14; Steuerwort „Vorarbeit“: Claude beschreibt C15 und nennt 3 Prüfpunkte | FS-016 gestartet, Prompt offen | [FS-016](flow-states/FS-016-C15-ziele-optional.md) |
 | 09.11.2026 | II Chunkliste 2 | C11–C15 | Entwickler:in legt neue Chunkliste fest: C11 Sportart „Gym“ verbessern, C12 Streak, C13 Stoppuhr, C14 Erweiterung der Statistik, C15 Ziel-Funktion nicht verpflichtend; Claude ergänzt Kurzbeschreibungen als Vorschlag | Go-Live verschoben; Reihenfolge offen | [chunks.md](chunks.md) |

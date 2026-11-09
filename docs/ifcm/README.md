@@ -10,8 +10,8 @@ des Prozesses (Wert *Transparenz*). Geführt wird es von Claude als Protokollant
 | | |
 |---|---|
 | **Phase** | II – Flow States (Projektzeitraum 01.11.2026 – 01.01.2027) |
-| **Sub-Phase** | FS-016 – Ergebnis liegt vor, als Nächstes Alpha-Test |
-| **Aktiver Chunk** | C15 Ziel-Funktion nicht verpflichtend (Chunkliste 2: C15 → C11 → C13 → C12 → C14) |
+| **Sub-Phase** | FS-017 – Ergebnis liegt vor, als Nächstes Alpha-Test |
+| **Aktiver Chunk** | C11 Sportart „Gym“ verbessern (Chunkliste 2: ~~C15~~ → C11 → C13 → C12 → C14) |
 | **Nächster Schritt** | Alpha-Test durch Entwickler:in; Merge-Freigabe offen |
 | **Zuletzt aktualisiert** | 09.11.2026 |
 
@@ -39,7 +39,7 @@ flowchart LR
 | I Project Compass | Brainstorm | [01-brainstorm.md](01-brainstorm.md) | abgeschlossen 03.11.2026 |
 | | Planning | [02-planning.md](02-planning.md) | abgeschlossen 03.11.2026 |
 | | Initiation | [03-initiation.md](03-initiation.md), [chunks.md](chunks.md) | abgeschlossen 03.11.2026 |
-| II Flow States | je Chunk | [flow-states/](flow-states/) | läuft (Chunkliste 1 C01–C10 fertig; Chunkliste 2: FS-016 aktiv) |
+| II Flow States | je Chunk | [flow-states/](flow-states/) | läuft (Chunkliste 1 C01–C10 fertig; Chunkliste 2: C15 fertig, FS-017 aktiv) |
 | III Go-Live | Beta-Test, Rollout, Beta-Reflexion | 04-go-live.md (wird angelegt) | offen |
 
 Chronologie aller Schritte: [protokoll.md](protokoll.md) · Recherchierte Quellen: [quellen/](quellen/)
@@ -50,6 +50,7 @@ Chronologie aller Schritte: [protokoll.md](protokoll.md) · Recherchierte Quelle
 - **„nächste Phase“** – Wechsel in die nächste (Sub-)Phase, nach Prüfung der Ausgangskriterien
 - **„Vorarbeit“** – aktueller Flow State bestanden, Alpha-Reflexion durch die Entwickler:in erledigt → nächsten Chunk
   vorbereiten (Beschreibung + 3 Prüfpunkte), noch ohne Code
+- **„Programmieren“** – vorbereiteten Chunk umsetzen (Code mit Kommentaren + Dokumentation)
 
 Ohne Steuerwort geht Claude nicht weiter. Bei Unklarheiten fragt Claude nach.
 
