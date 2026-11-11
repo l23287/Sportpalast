@@ -1,5 +1,4 @@
 import type { SVGProps } from "react";
-import { useSport } from "../context/SportContext";
 
 /**
  * TrainerPro Bildmarke.
@@ -36,7 +35,6 @@ export function TrainerProMark({ mono = false, ...props }: SVGProps<SVGSVGElemen
 
 /** Horizontale Wortmarke: Bildmarke + Schriftzug (Kanit 900 italic). */
 export function TrainerProLockup({ tagline = true }: { tagline?: boolean }) {
-  const { sport } = useSport();
   return (
     <span className="inline-flex items-center gap-4">
       <TrainerProMark className="h-12 w-auto" />
@@ -49,7 +47,7 @@ export function TrainerProLockup({ tagline = true }: { tagline?: boolean }) {
         </span>
         {tagline && (
           <span className="text-[10px] tracking-[0.26em] text-[#a1b1d1]">
-            {sport.toUpperCase()} · TRAINING
+            TRAINING
           </span>
         )}
       </span>
